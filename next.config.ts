@@ -7,8 +7,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  basePath: '/eyrya-website',
-  assetPrefix: '/eyrya-website/',
 };
 
 export default nextConfig;
