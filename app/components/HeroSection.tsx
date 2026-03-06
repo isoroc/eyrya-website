@@ -23,7 +23,7 @@ export default function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm mb-8"
           >
             <Sparkles className="w-4 h-4 text-pink-500" />
-            <span className="text-sm font-medium text-gray-700">Party · Play · Cheer · Outdoor</span>
+            <span className="text-sm font-medium text-gray-700">Party · Play · Cheer · Outdoor · TEST</span>
           </motion.div>
 
           <motion.h1
