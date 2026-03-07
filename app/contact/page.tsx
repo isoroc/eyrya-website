@@ -1,12 +1,41 @@
-import { Metadata } from 'next';
-import { Mail, Clock, Send } from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Contact - EYRYA',
-  description: 'Have a question? We read every email. Usually reply within 24 hours.',
-};
+import { useState } from 'react';
+import { Mail, Clock, Send, Check, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+        setErrorMessage(result.error || '发送失败，请稍后重试');
+      }
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage('网络错误，请检查连接后重试');
+    }
+  };
+
   return (
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,70 +90,106 @@ export default function ContactPage() {
           </div>
 
           <div className="bg-[#fafafa] border border-gray-200 p-8">
-            <form className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="inquiry" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Type
-                </label>
-                <select
-                  id="inquiry"
-                  name="inquiry"
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+            {status === 'success' ? (
+              <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                  <Check className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">发送成功！</h3>
+                <p className="text-gray-600 mb-6">我们会尽快回复你的邮件。</p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="text-[#FF6B6B] font-medium hover:underline"
                 >
-                  <option value="">Select one...</option>
-                  <option value="customer-support">Product question</option>
-                  <option value="wholesale">Wholesale inquiry</option>
-                  <option value="other">Other</option>
-                </select>
+                  发送另一条消息
+                </button>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {status === 'error' && (
+                  <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200">
+                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-700 text-sm">{errorMessage}</p>
+                  </div>
+                )}
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
-                  placeholder="How can we help?"
-                />
-              </div>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="Your name"
+                  />
+                </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors"
-              >
-                <Send className="w-5 h-5" />
-                Send Message
-              </button>
-            </form>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="inquiry" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                    Type
+                  </label>
+                  <select
+                    id="inquiry"
+                    name="inquiry"
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+                  >
+                    <option value="">Select one...</option>
+                    <option value="Product question">Product question</option>
+                    <option value="Wholesale inquiry">Wholesale inquiry</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+                    placeholder="How can we help?"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      发送中...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>

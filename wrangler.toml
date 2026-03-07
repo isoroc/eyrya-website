@@ -1,0 +1,9 @@
+name = "eyrya-website"
+compatibility_date = "2024-03-01"
+
+# Pages Functions 配置
+[[env.production]]
+name = "eyrya-website-prod"
+
+[[env.staging]]
+name = "eyrya-website-staging"
