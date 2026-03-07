@@ -57,8 +57,8 @@ export default function ContactPage() {
                 
                 <div>
                   <h3 className="font-semibold text-[#1a1a1a] mb-1">Email</h3>
-                  <a href="mailto:hello@eyrya.com" className="text-gray-600 hover:text-[#FF6B6B] transition-colors">
-                    hello@eyrya.com
+                  <a href="mailto:support@eyrya.com" className="text-gray-600 hover:text-[#FF6B6B] transition-colors">
+                    support@eyrya.com
                   </a>
                 </div>
               </div>

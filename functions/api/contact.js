@@ -57,7 +57,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         from: 'EYRYA Website <support@eyrya.com>',
-        to: env.CONTACT_EMAIL || 'hello@eyrya.com',
+        to: env.CONTACT_EMAIL || 'support@eyrya.com',
         subject: `Contact Form: ${data.inquiry || 'General Inquiry'} from ${data.name}`,
         reply_to: data.email,
         html: `
@@ -88,7 +88,7 @@ export async function onRequestPost(context) {
   } catch (error) {
     console.error('Contact form error:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to send message. Please try again or email hello@eyrya.com directly.' }),
+      JSON.stringify({ error: 'Failed to send message. Please try again or email support@eyrya.com directly.' }),
       { 
         status: 500, 
         headers: { 'Content-Type': 'application/json' } 

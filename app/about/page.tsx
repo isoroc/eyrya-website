@@ -79,10 +79,10 @@ export default function AboutPage() {
               We read every email. Usually reply within 24 hours.
             </p>
             <a 
-              href="mailto:hello@eyrya.com"
+              href="mailto:support@eyrya.com"
               className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
             >
-              hello@eyrya.com
+              support@eyrya.com
             </a>
           </div>
         </div>

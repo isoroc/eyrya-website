@@ -38,7 +38,7 @@
 
 ```
 RESEND_API_KEY = re_xxxxxxxxxxxxx
-CONTACT_EMAIL = hello@eyrya.com
+CONTACT_EMAIL = support@eyrya.com
 ```
 
 ### 2.3 部署
