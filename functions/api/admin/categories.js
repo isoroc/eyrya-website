@@ -1,5 +1,5 @@
 // Admin API - 分类管理
-import { getCategories, createCategory, updateCategory } from '../../lib/db';
+import { getCategories, createCategory, updateCategory } from '../../../lib/db.js';
 
 export async function onRequestGet(context) {
   const { env } = context;

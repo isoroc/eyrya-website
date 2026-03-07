@@ -2,7 +2,7 @@
 import { 
   getProducts, getProductBySlug, createProduct, updateProduct, deleteProduct,
   getCategories
-} from '../../lib/db';
+} from '../../../lib/db.js';
 
 export async function onRequestGet(context) {
   const { request, env } = context;
