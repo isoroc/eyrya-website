@@ -95,13 +95,13 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                   <Check className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">发送成功！</h3>
-                <p className="text-gray-600 mb-6">我们会尽快回复你的邮件。</p>
+                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Message sent!</h3>
+                <p className="text-gray-600 mb-6">We'll get back to you soon.</p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="text-[#FF6B6B] font-medium hover:underline"
                 >
-                  发送另一条消息
+                  Send another message
                 </button>
               </div>
             ) : (
