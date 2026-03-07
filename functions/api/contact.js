@@ -56,7 +56,7 @@ export async function onRequestPost(context) {
         'Authorization': `Bearer ${env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'EYRYA Contact Form <onboarding@resend.dev>',
+        from: 'EYRYA Website <support@eyrya.com>',
         to: env.CONTACT_EMAIL || 'hello@eyrya.com',
         subject: `Contact Form: ${data.inquiry || 'General Inquiry'} from ${data.name}`,
         reply_to: data.email,
