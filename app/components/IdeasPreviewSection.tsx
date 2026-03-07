@@ -1,118 +1,77 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const ideas = [
   {
-    title: 'Best Party Accessories for Kids Events',
-    excerpt: 'Discover the essential party accessories that will make any kids celebration unforgettable.',
-    category: 'Party Ideas',
-    readTime: '5 min read',
-    color: 'bg-pink-100 text-pink-700',
+    title: 'The Ultimate Game Day Checklist',
+    excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, we have got you covered.',
+    category: 'Sports',
+    date: 'Dec 15, 2024',
   },
   {
-    title: 'How Foam Fingers Make Sports Events More Fun',
-    excerpt: 'Learn why foam fingers are the ultimate cheering accessory for sports fans.',
-    category: 'Sports Event Ideas',
-    readTime: '4 min read',
-    color: 'bg-orange-100 text-orange-700',
+    title: 'Party Supplies That Actually Last',
+    excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
+    category: 'Parties',
+    date: 'Dec 10, 2024',
   },
   {
-    title: 'Outdoor Activity Ideas for Families',
-    excerpt: 'Fun outdoor activities and products for quality family time together.',
-    category: 'Outdoor Activities',
-    readTime: '6 min read',
-    color: 'bg-green-100 text-green-700',
+    title: 'Bulk Orders: What You Need to Know',
+    excerpt: 'Ordering for a school or team? Here is how to get the best deal on 50+ units.',
+    category: 'Wholesale',
+    date: 'Dec 5, 2024',
   },
 ];
 
 export default function IdeasPreviewSection() {
   return (
-    <section className="py-20 lg:py-28 bg-gray-50">
+    <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-            >
-              Ideas \u0026 Inspiration
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-gray-600 max-w-xl"
-            >
-              Explore ideas, tips and inspiration for parties, sports events and outdoor fun.
-            </motion.p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3">
+              From the Blog
+            </h2>
+            <p className="text-gray-600">
+              Tips, tricks, and real talk about party planning and sports events.
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+          <Link
+            href="/ideas"
+            className="inline-flex items-center gap-2 text-[#1a1a1a] font-semibold hover:gap-3 transition-all mt-4 md:mt-0"
           >
-            <Link
-              href="/ideas"
-              className="inline-flex items-center gap-2 text-pink-600 font-semibold hover:text-pink-700 transition-colors mt-4 md:mt-0"
-            >
-              View All Ideas
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
+            Read all posts
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ideas.map((idea, index) => (
-            <motion.div
-              key={idea.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link href={`/ideas/${idea.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 h-full"
-                >
-                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-300">
-                      <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    
-                    <div className="absolute top-4 left-4">
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${idea.color}`}>
-                        {idea.category}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
-                      {idea.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-4 line-clamp-2">
-                      {idea.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <Clock className="w-4 h-4" />
-                      {idea.readTime}
-                    </div>
-                  </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {ideas.map((idea) => (
+            <Link key={idea.title} href={`/ideas/${idea.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <div className="group border border-gray-200 p-6 hover:border-[#FF6B6B] transition-colors h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#FF6B6B]">
+                    {idea.category}
+                  </span>
+                  <span className="text-xs text-gray-400">{idea.date}</span>
                 </div>
-              </Link>
-            </motion.div>
+
+                <h3 className="text-lg font-bold text-[#1a1a1a] mb-3 group-hover:text-[#FF6B6B] transition-colors">
+                  {idea.title}
+                </h3>
+                
+                <p className="text-gray-600 text-sm mb-4 flex-grow">
+                  {idea.excerpt}
+                </p>
+                
+                <span className="text-sm font-semibold text-[#1a1a1a] group-hover:gap-3 gap-2 transition-all inline-flex items-center">
+                  Read more
+                  <span>→</span>
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

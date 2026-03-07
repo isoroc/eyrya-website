@@ -1,119 +1,107 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-pink-50 via-white to-orange-50">
-      {/* Background Decorations */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-200/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-200/30 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-100/20 rounded-full blur-3xl" />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center bg-[#fafafa]">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="order-2 lg:order-1">
+            <div className="inline-block mb-4">
+              <span className="text-sm font-semibold tracking-wider text-[#FF6B6B] uppercase">
+                New Arrival
+              </span>
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm mb-8"
-          >
-            <Sparkles className="w-4 h-4 text-pink-500" />
-            <span className="text-sm font-medium text-gray-700">Party · Play · Cheer · Outdoor · TEST</span>
-          </motion.div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1a1a1a] leading-[1.1] mb-6">
+              The Original 
+              <span className="text-[#FF6B6B]">EVA</span>
+              <br />
+              Foam Finger
+            </h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6"
-          >
-            Bring More{' '}
-            <span className="bg-gradient-to-r from-pink-500 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-              Fun
-            </span>
-            <br />
-            to Every Moment
-          </motion.h1>
+            <p className="text-lg text-gray-600 mb-8 max-w-lg">
+              Lightweight, durable, and impossible to miss. Perfect for game days, parties, and any event where you want to stand out.
+            </p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-10"
-          >
-            EYRYA creates fun products for parties, sports events, playtime and outdoor activities.
-          </motion.p>
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <span className="text-3xl font-bold text-[#1a1a1a]">$12.99</span>
+              <span className="text-sm text-gray-500">Free shipping over $25</span>
+            </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link
-              href="https://amazon.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
-            >
-              Shop on Amazon
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/products"
-              className="flex items-center gap-2 bg-white text-gray-800 px-8 py-4 rounded-full font-semibold text-lg border-2 border-gray-200 hover:border-pink-500 hover:text-pink-500 transition-all duration-200"
-            >
-              Explore Products
-            </Link>
-          </motion.div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Link
+                href="https://amazon.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-black transition-colors"
+              >
+                Shop on Amazon
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 text-[#1a1a1a] font-semibold hover:text-[#FF6B6B] transition-colors"
+              >
+                View Details
+              </Link>
+            </div>
 
-          {/* Trust Badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-8 text-gray-500"
-          >
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <div className="flex items-center gap-6 text-sm text-gray-600">
+                <span>1,247 sold this month</span>
+                <span className="w-1 h-1 rounded-full bg-gray-400"></span>
+                <span className="text-[#4ECDC4] font-medium">In Stock</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="order-1 lg:order-2 relative">
+            <div className="relative aspect-square bg-[#f5f5f5] flex items-center justify-center">
+              {/* Product Placeholder with more realistic styling */}
+              <div className="relative w-3/4 h-3/4">
+                <div className="absolute inset-0 bg-[#FF6B6B] transform -rotate-6 shadow-2xl">
+                  <div className="absolute inset-4 border-4 border-white/30 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <div className="text-7xl font-black mb-2">#1</div>
+                      <div className="text-2xl font-bold tracking-widest">FAN</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Price Tag */}
+              <div className="absolute top-4 right-4 bg-white px-4 py-2 shadow-lg transform rotate-3">
+                <span className="text-lg font-bold text-[#1a1a1a]">$12.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Bar */}
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-600">
             <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-200 to-orange-200 border-2 border-white"
-                  />
+              <div className="flex">
+                {[1,2,3,4,5].map((i) => (
+                  <svg key={i} className="w-4 h-4 text-[#FFE66D]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
                 ))}
               </div>
-              <span className="text-sm">10,000+ Happy Customers</span>
+              <span>4.8/5 (328 reviews)</span>
             </div>
-            <div className="h-4 w-px bg-gray-300 hidden sm:block" />
-            <span className="text-sm">Fast Shipping Worldwide</span>
-            <div className="h-4 w-px bg-gray-300 hidden sm:block" />
-            <span className="text-sm">Premium Quality</span>
-          </motion.div>
+            <div className="flex items-center gap-6">
+              <span>Ships from US</span>
+              <span>30-day returns</span>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-3 bg-pink-500 rounded-full mt-2"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

@@ -1,104 +1,78 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { PartyPopper, ToyBrick, Trophy, Tent } from 'lucide-react';
 import Link from 'next/link';
 
 const categories = [
   {
     name: 'Party Supplies',
-    description: 'Fun accessories that make celebrations more exciting.',
-    icon: PartyPopper,
-    color: 'from-pink-500 to-rose-400',
-    bgColor: 'bg-pink-50',
+    description: 'Party essentials that actually work. Birthday banners, tableware, and decor that wont fall apart mid-celebration.',
+    color: '#FF6B6B',
+    bgColor: 'bg-[#FF6B6B]/5',
+    productCount: '12 products',
     href: '/products?category=party-supplies',
   },
   {
-    name: 'Toys \u0026 Play',
-    description: 'Creative products for kids, families and joyful play.',
-    icon: ToyBrick,
-    color: 'from-blue-500 to-cyan-400',
-    bgColor: 'bg-blue-50',
+    name: 'Kids & Toys',
+    description: 'Toys kids actually play with. No gimmicks, no 5-minute wonders. Just solid fun that lasts.',
+    color: '#4ECDC4',
+    bgColor: 'bg-[#4ECDC4]/5',
+    productCount: '8 products',
     href: '/products?category=toys-play',
   },
   {
-    name: 'Sports Fan Gear',
-    description: 'Cheer louder and stand out at every event.',
-    icon: Trophy,
-    color: 'from-orange-500 to-amber-400',
-    bgColor: 'bg-orange-50',
+    name: 'Sports & Fan Gear',
+    description: 'Game day essentials. Foam fingers, banners, and noise makers that make you the loudest fan in the stadium.',
+    color: '#FFE66D',
+    bgColor: 'bg-[#FFE66D]/5',
+    productCount: '15 products',
     href: '/products?category=sports-fan-gear',
   },
   {
-    name: 'Outdoor Fun',
-    description: 'Products made for active moments and family adventures.',
-    icon: Tent,
-    color: 'from-green-500 to-emerald-400',
-    bgColor: 'bg-green-50',
+    name: 'Outdoor & Camping',
+    description: 'Camping gear that survives real trips. Tested on actual family vacations, not just photo shoots.',
+    color: '#1a1a1a',
+    bgColor: 'bg-gray-100',
+    productCount: '6 products',
     href: '/products?category=outdoor-fun',
   },
 ];
 
 export default function CategoriesSection() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-          >
-            Explore Our Categories
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-gray-600 max-w-2xl mx-auto"
-          >
-            From party supplies and fan gear to outdoor fun products, EYRYA is designed to bring more energy, creativity and excitement to everyday moments.
-          </motion.p>
+        <div className="mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3">
+            Shop by Category
+          </h2>
+          <p className="text-gray-600">
+            We specialize in party supplies and fan gear. That's it. No random gadgets, no dropshipping junk.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link href={category.href}>
-                <div className="group relative overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full">
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${category.color}`} />
-                  
-                  <div className={`p-8 ${category.bgColor} rounded-2xl h-full`}>
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <category.icon className="w-7 h-7 text-white" />
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {category.name}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-6">
-                      {category.description}
-                    </p>
-                    
-                    <div className="flex items-center text-sm font-semibold text-gray-900 group-hover:text-pink-500 transition-colors">
-                      Explore 
-                      <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {categories.map((category) => (
+            <Link key={category.name} href={category.href}>
+              <div className={`group ${category.bgColor} border border-gray-200 p-6 hover:border-[${category.color}] transition-colors h-full flex flex-col`}>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-[#1a1a1a]">
+                    {category.name}
+                  </h3>
+                  <span className="text-xs font-medium text-gray-500">
+                    {category.productCount}
+                  </span>
                 </div>
-              </Link>
-            </motion.div>
+                
+                <p className="text-sm text-gray-600 mb-6 flex-grow">
+                  {category.description}
+                </p>
+                
+                <div className="flex items-center text-sm font-semibold text-[#1a1a1a] group-hover:gap-3 gap-2 transition-all">
+                  Browse
+                  <span className="text-lg">→</span>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       </div>

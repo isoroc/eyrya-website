@@ -1,117 +1,68 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ExternalLink, ShoppingCart } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 const platforms = [
   {
     name: 'Amazon',
-    description: 'Shop EYRYA products with convenient delivery and trusted service.',
+    description: 'Prime shipping. 4.6/5 stars from 2,847 reviews.',
     url: 'https://amazon.com',
-    color: 'from-orange-400 to-amber-500',
-    logo: 'A',
+    stock: 'In stock',
   },
   {
     name: 'Temu',
-    description: 'Discover EYRYA products and deals on Temu.',
+    description: 'Budget-friendly options. New customer discounts available.',
     url: 'https://temu.com',
-    color: 'from-pink-500 to-rose-500',
-    logo: 'T',
+    stock: 'In stock',
   },
 ];
 
 export default function WhereToBuySection() {
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section className="py-16 lg:py-24 bg-[#1a1a1a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6"
-          >
-            <ShoppingCart className="w-4 h-4 text-pink-400" />
-            <span className="text-sm font-medium text-white">Shop Now</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
-          >
-            Shop EYRYA
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-gray-300 max-w-2xl mx-auto"
-          >
-            Find EYRYA products on trusted online marketplaces.
-          </motion.p>
+        <div className="mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Where to Buy
+          </h2>
+          <p className="text-gray-400">
+            Find us on major marketplaces. Same products, your preferred platform.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {platforms.map((platform, index) => (
-            <motion.div
+        <div className="grid md:grid-cols-2 gap-4 max-w-3xl">
+          {platforms.map((platform) => (
+            <Link
               key={platform.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
             >
-              <Link
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-8 hover:bg-white/10 transition-all duration-300"
-                >
-                  <div className="flex items-start gap-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${platform.color} flex items-center justify-center text-white text-2xl font-bold flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                      {platform.logo}
-                    </div>
-
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                        {platform.name}
-                        <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
-                      </h3>
-                      
-                      <p className="text-gray-400">
-                        {platform.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${platform.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" style={{ background: `linear-gradient(to right, var(--tw-gradient-stops))` }} />
+              <div className="bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-colors">
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    {platform.name}
+                    <ExternalLink className="w-4 h-4 text-gray-500" />
+                  </h3>
+                  <span className="text-xs font-medium text-green-400">
+                    {platform.stock}
+                  </span>
                 </div>
-              </Link>
-            </motion.div>
+                
+                <p className="text-gray-400 text-sm">
+                  {platform.description}
+                </p>
+              </div>
+            </Link>
           ))}
+        </div>
 
-          {/* Coming Soon Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="md:col-span-2"
-          >
-            <div className="rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 border-dashed p-8 text-center"
-            >
-              <p className="text-gray-400">
-                More platforms coming soon. We are expanding to more online marketplaces.
-              </p>
-            </div>
-          </motion.div>
+        <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl">
+          <p className="text-gray-500 text-sm">
+            Wholesale inquiries? Email us at wholesale@eyrya.com for bulk pricing on 100+ units.
+          </p>
         </div>
       </div>
     </section>

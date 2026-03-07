@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import { Mail, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Clock, Send } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Contact Us - EYRYA',
-  description: 'Have a question about our products or business cooperation? We\'d love to hear from you.',
+  title: 'Contact - EYRYA',
+  description: 'Have a question? We read every email. Usually reply within 24 hours.',
 };
 
 export default function ContactPage() {
@@ -11,116 +11,115 @@ export default function ContactPage() {
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
               Contact Us
             </h1>
             
-            <p className="text-lg text-gray-600 mb-8">
-              Have a question about our products or business cooperation? We\'d love to hear from you.
+            <p className="text-gray-600 mb-8">
+              Have a question about our products or want to discuss a bulk order? We read every email.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-pink-100 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-pink-600" />
+                <div className="w-10 h-10 bg-[#FF6B6B]/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-[#FF6B6B]" />
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Email Us</h3>
-                  <a href="mailto:hello@eyrya.com" className="text-gray-600 hover:text-pink-600 transition-colors">
+                  <h3 className="font-semibold text-[#1a1a1a] mb-1">Email</h3>
+                  <a href="mailto:hello@eyrya.com" className="text-gray-600 hover:text-[#FF6B6B] transition-colors">
                     hello@eyrya.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-orange-600" />
+                <div className="w-10 h-10 bg-[#4ECDC4]/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-[#4ECDC4]" />
                 </div>
                 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Global Shipping</h3>
-                  <p className="text-gray-600">We ship to 20+ countries worldwide</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-green-600" />
-                </div>
-                
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Response Time</h3>
-                  <p className="text-gray-600">We typically respond within 24-48 hours</p>
+                  <h3 className="font-semibold text-[#1a1a1a] mb-1">Response time</h3>
+                  <p className="text-gray-600">Usually within 24 hours</p>
                 </div>
               </div>
             </div>
+
+            <div className="mt-12 p-6 bg-[#fafafa] border border-gray-200">
+              <h3 className="font-semibold text-[#1a1a1a] mb-2">Wholesale inquiries</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Looking to order 50+ units? Email us for bulk pricing.
+              </p>
+              <a 
+                href="mailto:wholesale@eyrya.com" 
+                className="text-[#FF6B6B] hover:underline text-sm font-medium"
+              >
+                wholesale@eyrya.com
+              </a>
+            </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-gray-50 rounded-3xl p-8">
+          <div className="bg-[#fafafa] border border-gray-200 p-8">
             <form className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Name
+                <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
-                  placeholder="John Doe"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                  placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address
+                <label htmlFor="email" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  Email
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
-                  placeholder="john@example.com"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                  placeholder="you@example.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="inquiry" className="block text-sm font-medium text-gray-700 mb-2">
-                  Inquiry Type
+                <label htmlFor="inquiry" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  Type
                 </label>
                 <select
                   id="inquiry"
                   name="inquiry"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
                 >
-                  <option value="">Select an option</option>
-                  <option value="customer-support">Customer Support</option>
-                  <option value="business-inquiry">Business Inquiry</option>
-                  <option value="wholesale">Wholesale Inquiry</option>
+                  <option value="">Select one...</option>
+                  <option value="customer-support">Product question</option>
+                  <option value="wholesale">Wholesale inquiry</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Message
+                <label htmlFor="message" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all resize-none"
-                  placeholder="How can we help you?"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+                  placeholder="How can we help?"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors"
               >
                 <Send className="w-5 h-5" />
                 Send Message

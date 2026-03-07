@@ -1,31 +1,31 @@
 import { Metadata } from 'next';
-import { Building2, Globe, Package, TrendingUp, Send, Check } from 'lucide-react';
+import { Package, Globe, TrendingUp, Building2, Send, Check } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Wholesale \u0026 Business Inquiry - EYRYA',
-  description: 'Interested in retail, distribution or business cooperation with EYRYA? Contact us for partnership opportunities.',
+  title: 'Wholesale - EYRYA',
+  description: 'Bulk pricing for schools, teams, and retailers. 50+ units.',
 };
 
 const benefits = [
   {
     icon: Package,
     title: 'Bulk Pricing',
-    description: 'Competitive wholesale prices for bulk orders',
+    description: '15-30% off retail on 50+ units',
   },
   {
     icon: Globe,
-    title: 'Global Distribution',
-    description: 'We ship to retailers worldwide',
+    title: 'Global Shipping',
+    description: 'We ship wholesale worldwide',
   },
   {
     icon: TrendingUp,
-    title: 'Growing Brand',
-    description: 'Join a fast-growing lifestyle brand',
+    title: 'Low MOQ',
+    description: 'Minimum order: 50 units per SKU',
   },
   {
     icon: Building2,
-    title: 'B2B Support',
-    description: 'Dedicated support for business partners',
+    title: 'Dedicated Support',
+    description: 'Direct line to our team',
   },
 ];
 
@@ -33,50 +33,43 @@ export default function WholesalePage() {
   return (
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Wholesale \u0026 Business Inquiry
+        <div className="max-w-3xl mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
+            Wholesale
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interested in retail, distribution or business cooperation with EYRYA? Contact us for partnership opportunities.
+          <p className="text-gray-600">
+            Bulk pricing for schools, teams, retailers, and event planners. 
+            Minimum order: 50 units. Discounts up to 30%.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Benefits */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Why Partner with EYRYA?</h2>
+            <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Why buy wholesale?</h2>
             
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {benefits.map((benefit) => (
-                <div
-                  key={benefit.title}
-                  className="bg-gray-50 rounded-2xl p-6"
-                >
-                  <benefit.icon className="w-10 h-10 text-pink-500 mb-4" />
-                  
-                  <h3 className="font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                  
+                <div key={benefit.title} className="bg-[#fafafa] p-5">
+                  <benefit.icon className="w-6 h-6 text-[#FF6B6B] mb-3" />
+                  <h3 className="font-semibold text-[#1a1a1a] mb-1">{benefit.title}</h3>
                   <p className="text-gray-600 text-sm">{benefit.description}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 bg-gradient-to-r from-pink-50 to-orange-50 rounded-2xl p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Ideal Partners:</h3>
+            <div className="border border-gray-200 p-6">
+              <h3 className="font-semibold text-[#1a1a1a] mb-4">Who we work with</h3>
               
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-gray-600">
                 {[
-                  'Retail stores and chains',
-                  'Online marketplaces',
-                  'Distributors and wholesalers',
+                  'Schools and universities',
+                  'Sports teams and leagues',
                   'Event planning companies',
-                  'Sports organizations',
+                  'Retail stores and chains',
                   'Corporate gift suppliers',
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-gray-600">
-                    <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <li key={item} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-[#4ECDC4] flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -84,14 +77,13 @@ export default function WholesalePage() {
             </div>
           </div>
 
-          {/* Form */}
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+          <div className="bg-[#fafafa] border border-gray-200 p-8">
+            <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Get a quote</h2>
             
             <form className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
                     Name *
                   </label>
                   <input
@@ -99,13 +91,13 @@ export default function WholesalePage() {
                     id="name"
                     name="name"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="company" className="block text-sm font-medium text-[#1a1a1a] mb-2">
                     Company *
                   </label>
                   <input
@@ -113,15 +105,15 @@ export default function WholesalePage() {
                     id="company"
                     name="company"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
                     placeholder="Company name"
                   />
                 </div>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-5">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-[#1a1a1a] mb-2">
                     Email *
                   </label>
                   <input
@@ -129,65 +121,68 @@ export default function WholesalePage() {
                     id="email"
                     name="email"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
-                    placeholder="email@company.com"
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="you@company.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-2">
-                    Country *
+                  <label htmlFor="quantity" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                    Quantity needed *
                   </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
+                  <select
+                    id="quantity"
+                    name="quantity"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
-                    placeholder="Your country"
-                  />
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+                  >
+                    <option value="">Select...</option>
+                    <option value="50-100">50-100 units</option>
+                    <option value="100-500">100-500 units</option>
+                    <option value="500+">500+ units</option>
+                  </select>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="businessType" className="block text-sm font-medium text-gray-700 mb-2">
-                  Business Type *
+                <label htmlFor="businessType" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  Business type *
                 </label>
                 <select
                   id="businessType"
                   name="businessType"
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
                 >
-                  <option value="">Select business type</option>
-                  <option value="retailer">Retailer</option>
-                  <option value="distributor">Distributor</option>
-                  <option value="online-marketplace">Online Marketplace</option>
-                  <option value="event-company">Event Company</option>
+                  <option value="">Select...</option>
+                  <option value="retailer">Retailer / Store</option>
+                  <option value="school">School / University</option>
+                  <option value="sports">Sports Team / League</option>
+                  <option value="event">Event Planning</option>
                   <option value="corporate">Corporate</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-[#1a1a1a] mb-2">
                   Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 outline-none transition-all resize-none"
-                  placeholder="Tell us about your business and how you'd like to partner with EYRYA..."
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+                  placeholder="Tell us what you are looking for..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors"
               >
                 <Send className="w-5 h-5" />
-                Submit Inquiry
+                Request Quote
               </button>
             </form>
           </div>

@@ -1,58 +1,50 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Youtube, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, Mail } from 'lucide-react';
 
 const footerLinks = {
   products: [
     { name: 'Party Supplies', href: '/products?category=party-supplies' },
-    { name: 'Toys \u0026 Play', href: '/products?category=toys-play' },
+    { name: 'Kids \u0026 Toys', href: '/products?category=toys-play' },
     { name: 'Sports Fan Gear', href: '/products?category=sports-fan-gear' },
-    { name: 'Outdoor Fun', href: '/products?category=outdoor-fun' },
+    { name: 'Outdoor \u0026 Camping', href: '/products?category=outdoor-fun' },
   ],
   company: [
-    { name: 'About Us', href: '/about' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
     { name: 'Wholesale', href: '/wholesale' },
     { name: 'Where to Buy', href: '/where-to-buy' },
   ],
-  ideas: [
-    { name: 'Party Ideas', href: '/ideas?category=party-ideas' },
-    { name: 'Sports Events', href: '/ideas?category=sports-events' },
-    { name: 'Outdoor Activities', href: '/ideas?category=outdoor-activities' },
-    { name: 'Gift Guides', href: '/ideas?category=gift-guides' },
-  ],
-  legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
+  support: [
+    { name: 'FAQ', href: '/faq' },
+    { name: 'Shipping Info', href: '/shipping' },
+    { name: 'Returns', href: '/returns' },
+    { name: 'Track Order', href: '/track' },
   ],
 };
 
 const socialLinks = [
   { name: 'Instagram', icon: Instagram, href: '#' },
   { name: 'Facebook', icon: Facebook, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-[#1a1a1a] text-white border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+          <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block">
-              <span className="text-3xl font-bold bg-gradient-to-r from-pink-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                EYRYA
-              </span>
+              <span className="text-2xl font-bold text-white">EYRYA</span>
             </Link>
-            <p className="mt-4 text-gray-400 text-sm leading-relaxed">
-              Fun products for celebration, play and active lifestyles. Bringing more energy and excitement to every moment.
+            <p className="mt-4 text-gray-400 text-sm">
+              Real products for real fun. Party supplies and fan gear that actually work.
             </p>
             <div className="mt-6 flex items-center gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-pink-500 hover:text-white transition-all duration-200"
+                  className="text-gray-400 hover:text-white transition-colors"
                   aria-label={social.name}
                 >
                   <social.icon className="w-5 h-5" />
@@ -61,15 +53,14 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Products */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Products</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">Products</h4>
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-pink-400 text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -78,15 +69,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-pink-400 text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -95,57 +85,42 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Ideas */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Ideas</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">Support</h4>
             <ul className="space-y-3">
-              {footerLinks.ideas.map((link) => (
+              {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-pink-400 text-sm transition-colors"
+                    className="text-gray-400 hover:text-white text-sm transition-colors"
                   >
                     {link.name}
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold text-white mb-4">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-gray-400 text-sm">
-                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="mailto:hello@eyrya.com" className="hover:text-pink-400 transition-colors">
-                  hello@eyrya.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3 text-gray-400 text-sm">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Global Shipping Available</span>
-              </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} EYRYA. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <Link href="/privacy" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+                Privacy
+              </Link>
+              <Link href="/terms" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
+                Terms
+              </Link>
+              <a 
+                href="mailto:support@eyrya.com"
+                className="text-gray-500 hover:text-gray-300 text-sm transition-colors flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                support@eyrya.com
+              </a>
             </div>
           </div>
         </div>

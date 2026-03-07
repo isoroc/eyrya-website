@@ -1,67 +1,68 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Clock, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Ideas & Inspiration - EYRYA',
-  description: 'Explore ideas, tips and inspiration for parties, sports events and outdoor fun.',
+  title: 'Blog - EYRYA',
+  description: 'Tips, tricks, and real talk about party planning and sports events.',
 };
 
 const categories = [
-  { name: 'Party Ideas', slug: 'party-ideas', color: 'bg-pink-100 text-pink-700' },
-  { name: 'Sports Events', slug: 'sports-events', color: 'bg-orange-100 text-orange-700' },
-  { name: 'Outdoor Activities', slug: 'outdoor-activities', color: 'bg-green-100 text-green-700' },
-  { name: 'Gift Guides', slug: 'gift-guides', color: 'bg-purple-100 text-purple-700' },
+  { name: 'All', slug: 'all' },
+  { name: 'Parties', slug: 'party-ideas' },
+  { name: 'Sports', slug: 'sports-events' },
+  { name: 'Outdoor', slug: 'outdoor-activities' },
+  { name: 'Wholesale', slug: 'wholesale' },
 ];
 
 const ideas = [
   {
-    title: 'Best Foam Finger Ideas for Sports Events',
-    excerpt: 'Discover creative ways to use foam fingers at sports events, from team spirit to fan engagement activities.',
-    category: 'Sports Events',
-    slug: 'best-foam-finger-ideas',
-    readTime: '5 min read',
-    color: 'bg-orange-100 text-orange-700',
+    title: 'The Ultimate Game Day Checklist',
+    excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, coolers to portable chairs.',
+    category: 'Sports',
+    slug: 'game-day-checklist',
+    date: 'Dec 15, 2024',
+    readTime: '6 min',
   },
   {
-    title: 'How to Make a Birthday Party More Fun',
-    excerpt: 'Essential tips and product ideas to create unforgettable birthday celebrations for kids and adults.',
-    category: 'Party Ideas',
-    slug: 'make-birthday-party-fun',
-    readTime: '6 min read',
-    color: 'bg-pink-100 text-pink-700',
+    title: 'Why Our Foam Fingers Are Different',
+    excerpt: 'Most foam fingers fall apart after one game. Heres how we fixed that problem.',
+    category: 'Sports',
+    slug: 'foam-finger-quality',
+    date: 'Dec 12, 2024',
+    readTime: '4 min',
   },
   {
-    title: 'Outdoor Activity Ideas for Families',
-    excerpt: 'Fun outdoor games and activities that bring families together for quality time and adventure.',
-    category: 'Outdoor Activities',
-    slug: 'outdoor-activities-families',
-    readTime: '7 min read',
-    color: 'bg-green-100 text-green-700',
+    title: 'Party Supplies That Actually Last',
+    excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
+    category: 'Parties',
+    slug: 'reusable-party-supplies',
+    date: 'Dec 10, 2024',
+    readTime: '5 min',
   },
   {
-    title: 'Party Supply Ideas for Group Celebrations',
-    excerpt: 'Complete guide to party supplies that will make your group celebrations memorable and exciting.',
-    category: 'Party Ideas',
-    slug: 'party-supply-ideas',
-    readTime: '5 min read',
-    color: 'bg-pink-100 text-pink-700',
+    title: 'Bulk Orders: What You Need to Know',
+    excerpt: 'Ordering for a school or team? Heres how to get the best deal on 50+ units.',
+    category: 'Wholesale',
+    slug: 'bulk-order-guide',
+    date: 'Dec 5, 2024',
+    readTime: '7 min',
   },
   {
-    title: 'Sports Fan Gear Guide 2024',
-    excerpt: 'Everything you need to know about choosing the best fan gear for game day.',
-    category: 'Sports Events',
-    slug: 'sports-fan-gear-guide',
-    readTime: '8 min read',
-    color: 'bg-orange-100 text-orange-700',
+    title: 'Camping with Kids: A Survival Guide',
+    excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesnt.',
+    category: 'Outdoor',
+    slug: 'camping-with-kids',
+    date: 'Dec 1, 2024',
+    readTime: '8 min',
   },
   {
-    title: 'Best Gifts for Active Kids',
-    excerpt: 'Gift ideas that encourage outdoor play and active lifestyles for children.',
-    category: 'Gift Guides',
-    slug: 'gifts-active-kids',
-    readTime: '4 min read',
-    color: 'bg-purple-100 text-purple-700',
+    title: 'The Problem with Cheap Party Decorations',
+    excerpt: 'We tested 12 brands of party banners. Only 3 made it through a full birthday party.',
+    category: 'Parties',
+    slug: 'cheap-party-decorations',
+    date: 'Nov 28, 2024',
+    readTime: '6 min',
   },
 ];
 
@@ -69,71 +70,54 @@ export default function IdeasPage() {
   return (
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Ideas \u0026 Inspiration
+        <div className="mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-3">
+            From the Blog
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore ideas, tips and inspiration for parties, sports events and outdoor fun.
+          <p className="text-gray-600">
+            Tips, tricks, and real talk about party planning and sports events.
           </p>
         </div>
 
-        {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 mb-10">
           {categories.map((category) => (
             <Link
               key={category.slug}
               href={`/ideas?category=${category.slug}`}
-              className={`px-6 py-2 rounded-full text-sm font-medium ${category.color} hover:opacity-80 transition-opacity`}
+              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors"
             >
               {category.name}
             </Link>
           ))}
         </div>
 
-        {/* Ideas Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ideas.map((idea) => (
             <Link
               key={idea.slug}
               href={`/ideas/${idea.slug}`}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+              className="group border border-gray-200 p-6 hover:border-[#FF6B6B] transition-colors flex flex-col"
             >
-              <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden"
-              >
-                <div className="absolute inset-0 flex items-center justify-center text-gray-300">
-                  <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                
-                <div className="absolute top-4 left-4">
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${idea.color}`}>
-                    {idea.category}
-                  </span>
-                </div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6B6B]">
+                  {idea.category}
+                </span>
+                <span className="text-xs text-gray-400">{idea.date}</span>
               </div>
 
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
-                  {idea.title}
-                </h2>
-                
-                <p className="text-gray-600 mb-4 line-clamp-2">
-                  {idea.excerpt}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Clock className="w-4 h-4" />
-                    {idea.readTime}
-                  </div>
-                  
-                  <span className="text-pink-600 font-medium flex items-center gap-1">
-                    Read <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
+              <h2 className="text-xl font-bold text-[#1a1a1a] mb-3 group-hover:text-[#FF6B6B] transition-colors">
+                {idea.title}
+              </h2>
+              
+              <p className="text-gray-600 mb-6 flex-grow">
+                {idea.excerpt}
+              </p>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-400">{idea.readTime} read</span>
+                <span className="text-sm font-semibold text-[#1a1a1a] group-hover:gap-2 gap-1 transition-all inline-flex items-center">
+                  Read →
+                </span>
               </div>
             </Link>
           ))}
