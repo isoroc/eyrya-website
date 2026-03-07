@@ -11,6 +11,15 @@ export async function onRequestGet(context) {
   const category = url.searchParams.get('category');
   
   try {
+    // Check if database is bound
+    if (!env.DB) {
+      console.error('Database not bound. env.DB is:', env.DB);
+      return new Response(JSON.stringify({ error: 'Database not configured', env_keys: Object.keys(env) }), { 
+        status: 500, 
+        headers: { 'Content-Type': 'application/json' } 
+      });
+    }
+    
     if (slug) {
       // 获取单个产品
       const product = await getProductBySlug(env.DB, slug);
