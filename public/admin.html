@@ -300,7 +300,11 @@
         ${renderProductModal()}
       `;
       
-      loadProducts();
+      // Delay loading data to ensure DOM is ready
+      setTimeout(() => {
+        loadProducts();
+        loadCategories();
+      }, 100);
     }
     
     function logout() {
@@ -444,6 +448,8 @@
         const products = await res.json();
         
         const tbody = document.getElementById('productsTable');
+        if (!tbody) return; // Element not ready yet
+        
         if (products.length === 0) {
           tbody.innerHTML = '<tr><td colspan="6">No products found</td></tr>';
           return;
@@ -473,6 +479,8 @@
         const categories = await res.json();
         
         const tbody = document.getElementById('categoriesTable');
+        if (!tbody) return; // Element not ready yet
+        
         if (categories.length === 0) {
           tbody.innerHTML = '<tr><td colspan="3">No categories found</td></tr>';
           return;
