@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function FeaturedProductSection() {
@@ -73,11 +74,14 @@ export default function FeaturedProductSection() {
           {/* Product Image */}
           <div className="relative">
             <div className="aspect-square bg-[#f5f5f5] flex items-center justify-center relative">
-              <div className="w-2/3 h-2/3 bg-[#FF6B6B] transform -rotate-6 shadow-xl flex items-center justify-center">
-                <div className="text-center text-white">
-                  <div className="text-8xl font-black">#1</div>
-                  <div className="text-2xl font-bold tracking-widest">FAN</div>
-                </div>
+              <div className="w-2/3 h-2/3 transform -rotate-6 shadow-xl overflow-hidden">
+                <Image
+                  src="/images/foam-finger.jpg"
+                  alt="EVA Foam Finger #1"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               {/* Color Options */}
