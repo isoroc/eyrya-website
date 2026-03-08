@@ -65,7 +65,7 @@ export default function HeroSection() {
             <div className="relative aspect-square bg-[#f5f5f5] flex items-center justify-center">
               {/* Product Image */}
               <div className="relative w-3/4 h-3/4 transform -rotate-6 shadow-2xl">
-                <div className="absolute inset-0 bg-[#FF6B6B]">
+                <div className="absolute inset-0 bg-[#4ECDC4]">
                   <div className="absolute inset-4 border-4 border-white/30 overflow-hidden">
                     <Image
                       src="/images/foam-finger.jpg"
