@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -117,10 +118,13 @@ export default function ProductsPage() {
                 href={`/products/${product.slug}`}
                 className="group border border-gray-200 hover:border-[#1a1a1a] transition-colors"
               >
-                <div className="aspect-square bg-gray-100 flex items-center justify-center">
-                  <div className="w-24 h-24 bg-[#FF6B6B] flex items-center justify-center text-white text-2xl font-bold">
-                    {product.name.charAt(0)}
-                  </div>
+                <div className="aspect-square bg-gray-100 relative overflow-hidden">
+                  <Image
+                    src={`/images/products/${product.slug}.jpg`}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
                 <div className="p-5">
