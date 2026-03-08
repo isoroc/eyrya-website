@@ -77,10 +77,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="bg-[#fafafa] border border-gray-200 flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
-            <div className="w-48 h-64 bg-[#FF6B6B] flex flex-col items-center justify-center text-white">
-              <div className="text-7xl font-black mb-1">#1</div>
-              <div className="text-2xl font-bold">FAN</div>
-            </div>
+            <img
+              src="/images/foam-finger.jpg"
+              alt="EVA Foam Finger"
+              className="max-w-full max-h-full object-contain"
+            />
           </div>
 
           <div>
