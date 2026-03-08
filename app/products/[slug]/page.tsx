@@ -75,8 +75,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <span className="text-[#1a1a1a]">{product.name}</span>
         </nav>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="bg-[#fafafa] border border-gray-200 flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="bg-[#fafafa] border border-gray-200 flex items-start justify-center min-h-[400px] lg:min-h-[500px]">
             <img
               src="/images/foam-finger.jpg"
               alt="EVA Foam Finger"
