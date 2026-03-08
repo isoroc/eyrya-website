@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function HeroSection() {
@@ -62,16 +63,15 @@ export default function HeroSection() {
           {/* Right Image */}
           <div className="order-1 lg:order-2 relative">
             <div className="relative aspect-square bg-[#f5f5f5] flex items-center justify-center">
-              {/* Product Placeholder with more realistic styling */}
-              <div className="relative w-3/4 h-3/4">
-                <div className="absolute inset-0 bg-[#FF6B6B] transform -rotate-6 shadow-2xl">
-                  <div className="absolute inset-4 border-4 border-white/30 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <div className="text-7xl font-black mb-2">#1</div>
-                      <div className="text-2xl font-bold tracking-widest">FAN</div>
-                    </div>
-                  </div>
-                </div>
+              {/* Product Image */}
+              <div className="relative w-3/4 h-3/4 transform -rotate-6 shadow-2xl overflow-hidden">
+                <Image
+                  src="/images/foam-finger.jpg"
+                  alt="EVA Foam Finger #1"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               {/* Price Tag */}
