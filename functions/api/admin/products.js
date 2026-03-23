@@ -1,8 +1,21 @@
 // Admin API - 产品管理
-import { 
-  getProducts, getProductBySlug, createProduct, updateProduct, deleteProduct,
-  getCategories
+import {
+  getProducts,
+  getProductBySlug,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 } from '../../../lib/db.js';
+
+function parseJsonField(value, fallback) {
+  if (!value) return fallback;
+  if (typeof value !== 'string') return value;
+  try {
+    return JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -30,18 +43,22 @@ export async function onRequestGet(context) {
         });
       }
       // 解析 JSON 字段
-      if (product.images) product.images = JSON.parse(product.images);
-      if (product.specs) product.specs = JSON.parse(product.specs);
-      return new Response(JSON.stringify(product), { 
-        headers: { 'Content-Type': 'application/json' } 
+      product.images = parseJsonField(product.images, []);
+      product.specs = parseJsonField(product.specs, {});
+      product.features = parseJsonField(product.features, []);
+      product.faq = parseJsonField(product.faq, []);
+      return new Response(JSON.stringify(product), {
+        headers: { 'Content-Type': 'application/json' }
       });
     } else {
       // 获取产品列表
       const products = await getProducts(env.DB, { category });
       // 解析 JSON 字段
       products.forEach(p => {
-        if (p.images) p.images = JSON.parse(p.images);
-        if (p.specs) p.specs = JSON.parse(p.specs);
+        p.images = parseJsonField(p.images, []);
+        p.specs = parseJsonField(p.specs, {});
+        p.features = parseJsonField(p.features, []);
+        p.faq = parseJsonField(p.faq, []);
       });
       return new Response(JSON.stringify(products), { 
         headers: { 'Content-Type': 'application/json' } 

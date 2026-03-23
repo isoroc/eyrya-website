@@ -6,13 +6,20 @@ CREATE TABLE IF NOT EXISTS products (
   name TEXT NOT NULL,
   description TEXT,
   short_description TEXT,
+  tagline TEXT, -- 标语/副标题
   price DECIMAL(10,2),
   original_price DECIMAL(10,2),
   category TEXT,
   stock INTEGER DEFAULT 0,
   status TEXT DEFAULT 'active', -- active, inactive, draft
+  is_bestseller INTEGER DEFAULT 0, -- 0 or 1
+  rating DECIMAL(2,1) DEFAULT 5.0, -- 评分 0-5
+  reviews INTEGER DEFAULT 0, -- 评论数
+  sold INTEGER DEFAULT 0, -- 已售数量
   images TEXT, -- JSON array of image keys
-  specs TEXT, -- JSON object
+  specs TEXT, -- JSON object: dimensions, weight, material, colors
+  features TEXT, -- JSON array of feature strings
+  faq TEXT, -- JSON array of {question, answer}
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
