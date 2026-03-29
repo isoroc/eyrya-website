@@ -15,8 +15,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
-  --font-sans: var(--font-outfit);
-  --font-teko: var(--font-teko);
+  --font-sans: 'Outfit', sans-serif;
+  --font-teko: 'Teko', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,11 +42,11 @@ body {
   }
 
   .btn-primary {
-    @apply bg-[#DC2626] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-[#B91C1C] transition-colors;
+    @apply bg-[#DC2626] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-[#B91C1C] transition-colors rounded-sm;
   }
 
   .btn-secondary {
-    @apply bg-[#1A1A1A] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-black transition-colors;
+    @apply bg-[#1A1A1A] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-black transition-colors rounded-sm;
   }
 }
 

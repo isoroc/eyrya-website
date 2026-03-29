@@ -49,7 +49,7 @@ export default function Navbar() {
               href="https://amazon.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#DC2626] text-white px-5 py-2.5 font-medium uppercase hover:bg-[#B91C1C] transition-colors"
+              className="flex items-center gap-2 bg-[#DC2626] text-white px-5 py-2.5 font-medium uppercase hover:bg-[#B91C1C] transition-colors rounded-sm"
             >
               <ShoppingBag className="w-4 h-4" />
               Shop Now
@@ -94,7 +94,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#DC2626] text-white px-5 py-3 font-medium uppercase hover:bg-[#B91C1C] transition-colors"
+              className="flex items-center justify-center gap-2 bg-[#DC2626] text-white px-5 py-3 font-medium uppercase hover:bg-[#B91C1C] transition-colors rounded-sm"
             >
               <ShoppingBag className="w-4 h-4" />
               Shop Now

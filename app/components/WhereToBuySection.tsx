@@ -6,15 +6,13 @@ import { ExternalLink } from 'lucide-react';
 const platforms = [
   {
     name: 'Amazon',
-    description: 'Prime shipping. 4.6/5 stars from 2,847 reviews.',
+    description: 'Official Amazon Store. Prime fast shipping. 4.6/5 stars.',
     url: 'https://amazon.com',
-    stock: 'In stock',
   },
   {
     name: 'Temu',
-    description: 'Budget-friendly options. New customer discounts available.',
+    description: 'Official Temu Store. Budget-friendly. Exclusive discounts.',
     url: 'https://temu.com',
-    stock: 'In stock',
   },
 ];
 
@@ -46,9 +44,6 @@ export default function WhereToBuySection() {
                     {platform.name}
                     <ExternalLink className="w-4 h-4 text-gray-500" />
                   </h3>
-                  <span className="text-xs font-medium text-green-400">
-                    {platform.stock}
-                  </span>
                 </div>
                 
                 <p className="text-gray-400 text-sm">

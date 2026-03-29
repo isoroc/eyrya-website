@@ -179,7 +179,7 @@ export default function WholesalePage() {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors"
+                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors rounded-sm"
               >
                 <Send className="w-5 h-5" />
                 Request Quote

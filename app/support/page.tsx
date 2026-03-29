@@ -87,7 +87,7 @@ export default function SupportPage() {
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
               <a 
                 href="mailto:support@eyrya.com"
-                className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors rounded-sm"
               >
                 <Mail className="w-5 h-5" />
                 support@eyrya.com
@@ -274,7 +274,7 @@ export default function SupportPage() {
                 <button
                   type="submit"
                   disabled={trackStatus === 'loading'}
-                  className="w-full flex items-center justify-center gap-2 bg-[#DC2626] text-white px-8 py-4 font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 bg-[#DC2626] text-white px-8 py-4 font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed rounded-sm"
                 >
                   {trackStatus === 'loading' ? (
                     <>

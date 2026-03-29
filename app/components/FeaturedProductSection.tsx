@@ -63,7 +63,7 @@ export default function FeaturedProductSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/products/eva-foam-finger"
-                className="inline-flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-black transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-black transition-colors rounded-sm"
               >
                 View Product
                 <ArrowRight className="w-4 h-4" />
@@ -72,7 +72,7 @@ export default function FeaturedProductSection() {
                 href="https://amazon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 font-semibold hover:bg-[#1a1a1a] hover:text-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 font-semibold hover:bg-[#1a1a1a] hover:text-white transition-colors rounded-sm"
               >
                 Buy on Amazon
               </Link>

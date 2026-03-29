@@ -44,7 +44,7 @@ export default function HeroSection() {
               href="https://amazon.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-red-700 transition-colors duration-200"
+              className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-red-700 transition-colors duration-200 rounded-sm"
             >
               SHOP ON AMAZON
               <ArrowRight className="w-5 h-5" />

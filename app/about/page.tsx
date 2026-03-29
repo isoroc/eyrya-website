@@ -80,7 +80,7 @@ export default function AboutPage() {
             </p>
             <a 
               href="mailto:support@eyrya.com"
-              className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors rounded-sm"
             >
               support@eyrya.com
             </a>

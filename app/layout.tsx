@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Outfit, Teko } from "next/font/google";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import "@fontsource/teko/400.css";
+import "@fontsource/teko/500.css";
+import "@fontsource/teko/600.css";
+import "@fontsource/teko/700.css";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
-
-const teko = Teko({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-teko",
-});
 
 export const metadata: Metadata = {
   title: "EYRYA - Fun Products for Party, Play, Cheer & Outdoor",
@@ -33,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} ${teko.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

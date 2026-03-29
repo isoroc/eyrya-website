@@ -118,7 +118,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 href="https://amazon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors rounded-sm"
               >
                 Buy on Amazon
                 <ExternalLink className="w-4 h-4" />
@@ -127,7 +127,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 href="https://temu.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 border border-gray-200 text-[#1a1a1a] px-8 py-4 font-semibold hover:border-[#1a1a1a] transition-colors"
+                className="flex items-center justify-center gap-2 border border-gray-200 text-[#1a1a1a] px-8 py-4 font-semibold hover:border-[#1a1a1a] transition-colors rounded-sm"
               >
                 Buy on Temu
                 <ExternalLink className="w-4 h-4" />
@@ -187,7 +187,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </p>
             <a
               href="/wholesale"
-              className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
             >
               View wholesale options
             </a>

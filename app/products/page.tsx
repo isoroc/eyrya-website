@@ -176,7 +176,7 @@ export default function ProductsPage() {
                 href="https://amazon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#DC2626] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#DC2626] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
               >
                 Shop Amazon
                 <ExternalLink className="w-4 h-4" />
@@ -185,7 +185,7 @@ export default function ProductsPage() {
                 href="https://temu.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 font-semibold hover:bg-white/20 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 font-semibold hover:bg-white/20 transition-colors rounded-sm"
               >
                 Shop Temu
                 <ExternalLink className="w-4 h-4" />

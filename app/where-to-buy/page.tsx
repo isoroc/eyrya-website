@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 const platforms = [
   {
     name: 'Amazon',
-    description: 'Prime shipping on most items. 4.6/5 stars from 2,800+ reviews.',
+    description: 'Official Amazon Store. Prime fast shipping. 4.6/5 stars.',
     url: 'https://amazon.com',
     features: ['Free Prime shipping', 'Easy returns', 'A-to-Z Guarantee'],
   },
   {
     name: 'Temu',
-    description: 'Competitive prices. Global shipping. New customer discounts.',
+    description: 'Official Temu Store. Budget-friendly. Exclusive discounts.',
     url: 'https://temu.com',
     features: ['Best prices', 'Worldwide shipping', 'Flash deals'],
   },
@@ -59,16 +59,16 @@ export default function WhereToBuyPage() {
                 {platform.description}
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                {platform.features.map((feature) => (
-                  <span
-                    key={feature}
-                    className="px-3 py-1 bg-[#fafafa] text-gray-600 text-sm"
-                  >
-                    {feature}
-                  </span>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-2">
+                  {platform.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="px-3 py-1 border border-[#DC2626] text-[#DC2626] text-sm"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
 
               <div className="mt-6 flex items-center gap-2 text-[#1a1a1a] font-semibold">
                 Shop Now
@@ -116,7 +116,7 @@ export default function WhereToBuyPage() {
             </p>
             <a 
               href="/wholesale"
-              className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
             >
               View wholesale options
             </a>

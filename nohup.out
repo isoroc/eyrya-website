@@ -7,16 +7,14 @@
 - Network:       http://192.168.31.102:3000
 
 ✓ Starting...
-✓ Ready in 879ms
- GET / 200 in 1130ms (compile: 777ms, render: 353ms)
- GET / 200 in 95ms (compile: 2ms, render: 92ms)
- GET / 200 in 146ms (compile: 36ms, render: 110ms)
- GET / 200 in 98ms (compile: 19ms, render: 79ms)
- GET / 200 in 124ms (compile: 7ms, render: 118ms)
- GET / 200 in 94ms (compile: 11ms, render: 83ms)
- GET / 200 in 122ms (compile: 41ms, render: 81ms)
- GET / 200 in 137ms (compile: 31ms, render: 106ms)
- GET / 200 in 77ms (compile: 11ms, render: 66ms)
- GET / 200 in 73ms (compile: 6ms, render: 67ms)
- GET / 200 in 233ms (compile: 77ms, render: 156ms)
- GET / 200 in 231ms (compile: 13ms, render: 217ms)
+✓ Ready in 1560ms
+ GET / 200 in 3.3s (compile: 2.4s, render: 936ms)
+ GET / 200 in 3.6s (compile: 2.7s, render: 848ms)
+ GET / 200 in 208ms (compile: 10ms, render: 197ms)
+ GET / 200 in 203ms (compile: 28ms, render: 175ms)
+ GET / 200 in 116ms (compile: 25ms, render: 91ms)
+ GET / 200 in 509ms (compile: 170ms, render: 340ms)
+ GET / 200 in 96ms (compile: 16ms, render: 80ms)
+ GET / 200 in 77ms (compile: 13ms, render: 63ms)
+ GET / 200 in 146ms (compile: 47ms, render: 98ms)
+ GET / 200 in 72ms (compile: 11ms, render: 61ms)
