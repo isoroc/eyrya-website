@@ -45,3 +45,26 @@
  GET / 200 in 92ms (compile: 36ms, render: 55ms)
  GET / 200 in 195ms (compile: 67ms, render: 128ms)
  GET / 200 in 267ms (compile: 98ms, render: 169ms)
+ GET / 200 in 586ms (compile: 222ms, render: 364ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.31.102:3000
+
+✓ Starting...
+✓ Ready in 1262ms
+ GET / 200 in 1848ms (compile: 1310ms, render: 538ms)
+ GET / 200 in 151ms (compile: 4ms, render: 147ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.31.102:3000
+
+✓ Starting...
+✓ Ready in 971ms
+ GET / 200 in 1373ms (compile: 1037ms, render: 336ms)
+ GET / 200 in 97ms (compile: 7ms, render: 91ms)
+Persisting failed: Unable to write SST file 00000038.sst
+
+Caused by:
+    No such file or directory (os error 2)

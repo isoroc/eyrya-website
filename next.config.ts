@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  output: "export",
+  distDir: "dist",
 };
 
 export default nextConfig;
