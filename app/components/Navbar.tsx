@@ -21,9 +21,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-black text-[#1a1a1a] tracking-tight">
-              EYRYA
-            </span>
+            <img src="/images/logo.svg" alt="EYRYA" className="h-8 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
