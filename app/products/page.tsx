@@ -70,10 +70,10 @@ const featuredProducts = [
 
 export default function ProductsPage() {
   return (
-    <div className="pt-24 pb-20 bg-[#F4F1EA] min-h-screen">
+    <div className="pt-24 pb-20 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h1 className="font-['Teko'] text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-3 uppercase tracking-wide">
+          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3 tracking-wide">
             All Products
           </h1>
           <p className="text-gray-600">
