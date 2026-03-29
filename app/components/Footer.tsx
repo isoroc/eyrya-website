@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block">
-              <img src="/images/logo.svg" alt="EYRYA" className="h-8 w-auto brightness-0 invert" />
+              <img src="/images/logo.svg" alt="EYRYA" className="h-6 w-auto brightness-0 invert" />
             </Link>
             <p className="mt-4 text-gray-400 text-sm">
               Real products for real fun. Party supplies and fan gear that actually work.
