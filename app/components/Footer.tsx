@@ -15,10 +15,11 @@ const footerLinks = {
     { name: 'Where to Buy', href: '/where-to-buy' },
   ],
   support: [
-    { name: 'FAQ', href: '/faq' },
-    { name: 'Shipping Info', href: '/shipping' },
-    { name: 'Returns', href: '/returns' },
-    { name: 'Track Order', href: '/track' },
+    { name: 'Support', href: '/support' },
+    { name: 'FAQ', href: '/support#faq' },
+    { name: 'Shipping Info', href: '/support#shipping' },
+    { name: 'Returns', href: '/support#returns' },
+    { name: 'Track Order', href: '/support#track' },
   ],
 };
 
