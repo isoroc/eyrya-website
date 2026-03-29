@@ -44,3 +44,4 @@
  GET /products/eva-foam-finger/ 200 in 3.2s (compile: 3.1s, generate-params: 699ms, render: 141ms)
  GET / 200 in 92ms (compile: 36ms, render: 55ms)
  GET / 200 in 195ms (compile: 67ms, render: 128ms)
+ GET / 200 in 267ms (compile: 98ms, render: 169ms)
