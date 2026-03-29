@@ -41,7 +41,7 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
+            <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
               Contact Us
             </h1>
             
@@ -51,21 +51,21 @@ export default function ContactPage() {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-[#FF6B6B]/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-[#FF6B6B]" />
+                <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 text-[#DC2626]" />
                 </div>
                 
                 <div>
                   <h3 className="font-semibold text-[#1a1a1a] mb-1">Email</h3>
-                  <a href="mailto:contact@eyrya.com" className="text-gray-600 hover:text-[#FF6B6B] transition-colors">
+                  <a href="mailto:contact@eyrya.com" className="text-gray-600 hover:text-[#DC2626] transition-colors">
                     contact@eyrya.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-[#4ECDC4]/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-[#4ECDC4]" />
+                <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-[#DC2626]" />
                 </div>
                 
                 <div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
               </p>
               <a 
                 href="mailto:wholesale@eyrya.com" 
-                className="text-[#FF6B6B] hover:underline text-sm font-medium"
+                className="text-[#DC2626] hover:underline text-sm font-medium"
               >
                 wholesale@eyrya.com
               </a>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                 <p className="text-gray-600 mb-6">We'll get back to you soon.</p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="text-[#FF6B6B] font-medium hover:underline"
+                  className="text-[#DC2626] font-medium hover:underline"
                 >
                   Send another message
                 </button>

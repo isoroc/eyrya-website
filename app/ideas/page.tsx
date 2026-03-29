@@ -71,7 +71,7 @@ export default function IdeasPage() {
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-3">
+          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
             From the Blog
           </h1>
           <p className="text-gray-600">
@@ -84,7 +84,7 @@ export default function IdeasPage() {
             <Link
               key={category.slug}
               href={`/ideas?category=${category.slug}`}
-              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors"
+              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white transition-colors"
             >
               {category.name}
             </Link>
@@ -96,16 +96,16 @@ export default function IdeasPage() {
             <Link
               key={idea.slug}
               href={`/ideas/${idea.slug}`}
-              className="group border border-gray-200 p-6 hover:border-[#FF6B6B] transition-colors flex flex-col"
+              className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors flex flex-col"
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6B6B]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
                   {idea.category}
                 </span>
                 <span className="text-xs text-gray-400">{idea.date}</span>
               </div>
 
-              <h2 className="text-xl font-bold text-[#1a1a1a] mb-3 group-hover:text-[#FF6B6B] transition-colors">
+              <h2 className="text-xl font-bold text-[#1a1a1a] mb-3 group-hover:text-[#DC2626] transition-colors">
                 {idea.title}
               </h2>
               

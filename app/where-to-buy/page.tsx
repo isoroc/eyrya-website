@@ -26,7 +26,7 @@ export default function WhereToBuyPage() {
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
+          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
             Where to Buy
           </h1>
           <p className="text-gray-600">
@@ -79,28 +79,28 @@ export default function WhereToBuyPage() {
         </div>
 
         <div className="border-t border-gray-200 pt-16">
-          <h2 className="text-xl font-bold text-[#1a1a1a] mb-8">Why buy from these platforms?</h2>
+          <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">Why buy from these platforms?</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <div className="w-10 h-10 bg-[#FF6B6B]/10 flex items-center justify-center mb-4">
-                <ShoppingBag className="w-5 h-5 text-[#FF6B6B]" />
+              <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center mb-4">
+                <ShoppingBag className="w-5 h-5 text-[#DC2626]" />
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Trusted platforms</h3>
               <p className="text-gray-600 text-sm">Shop with confidence on marketplaces you already use.</p>
             </div>
 
             <div>
-              <div className="w-10 h-10 bg-[#4ECDC4]/10 flex items-center justify-center mb-4">
-                <Truck className="w-5 h-5 text-[#4ECDC4]" />
+              <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center mb-4">
+                <Truck className="w-5 h-5 text-[#DC2626]" />
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Fast shipping</h3>
               <p className="text-gray-600 text-sm">Most orders ship within 24 hours. Prime members get free 2-day shipping.</p>
             </div>
 
             <div>
-              <div className="w-10 h-10 bg-[#FFE66D]/20 flex items-center justify-center mb-4">
-                <Shield className="w-5 h-5 text-[#1a1a1a]" />
+              <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center mb-4">
+                <Shield className="w-5 h-5 text-[#DC2626]" />
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Protected purchases</h3>
               <p className="text-gray-600 text-sm">Full refund guarantee on both platforms. No questions asked returns.</p>
@@ -110,7 +110,7 @@ export default function WhereToBuyPage() {
 
         <div className="mt-16 bg-[#1a1a1a] p-8 md:p-12">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold text-white mb-4">Bulk orders?</h2>
+            <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Bulk orders?</h2>
             <p className="text-gray-400 mb-6">
               Need 50+ units? Get wholesale pricing direct from us.
             </p>

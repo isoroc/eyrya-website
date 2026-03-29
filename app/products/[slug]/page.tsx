@@ -85,11 +85,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
           </div>
 
           <div>
-            <div className="inline-block px-3 py-1 bg-[#FF6B6B]/10 text-[#FF6B6B] text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="inline-block px-3 py-1 bg-[#DC2626] text-white text-xs font-bold uppercase tracking-wider mb-4">
               Best Seller
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-3">
+            <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
               {product.name}
             </h1>
 
@@ -110,7 +110,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="flex items-baseline gap-3 mb-8">
               <span className="text-3xl font-bold text-[#1a1a1a]">{product.price}</span>
               <span className="text-lg text-gray-400 line-through">{product.originalPrice}</span>
-              <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-1">Save 24%</span>
+              <span className="text-sm font-medium text-white bg-[#DC2626] px-2 py-1">Save 24%</span>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
@@ -139,11 +139,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </p>
 
             <div className="border-t border-gray-200 pt-8 mb-8">
-              <h2 className="text-lg font-bold text-[#1a1a1a] mb-4">Features</h2>
+              <h2 className="text-lg font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">Features</h2>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-[#4ECDC4] flex-shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
                     <span className="text-gray-600">{feature}</span>
                   </li>
                 ))}
@@ -165,7 +165,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         </div>
 
         <div className="mt-16 border-t border-gray-200 pt-16">
-          <h2 className="text-xl font-bold text-[#1a1a1a] mb-8">FAQ</h2>
+          <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">FAQ</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
             {product.faq.map((item, index) => (
@@ -181,7 +181,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
         <div className="mt-16 bg-[#1a1a1a] p-8 md:p-12">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold text-white mb-4">Need more than one?</h2>
+            <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Need more than one?</h2>
             <p className="text-gray-400 mb-6">
               Ordering for a team or event? Get wholesale pricing on 50+ units.
             </p>

@@ -34,7 +34,7 @@ export default function WholesalePage() {
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4">
+          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
             Wholesale
           </h1>
           <p className="text-gray-600">
@@ -45,12 +45,12 @@ export default function WholesalePage() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Why buy wholesale?</h2>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">Why buy wholesale?</h2>
             
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {benefits.map((benefit) => (
                 <div key={benefit.title} className="bg-[#fafafa] p-5">
-                  <benefit.icon className="w-6 h-6 text-[#FF6B6B] mb-3" />
+                  <benefit.icon className="w-6 h-6 text-[#DC2626] mb-3" />
                   <h3 className="font-semibold text-[#1a1a1a] mb-1">{benefit.title}</h3>
                   <p className="text-gray-600 text-sm">{benefit.description}</p>
                 </div>
@@ -69,7 +69,7 @@ export default function WholesalePage() {
                   'Corporate gift suppliers',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#4ECDC4] flex-shrink-0" />
+                    <Check className="w-4 h-4 text-[#DC2626] flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -78,7 +78,7 @@ export default function WholesalePage() {
           </div>
 
           <div className="bg-[#fafafa] border border-gray-200 p-8">
-            <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Get a quote</h2>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">Get a quote</h2>
             
             <form className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">

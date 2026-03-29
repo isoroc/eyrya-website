@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #1a1a1a;
+  --background: #F4F1EA;
+  --foreground: #1A1A1A;
+  --accent: #DC2626;
   --coral: #FF6B6B;
   --teal: #4ECDC4;
   --cream: #FFE66D;
@@ -13,7 +14,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
   --font-sans: var(--font-outfit);
+  --font-teko: var(--font-teko);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +40,14 @@ body {
   .bg-gradient-brand {
     background: linear-gradient(135deg, #FF6B9D 0%, #FF8C42 50%, #FFD93D 100%);
   }
+
+  .btn-primary {
+    @apply bg-[#DC2626] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-[#B91C1C] transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-[#1A1A1A] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-black transition-colors;
+  }
 }
 
 /* Smooth scrolling */
@@ -50,14 +61,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E8E4DB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FF6B9D;
+  background: var(--accent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff4785;
+  background: #B91C1C;
 }

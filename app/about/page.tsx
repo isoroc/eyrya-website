@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-16 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-16">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-6">
+          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">
             About EYRYA
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed mb-6">
@@ -26,7 +26,7 @@ export default function AboutPage() {
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <div className="bg-[#fafafa] p-8">
-            <h2 className="text-xl font-bold text-[#1a1a1a] mb-4">What we do</h2>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we do</h2>
             <ul className="space-y-3 text-gray-600">
               <li>• Design products that solve real problems</li>
               <li>• Test everything before it goes to market</li>
@@ -36,7 +36,7 @@ export default function AboutPage() {
           </div>
 
           <div className="bg-[#fafafa] p-8">
-            <h2 className="text-xl font-bold text-[#1a1a1a] mb-4">What we dont do</h2>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we dont do</h2>
             <ul className="space-y-3 text-gray-600">
               <li>• Sell products we wouldnt use ourselves</li>
               <li>• Make vague marketing claims</li>
@@ -47,21 +47,21 @@ export default function AboutPage() {
         </div>
 
         <div className="border-t border-gray-200 pt-16">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] mb-8">By the numbers</h2>
+          <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">By the numbers</h2>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#FF6B6B] mb-1">50K+</div>
+              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">50K+</div>
               <div className="text-sm text-gray-600">Products sold</div>
             </div>
             
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#4ECDC4] mb-1">4.7</div>
+              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">4.7</div>
               <div className="text-sm text-gray-600">Average rating</div>
             </div>
             
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#FFE66D] mb-1">20+</div>
+              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">20+</div>
               <div className="text-sm text-gray-600">Countries shipped</div>
             </div>
             
@@ -74,13 +74,13 @@ export default function AboutPage() {
 
         <div className="mt-16 bg-[#1a1a1a] p-8 md:p-12">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold text-white mb-4">Questions?</h2>
+            <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Questions?</h2>
             <p className="text-gray-400 mb-6">
               We read every email. Usually reply within 24 hours.
             </p>
             <a 
               href="mailto:support@eyrya.com"
-              className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors"
             >
               support@eyrya.com
             </a>

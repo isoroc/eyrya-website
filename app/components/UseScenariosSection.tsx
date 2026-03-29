@@ -4,25 +4,25 @@ const scenarios = [
   {
     title: 'Sports Events',
     description: 'The original foam finger. 18 inches of pure team spirit. Over 50,000 sold to fans across the country.',
-    color: '#FF6B6B',
+    color: '#DC2626',
     stat: '4.8/5 rating',
   },
   {
     title: 'Birthday Parties',
     description: 'Party supplies that dont look like you grabbed them at a gas station. Coordinated sets that actually match.',
-    color: '#4ECDC4',
+    color: '#DC2626',
     stat: 'Same-day shipping',
   },
   {
     title: 'School Events',
     description: 'Bulk orders for pep rallies, field days, and fundraisers. Discounts on 50+ units.',
-    color: '#FFE66D',
+    color: '#DC2626',
     stat: '15% off 50+',
   },
   {
     title: 'Family Camping',
     description: 'Outdoor gear that fits in your car. No assembly required. Just unpack and enjoy.',
-    color: '#1a1a1a',
+    color: '#DC2626',
     stat: 'Free returns',
   },
 ];
@@ -32,7 +32,7 @@ export default function UseScenariosSection() {
     <section className="py-16 lg:py-24 bg-[#fafafa]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3">
+          <h2 className="text-2xl md:text-3xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
             What People Use Them For
           </h2>
           <p className="text-gray-600">
@@ -51,11 +51,7 @@ export default function UseScenariosSection() {
                   {scenario.title}
                 </h3>
                 <span 
-                  className="text-xs font-bold px-2 py-1"
-                  style={{ 
-                    backgroundColor: scenario.color === '#1a1a1a' ? '#f3f3f3' : scenario.color + '20',
-                    color: scenario.color
-                  }}
+                  className="text-xs font-bold px-2 py-1 bg-[#DC2626] text-white"
                 >
                   {scenario.stat}
                 </span>

@@ -70,10 +70,10 @@ const featuredProducts = [
 
 export default function ProductsPage() {
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-24 pb-20 bg-[#F4F1EA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-3">
+          <h1 className="font-['Teko'] text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-3 uppercase tracking-wide">
             All Products
           </h1>
           <p className="text-gray-600">
@@ -82,18 +82,20 @@ export default function ProductsPage() {
         </div>
 
         <section className="mb-16">
-          <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Categories</h2>
+          <h2 className="font-['Teko'] text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-6 uppercase tracking-wide">
+            Categories
+          </h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {categories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/products?category=${category.slug}`}
-                className="group border border-gray-200 p-6 hover:border-[#FF6B6B] transition-colors"
+                className="group bg-white border border-gray-200 p-6 hover:border-[#DC2626] transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-[#1a1a1a] mb-1">
+                    <h3 className="font-bold text-[#1A1A1A] mb-1">
                       {category.name}
                     </h3>
                     <p className="text-sm text-gray-500 mb-2">{category.description}</p>
@@ -101,7 +103,7 @@ export default function ProductsPage() {
                       {category.products} products
                     </span>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#FF6B6B] transition-colors" />
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#DC2626] transition-colors" />
                 </div>
               </Link>
             ))}
@@ -109,14 +111,16 @@ export default function ProductsPage() {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-xl font-bold text-[#1a1a1a] mb-6">Featured</h2>
+          <h2 className="font-['Teko'] text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-6 uppercase tracking-wide">
+            Featured
+          </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProducts.map((product) => (
               <Link
                 key={product.slug}
                 href={`/products/${product.slug}`}
-                className="group border border-gray-200 hover:border-[#1a1a1a] transition-colors"
+                className="group bg-white border border-gray-200 hover:border-[#1A1A1A] transition-colors"
               >
                 <div className="aspect-square bg-gray-100 relative overflow-hidden">
                   <Image
@@ -128,11 +132,11 @@ export default function ProductsPage() {
                 </div>
                 
                 <div className="p-5">
-                  <span className="text-xs font-medium text-[#4ECDC4] uppercase tracking-wider">
+                  <span className="text-xs font-medium text-[#DC2626] uppercase tracking-wider">
                     {product.category}
                   </span>
                   
-                  <h3 className="text-lg font-bold text-[#1a1a1a] mt-2 mb-2">
+                  <h3 className="text-lg font-bold text-[#1A1A1A] mt-2 mb-2">
                     {product.name}
                   </h3>
                   
@@ -146,10 +150,10 @@ export default function ProductsPage() {
                   
                   <div className="flex items-center justify-between">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-bold text-[#1a1a1a]">{product.price}</span>
+                      <span className="text-xl font-bold text-[#1A1A1A]">{product.price}</span>
                       <span className="text-sm text-gray-400 line-through">{product.originalPrice}</span>
                     </div>
-                    <span className="text-sm font-semibold text-[#1a1a1a] group-hover:gap-2 gap-1 transition-all inline-flex items-center">
+                    <span className="text-sm font-semibold text-[#DC2626] group-hover:gap-2 gap-1 transition-all inline-flex items-center">
                       View →
                     </span>
                   </div>
@@ -159,10 +163,12 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section className="bg-[#1a1a1a] p-8 md:p-12">
+        <section className="bg-[#DC2626] p-8 md:p-12">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold text-white mb-4">Ready to buy?</h2>
-            <p className="text-gray-400 mb-8">
+            <h2 className="font-['Teko'] text-3xl md:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+              Ready to buy?
+            </h2>
+            <p className="text-white/80 mb-8">
               Find EYRYA on Amazon and Temu. Same products, fast shipping.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -170,7 +176,7 @@ export default function ProductsPage() {
                 href="https://amazon.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#DC2626] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors"
               >
                 Shop Amazon
                 <ExternalLink className="w-4 h-4" />

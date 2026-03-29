@@ -30,7 +30,7 @@ export default function IdeasPreviewSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3">
+            <h2 className="text-2xl md:text-3xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
               From the Blog
             </h2>
             <p className="text-gray-600">
@@ -50,15 +50,15 @@ export default function IdeasPreviewSection() {
         <div className="grid md:grid-cols-3 gap-6">
           {ideas.map((idea) => (
             <Link key={idea.title} href={`/ideas/${idea.title.toLowerCase().replace(/\s+/g, '-')}`}>
-              <div className="group border border-gray-200 p-6 hover:border-[#FF6B6B] transition-colors h-full flex flex-col">
+              <div className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#FF6B6B]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
                     {idea.category}
                   </span>
                   <span className="text-xs text-gray-400">{idea.date}</span>
                 </div>
 
-                <h3 className="text-lg font-bold text-[#1a1a1a] mb-3 group-hover:text-[#FF6B6B] transition-colors">
+                <h3 className="text-lg font-bold text-[#1a1a1a] mb-3 group-hover:text-[#DC2626] transition-colors">
                   {idea.title}
                 </h3>
                 

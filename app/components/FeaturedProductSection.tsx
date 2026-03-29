@@ -23,20 +23,20 @@ export default function FeaturedProductSection() {
           {/* Product Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="bg-[#FFE66D] text-[#1a1a1a] text-xs font-bold px-2 py-1 uppercase tracking-wider">
+              <span className="bg-[#DC2626] text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">
                 Best Seller
               </span>
               <span className="text-sm text-gray-500">1,247 sold</span>
             </div>
 
-            <h2 className="text-4xl font-bold text-[#1a1a1a] mb-4">
+            <h2 className="text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
               EVA Foam Finger #1
             </h2>
 
             <div className="flex items-baseline gap-3 mb-4">
               <span className="text-3xl font-bold text-[#1a1a1a]">$12.99</span>
               <span className="text-lg text-gray-400 line-through">$16.99</span>
-              <span className="text-sm text-[#FF6B6B] font-medium">Save 24%</span>
+              <span className="text-sm text-[#DC2626] font-medium">Save 24%</span>
             </div>
 
             <p className="text-gray-600 mb-6 leading-relaxed">
@@ -47,15 +47,15 @@ export default function FeaturedProductSection() {
 
             <div className="space-y-3 mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-[#4ECDC4]"></div>
+                <div className="w-2 h-2 bg-[#DC2626]"></div>
                 <span className="text-gray-700">Lightweight EVA foam</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-[#4ECDC4]"></div>
+                <div className="w-2 h-2 bg-[#DC2626]"></div>
                 <span className="text-gray-700">18" x 8" dimensions</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-[#4ECDC4]"></div>
+                <div className="w-2 h-2 bg-[#DC2626]"></div>
                 <span className="text-gray-700">Available in 5 colors</span>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function FeaturedProductSection() {
             </div>
 
             <div className="mt-6 flex items-center gap-2 text-sm text-gray-500">
-              <span className="text-[#4ECDC4] font-medium">✓ In Stock</span>
+              <span className="text-[#DC2626] font-medium">✓ In Stock</span>
               <span>• Ships within 24 hours</span>
             </div>
           </div>

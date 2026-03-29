@@ -30,7 +30,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-gray-600 hover:text-[#1a1a1a] font-medium transition-colors"
+                className="text-[#1A1A1A] hover:text-[#DC2626] font-['Teko'] uppercase tracking-wide transition-colors"
               >
                 {link.name}
               </Link>
@@ -41,7 +41,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-4">
             <Link
               href="/wholesale"
-              className="text-sm font-medium text-gray-600 hover:text-[#1a1a1a] transition-colors"
+              className="text-sm font-medium text-gray-600 hover:text-[#1A1A1A] transition-colors"
             >
               Wholesale
             </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
               href="https://amazon.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-[#1a1a1a] text-white px-5 py-2.5 font-medium hover:bg-black transition-colors"
+              className="flex items-center gap-2 bg-[#DC2626] text-white px-5 py-2.5 font-medium uppercase hover:bg-[#B91C1C] transition-colors"
             >
               <ShoppingBag className="w-4 h-4" />
               Shop Now
@@ -76,7 +76,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block text-lg font-medium text-gray-700 hover:text-[#1a1a1a] transition-colors"
+                className="block text-lg text-[#1A1A1A] hover:text-[#DC2626] font-['Teko'] uppercase tracking-wide transition-colors"
               >
                 {link.name}
               </Link>
@@ -85,7 +85,7 @@ export default function Navbar() {
             <Link
               href="/wholesale"
               onClick={() => setIsOpen(false)}
-              className="block text-lg font-medium text-gray-600 hover:text-[#1a1a1a] transition-colors"
+              className="block text-lg font-medium text-gray-600 hover:text-[#1A1A1A] transition-colors"
             >
               Wholesale
             </Link>
@@ -94,7 +94,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-5 py-3 font-medium"
+              className="flex items-center justify-center gap-2 bg-[#DC2626] text-white px-5 py-3 font-medium uppercase hover:bg-[#B91C1C] transition-colors"
             >
               <ShoppingBag className="w-4 h-4" />
               Shop Now
