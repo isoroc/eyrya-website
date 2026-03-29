@@ -36,7 +36,7 @@ body {
   .text-gradient {
     @apply bg-clip-text text-transparent;
   }
-  
+
   .bg-gradient-brand {
     background: linear-gradient(135deg, #FF6B9D 0%, #FF8C42 50%, #FFD93D 100%);
   }
@@ -55,7 +55,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+nextjs-preflight-error {
+  display: none !important;
+}
+
+__nextjs_error_overlay {
+  display: none !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -71,4 +78,10 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #B91C1C;
+}
+
+#nextjs-overlay,
+.nextjs-error-overlay,
+[data-nextjs-error-overlay] {
+  display: none !important;
 }

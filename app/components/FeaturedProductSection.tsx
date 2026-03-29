@@ -17,7 +17,7 @@ export default function FeaturedProductSection() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#F4F1EA]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Product Info */}

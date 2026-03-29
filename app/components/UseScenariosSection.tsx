@@ -29,7 +29,7 @@ const scenarios = [
 
 export default function UseScenariosSection() {
   return (
-    <section className="py-16 lg:py-24 bg-[#fafafa]">
+    <section className="py-16 lg:py-24 bg-[#F4F1EA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h2 className="text-2xl md:text-3xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
