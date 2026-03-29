@@ -6,26 +6,12 @@ import { ArrowRight } from 'lucide-react';
 export default function HeroSection() {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-start overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#2C3E50] to-[#1a1a1a]">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="diagonal-stripes" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M-10,10 l20,-20 M0,40 l40,-40 M30,50 l20,-20" 
-                        stroke="#ffffff" 
-                        strokeWidth="1" 
-                        fill="none" 
-                        opacity="0.3"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#diagonal-stripes)" />
-            </svg>
-          </div>
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        </div>
-        
+      <div className="absolute inset-0">
+        <img
+          src="/images/hero.png"
+          alt=""
+          className="w-full h-full object-cover object-center"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
       </div>
 
