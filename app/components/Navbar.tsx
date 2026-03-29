@@ -21,7 +21,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img src="/images/logo.svg" alt="EYRYA" className="h-6 w-auto" />
+            <img src="/images/logo.svg" alt="EYRYA" className="h-4 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -61,7 +61,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 text-gray-700 hover:text-[#1a1a1a] transition-colors"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-6 h-4" /> : <Menu className="w-6 h-4" />}
           </button>
         </div>
       </div>

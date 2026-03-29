@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block">
-              <img src="/images/logo.svg" alt="EYRYA" className="h-6 w-auto brightness-0 invert" />
+              <img src="/images/logo.svg" alt="EYRYA" className="h-4 w-auto brightness-0 invert" />
             </Link>
             <p className="mt-4 text-gray-400 text-sm">
               Real products for real fun. Party supplies and fan gear that actually work.
@@ -48,7 +48,7 @@ export default function Footer() {
                   className="text-gray-400 hover:text-white transition-colors"
                   aria-label={social.name}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-5 h-4" />
                 </a>
               ))}
             </div>
