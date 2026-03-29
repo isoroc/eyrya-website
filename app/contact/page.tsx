@@ -75,7 +75,18 @@ export default function ContactPage() {
               </div>
             </div>
 
-
+            <div className="mt-12 p-6 bg-[#fafafa] border border-gray-200">
+              <h3 className="font-semibold text-[#1a1a1a] mb-2">Wholesale inquiries</h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Looking to order 50+ units? Email us for bulk pricing.
+              </p>
+              <a 
+                href="mailto:wholesale@eyrya.com" 
+                className="text-[#FF6B6B] hover:underline text-sm font-medium"
+              >
+                wholesale@eyrya.com
+              </a>
+            </div>
           </div>
 
           <div className="bg-[#fafafa] border border-gray-200 p-8">
