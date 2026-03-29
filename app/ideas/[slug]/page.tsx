@@ -13,14 +13,12 @@ interface PageProps {
 
 export function generateStaticParams() {
   return [
-    { slug: 'best-foam-finger-ideas' },
-    { slug: 'make-birthday-party-fun' },
-    { slug: 'outdoor-activities-families' },
-    { slug: 'party-supply-ideas' },
-    { slug: 'sports-fan-gear-guide' },
-    { slug: 'gifts-active-kids' },
-    { slug: 'party-planning-tips' },
-    { slug: 'sports-event-essentials' },
+    { slug: 'game-day-checklist' },
+    { slug: 'foam-finger-quality' },
+    { slug: 'reusable-party-supplies' },
+    { slug: 'bulk-order-guide' },
+    { slug: 'camping-with-kids' },
+    { slug: 'cheap-party-decorations' },
   ];
 }
 
@@ -58,7 +56,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
         {/* Back Link */}
         <Link
           href="/ideas"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-[#DC2626] mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Ideas
@@ -66,7 +64,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
 
         {/* Article Header */}
         <div className="mb-8">
-          <span className="inline-block px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium mb-4">
+          <span className="inline-block px-3 py-1 bg-[#DC2626]/10 text-[#DC2626] text-sm font-medium mb-4">
             {article.category}
           </span>
           
@@ -90,7 +88,7 @@ export default async function IdeaDetailPage({ params }: PageProps) {
         </div>
 
         {/* Featured Image */}
-        <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl mb-8 flex items-center justify-center">
+        <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 mb-8 flex items-center justify-center">
           <svg className="w-24 h-24 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
@@ -98,9 +96,8 @@ export default async function IdeaDetailPage({ params }: PageProps) {
 
         {/* Article Content */}
         <article 
-          className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-pink-600 prose-a:no-underline hover:prose-a:underline prose-li:text-gray-600"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
+          className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-[#DC2626] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-600"
+          dangerouslySetInnerHTML={{ __html: article.content }}        />
 
         {/* Related Articles */}
         <div className="mt-16 pt-8 border-t border-gray-200">
@@ -114,9 +111,9 @@ export default async function IdeaDetailPage({ params }: PageProps) {
               <Link
                 key={related.slug}
                 href={`/ideas/${related.slug}`}
-                className="group p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+                className="group p-4 bg-gray-50 hover:bg-gray-100 transition-colors"
               >
-                <h4 className="font-medium text-gray-900 group-hover:text-pink-600 transition-colors">
+                  <h4 className="font-medium text-gray-900 group-hover:text-[#DC2626] transition-colors">
                   {related.title}
                 </h4>
               </Link>

@@ -13,6 +13,7 @@ export default function HeroSection() {
           className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+        <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#F4F1EA] to-transparent"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-32">
@@ -80,8 +81,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-2 bg-[#DC2626]"></div>
-      <div className="absolute bottom-2 left-0 w-full h-1 bg-[#FFE66D]"></div>
     </section>
   );
 }

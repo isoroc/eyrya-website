@@ -84,7 +84,7 @@ export default function IdeasPage() {
             <Link
               key={category.slug}
               href={`/ideas?category=${category.slug}`}
-              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white transition-colors"
+              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white transition-colors rounded-sm"
             >
               {category.name}
             </Link>
@@ -96,7 +96,7 @@ export default function IdeasPage() {
             <Link
               key={idea.slug}
               href={`/ideas/${idea.slug}`}
-              className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors flex flex-col"
+              className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors flex flex-col rounded-sm"
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
