@@ -86,7 +86,7 @@ export default function FeaturedProductSection() {
 
           {/* Product Image */}
           <div className="relative">
-            <div className="aspect-square bg-[#f5f5f5] flex items-center justify-center relative">
+            <div className="aspect-square flex items-center justify-center relative">
               <div className="w-2/3 h-2/3 transform -rotate-6 shadow-xl overflow-hidden">
                 <Image
                   src={selectedColor.image}
@@ -103,7 +103,7 @@ export default function FeaturedProductSection() {
                   <button
                     key={colorOption.name}
                     onClick={() => setSelectedColor(colorOption)}
-                    className={`w-10 h-10 border-2 shadow-sm cursor-pointer transition-transform hover:scale-110 ${
+                    className={`w-12 h-8 border-2 shadow-sm cursor-pointer transition-transform hover:scale-110 ${
                       selectedColor.name === colorOption.name 
                         ? 'border-[#1a1a1a] scale-110' 
                         : 'border-white'
