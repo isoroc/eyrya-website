@@ -8,7 +8,7 @@ export default function HeroSection() {
     <section className="relative w-full min-h-screen flex items-center justify-start overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/images/hero.png"
+          src="/images/hero.webp"
           alt=""
           className="w-full h-full object-cover object-center"
         />

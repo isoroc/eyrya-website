@@ -7,7 +7,7 @@
 | 层 | 技术 | 部署位置 | 说明 |
 |----|------|----------|------|
 | 前台网站 | Next.js（`output: 'export'`） | Cloudflare Pages | 纯静态，22 个预渲染页面 |
-| 表单处理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/contact.js`、`functions/api/wholesale.js` → Resend 邮件 |
+| 表单处理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/contact.js`、`functions/api/wholesale.js`、`functions/api/support.js` → Resend 邮件 |
 | 后台管理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/admin/*` → D1/R2 |
 | 后台界面 | 静态 HTML | Cloudflare Pages | `public/admin.html`（纯静态，无需 Workers 部署） |
 
@@ -42,10 +42,12 @@ Cloudflare Pages 项目设置 → Environment variables：
 
 | 变量名 | 说明 | 必需 |
 |--------|------|------|
-| `RESEND_API_KEY` | Resend API 密钥，表单发邮件用 | 是 |
-| `CONTACT_EMAIL` | 接收表单提交邮件的目标邮箱 | 是 |
+| `RESEND_API_KEY` | Resend API 密钥，三个表单发邮件用 | 是 |
+| `CONTACT_EMAIL` | 联系表单收件邮箱 | 是 |
+| `WHOLESALE_EMAIL` | 批发询价表单收件邮箱 | 是 |
+| `SUPPORT_EMAIL` | 支持表单收件邮箱 | 是 |
 
-> `functions/api/contact.js` 和 `functions/api/wholesale.js` 依赖这两个变量。
+> 三个 API 函数：`functions/api/contact.js`、`functions/api/wholesale.js`、`functions/api/support.js` 都依赖 `RESEND_API_KEY`。
 
 ## 4. 架构详图
 
@@ -59,7 +61,8 @@ Browser
   │                                    表单 POST → /api/contact
   │
   ├── https://www.eyrya.com/api/contact      → functions/api/contact.js
-  │   https://www.eyrya.com/api/wholesale    → functions/api/wholesale.js   (Cloudflare Pages Functions)
+  │   https://www.eyrya.com/api/wholesale    → functions/api/wholesale.js
+  │   https://www.eyrya.com/api/support      → functions/api/support.js    (Cloudflare Pages Functions)
   │   https://www.eyrya.com/api/admin/...    → functions/api/admin/*       → D1 + R2
   │
   └── https://www.eyrya.com/admin.html → public/admin.html（纯静态）
@@ -79,7 +82,7 @@ wrangler.toml 配置 D1/R2 绑定，供 Pages Functions 使用。
 ## 常见问题
 
 **Q: 表单提交失败？**
-A: 检查 Cloudflare Pages 环境变量中是否配置了 `RESEND_API_KEY` 和 `CONTACT_EMAIL`。
+A: 检查 Cloudflare Pages 环境变量中是否配置了 `RESEND_API_KEY`、`CONTACT_EMAIL`、`WHOLESALE_EMAIL`、`SUPPORT_EMAIL`。
 
 **Q: 样式丢失？**
 A: 确认 `next.config.ts` 中 `distDir: 'dist'` 存在。

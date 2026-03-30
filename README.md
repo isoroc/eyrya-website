@@ -28,8 +28,9 @@ eyrya-website/
 │
 ├── functions/                  # Cloudflare Pages Functions（边缘函数）
 │   └── api/
-│       ├── contact.js          # 联系表单 → Resend 邮件
-│       ├── wholesale.js         # 批发询价 → Resend 邮件
+│       ├── contact.js          # 联系表单 → Resend（contact@eyrya.com）
+│       ├── wholesale.js         # 批发询价 → Resend（wholesale@eyrya.com）
+│       ├── support.js           # 支持表单 → Resend（support@eyrya.com）
 │       └── admin/
 │           ├── products.js     # 产品 CRUD
 │           ├── categories.js  # 分类 CRUD
@@ -104,7 +105,7 @@ npm run lint     # lint 检查
 2. 选择 `eyrya-website` 仓库
 3. 构建配置：Framework preset = Next.js，Build command = `npm run build`，Build output directory = `dist`
 4. 添加自定义域名 `eyrya.com`
-5. 设置环境变量：`RESEND_API_KEY`、`CONTACT_EMAIL`
+5. 设置环境变量：`RESEND_API_KEY`、`CONTACT_EMAIL`、`WHOLESALE_EMAIL`、`SUPPORT_EMAIL`
 6. Push 到 main 分支自动触发部署
 
 详细说明见 [DEPLOY.md](./DEPLOY.md)。
