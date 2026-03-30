@@ -1,113 +1,81 @@
-# 后台管理系统配置指南
+# 后台管理配置指南
 
-> ⚠️ **重要架构说明**：后台（`public/admin.html` + Cloudflare Workers）与前台网站（Next.js → Cloudflare Pages）是**两套独立的部署**，共处同一仓库但互不依赖。前台是纯静态导出（`output: 'export'`），后台是 Workers 应用（处理产品/图片管理）。
+## 架构说明
+
+```
+https://www.eyrya.com/admin.html   →  public/admin.html（纯静态）
+                                    调用 /api/admin/*
+
+https://www.eyrya.com/api/admin/* →  functions/api/admin/*（Cloudflare Pages Functions）
+                                    读写 D1 数据库、上传图片到 R2
+```
+
+`public/admin.html` 是纯静态 HTML，`functions/api/admin/*` 是 Cloudflare Pages Functions。两者都在同一个 Cloudflare Pages 项目下，无需独立 Workers 部署。
 
 ## 1. 创建 D1 数据库
 
 ```bash
-# 使用 Wrangler CLI
 npx wrangler d1 create eyrya-db
 ```
 
-记下返回的 database_id。
+记下返回的 `database_id`。
 
-## 2. 创建 R2 Bucket（存储图片）
+## 2. 创建 R2 Bucket（图片存储）
 
 ```bash
 npx wrangler r2 bucket create eyrya-images
 ```
 
-## 3. 更新 wrangler.toml
+记下返回的 `bucket_name`。
 
-```toml
-name = "eyrya-website"
-compatibility_date = "2024-03-01"
+## 3. 配置 Cloudflare Pages 环境变量
 
-# D1 数据库
-[[d1_databases]]
-binding = "DB"
-database_name = "eyrya-db"
-database_id = "YOUR_DATABASE_ID"
+在 Cloudflare Pages 项目设置 → Environment variables 中添加：
 
-# R2 存储
-[[r2_buckets]]
-binding = "IMAGES_BUCKET"
-bucket_name = "eyrya-images"
-```
+| 变量名 | 值 | 说明 |
+|--------|-----|------|
+| `DB` | `eyrya-db` | D1 数据库名称 |
+| `IMAGES_BUCKET` | `eyrya-images` | R2 Bucket 名称 |
+
+> 这些变量供 `functions/api/admin/*` 中的 Pages Functions 使用。D1 和 R2 通过 Cloudflare Pages 的 D1 和 R2 集成直接绑定，不需要 wrangler.toml。
 
 ## 4. 初始化数据库
 
 ```bash
-# 执行 schema 文件
 npx wrangler d1 execute eyrya-db --file=./db/schema.sql
 ```
 
-## 5. 设置环境变量
-
-在 Cloudflare Pages 设置 → Environment variables：
-
-```
-# 可选：如果你有自定义域名用于图片
-IMAGES_CUSTOM_DOMAIN = images.eyrya.com
-```
-
-## 6. 重新部署 Workers 应用
+## 5. 部署
 
 ```bash
 git add .
-git commit -m "Add admin panel and database"
+git commit -m "Configure admin"
 git push
 ```
 
-> **注意**：前台 Next.js 网站（Cloudflare Pages）和后台 Workers 应用**分别部署**，各自通过 GitHub Actions 或 Cloudflare 触发器独立更新。
+Cloudflare Pages 自动部署。
 
-## 7. 访问后台
+## 6. 访问后台
 
-部署完成后访问：`https://www.eyrya.com/admin.html`（Workers 应用独立响应，与 Pages 网站同域共存）
+`https://www.eyrya.com/admin.html`
 
-**默认密码**：`eyrya2024`（部署后立即修改！）
+**默认密码**：`eyrya2024`（部署后立即修改）
 
-## 8. 修改管理员密码
+修改密码：编辑 `public/admin.html` 中的 `ADMIN_PASSWORD` 变量，然后重新部署。
 
-编辑 `/public/admin.html` 中的 `ADMIN_PASSWORD` 变量：
+## 功能
 
-```javascript
-const ADMIN_PASSWORD = '你的新密码';
-```
-
-然后重新部署。
-
-## 功能说明
-
-### 产品管理
-- 添加/编辑/删除产品
-- 上传产品图片（自动存 R2）
-- 设置价格、库存、分类
-- 草稿/发布状态
-
-### 分类管理
-- 添加产品分类
-- 调整分类排序
-
-### 博客管理
-- 创建博客文章
-- 富文本编辑
-- 封面图片
-
-## 费用
-
-- **D1**: 免费 5GB 存储，每天 10 万次查询
-- **R2**: 免费 10GB 存储，每月 100 万次操作
-- 对于小型电商完全够用
+- 产品管理：增删改查、上传图片（存 R2）、设置价格/库存/分类、草稿/发布状态
+- 分类管理：增删改查、调整排序
+- 博客管理：界面预留，尚未完整接入
 
 ## 安全提示
 
-1. **立即修改默认密码**
-2. 生产环境建议添加更强的认证（如 Cloudflare Access）
-3. 定期备份 D1 数据库
+1. 立即修改默认密码
+2. 生产环境建议添加 Cloudflare Access 或其他访问控制
+3. 定期备份 D1 数据库：`npx wrangler d1 export eyrya-db --output=./backup.sql`
 
-## 备份数据库
+## 费用
 
-```bash
-npx wrangler d1 export eyrya-db --output=./backup.sql
-```
+- D1: 免费 5GB 存储，10 万次查询/天
+- R2: 免费 10GB 存储，100 万次操作/月
