@@ -87,7 +87,7 @@ export default function FeaturedProductSection() {
           {/* Product Image */}
           <div className="relative">
             <div className="aspect-square flex items-center justify-center relative -mt-4">
-              <div className="w-3/5 h-3/5 transform -rotate-6 shadow-xl overflow-hidden -mt-8">
+              <div className="w-3/4 h-3/4 transform -rotate-6 shadow-xl overflow-hidden -mt-8">
                 <Image
                   src={selectedColor.image}
                   alt={`EVA Foam Finger - ${selectedColor.name}`}
