@@ -10,12 +10,16 @@ export const metadata: Metadata = {
   },
 };
 
-const AmazonLogoColor = () => (
-  <img src="/Amazon_logo.svg" alt="Amazon" className="h-12 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
+const AmazonLogo = () => (
+  <div className="h-12 w-auto [&>img]:brightness-0 [&>img]:invert">
+    <img src="/Amazon_logo.svg" alt="Amazon" className="h-full w-auto" />
+  </div>
 );
 
-const TemuLogoColor = () => (
-  <img src="/Temu_logo.svg" alt="Temu" className="h-10 w-auto" />
+const TemuLogo = () => (
+  <div className="h-10 w-auto [&>img]:brightness-0 [&>img]:invert">
+    <img src="/Temu_logo.svg" alt="Temu" className="h-full w-auto" />
+  </div>
 );
 
 const platforms = [
@@ -39,7 +43,7 @@ export default function WhereToBuyPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
           <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
-            Where to Buy
+            Where to Buy test
           </h1>
           <p className="text-gray-600">
             Find EYRYA on trusted marketplaces. Same products, your preferred platform.
