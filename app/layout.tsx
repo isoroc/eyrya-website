@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: {
     default: "EYRYA® | Fun Products for Party, Play, Cheer & Outdoor",
-    template: "EYRYA® | %s",
+    template: "%s",
   },
   description: "EYRYA creates fun products for parties, sports events, playtime and outdoor activities. Shop EVA foam fingers, party supplies, toys and more.",
   keywords: ["party supplies", "toys", "sports fan gear", "outdoor fun", "foam finger", "EYRYA"],
