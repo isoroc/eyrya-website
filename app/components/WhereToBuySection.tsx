@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 
 const AmazonLogo = () => (
-  <img src="/Amazon_logo.svg" alt="Amazon" className="h-10 w-auto" />
+  <img src="/Amazon_logo.svg" alt="Amazon" className="h-10 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
 );
 
 const TemuLogo = () => (
-  <img src="/Temu_logo.svg" alt="Temu" className="h-10 w-auto" />
+  <img src="/Temu_logo.svg" alt="Temu" className="h-8 w-auto" />
 );
 
 const platforms = [

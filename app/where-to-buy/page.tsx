@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 };
 
 const AmazonLogoColor = () => (
-  <img src="/Amazon_logo.svg" alt="Amazon" className="h-12 w-auto" />
+  <img src="/Amazon_logo.svg" alt="Amazon" className="h-12 w-auto" style={{ filter: 'brightness(0) invert(1)' }} />
 );
 
 const TemuLogoColor = () => (
-  <img src="/Temu_logo.svg" alt="Temu" className="h-12 w-auto" />
+  <img src="/Temu_logo.svg" alt="Temu" className="h-10 w-auto" />
 );
 
 const platforms = [
