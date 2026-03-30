@@ -53,7 +53,7 @@ export default function WhereToBuySection() {
               <div className="bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-colors">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-start gap-3">
-                    {platform.name === 'Amazon' ? <AmazonLogo /> : <div className="mb-1"><TemuLogo /></div>}
+                    {platform.name === 'Amazon' ? <AmazonLogo /> : <div className="mb-2"><TemuLogo /></div>}
                   </div>
                   <ExternalLink className="w-4 h-4 text-gray-500" />
                 </div>
