@@ -11,15 +11,11 @@ export const metadata: Metadata = {
 };
 
 const AmazonLogo = () => (
-  <div className="h-12 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/Amazon_logo.svg" alt="Amazon" className="h-full w-auto" />
-  </div>
+  <img src="/Amazon_logo.svg" alt="Amazon" className="h-8 w-auto" />
 );
 
 const TemuLogo = () => (
-  <div className="h-10 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/Temu_logo.svg" alt="Temu" className="h-full w-auto" />
-  </div>
+  <img src="/Temu_logo.svg" alt="Temu" className="h-6 w-auto" />
 );
 
 const platforms = [
