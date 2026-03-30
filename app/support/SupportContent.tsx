@@ -53,6 +53,7 @@ export default function SupportContent() {
   const [email, setEmail] = useState('');
   const [trackStatus, setTrackStatus] = useState<'idle' | 'loading' | 'found' | 'not_found'>('idle');
   const [trackError, setTrackError] = useState('');
+  const [message, setMessage] = useState('');
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -67,6 +68,7 @@ export default function SupportContent() {
       const formData = new FormData();
       formData.append('orderNumber', orderNumber);
       formData.append('email', email);
+      formData.append('message', message);
 
       const res = await fetch('/api/support', {
         method: 'POST',
@@ -255,6 +257,20 @@ export default function SupportContent() {
                   required
                   className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   placeholder="you@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="trackMessage" className="block text-sm font-medium text-[#1a1a1a] mb-2">
+                  What can we help you with?
+                </label>
+                <textarea
+                  id="trackMessage"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+                  placeholder="Describe your issue or question..."
                 />
               </div>
 

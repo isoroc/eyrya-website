@@ -9,6 +9,7 @@ export async function onRequestPost(context) {
     const data = {
       orderNumber: formData.get('orderNumber'),
       email: formData.get('email'),
+      message: formData.get('message'),
     };
 
     if (!data.orderNumber || !data.email) {
@@ -55,9 +56,11 @@ export async function onRequestPost(context) {
         subject: `Order Tracking Request: ${data.orderNumber}`,
         reply_to: data.email,
         html: `
-          <h2>Order Tracking Request</h2>
+          <h2>Support Request</h2>
           <p><strong>Order Number:</strong> ${escapeHtml(data.orderNumber)}</p>
           <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+          <p><strong>Message:</strong></p>
+          <p>${escapeHtml(data.message || '').replace(/\n/g, '<br>')}</p>
         `,
       }),
     });
