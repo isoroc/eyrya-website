@@ -2,8 +2,12 @@ import { Metadata } from 'next';
 import { ExternalLink, ShoppingBag, Truck, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Where to Buy - EYRYA',
-  description: 'Find EYRYA on Amazon and Temu. Fast shipping, easy returns.',
+  title: 'EYRYA® Where to Buy | Shop on Amazon & Temu',
+  description: 'Buy EYRYA products on Amazon (Prime shipping) or Temu (best prices). Official stores with A-to-Z Guarantee.',
+  keywords: 'buy EYRYA, EYRYA Amazon, EYRYA Temu, foam fingers online, party supplies Amazon',
+  alternates: {
+    canonical: 'https://www.eyrya.com/where-to-buy/',
+  },
 };
 
 const AmazonLogoColor = () => (

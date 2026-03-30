@@ -2,8 +2,12 @@ import { Metadata } from 'next';
 import { Package, Globe, TrendingUp, Building2, Send, Check } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Wholesale - EYRYA',
-  description: 'Bulk pricing for schools, teams, and retailers. 50+ units.',
+  title: 'EYRYA® Wholesale | Bulk Pricing on 50+ Units for Schools & Teams',
+  description: 'Wholesale pricing on EYRYA products. 15-30% off retail for 50+ units. Schools, teams, retailers, event planners.',
+  keywords: 'EYRYA wholesale, bulk foam fingers, bulk party supplies, school event supplies, team merchandise',
+  alternates: {
+    canonical: 'https://www.eyrya.com/wholesale/',
+  },
 };
 
 const benefits = [

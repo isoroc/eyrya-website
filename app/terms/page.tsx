@@ -1,8 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - EYRYA',
-  description: 'Terms and conditions for using the EYRYA website and purchasing our products.',
+  title: 'EYRYA® Terms of Service | Website & Product Terms',
+  description: 'EYRYA terms of service. Read our terms before using the website or purchasing products.',
+  keywords: 'EYRYA terms of service, website terms, product terms',
+  alternates: {
+    canonical: 'https://www.eyrya.com/terms/',
+  },
 };
 
 export default function TermsPage() {

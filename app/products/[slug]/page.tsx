@@ -16,9 +16,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const name = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   return {
-    title: `${slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} - EYRYA`,
-    description: 'Product details and features.',
+    title: `EYRYA® ${name} | Premium Quality & Best Price`,
+    description: `Shop ${name} by EYRYA. Premium quality, 50,000+ sold. Best price on Amazon & Temu. Free shipping available.`,
+    keywords: `EYRYA ${name}, ${name} buy online, premium party supplies`,
+    alternates: {
+      canonical: `https://www.eyrya.com/products/${slug}/`,
+    },
   };
 }
 

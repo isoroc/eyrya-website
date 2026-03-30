@@ -1,8 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About - EYRYA',
-  description: 'We make party supplies and fan gear that actually work. No gimmicks.',
+  title: 'EYRYA® About Us | Real Products for Real Fun Since 2022',
+  description: 'EYRYA makes party supplies and fan gear that actually work. Over 50,000 products sold. No gimmicks, no dropshipping.',
+  keywords: 'EYRYA about, EYRYA brand, party supplies brand, sports fan gear company',
+  alternates: {
+    canonical: 'https://www.eyrya.com/about/',
+  },
 };
 
 export default function AboutPage() {

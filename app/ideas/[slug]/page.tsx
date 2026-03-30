@@ -2,13 +2,21 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Clock, User } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Article - EYRYA Ideas',
-  description: 'Read our latest ideas and inspiration for parties, sports events and outdoor fun.',
-};
-
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const title = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  return {
+    title: `EYRYA® ${title} | Ideas & Inspiration`,
+    description: `Read our guide: ${title}. Expert tips on party planning, sports events, and outdoor activities from EYRYA.`,
+    keywords: `EYRYA ${title}, party tips, sports event guide`,
+    alternates: {
+      canonical: `https://www.eyrya.com/ideas/${slug}/`,
+    },
+  };
 }
 
 export function generateStaticParams() {

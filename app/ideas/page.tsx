@@ -3,8 +3,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Blog - EYRYA',
-  description: 'Tips, tricks, and real talk about party planning and sports events.',
+  title: 'EYRYA® Ideas | Party Planning Tips, Sports Events & Outdoor Guides',
+  description: 'Expert tips on party planning, game day prep, bulk ordering, and outdoor activities. Real advice from EYRYA.',
+  keywords: 'party planning tips, sports event checklist, bulk order guide, outdoor activities, camping with kids',
+  alternates: {
+    canonical: 'https://www.eyrya.com/ideas/',
+  },
 };
 
 const categories = [

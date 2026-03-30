@@ -4,8 +4,12 @@ import Image from 'next/image';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Products - EYRYA',
-  description: 'Party supplies, fan gear, and outdoor products. Real stuff that actually works.',
+  title: 'EYRYA® Products | Party Supplies, Sports Fan Gear & Outdoor Fun',
+  description: 'Explore EYRYA products: foam fingers, LED party lights, camping gear. Wholesale pricing on 50+ units. Shop via Amazon & Temu.',
+  keywords: 'EYRYA products, foam fingers, party supplies, sports fan gear, outdoor camping gear, bulk order',
+  alternates: {
+    canonical: 'https://www.eyrya.com/products/',
+  },
 };
 
 const categories = [

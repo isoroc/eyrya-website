@@ -1,8 +1,12 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - EYRYA',
-  description: 'How EYRYA collects, uses, and protects your personal information.',
+  title: 'EYRYA® Privacy Policy | How We Protect Your Data',
+  description: 'EYRYA privacy policy. Learn how we collect, use, and protect your personal information.',
+  keywords: 'EYRYA privacy policy, data protection, personal information',
+  alternates: {
+    canonical: 'https://www.eyrya.com/privacy/',
+  },
 };
 
 export default function PrivacyPage() {

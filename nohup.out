@@ -142,3 +142,212 @@ Persisting failed: Another write batch or compaction is already active (Only a s
 Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
 Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
 Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+
+thread 'tokio-runtime-worker' (42152749) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152687) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42558817) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152693) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152749) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for ModuleResolveResult::primary_modules (TaskId 55726))
+
+Caused by:
+    0: Looking up data for TaskId 55726 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152693) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152690) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152691) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for AsyncModule::is_self_async (TaskId 67054))
+
+Caused by:
+    0: Looking up data for TaskId 67054 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42558817) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EcmascriptModuleFacadeModule as Module>::is_self_async (TaskId 66720))
+
+Caused by:
+    0: Looking up data for TaskId 66720 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <EsmAssetReference as ChunkableModuleReference>::chunking_type (TaskId 55409))
+
+Caused by:
+    0: Looking up data for TaskId 55409 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152690) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for <EcmascriptModuleAsset as Module>::is_self_async (TaskId 64213))
+
+Caused by:
+    0: Looking up data for TaskId 64213 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152749) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for primary_chunkable_referenced_modules (TaskId 1441))
+
+Caused by:
+    0: Looking up data for TaskId 1441 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152694) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for batch_chunk_items_with_info_with_type (TaskId 82705))
+
+Caused by:
+    0: Looking up data for TaskId 82705 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152690) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for <EcmascriptModuleAsset as Module>::is_self_async (TaskId 64213))
+
+Caused by:
+    0: Looking up data for TaskId 64213 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152693) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for primary_chunkable_referenced_modules (TaskId 60769))
+
+Caused by:
+    0: Looking up data for TaskId 60769 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152690) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for ChunkingContext::chunk_item_id (TaskId 89514))
+
+Caused by:
+    0: Looking up data for TaskId 89514 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152690) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for ChunkingContext::chunk_item_id (TaskId 89514))
+
+Caused by:
+    0: Looking up data for TaskId 89514 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (42152749) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for primary_chunkable_referenced_modules (TaskId 60769))
+
+Caused by:
+    0: Looking up data for TaskId 60769 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for batch_chunk_items_with_info (TaskId 82468))
+
+Caused by:
+    0: Looking up data for TaskId 82468 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for batch_chunk_items_with_info_with_type (TaskId 82705))
+
+Caused by:
+    0: Looking up data for TaskId 82705 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for parse (TaskId 1108))
+
+Caused by:
+    0: Looking up data for TaskId 1108 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for read_dir (TaskId 51))
+
+Caused by:
+    0: Looking up data for TaskId 51 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for read_dir (TaskId 51))
+
+Caused by:
+    0: Looking up data for TaskId 51 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
