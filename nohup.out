@@ -351,3 +351,34 @@ Caused by:
     3: No such file or directory (os error 2)
 Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
 Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+
+thread 'tokio-runtime-worker' (42152691) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Meta for <NodeJsChunkingContext as ChunkingContext>::is_reference_unused (TaskId 81847))
+
+Caused by:
+    0: Looking up data for TaskId 81847 from database failed
+    1: Unable to open static sorted file referenced from 00000037.meta
+    2: Unable to open static sorted file 00000033.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for ReferencedAsset::from_resolve_result (TaskId 63793))
+
+Caused by:
+    0: Looking up data for TaskId 63793 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+
+thread 'tokio-runtime-worker' (43310437) panicked at /Users/geist/dev/actions-runner/_work/next.js/next.js/turbopack/crates/turbo-tasks-backend/src/backend/operation/mod.rs:156:17:
+Failed to restore task data (corrupted database or bug): Data for ReferencedAsset::from_resolve_result (TaskId 63793))
+
+Caused by:
+    0: Looking up data for TaskId 63793 from database failed
+    1: Unable to open static sorted file referenced from 00000036.meta
+    2: Unable to open static sorted file 00000032.sst
+    3: No such file or directory (os error 2)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
+Persisting failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)

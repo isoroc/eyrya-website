@@ -1,5 +1,7 @@
 # 后台管理系统配置指南
 
+> ⚠️ **重要架构说明**：后台（`public/admin.html` + Cloudflare Workers）与前台网站（Next.js → Cloudflare Pages）是**两套独立的部署**，共处同一仓库但互不依赖。前台是纯静态导出（`output: 'export'`），后台是 Workers 应用（处理产品/图片管理）。
+
 ## 1. 创建 D1 数据库
 
 ```bash
@@ -49,9 +51,7 @@ npx wrangler d1 execute eyrya-db --file=./db/schema.sql
 IMAGES_CUSTOM_DOMAIN = images.eyrya.com
 ```
 
-## 6. 重新部署
-
-推送代码触发自动部署：
+## 6. 重新部署 Workers 应用
 
 ```bash
 git add .
@@ -59,9 +59,11 @@ git commit -m "Add admin panel and database"
 git push
 ```
 
+> **注意**：前台 Next.js 网站（Cloudflare Pages）和后台 Workers 应用**分别部署**，各自通过 GitHub Actions 或 Cloudflare 触发器独立更新。
+
 ## 7. 访问后台
 
-部署完成后访问：`https://eyrya.com/admin.html`
+部署完成后访问：`https://www.eyrya.com/admin.html`（Workers 应用独立响应，与 Pages 网站同域共存）
 
 **默认密码**：`eyrya2024`（部署后立即修改！）
 

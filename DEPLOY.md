@@ -1,120 +1,106 @@
 # 🚀 部署指南
 
-我们支持两种部署方式：
-
-**方案 A：Cloudflare Pages（推荐）** - 支持表单功能
-**方案 B：GitHub Pages（简单）** - 纯静态，表单不可用
+**当前方案：Cloudflare Pages（纯静态）**
 
 ---
 
-# 方案 A：Cloudflare Pages（支持表单）
+## 1. 构建配置
 
-## 1. 注册 Resend（邮件服务）
+本项目使用 Next.js Static HTML Export，无需服务端。
 
-1. 访问 https://resend.com
-2. 注册账号（可用 GitHub 登录）
-3. 验证域名（添加 DNS 记录）
-   - 或使用默认域名：`onboarding@resend.dev`
-4. 创建 API Key：Dashboard → API Keys → Create API Key
-   - 选择 `Sending access` 权限
-   - 复制 API Key（以 `re_` 开头）
+```bash
+npm run build
+```
 
-## 2. Cloudflare Pages 设置
+输出目录：`dist/`
+
+## 2. Cloudflare Pages 部署
 
 ### 2.1 创建项目
 
 1. 访问 https://dash.cloudflare.com
-2. 进入 Workers & Pages
-3. 点击 "Create application" → "Pages" → "Connect to Git"
-4. 授权 GitHub，选择 `eyrya-website` 仓库
-5. 构建设置：
-   - **Framework preset**: Next.js (Static HTML Export)
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
+2. 进入 Workers & Pages → Create application → Pages → Connect to Git
+3. 授权 GitHub，选择 `eyrya-website` 仓库
+4. 构建配置：
 
-### 2.2 设置环境变量
+| 设置项 | 值 |
+|--------|-----|
+| Production branch | `main` |
+| Framework preset | Next.js |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
 
-项目设置 → Environment variables 中添加：
+### 2.2 自定义域名
 
-```
-RESEND_API_KEY = re_xxxxxxxxxxxxx
-CONTACT_EMAIL = support@eyrya.com
-```
-
-### 2.3 部署
-
-首次部署后，每次 push 到 main 分支会自动部署。
-
-## 3. 自定义域名
-
-1. Cloudflare Pages 项目 → Custom domains
+1. Pages 项目 → Custom domains
 2. 添加域名 `eyrya.com`
-3. 按提示添加 DNS 记录（Cloudflare 会自动提供）
+3. Cloudflare 自动检测 DNS 记录，按提示添加
 4. 等待 SSL 证书自动颁发
+
+### 2.3 自动部署
+
+首次部署完成后，每次 push 到 main 分支自动触发重新部署。
+
+## 3. 架构说明
+
+### Cloudflare Pages Functions
+
+`functions/` 目录中的 Cloudflare Pages Functions（边缘函数）与 Next.js 静态导出共存：
+- `functions/api/contact.js` — 联系表单 → Resend API 发送邮件
+- `functions/api/wholesale.js` — 批发询价 → Resend API 发送邮件
+- `functions/api/admin/*` — 后台管理 CRUD（产品、分类、图片上传）
+
+> 注意：`output: 'export'` 禁用了 Next.js API Routes，所有服务端逻辑使用 Cloudflare Pages Functions。
+
+## 4. SEO 文件
+
+构建产物已包含：
+
+- `public/sitemap.xml` — 19 个页面（自动生成）
+- `public/robots.txt` — 指向 sitemap
+
+## 5. 环境变量配置
+
+在 Cloudflare Pages 项目设置中添加以下环境变量：
+
+| 变量名 | 说明 |
+|--------|------|
+| `RESEND_API_KEY` | Resend API 密钥（用于发送邮件） |
+| `CONTACT_EMAIL` | 接收表单提交邮件的目标邮箱 |
+
+> 两个表单函数 `functions/api/contact.js` 和 `functions/api/wholesale.js` 依赖这两个变量。
+
+## 6. Cloudflare Pages + Workers 架构
+
+```
+eyrya-website (Next.js 静态)
+├── dist/ → Cloudflare Pages 自动部署
+│
+eyrya-website Workers (独立)
+├── admin.html → Cloudflare Workers 部署
+├── D1 数据库 → 产品/文章数据
+└── R2 存储 → 图片
+```
+
+## 常见问题
+
+**Q: 部署后样式丢失？**
+A: 检查 `next.config.ts` 中 `distDir: 'dist'` 是否正确。
+
+**Q: 表单无法提交？**
+A: 检查 Cloudflare Pages 环境变量中是否配置了 `RESEND_API_KEY` 和 `CONTACT_EMAIL`。表单通过 `functions/api/contact.js` 和 `functions/api/wholesale.js` 调用 Resend API 发送邮件。
+
+**Q: 如何更新网站？**
+A: 修改代码后 push 到 GitHub，自动重新部署：
+```bash
+git add .
+git commit -m "Update"
+git push
+```
 
 ## 费用
 
-- **Cloudflare Pages**: 免费（无限请求）
-- **Resend**: 免费 100 封/天
-
----
-
-# 方案 B：GitHub Pages（纯静态）
-
-**注意：此方案下表单无法正常工作，仅作为静态展示。**
-
-## 步骤 1：创建 GitHub 仓库
-
-1. 打开 https://github.com/new
-2. 仓库名称填：`eyrya-website`
-3. 选择 **Public**（公开）
-4. 不要勾选 "Add a README"
-5. 点击 **Create repository**
-
-## 步骤 2：上传代码
-
-```bash
-cd eyrya-website
-git remote add origin https://github.com/YOUR_USERNAME/eyrya-website.git
-git add .
-git commit -m "Initial commit"
-git push -u origin main
-```
-
-## 步骤 3：启用 GitHub Pages
-
-1. 打开 GitHub 仓库 → Settings → Pages
-2. Source 选择 Deploy from a branch
-3. Branch 选择 main，文件夹选 / (root)
-4. 保存
-
-## 步骤 4：绑定自定义域名
-
-1. 在 Pages 设置中找到 Custom domain
-2. 输入 `eyrya.com`
-3. 在 Cloudflare DNS 添加记录：
-   - CNAME `www` → `YOUR_USERNAME.github.io`
-   - 或者 A 记录指向 GitHub Pages IP
-4. 勾选 Enforce HTTPS
-
----
-
-# 常见问题
-
-**Q: 表单提交没反应？**  
-A: GitHub Pages 不支持服务端功能，请使用 Cloudflare Pages。
-
-**Q: 部署后样式丢失？**  
-A: 检查 next.config.ts 中的 basePath 设置。
-
-**Q: 邮件收不到？**  
-A: 检查垃圾邮件箱，Resend 新账号可能需要审核。
-
-**Q: 如何更新网站？**  
-A: 修改代码后 push 到 GitHub，会自动重新部署。
-
-```bash
-git add .
-git commit -m "Update website"
-git push
-```
+- **Cloudflare Pages**: 免费，无限请求
+- **Cloudflare Workers**: 免费 10 万请求/天
+- **D1 数据库**: 免费 5GB 存储，10 万次查询/天
+- **R2 存储**: 免费 10GB 存储，100 万次操作/月

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Clock, Send, Check, AlertCircle } from 'lucide-react';
+import { Send, Check, AlertCircle } from 'lucide-react';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -18,17 +18,22 @@ export default function ContactForm() {
     const inquiry = formData.get('inquiry') as string;
     const message = formData.get('message') as string;
 
-    const subject = encodeURIComponent(`EYRYA Contact: ${inquiry || 'General'}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nType: ${inquiry || 'General'}\n\n${message}`
-    );
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData,
+      });
 
-    window.location.href = `mailto:contact@eyrya.com?subject=${subject}&body=${body}`;
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to send message');
+      }
 
-    setTimeout(() => {
       setStatus('success');
       form.reset();
-    }, 1000);
+    } catch (err) {
+      setStatus('error');
+    }
   };
 
   return (
@@ -38,8 +43,8 @@ export default function ContactForm() {
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
             <Check className="w-8 h-8 text-green-600" />
           </div>
-          <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Email client opened!</h3>
-          <p className="text-gray-600 mb-6">Your email client should have opened with your message.</p>
+          <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Message sent!</h3>
+          <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
           <button
             onClick={() => setStatus('idle')}
             className="text-[#DC2626] font-medium hover:underline"
@@ -49,6 +54,12 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {status === 'error' && (
+            <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-sm">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <span className="text-sm">Failed to send message. Please try again or email us directly.</span>
+            </div>
+          )}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
               Name *
@@ -115,7 +126,7 @@ export default function ContactForm() {
             {status === 'loading' ? (
               <>
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Opening email...
+                Sending...
               </>
             ) : (
               <>

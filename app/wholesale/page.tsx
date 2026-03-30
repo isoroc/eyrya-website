@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { Package, Globe, TrendingUp, Building2, Send, Check } from 'lucide-react';
+import { Package, Globe, TrendingUp, Building2, Check } from 'lucide-react';
+import WholesaleForm from './WholesaleForm';
 
 export const metadata: Metadata = {
   title: 'EYRYA® Wholesale | Bulk Pricing on 50+ Units for Schools & Teams',
@@ -81,115 +82,7 @@ export default function WholesalePage() {
             </div>
           </div>
 
-          <div className="bg-[#fafafa] border border-gray-200 p-8">
-            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">Get a quote</h2>
-            
-            <form className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                    Company *
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                    placeholder="Company name"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                    placeholder="you@company.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="quantity" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                    Quantity needed *
-                  </label>
-                  <select
-                    id="quantity"
-                    name="quantity"
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
-                  >
-                    <option value="">Select...</option>
-                    <option value="50-100">50-100 units</option>
-                    <option value="100-500">100-500 units</option>
-                    <option value="500+">500+ units</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="businessType" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Business type *
-                </label>
-                <select
-                  id="businessType"
-                  name="businessType"
-                  required
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
-                >
-                  <option value="">Select...</option>
-                  <option value="retailer">Retailer / Store</option>
-                  <option value="school">School / University</option>
-                  <option value="sports">Sports Team / League</option>
-                  <option value="event">Event Planning</option>
-                  <option value="corporate">Corporate</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
-                  placeholder="Tell us what you are looking for..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors rounded-sm"
-              >
-                <Send className="w-5 h-5" />
-                Request Quote
-              </button>
-            </form>
-          </div>
+          <WholesaleForm />
         </div>
       </div>
     </div>

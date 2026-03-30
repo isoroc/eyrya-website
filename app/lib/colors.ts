@@ -1,3 +1,12 @@
+/**
+ * @deprecated 此文件已废弃，请勿在新代码中使用。
+ * 实际品牌色值定义在 app/globals.css 的 CSS 变量中：
+ *   --accent: #DC2626 (品牌红)
+ *   --background: #F4F1EA (暖白背景)
+ *   --foreground: #1A1A1A (深色文字)
+ * 此文件仅作历史参考，保留以避免引用它的旧代码报错。
+ */
+
 // EYRYA Color Palette
 export const colors = {
   primary: {

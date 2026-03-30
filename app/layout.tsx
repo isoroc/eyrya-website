@@ -12,13 +12,20 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "EYRYA - Fun Products for Party, Play, Cheer & Outdoor",
+  title: {
+    default: "EYRYA® | Fun Products for Party, Play, Cheer & Outdoor",
+    template: "EYRYA® | %s",
+  },
   description: "EYRYA creates fun products for parties, sports events, playtime and outdoor activities. Shop EVA foam fingers, party supplies, toys and more.",
   keywords: ["party supplies", "toys", "sports fan gear", "outdoor fun", "foam finger", "EYRYA"],
+  alternates: {
+    canonical: "https://www.eyrya.com/",
+  },
   openGraph: {
     title: "EYRYA - Fun Products for Every Moment",
     description: "Bring more fun to parties, playtime and outdoor moments with EYRYA products.",
     type: "website",
+    url: "https://www.eyrya.com/",
   },
 };
 

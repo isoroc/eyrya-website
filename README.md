@@ -1,114 +1,146 @@
 # EYRYA Website
 
-A modern brand website for EYRYA, a fun lifestyle brand focused on party supplies, toys, sports fan gear and outdoor fun products.
+品牌展示网站，销售引导落地页。驱动流量到 Amazon 和 Temu。
 
-## 🎯 Website Goal
+## 🎯 网站目标
 
-Build brand trust, showcase products, and drive traffic to Amazon and Temu.
+建立品牌信任、展示产品、引导用户到 Amazon 和 Temu 完成购买。
 
-## 📁 Project Structure
+## 📁 项目结构
 
 ```
 eyrya-website/
 ├── app/
-│   ├── components/       # Reusable components
-│   ├── products/         # Products listing and detail pages
-│   ├── ideas/            # Blog/Ideas pages
-│   ├── where-to-buy/     # Where to Buy page
-│   ├── about/            # About page
-│   ├── contact/          # Contact page
-│   ├── wholesale/        # Wholesale page
-│   ├── lib/              # Utilities and API functions
-│   ├── sanity/           # CMS schemas
-│   ├── globals.css       # Global styles
-│   ├── layout.tsx        # Root layout
-│   └── page.tsx          # Home page
-├── public/               # Static assets
-└── next.config.ts        # Next.js configuration
+│   ├── components/       # 可复用组件
+│   ├── products/          # 产品列表和详情页
+│   ├── ideas/            # 博客/Ideas 文章页
+│   ├── where-to-buy/     # 购买渠道页
+│   ├── about/            # 关于页
+│   ├── contact/          # 联系页
+│   ├── wholesale/         # 批发询价页
+│   ├── privacy/          # 隐私政策页
+│   ├── terms/            # 服务条款页
+│   ├── support/          # 帮助中心页
+│   ├── lib/              # 工具函数
+│   ├── sanity/           # Sanity CMS Schema（未启用）
+│   ├── globals.css        # 全局样式
+│   ├── layout.tsx         # 根布局
+│   └── page.tsx           # 首页
+├── functions/
+│   └── api/              # Cloudflare Pages Functions（边缘函数）
+│       ├── contact.js     # 联系表单 → Resend
+│       ├── wholesale.js    # 批发询价 → Resend
+│       └── admin/         # 后台管理 CRUD
+├── public/
+│   ├── images/            # 产品图片
+│   ├── sitemap.xml        # SEO sitemap
+│   ├── robots.txt         # SEO robots
+│   └── admin.html         # Cloudflare Workers 后台（独立部署）
+├── db/
+│   ├── schema.sql         # D1 数据库 schema
+│   └── migrations/        # 数据库迁移
+├── wrangler.toml          # Cloudflare Workers 配置
+└── next.config.ts         # Next.js 配置
 ```
 
-## 🚀 Pages
+## 🚀 页面列表
 
-- **Home** (`/`) - Hero, Categories, Featured Product, Scenarios, Where to Buy, Ideas Preview
-- **Products** (`/products`) - Product categories and featured products
-- **Product Detail** (`/products/[slug]`) - Individual product pages
-- **Where to Buy** (`/where-to-buy`) - Platform listings (Amazon, Temu)
-- **Ideas** (`/ideas`) - Blog posts and inspiration
-- **Ideas Detail** (`/ideas/[slug]`) - Individual blog posts
-- **About** (`/about`) - Brand story and values
-- **Contact** (`/contact`) - Contact form
-- **Wholesale** (`/wholesale`) - B2B inquiry form
+| 页面 | 路由 | 说明 |
+|------|------|------|
+| Home | `/` | Hero、分类、精选产品、使用场景、购买入口、Ideas 预览 |
+| Products | `/products/` | 产品分类和精选产品（静态数据） |
+| Product Detail | `/products/[slug]/` | 产品详情页 |
+| Where to Buy | `/where-to-buy/` | Amazon + Temu 购买入口 |
+| Ideas | `/ideas/` | 博客文章列表（静态数据） |
+| Ideas Detail | `/ideas/[slug]/` | 博客文章详情 |
+| About | `/about/` | 品牌故事 |
+| Contact | `/contact/` | 联系表单（Resend 邮件） |
+| Wholesale | `/wholesale/` | 批发询价表单 |
+| Support | `/support/` | FAQ、发货、退货政策、订单追踪 |
+| Privacy | `/privacy/` | 隐私政策 |
+| Terms | `/terms/` | 服务条款 |
 
-## 🛠️ Tech Stack
+## 🛠️ 技术栈
 
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **CMS**: Sanity.io (headless CMS)
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
+| 技术 | 版本 | 用途 |
+|------|------|------|
+| Next.js | 16.1.6 | 框架（App Router） |
+| TypeScript | 5.x | 类型安全 |
+| Tailwind CSS | 4.x | 样式 |
+| Framer Motion | 12.x | 动画 |
+| Lucide React | 0.577.x | 图标 |
+| @fontsource | 5.x | 字体（Outfit + Teko） |
 
-## 📦 Installation
+## 🎨 品牌视觉系统
+
+```css
+/* globals.css 中的 CSS 变量 */
+--background: #F4F1EA;   /* 暖白/米色背景 */
+--foreground: #1A1A1A;   /* 深色文字 */
+--accent: #DC2626;        /* 品牌红 */
+```
+
+- **主色调**: `#DC2626`（红）— 所有 accent/CTA 按钮
+- **背景色**: `#F4F1EA`（暖白）— 全站背景
+- **文字色**: `#1A1A1A`（近黑）— 正文
+- **按钮圆角**: `rounded-sm`（2px）— 全部按钮，严控
+- **字体**: Outfit（正文）+ Teko（H1/H2 大标题，全大写）
+
+## 📦 安装和开发
 
 ```bash
-# Install dependencies
+# 安装依赖
 npm install
 
-# Set up environment variables
-cp .env.example .env.local
-# Edit .env.local with your Sanity credentials
-
-# Run development server
+# 开发模式
 npm run dev
 
-# Build for production
+# 构建静态站点（输出到 dist/）
 npm run build
+
+# lint 检查
+npm run lint
 ```
 
-## 🔧 CMS Setup (Sanity)
+## 🌐 部署
 
-1. Create a Sanity account at [sanity.io](https://sanity.io)
-2. Create a new project
-3. Copy the Project ID and API token
-4. Add them to your `.env.local` file:
+### Cloudflare Pages（当前方案）
 
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
-NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_TOKEN=your-api-token
-```
+1. 在 Cloudflare Dashboard 创建 Pages 项目，连接 GitHub 仓库
+2. 构建配置：
+   - **Framework preset**: Next.js（选择 Static Export）
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+3. 部署完成，每次 push 到 main 自动触发
 
-5. Deploy the schemas to your Sanity project (optional, for Studio access)
+### 目录结构说明
 
-## 📝 Content Management
+- `output: 'export'` 配置使 Next.js 输出纯静态 HTML
+- 所有页面在构建时预渲染为静态文件
+- 表单处理使用 Cloudflare Pages Functions（`functions/`）调用 Resend API
+- `public/admin.html` 是独立 Cloudflare Workers 应用，部署在另一套 Workers 上
 
-The website uses Sanity CMS for dynamic content. Main content types:
+## 📝 内容管理
 
-- **Products** - Product information, images, pricing, links
-- **Categories** - Product categories
-- **Ideas** - Blog posts and articles
-- **Platforms** - Where to Buy platforms (Amazon, Temu, etc.)
-- **Site Settings** - Global site configuration
+**当前状态：静态数据**
+- 产品、分类、博客文章均为硬编码静态数据（`/app/products/page.tsx` 等文件内）
+- `app/lib/sanity.ts` 包含完整的 Sanity.io 查询函数，但尚未接入
 
-## 🎨 Brand Colors
+**未来扩展：Sanity CMS**
+- `app/sanity/schemas.ts` 已定义完整 Schema：Product、Category、Idea、Platform、SiteSettings
+- 如需动态内容，取消 `sanity.ts` 的注释并在页面中调用查询函数
 
-- Primary Pink: `#FF6B9D`
-- Primary Orange: `#FF8C42`
-- Primary Yellow: `#FFD93D`
-- Primary Green: `#6BCB77`
-- Primary Blue: `#4D96FF`
-- Primary Purple: `#9B59B6`
+## 🔒 后台管理系统
 
-## 🌐 Deployment
+`public/admin.html` + Cloudflare D1/R2 提供独立后台：
 
-The site is configured for static export. Build output goes to the `dist` folder.
+- 产品管理（增删改查）
+- 图片上传到 R2
+- 分类管理
+- 博客文章管理
 
-```bash
-npm run build
-```
-
-Deploy the `dist` folder to your hosting platform (Vercel, Netlify, etc.)
+详细配置见 [ADMIN_SETUP.md](./ADMIN_SETUP.md)
 
 ## 📄 License
 
-© 2024 EYRYA. All rights reserved.
+© 2026 EYRYA. All rights reserved.
