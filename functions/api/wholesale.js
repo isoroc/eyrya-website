@@ -51,8 +51,8 @@ export async function onRequestPost(context) {
         'Authorization': `Bearer ${env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'EYRYA Website <support@eyrya.com>',
-        to: env.CONTACT_EMAIL || 'support@eyrya.com',
+        from: 'EYRYA Website <wholesale@eyrya.com>',
+        to: env.WHOLESALE_EMAIL || 'wholesale@eyrya.com',
         subject: `Wholesale Inquiry: ${data.quantity} units from ${data.company}`,
         reply_to: data.email,
         html: `

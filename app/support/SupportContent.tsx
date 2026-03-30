@@ -52,17 +52,37 @@ export default function SupportContent() {
   const [orderNumber, setOrderNumber] = useState('');
   const [email, setEmail] = useState('');
   const [trackStatus, setTrackStatus] = useState<'idle' | 'loading' | 'found' | 'not_found'>('idle');
+  const [trackError, setTrackError] = useState('');
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
-  const handleTrackOrder = (e: React.FormEvent) => {
+  const handleTrackOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setTrackStatus('loading');
-    setTimeout(() => {
+    setTrackError('');
+
+    try {
+      const formData = new FormData();
+      formData.append('orderNumber', orderNumber);
+      formData.append('email', email);
+
+      const res = await fetch('/api/support', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (res.ok) {
+        setTrackStatus('found');
+      } else {
+        setTrackStatus('not_found');
+        setTrackError('We couldn\'t find an order with those details. Please check your order number and email, or contact support@eyrya.com.');
+      }
+    } catch {
       setTrackStatus('not_found');
-    }, 1500);
+      setTrackError('Something went wrong. Please email support@eyrya.com directly.');
+    }
   };
 
   return (
@@ -202,9 +222,9 @@ export default function SupportContent() {
             </div>
           ) : (
             <form onSubmit={handleTrackOrder} className="space-y-6">
-              {trackStatus === 'not_found' && (
+              {trackStatus === 'not_found' && trackError && (
                 <div className="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800">
-                  We couldn&apos;t find an order with those details. Please check your order number and email, or contact support.
+                  {trackError}
                 </div>
               )}
 
