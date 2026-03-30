@@ -5,13 +5,13 @@ import { ExternalLink } from 'lucide-react';
 
 const AmazonLogo = () => (
   <div className="h-8 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/Amazon_logo.svg" alt="Amazon" className="h-full w-auto" />
+    <img src="/images/Amazon_logo.svg" alt="Amazon" className="h-full w-auto" />
   </div>
 );
 
 const TemuLogo = () => (
   <div className="h-6 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/Temu_logo.svg" alt="Temu" className="h-full w-auto" />
+    <img src="/images/Temu_logo.svg" alt="Temu" className="h-full w-auto" />
   </div>
 );
 

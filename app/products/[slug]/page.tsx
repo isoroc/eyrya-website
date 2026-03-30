@@ -83,7 +83,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="bg-[#fafafa] border border-gray-200 flex items-start justify-center min-h-[400px] lg:min-h-[500px]">
             <img
-              src="/images/foam-finger.jpg"
+              src="/images/products/foam-finger-multi.webp"
               alt="EVA Foam Finger"
               className="max-w-full max-h-full object-contain"
             />

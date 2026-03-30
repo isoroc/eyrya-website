@@ -44,6 +44,7 @@ const featuredProducts = [
     name: 'EVA Foam Finger',
     description: 'The original 18-inch foam finger. Over 50,000 sold. 4.8/5 stars.',
     slug: 'eva-foam-finger',
+    image: '/images/products/foam-finger-multi.webp',
     category: 'Sports Fan Gear',
     price: '$12.99',
     originalPrice: '$16.99',
@@ -54,6 +55,7 @@ const featuredProducts = [
     name: 'Party LED Lights Set',
     description: 'Battery-powered LED string lights. 33 feet, 100 LEDs. Lasts 8+ hours.',
     slug: 'party-led-lights',
+    image: '/images/products/party-led-lights.jpg',
     category: 'Party Supplies',
     price: '$24.99',
     originalPrice: '$29.99',
@@ -64,6 +66,7 @@ const featuredProducts = [
     name: 'Camping Chair Set',
     description: 'Two-pack folding chairs. Supports 300 lbs. Includes carry bags.',
     slug: 'camping-chair-set',
+    image: '/images/products/camping-chair-set.jpg',
     category: 'Outdoor \u0026 Camping',
     price: '$49.99',
     originalPrice: '$59.99',
@@ -128,7 +131,7 @@ export default function ProductsPage() {
               >
                 <div className="aspect-square bg-gray-100 relative overflow-hidden">
                   <Image
-                    src={`/images/products/${product.slug}.jpg`}
+                    src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"

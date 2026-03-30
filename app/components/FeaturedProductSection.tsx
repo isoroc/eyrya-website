@@ -6,11 +6,11 @@ import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 const colors = [
-  { name: 'Blue', color: '#3B82F6', image: '/images/foam-finger-blue.jpg' },
-  { name: 'Black', color: '#1a1a1a', image: '/images/foam-finger-black.jpg' },
-  { name: 'Pink', color: '#FF6B6B', image: '/images/foam-finger-pink.jpg' },
-  { name: 'Green', color: '#22C55E', image: '/images/foam-finger-green.jpg' },
-  { name: 'Yellow', color: '#FFE66D', image: '/images/foam-finger-yellow.jpg' },
+  { name: 'Blue', color: '#3B82F6', image: '/images/products/foam-finger-blue.webp' },
+  { name: 'Black', color: '#1a1a1a', image: '/images/products/foam-finger-black.webp' },
+  { name: 'Pink', color: '#FF6B6B', image: '/images/products/foam-finger-pink.webp' },
+  { name: 'Green', color: '#22C55E', image: '/images/products/foam-finger-green.webp' },
+  { name: 'Yellow', color: '#FFE66D', image: '/images/products/foam-finger-yellow.webp' },
 ];
 
 export default function FeaturedProductSection() {
