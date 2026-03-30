@@ -6,18 +6,21 @@ import { ArrowRight } from 'lucide-react';
 const ideas = [
   {
     title: 'The Ultimate Game Day Checklist',
+    slug: 'game-day-checklist',
     excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, we have got you covered.',
     category: 'Sports',
     date: 'Dec 15, 2024',
   },
   {
     title: 'Party Supplies That Actually Last',
+    slug: 'reusable-party-supplies',
     excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
     category: 'Parties',
     date: 'Dec 10, 2024',
   },
   {
     title: 'Bulk Orders: What You Need to Know',
+    slug: 'bulk-order-guide',
     excerpt: 'Ordering for a school or team? Here is how to get the best deal on 50+ units.',
     category: 'Wholesale',
     date: 'Dec 5, 2024',
@@ -49,7 +52,7 @@ export default function IdeasPreviewSection() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {ideas.map((idea) => (
-            <Link key={idea.title} href={`/ideas/${idea.title.toLowerCase().replace(/\s+/g, '-')}`}>
+            <Link key={idea.title} href={`/ideas/${idea.slug}`}>
               <div className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
