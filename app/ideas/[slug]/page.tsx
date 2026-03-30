@@ -105,8 +105,8 @@ export default async function IdeaDetailPage({ params }: PageProps) {
           
           <div className="grid sm:grid-cols-2 gap-4">
             {[
-              { title: 'Party Planning Tips for Beginners', slug: 'party-planning-tips' },
-              { title: 'Sports Event Essentials', slug: 'sports-event-essentials' },
+              { title: 'Party Supplies That Actually Last', slug: 'reusable-party-supplies' },
+              { title: 'The Ultimate Game Day Checklist', slug: 'game-day-checklist' },
             ].map((related) => (
               <Link
                 key={related.slug}

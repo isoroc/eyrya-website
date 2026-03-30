@@ -41,7 +41,7 @@ export default function HeroSection() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
-              href="https://amazon.com"
+              href="https://www.amazon.com/shops/eyrya"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-red-700 transition-colors duration-200 rounded-sm"

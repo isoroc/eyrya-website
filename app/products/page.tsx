@@ -173,7 +173,7 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://amazon.com"
+                href="https://www.amazon.com/shops/eyrya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#DC2626] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
@@ -182,7 +182,7 @@ export default function ProductsPage() {
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a
-                href="https://temu.com"
+                href="https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 font-semibold hover:bg-white/20 transition-colors rounded-sm"

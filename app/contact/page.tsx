@@ -5,35 +5,30 @@ import { Mail, Clock, Send, Check, AlertCircle } from 'lucide-react';
 
 export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
-    setErrorMessage('');
 
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: formData,
-      });
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const inquiry = formData.get('inquiry') as string;
+    const message = formData.get('message') as string;
 
-      const result = await response.json();
+    const subject = encodeURIComponent(`EYRYA Contact: ${inquiry || 'General'}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nType: ${inquiry || 'General'}\n\n${message}`
+    );
 
-      if (response.ok) {
-        setStatus('success');
-        form.reset();
-      } else {
-        setStatus('error');
-        setErrorMessage(result.error || '发送失败，请稍后重试');
-      }
-    } catch (error) {
-      setStatus('error');
-      setErrorMessage('网络错误，请检查连接后重试');
-    }
+    window.location.href = `mailto:contact@eyrya.com?subject=${subject}&body=${body}`;
+
+    setTimeout(() => {
+      setStatus('success');
+      form.reset();
+    }, 1000);
   };
 
   return (
@@ -95,8 +90,8 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                   <Check className="w-8 h-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Message sent!</h3>
-                <p className="text-gray-600 mb-6">We'll get back to you soon.</p>
+                <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Email client opened!</h3>
+                <p className="text-gray-600 mb-6">Your email client should have opened with your message.</p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="text-[#DC2626] font-medium hover:underline"
@@ -106,13 +101,6 @@ export default function ContactPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                {status === 'error' && (
-                  <div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200">
-                    <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-red-700 text-sm">{errorMessage}</p>
-                  </div>
-                )}
-
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-[#1a1a1a] mb-2">
                     Name *
@@ -179,7 +167,7 @@ export default function ContactPage() {
                   {status === 'loading' ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      发送中...
+                      Opening email...
                     </>
                   ) : (
                     <>

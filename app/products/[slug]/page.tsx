@@ -115,7 +115,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <a
-                href="https://amazon.com"
+                href="https://www.amazon.com/shops/eyrya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors rounded-sm"
@@ -124,7 +124,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 <ExternalLink className="w-4 h-4" />
               </a>
               <a
-                href="https://temu.com"
+                href="https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-gray-200 text-[#1a1a1a] px-8 py-4 font-semibold hover:border-[#1a1a1a] transition-colors rounded-sm"

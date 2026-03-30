@@ -69,7 +69,7 @@ export default function FeaturedProductSection() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="https://amazon.com"
+                href="https://www.amazon.com/shops/eyrya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 font-semibold hover:bg-[#1a1a1a] hover:text-white transition-colors rounded-sm"

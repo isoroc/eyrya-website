@@ -20,12 +20,12 @@ const platforms = [
   {
     name: 'Amazon',
     description: 'Official Amazon Store. Prime fast shipping. 4.6/5 stars.',
-    url: 'https://amazon.com',
+    url: 'https://www.amazon.com/shops/eyrya',
   },
   {
     name: 'Temu',
     description: 'Official Temu Store. Budget-friendly. Exclusive discounts.',
-    url: 'https://temu.com',
+    url: 'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html',
   },
 ];
 
