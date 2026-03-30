@@ -87,7 +87,7 @@ export default function FeaturedProductSection() {
           {/* Product Image */}
           <div className="relative">
             <div className="aspect-square flex items-center justify-center relative -mt-4">
-              <div className="w-4/5 h-4/5 transform -rotate-6 shadow-xl overflow-hidden">
+              <div className="w-3/5 h-3/5 transform -rotate-6 shadow-xl overflow-hidden -mt-8">
                 <Image
                   src={selectedColor.image}
                   alt={`EVA Foam Finger - ${selectedColor.name}`}
@@ -98,7 +98,7 @@ export default function FeaturedProductSection() {
               </div>
 
               {/* Color Options */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
                 {colors.map((colorOption) => (
                   <button
                     key={colorOption.name}
