@@ -33,9 +33,12 @@ export default function HeroSection() {
             The original EVA foam fingers. Trusted by 50,000+ fans.
           </p>
 
-          <div className="mb-8">
+          <div className="mb-8 flex items-baseline gap-3">
             <span className="text-4xl sm:text-5xl font-bold text-white font-sans">
               $29.99
+            </span>
+            <span className="bg-[#DC2626] text-white text-sm font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
+              12 Pack
             </span>
           </div>
 
