@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ProductsClient from './ProductsClient';
 
 export const metadata: Metadata = {
@@ -31,6 +32,33 @@ export const metadata: Metadata = {
   },
 };
 
+function ProductsFallback() {
+  return (
+    <div className="pt-24 pb-20 bg-[#F4F1EA] min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="animate-pulse">
+          <div className="h-10 bg-gray-200 w-48 mb-4" />
+          <div className="h-4 bg-gray-200 w-96 mb-12" />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-32 bg-gray-200" />
+            ))}
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-80 bg-gray-200" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProductsPage() {
-  return <ProductsClient />;
+  return (
+    <Suspense fallback={<ProductsFallback />}>
+      <ProductsClient />
+    </Suspense>
+  );
 }
