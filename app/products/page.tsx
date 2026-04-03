@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'EYRYA',
     images: [
       {
-        url: 'https://www.eyrya.com/images/og-image.svg',
+        url: 'https://www.eyrya.com/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'EYRYA Products - Foam Fingers, Party Supplies & Outdoor Games',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'EYRYA Products - Foam Fingers, Party Supplies & More',
     description: 'Explore premium EVA foam fingers, LED party lights, and outdoor game kits.',
-    images: ['https://www.eyrya.com/images/og-image.svg'],
+    images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
 

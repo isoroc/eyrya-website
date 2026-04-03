@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: 'EYRYA',
     images: [
       {
-        url: 'https://www.eyrya.com/images/og-image.svg',
+        url: 'https://www.eyrya.com/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'EYRYA Support',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'EYRYA Support Center',
     description: 'Find answers about foam fingers, shipping, returns, and order tracking.',
-    images: ['https://www.eyrya.com/images/og-image.svg'],
+    images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
 

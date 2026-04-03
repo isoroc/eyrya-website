@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'EYRYA',
     images: [
       {
-        url: 'https://www.eyrya.com/images/og-image.svg',
+        url: 'https://www.eyrya.com/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Where to Buy EYRYA',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Where to Buy EYRYA - Amazon & Temu',
     description: 'Buy EYRYA foam fingers and party supplies on Amazon or Temu.',
-    images: ['https://www.eyrya.com/images/og-image.svg'],
+    images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
 

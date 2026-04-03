@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'EYRYA',
     images: [
       {
-        url: 'https://www.eyrya.com/images/og-image.svg',
+        url: 'https://www.eyrya.com/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Contact EYRYA',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Contact EYRYA',
     description: 'Get in touch with EYRYA for product questions, wholesale inquiries, or support.',
-    images: ['https://www.eyrya.com/images/og-image.svg'],
+    images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
 
