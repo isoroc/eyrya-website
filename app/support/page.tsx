@@ -1,13 +1,35 @@
 import { Metadata } from 'next';
 import { Mail, Clock } from 'lucide-react';
 import SupportContent from './SupportContent';
+import JsonLd from '@/app/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Support Center | FAQ, Shipping & Returns',
-  description: 'EYRYA support center. FAQ, shipping info, returns policy, and order tracking. Get answers or email us.',
-  keywords: 'EYRYA support, EYRYA FAQ, EYRYA shipping, EYRYA returns, track EYRYA order',
+  title: 'EYRYA® Support | Foam Finger FAQ, Shipping & Returns',
+  description: 'EYRYA support center. FAQ about foam fingers, shipping info, returns policy, and order tracking. Get answers or email us directly.',
+  keywords: 'EYRYA support, EYRYA FAQ, EYRYA shipping, EYRYA returns, track EYRYA order, foam finger support',
   alternates: {
     canonical: 'https://www.eyrya.com/support/',
+  },
+  openGraph: {
+    title: 'EYRYA Support Center',
+    description: 'Find answers about foam fingers, shipping, returns, and order tracking.',
+    type: 'website',
+    url: 'https://www.eyrya.com/support/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'EYRYA Support',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EYRYA Support Center',
+    description: 'Find answers about foam fingers, shipping, returns, and order tracking.',
+    images: ['https://www.eyrya.com/images/og-image.svg'],
   },
 };
 
@@ -48,6 +70,17 @@ export default function SupportPage() {
         </div>
 
         <SupportContent />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How long does shipping take?", "acceptedAnswer": { "@type": "Answer", "text": "Standard shipping within the US typically takes 3-5 business days. Express shipping is available for 1-2 business day delivery. International shipping times vary by destination but generally take 7-14 business days." } },
+            { "@type": "Question", "name": "Do you ship internationally?", "acceptedAnswer": { "@type": "Answer", "text": "Yes! We ship to over 20 countries worldwide. International shipping rates are calculated at checkout based on your location and order weight." } },
+            { "@type": "Question", "name": "What is your return policy?", "acceptedAnswer": { "@type": "Answer", "text": "We offer a 30-day return policy for unused items in their original packaging. If your product arrives damaged or defective, we will provide a full refund or replacement at no extra cost." } },
+            { "@type": "Question", "name": "How can I track my order?", "acceptedAnswer": { "@type": "Answer", "text": "Once your order ships, you will receive an email with a tracking number and link. You can also track your order using our Track Order tool on this page." } },
+            { "@type": "Question", "name": "Can I order in bulk for an event?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely! We offer special pricing for bulk orders of 50+ units. Contact us at wholesale@eyrya.com for custom quotes and volume discounts." } },
+          ],
+        }} />
       </div>
     </div>
   );

@@ -3,11 +3,32 @@ import { Mail, Clock } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Contact Us | Get in Touch with Our Team',
-  description: 'Contact EYRYA for product questions, wholesale inquiries, or support. We reply within 24 hours.',
-  keywords: 'EYRYA contact, contact EYRYA, EYRYA support, wholesale inquiry',
+  title: 'Contact EYRYA® | Get in Touch for Foam Fingers & Party Supplies',
+  description: 'Contact EYRYA for product questions about foam fingers, party supplies, wholesale inquiries, or support. We reply within 24 hours.',
+  keywords: 'EYRYA contact, contact EYRYA, EYRYA support, foam finger inquiry, wholesale foam fingers',
   alternates: {
     canonical: 'https://www.eyrya.com/contact/',
+  },
+  openGraph: {
+    title: 'Contact EYRYA',
+    description: 'Get in touch with EYRYA for product questions, wholesale inquiries, or support.',
+    type: 'website',
+    url: 'https://www.eyrya.com/contact/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Contact EYRYA',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact EYRYA',
+    description: 'Get in touch with EYRYA for product questions, wholesale inquiries, or support.',
+    images: ['https://www.eyrya.com/images/og-image.svg'],
   },
 };
 

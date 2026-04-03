@@ -3,11 +3,32 @@ import { Package, Globe, TrendingUp, Building2, Check } from 'lucide-react';
 import WholesaleForm from './WholesaleForm';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Wholesale | Bulk Pricing on 50+ Units for Schools & Teams',
-  description: 'Wholesale pricing on EYRYA products. 15-30% off retail for 50+ units. Schools, teams, retailers, event planners.',
-  keywords: 'EYRYA wholesale, bulk foam fingers, bulk party supplies, school event supplies, team merchandise',
+  title: 'EYRYA® Wholesale | Bulk Foam Fingers & Party Supplies Pricing',
+  description: 'Wholesale pricing on EYRYA foam fingers and party supplies. 15-30% off retail for 50+ units. Schools, teams, retailers, event planners welcome.',
+  keywords: 'EYRYA wholesale, bulk foam fingers, wholesale foam fingers, bulk party supplies, school spirit supplies, team merchandise',
   alternates: {
     canonical: 'https://www.eyrya.com/wholesale/',
+  },
+  openGraph: {
+    title: 'EYRYA Wholesale - Bulk Foam Fingers & Party Supplies',
+    description: 'Get 15-30% off retail on 50+ units of EYRYA foam fingers and party supplies.',
+    type: 'website',
+    url: 'https://www.eyrya.com/wholesale/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'EYRYA Wholesale',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EYRYA Wholesale - Bulk Foam Fingers & Party Supplies',
+    description: 'Get 15-30% off retail on 50+ units of EYRYA foam fingers and party supplies.',
+    images: ['https://www.eyrya.com/images/og-image.svg'],
   },
 };
 

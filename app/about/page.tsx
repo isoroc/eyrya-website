@@ -1,11 +1,32 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® About Us | Real Products for Real Fun Since 2022',
-  description: 'EYRYA makes party supplies and fan gear that actually work. Over 50,000 products sold. No gimmicks, no dropshipping.',
-  keywords: 'EYRYA about, EYRYA brand, party supplies brand, sports fan gear company',
+  title: 'About EYRYA® | Premium Foam Fingers & Party Supplies Brand',
+  description: 'EYRYA makes premium EVA foam fingers and party supplies that actually last. Over 50,000 products sold across 20+ countries. No gimmicks, no dropshipping.',
+  keywords: 'EYRYA about, EYRYA brand, foam finger company, party supplies brand, EVA foam finger manufacturer',
   alternates: {
     canonical: 'https://www.eyrya.com/about/',
+  },
+  openGraph: {
+    title: 'About EYRYA - Premium Foam Fingers Brand',
+    description: 'EYRYA makes premium EVA foam fingers and party supplies. 50,000+ sold across 20+ countries.',
+    type: 'website',
+    url: 'https://www.eyrya.com/about/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'About EYRYA - Premium Foam Fingers Brand',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About EYRYA - Premium Foam Fingers Brand',
+    description: 'EYRYA makes premium EVA foam fingers and party supplies. 50,000+ sold.',
+    images: ['https://www.eyrya.com/images/og-image.svg'],
   },
 };
 

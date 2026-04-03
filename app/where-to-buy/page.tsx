@@ -2,11 +2,32 @@ import { Metadata } from 'next';
 import { ExternalLink, ShoppingBag, Truck, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Where to Buy | Shop on Amazon & Temu',
-  description: 'Buy EYRYA products on Amazon (Prime shipping) or Temu (best prices). Official stores with A-to-Z Guarantee.',
-  keywords: 'buy EYRYA, EYRYA Amazon, EYRYA Temu, foam fingers online, party supplies Amazon',
+  title: 'Where to Buy EYRYA® | Shop Foam Fingers on Amazon & Temu',
+  description: 'Buy EYRYA foam fingers and party supplies on Amazon (Prime shipping) or Temu (best prices). Official stores with A-to-Z Guarantee.',
+  keywords: 'buy EYRYA, EYRYA Amazon, EYRYA Temu, buy foam fingers online, foam fingers Amazon, EVA foam finger store',
   alternates: {
     canonical: 'https://www.eyrya.com/where-to-buy/',
+  },
+  openGraph: {
+    title: 'Where to Buy EYRYA - Amazon & Temu',
+    description: 'Buy EYRYA foam fingers and party supplies on Amazon or Temu. Official stores with fast shipping.',
+    type: 'website',
+    url: 'https://www.eyrya.com/where-to-buy/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Where to Buy EYRYA',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Where to Buy EYRYA - Amazon & Temu',
+    description: 'Buy EYRYA foam fingers and party supplies on Amazon or Temu.',
+    images: ['https://www.eyrya.com/images/og-image.svg'],
   },
 };
 
