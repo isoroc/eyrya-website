@@ -66,7 +66,7 @@ const articles: Record<string, ArticleData> = {
       { title: 'Bulk Orders: What You Need to Know', slug: 'bulk-order-guide' },
     ],
     relatedProducts: [
-      { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+      { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
       { name: 'Party LED Lights Set', slug: 'party-led-lights' },
     ],
   },
@@ -96,7 +96,7 @@ const articles: Record<string, ArticleData> = {
       <p>We have sold over 50,000 foam fingers with an average rating of 4.8 out of 5 stars. That is not a marketing claim - that is real customer feedback from Amazon and Temu. People notice the quality difference, and they tell others.</p>
 
       <h2>Is It Worth the Extra Cost?</h2>
-      <p>Our foam fingers cost more than the cheapest options on the market. But think about it this way: if you buy a $4 foam finger that lasts one game, and then buy another one next season, and another the season after - you have spent $12 and still have nothing that lasts. Our foam finger costs $12.99 and lasts for years. The math works out.</p>
+      <p>Our foam fingers cost more than the cheapest options on the market. But think about it this way: if you buy a $4 foam finger that lasts one game, and then buy another one next season, and another the season after - you have spent $12 and still have nothing that lasts. Our 12-pack of foam fingers costs $29.99 (just $2.50 each) and lasts for years. The math works out.</p>
 
       <p>Plus, if you are ordering for a team, school, or event, our wholesale pricing brings the per-unit cost down significantly. Check our wholesale page for details.</p>
 
@@ -107,7 +107,7 @@ const articles: Record<string, ArticleData> = {
       { title: 'Party Supplies That Actually Last', slug: 'reusable-party-supplies' },
     ],
     relatedProducts: [
-      { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+      { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
     ],
   },
   'reusable-party-supplies': {
@@ -148,7 +148,7 @@ const articles: Record<string, ArticleData> = {
       { title: 'Why Our Foam Fingers Are Different', slug: 'foam-finger-quality' },
     ],
     relatedProducts: [
-      { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+      { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
       { name: 'Party LED Lights Set', slug: 'party-led-lights' },
     ],
   },
@@ -205,7 +205,7 @@ const articles: Record<string, ArticleData> = {
       { title: 'Party Supplies That Actually Last', slug: 'reusable-party-supplies' },
     ],
     relatedProducts: [
-      { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+      { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
       { name: 'Party LED Lights Set', slug: 'party-led-lights' },
       { name: 'Outdoor Game Kit', slug: 'outdoor-game-kit' },
     ],
@@ -297,7 +297,7 @@ const articles: Record<string, ArticleData> = {
       { title: 'Why Our Foam Fingers Are Different', slug: 'foam-finger-quality' },
     ],
     relatedProducts: [
-      { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+      { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
       { name: 'Party LED Lights Set', slug: 'party-led-lights' },
     ],
   },

@@ -35,7 +35,7 @@ export default function HeroSection() {
 
           <div className="mb-8">
             <span className="text-4xl sm:text-5xl font-bold text-white font-sans">
-              $12.99
+              $29.99
             </span>
           </div>
 

@@ -31,14 +31,14 @@ const categories = [
 
 const allProducts = [
   {
-    name: 'EVA Foam Finger',
-    description: 'The original 18-inch foam finger. Over 50,000 sold. 4.8/5 stars.',
+    name: 'EVA Foam Finger (12 Pack)',
+    description: '12-pack of 18-inch foam fingers. Over 50,000 sets sold. 4.8/5 stars.',
     slug: 'eva-foam-finger',
     image: '/images/products/foam-finger-multi.webp',
     category: 'Sports Fan Gear',
     categorySlug: 'sports-fan-gear',
-    price: '$12.99',
-    originalPrice: '$16.99',
+    price: '$29.99',
+    originalPrice: '$39.99',
     rating: '4.8',
     reviews: 328,
   },

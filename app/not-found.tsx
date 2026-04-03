@@ -47,7 +47,7 @@ export default function NotFound() {
           <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">Popular Pages</h2>
           <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
             <Link href="/products/eva-foam-finger" className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors">
-              <h3 className="font-semibold text-[#1a1a1a]">EVA Foam Finger</h3>
+              <h3 className="font-semibold text-[#1a1a1a]">EVA Foam Finger (12 Pack)</h3>
             </Link>
             <Link href="/products/party-led-lights" className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors">
               <h3 className="font-semibold text-[#1a1a1a]">Party LED Lights</h3>

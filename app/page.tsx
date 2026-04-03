@@ -50,7 +50,7 @@ export default function Home() {
           "@type": "ItemList",
           "name": "EYRYA Products",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "EVA Foam Finger", "url": "https://www.eyrya.com/products/eva-foam-finger/" },
+            { "@type": "ListItem", "position": 1, "name": "EVA Foam Finger (12 Pack)", "url": "https://www.eyrya.com/products/eva-foam-finger/" },
             { "@type": "ListItem", "position": 2, "name": "Party LED Lights Set", "url": "https://www.eyrya.com/products/party-led-lights/" },
             { "@type": "ListItem", "position": 3, "name": "Outdoor Game Kit", "url": "https://www.eyrya.com/products/outdoor-game-kit/" },
           ],

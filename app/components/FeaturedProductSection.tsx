@@ -30,12 +30,12 @@ export default function FeaturedProductSection() {
             </div>
 
             <h2 className="text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
-              EVA Foam Finger #1
+              EVA Foam Finger (12 Pack)
             </h2>
 
             <div className="flex items-baseline gap-3 mb-4">
-              <span className="text-3xl font-bold text-[#1a1a1a]">$12.99</span>
-              <span className="text-lg text-gray-400 line-through">$16.99</span>
+              <span className="text-3xl font-bold text-[#1a1a1a]">$29.99</span>
+              <span className="text-lg text-gray-400 line-through">$39.99</span>
               <span className="text-sm text-[#DC2626] font-medium">Save 24%</span>
             </div>
 

@@ -34,11 +34,11 @@ interface ProductData {
 
 const products: Record<string, ProductData> = {
   'eva-foam-finger': {
-    name: 'EVA Foam Finger',
-    tagline: 'The original 18-inch foam finger. Over 50,000 sold to fans across the country.',
-    description: 'Show your team spirit with our premium EVA foam finger. This is not the flimsy foam finger that falls apart after one game. Our foam fingers use 8mm high-density EVA foam that holds its shape through rain, sweat, and celebration. Whether you are cheering at an NFL game, NBA match, or your kid\'s school event, this foam hand delivers.',
-    price: '$12.99',
-    originalPrice: '$16.99',
+    name: 'EVA Foam Finger (12 Pack)',
+    tagline: '12-pack of 18-inch foam fingers. Over 50,000 sets sold to fans across the country.',
+    description: 'Show your team spirit with our premium EVA foam fingers. This 12-pack is perfect for groups, classrooms, and events. Each foam finger is made from 8mm high-density EVA foam that holds its shape through rain, sweat, and celebration. Whether you are cheering at an NFL game, NBA match, or your kid\'s school event, these foam hands deliver.',
+    price: '$29.99',
+    originalPrice: '$39.99',
     rating: '4.8',
     reviews: 328,
     sold: 50000,
@@ -176,11 +176,11 @@ const productLinks: Record<string, { name: string; slug: string }[]> = {
     { name: 'Outdoor Game Kit', slug: 'outdoor-game-kit' },
   ],
   'party-led-lights': [
-    { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+    { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
     { name: 'Outdoor Game Kit', slug: 'outdoor-game-kit' },
   ],
   'outdoor-game-kit': [
-    { name: 'EVA Foam Finger', slug: 'eva-foam-finger' },
+    { name: 'EVA Foam Finger (12 Pack)', slug: 'eva-foam-finger' },
     { name: 'Party LED Lights Set', slug: 'party-led-lights' },
   ],
 };
