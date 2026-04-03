@@ -12,6 +12,7 @@ interface ArticleData {
   category: string;
   author: string;
   date: string;
+  isoDate: string;
   readTime: string;
   content: string;
   relatedArticles: { title: string; slug: string }[];
@@ -23,7 +24,8 @@ const articles: Record<string, ArticleData> = {
     title: 'The Ultimate Game Day Checklist',
     category: 'Sports',
     author: 'EYRYA Team',
-    date: 'Dec 15, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '6 min read',
     content: `
       <p>Game day is coming up and you want to be the one who has everything covered. Whether it is a tailgate before the big NFL game, a college football watch party, or your kid's first trip to the stadium, being prepared makes all the difference.</p>
@@ -74,7 +76,8 @@ const articles: Record<string, ArticleData> = {
     title: 'Why Our Foam Fingers Are Different',
     category: 'Sports',
     author: 'EYRYA Team',
-    date: 'Dec 12, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '4 min read',
     content: `
       <p>Walk into any party supply store and you will find foam fingers everywhere. Most of them cost $3 to $5. They look fine on the shelf. But after one game, they are flat, bent, and basically useless. We saw this problem and decided to fix it.</p>
@@ -114,7 +117,8 @@ const articles: Record<string, ArticleData> = {
     title: 'Party Supplies That Actually Last',
     category: 'Parties',
     author: 'EYRYA Team',
-    date: 'Dec 10, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '5 min read',
     content: `
       <p>There is a growing problem with party supplies: they are designed to be thrown away. Paper banners tear, plastic cups crack, and cheap decorations look sad after one use. We think that is wasteful and expensive over time.</p>
@@ -156,7 +160,8 @@ const articles: Record<string, ArticleData> = {
     title: 'Bulk Orders: What You Need to Know',
     category: 'Wholesale',
     author: 'EYRYA Team',
-    date: 'Dec 5, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '7 min read',
     content: `
       <p>Ordering party supplies or foam fingers in bulk is different from buying a single unit. Whether you are a school spirit coordinator, a sports league manager, or an event planner, here is everything you need to know about ordering EYRYA products in quantity.</p>
@@ -214,7 +219,8 @@ const articles: Record<string, ArticleData> = {
     title: 'Camping with Kids: A Survival Guide',
     category: 'Outdoor',
     author: 'EYRYA Team',
-    date: 'Dec 1, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '8 min read',
     content: `
       <p>Camping with kids sounds wonderful until you are three hours into a rainstorm and your six-year-old is asking why the tent is leaking. We have been there. Here is what we learned from years of family camping trips.</p>
@@ -259,7 +265,8 @@ const articles: Record<string, ArticleData> = {
     title: 'The Problem with Cheap Party Decorations',
     category: 'Parties',
     author: 'EYRYA Team',
-    date: 'Nov 28, 2024',
+    date: 'Apr 3, 2026',
+    isoDate: '2026-04-03',
     readTime: '6 min read',
     content: `
       <p>We bought 12 different brands of party banners and tested them at actual birthday parties. Only 3 made it through the full event without tearing, sagging, or falling off the wall. Here is what we found and why it matters.</p>
@@ -445,8 +452,8 @@ export default async function IdeaDetailPage({ params }: PageProps) {
               "url": "https://www.eyrya.com/images/logo.svg",
             },
           },
-          "datePublished": article.date,
-          "dateModified": article.date,
+          "datePublished": article.isoDate,
+          "dateModified": article.isoDate,
           "mainEntityOfPage": `https://www.eyrya.com/ideas/${slug}/`,
         }} />
         <JsonLd data={{

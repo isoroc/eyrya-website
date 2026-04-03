@@ -45,7 +45,7 @@ const ideas = [
     excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, coolers to portable chairs.',
     category: 'Sports',
     slug: 'game-day-checklist',
-    date: 'Dec 15, 2024',
+    date: 'Apr 3, 2026',
     readTime: '6 min',
   },
   {
@@ -53,7 +53,7 @@ const ideas = [
     excerpt: 'Most foam fingers fall apart after one game. Heres how we fixed that problem.',
     category: 'Sports',
     slug: 'foam-finger-quality',
-    date: 'Dec 12, 2024',
+    date: 'Apr 3, 2026',
     readTime: '4 min',
   },
   {
@@ -61,7 +61,7 @@ const ideas = [
     excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
     category: 'Parties',
     slug: 'reusable-party-supplies',
-    date: 'Dec 10, 2024',
+    date: 'Apr 3, 2026',
     readTime: '5 min',
   },
   {
@@ -69,7 +69,7 @@ const ideas = [
     excerpt: 'Ordering for a school or team? Heres how to get the best deal on 50+ units.',
     category: 'Wholesale',
     slug: 'bulk-order-guide',
-    date: 'Dec 5, 2024',
+    date: 'Apr 3, 2026',
     readTime: '7 min',
   },
   {
@@ -77,7 +77,7 @@ const ideas = [
     excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesnt.',
     category: 'Outdoor',
     slug: 'camping-with-kids',
-    date: 'Dec 1, 2024',
+    date: 'Apr 3, 2026',
     readTime: '8 min',
   },
   {
@@ -85,7 +85,7 @@ const ideas = [
     excerpt: 'We tested 12 brands of party banners. Only 3 made it through a full birthday party.',
     category: 'Parties',
     slug: 'cheap-party-decorations',
-    date: 'Nov 28, 2024',
+    date: 'Apr 3, 2026',
     readTime: '6 min',
   },
 ];

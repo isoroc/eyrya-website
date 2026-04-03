@@ -9,21 +9,21 @@ const ideas = [
     slug: 'game-day-checklist',
     excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, we have got you covered.',
     category: 'Sports',
-    date: 'Dec 15, 2024',
+    date: 'Apr 3, 2026',
   },
   {
     title: 'Party Supplies That Actually Last',
     slug: 'reusable-party-supplies',
     excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
     category: 'Parties',
-    date: 'Dec 10, 2024',
+    date: 'Apr 3, 2026',
   },
   {
     title: 'Bulk Orders: What You Need to Know',
     slug: 'bulk-order-guide',
     excerpt: 'Ordering for a school or team? Here is how to get the best deal on 50+ units.',
     category: 'Wholesale',
-    date: 'Dec 5, 2024',
+    date: 'Apr 3, 2026',
   },
 ];
 
