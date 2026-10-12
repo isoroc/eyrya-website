@@ -1,26 +1,33 @@
-import { BRAND, formatCount, getFeaturedProduct } from '@/lib/products';
+import { formatCount } from '@/lib/products';
 import { WHOLESALE } from '@/lib/wholesale';
 
+// The statistic chips used to read "4.8/5 rating", "Ships in 24 hours",
+// "15-30% off 50+" and "30-day returns" - all invented. They now state either
+// product facts or the wholesale terms the owner confirmed.
 const scenarios = [
   {
     title: 'Sports Events',
-    description: 'The original foam finger. 18 inches of pure team spirit, built to last season after season.',
-    stat: `${getFeaturedProduct().rating.toFixed(1)}/5 rating`,
+    description:
+      'An 18-inch EVA foam hand, light enough to hold for a whole match and reusable for the next one.',
+    stat: '18-inch EVA',
   },
   {
-    title: 'Birthday Parties',
-    description: 'Party supplies that don\u2019t look like you grabbed them at a gas station. Coordinated sets that actually match.',
-    stat: 'Ships in 24 hours',
+    title: 'Pep Rallies & Schools',
+    description:
+      'Order the retail 12-pack for a section, or talk to us about a custom run in your school colours.',
+    stat: '5 colours in stock',
   },
   {
-    title: 'School Events',
-    description: 'Custom production runs for pep rallies, graduations, and brand giveaways.',
+    title: 'Graduations & Ceremonies',
+    description:
+      'Custom production for ceremonies at scale: your colours, your thickness, your logo.',
     stat: `Custom from ${formatCount(WHOLESALE.minimumOrderPerColor)}`,
   },
   {
-    title: 'Family Camping',
-    description: 'Outdoor gear that fits in your car. No assembly required. Just unpack and enjoy.',
-    stat: '30-day returns',
+    title: 'Brand Giveaways',
+    description:
+      'Promotional runs with silk-screen printing, packed 200 to a carton and shipped to your forwarder.',
+    stat: 'Silk-screen logo',
   },
 ];
 
@@ -33,8 +40,8 @@ export default function UseScenariosSection() {
             What People Use Them For
           </h2>
           <p className="text-gray-600">
-            Real products for real situations. Here&apos;s what our {formatCount(BRAND.productsSold)}+ customers
-            actually do with EYRYA gear.
+            One product, two ways to buy it: a retail pack from Amazon or Temu, or a custom production
+            run made to your specification.
           </p>
         </div>
 

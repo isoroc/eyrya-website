@@ -11,25 +11,25 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import JsonLd from "./components/JsonLd";
-import { BRAND, formatCount, getFeaturedProduct } from "@/lib/products";
+import { BRAND } from "@/lib/products";
+import { formatMinimumOrderPerColor } from "@/lib/wholesale";
 
 const siteUrl = BRAND.siteUrl;
 const ogImage = `${siteUrl}/images/og-image.png`;
-const featured = getFeaturedProduct();
 
 export const metadata: Metadata = {
   title: {
-    default: "EYRYA® | Foam Fingers, Party Supplies & Outdoor Products",
+    default: "EYRYA® | EVA Foam Fingers & Custom Manufacturing",
     template: "%s | EYRYA",
   },
-  description: `EYRYA creates premium EVA foam fingers, party supplies, and outdoor products. ${formatCount(BRAND.productsSold)}+ sold. Shop on Amazon & Temu with fast shipping.`,
-  keywords: ["foam fingers", "EVA foam finger", "party supplies", "sports fan gear", "outdoor games", "bulk foam fingers", "EYRYA"],
+  description: `EYRYA makes 18-inch EVA foam hands. Buy the 12-pack on Amazon or the 6-pack on Temu, or order custom production from ${formatMinimumOrderPerColor()}.`,
+  keywords: ["EVA foam finger", "foam hand", "foam fingers", "custom foam fingers", "promotional foam fingers", "bulk foam fingers", "EYRYA"],
   alternates: {
     canonical: `${siteUrl}/`,
   },
   openGraph: {
-    title: "EYRYA - Premium Foam Fingers & Party Supplies",
-    description: `Shop premium EVA foam fingers, LED party lights, and outdoor game kits. ${formatCount(BRAND.productsSold)}+ sold with a ${featured.rating.toFixed(1)}-star rating.`,
+    title: "EYRYA - EVA Foam Fingers & Custom Manufacturing",
+    description: `18-inch EVA foam hands. Retail packs from Amazon and Temu, custom production from ${formatMinimumOrderPerColor()} with your colours, thickness and logo.`,
     type: "website",
     url: `${siteUrl}/`,
     siteName: "EYRYA",
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "EYRYA - Premium Foam Fingers & Party Supplies",
+        alt: "EYRYA - EVA Foam Fingers",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "EYRYA - Premium Foam Fingers & Party Supplies",
-    description: `Shop premium EVA foam fingers, LED party lights, and outdoor game kits. ${formatCount(BRAND.productsSold)}+ sold.`,
+    title: "EYRYA - EVA Foam Fingers & Custom Manufacturing",
+    description: `18-inch EVA foam hands. Retail packs from Amazon and Temu, custom production from ${formatMinimumOrderPerColor()}.`,
     images: [ogImage],
   },
 };
@@ -68,7 +68,7 @@ export default function RootLayout({
           "name": BRAND.name,
           "url": `${siteUrl}/`,
           "logo": `${siteUrl}/images/logo.svg`,
-          "description": "EYRYA creates premium EVA foam fingers, party supplies, and outdoor products.",
+          "description": "EYRYA manufactures 18-inch EVA foam hands, including custom production runs with your own colours, thickness and logo.",
           "contactPoint": {
             "@type": "ContactPoint",
             "email": "support@eyrya.com",

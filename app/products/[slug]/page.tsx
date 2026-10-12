@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Check, ExternalLink, ChevronRight, Star } from 'lucide-react';
+import { Check, ExternalLink, ChevronRight } from 'lucide-react';
 import JsonLd from '@/app/components/JsonLd';
 import {
   BRAND,
   PRODUCT_SLUGS,
   discountPercent,
-  formatCount,
   formatOfferPrice,
   formatPackSize,
   formatPrice,
@@ -38,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const url = `https://www.eyrya.com/products/${slug}/`;
-  const description = `Shop the ${product.name} by EYRYA. ${product.tagline} Rated ${product.rating.toFixed(1)}/5 from ${product.reviews} reviews.`;
+  const description = `Shop the ${product.name} by EYRYA. ${product.tagline}`;
 
   return {
     title: { absolute: `EYRYA® ${product.name} | Premium Quality & Best Price` },
@@ -130,16 +129,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
               {product.tagline}
             </p>
 
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center gap-1">
-                <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                <span className="font-bold text-[#1a1a1a]">{product.rating.toFixed(1)}</span>
-              </div>
-              <span className="text-gray-400">({product.reviews} reviews)</span>
-              <span className="text-gray-300">|</span>
-              <span className="text-green-600 text-sm font-medium">In Stock</span>
-            </div>
-
             <div className="flex items-baseline gap-3 mb-2">
               {primaryOffer.price !== null && (
                 <span className="text-3xl font-bold text-[#1a1a1a]">
@@ -188,7 +177,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
             </div>
 
             <p className="text-sm text-gray-500 mb-8">
-              {formatCount(product.sold)}+ sold. Free shipping on Amazon orders over ${BRAND.freeShippingThreshold}.
+              Sold and shipped by the marketplace you buy from, so their delivery options and buyer
+              protection apply.
             </p>
 
             <div className="border-t border-gray-200 pt-8 mb-8">
@@ -302,13 +292,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
               name: offer.name,
             },
           })),
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: product.rating.toFixed(1),
-            reviewCount: product.reviews,
-            bestRating: '5',
-            worstRating: '1',
-          },
         }} />
 
         <JsonLd data={{

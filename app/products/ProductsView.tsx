@@ -51,7 +51,7 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
           </h1>
           <p className="text-gray-600">
             {activeCategory ? `${activeCategory.description} ` : ''}
-            Party supplies, fan gear, and outdoor products. We only sell stuff we would use ourselves.
+            We make 18-inch EVA foam hands. Buy the retail pack from the marketplace listing, or talk to us about a custom run.
           </p>
         </div>
 
@@ -154,12 +154,6 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
                       </h3>
 
                       <p className="text-gray-600 text-sm mb-4">{product.shortDescription}</p>
-
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-yellow-500">★</span>
-                        <span className="text-sm font-medium">{product.rating.toFixed(1)}</span>
-                        <span className="text-sm text-gray-400">({product.reviews} reviews)</span>
-                      </div>
 
                       <div className="flex items-center justify-between">
                         <div className="flex items-baseline gap-2">

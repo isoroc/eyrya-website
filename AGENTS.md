@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Brand marketing website for EYRYA (foam fingers, party supplies, outdoor products). Traffic is directed to Amazon and Temu storefronts.
+Brand marketing website for EYRYA. One real product: an 18-inch EVA foam hand, sold as a 12-pack on Amazon and a 6-pack on Temu, with custom production runs from 5,000 pieces per colour. Traffic is directed to those marketplace listings; the site also takes wholesale enquiries.
 
 - **Framework**: Next.js 16.1.6 (App Router, `output: 'export'` → static HTML in `dist/`)
 - **Styling**: Tailwind CSS v4 (`@import "tailwindcss"`)
@@ -135,13 +135,29 @@ Business facts live in `lib/`, not in page components:
 
 | Module | Contents |
 |--------|----------|
-| `lib/products.ts` | Products, categories, `BRAND` numbers, marketplace URLs |
+| `lib/products.ts` | The one real product, its categories, and its marketplace offers |
 | `lib/posts.ts` | Blog posts (metadata + body HTML) |
 | `lib/faq.ts` | Support FAQ, shared by the visible accordion and the FAQPage JSON-LD |
 | `lib/links.ts` | External destinations, kept separate so the client navbar does not pull the catalogue into the bundle |
 | `lib/wholesale.ts` | Custom-manufacturing terms (minimum order, packing, lead time, payment, shipping) and the wholesale FAQ |
 
 Never restate a commercial term by hand. The site once advertised "50 units per SKU" (and "100 units" in two articles) with invented 15/20/30% discount tiers while the real custom minimum is 5,000 pieces per colour, and one article told readers that custom work starts above 100 units. Use `formatMinimumOrderPerColor()` and friends.
+
+### Never publish a figure or a claim you cannot evidence
+
+Most of the original site was invented filler, and the owner confirmed it. What was published, and has since been removed:
+
+- ratings, review counts and units sold for every product (4.8/328/32,000 etc.), including as `aggregateRating` structured data — fabricated ratings breach the FTC's rule on consumer reviews and risk a Google structured-data manual action
+- two of the three products (a "Party LED Lights Set" and an "Outdoor Game Kit") did not exist at all
+- service promises the business does not control: US dispatch, 24-hour shipping, a 30-day return window, a $20 free-shipping threshold, 3-5 day delivery, shipping to 20+ countries
+- a "50,000 units sold, 4.8 average rating" section that claimed it was "real customer feedback", and an article describing a 12-brand test that was never run
+
+Rules that follow from that:
+
+- Shipping, delivery times, returns and refunds belong to Amazon and Temu, because that is where orders happen. Describe them as the marketplace's terms, never as ours.
+- A rating, review count, or sales figure goes in `lib/` only with a source. No source, no number.
+- Do not write first-hand experience ("we tested", "we bought", "our best memory") unless it happened. Prefer guidance framed as guidance.
+- The one real product is the foam finger. Retail packs and custom production are the two real ways to buy it.
 
 Pages and components must import from these modules. Never re-type a price, rating, review count, units-sold figure, pack size, or marketplace URL into a component — that is exactly how the hero ended up claiming 1,247 sold while the detail page claimed 50,000.
 

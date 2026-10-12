@@ -6,12 +6,7 @@
 // the featured section, the product list, the product detail pages, and the
 // about page - and they had drifted apart. Add or change a product here and
 // every page picks it up.
-import {
-  AMAZON_FLAGSHIP_ASIN,
-  AMAZON_FLAGSHIP_URL,
-  AMAZON_STORE_URL,
-  TEMU_LISTING_URL,
-} from './links';
+import { AMAZON_FLAGSHIP_ASIN, AMAZON_FLAGSHIP_URL, TEMU_LISTING_URL } from './links';
 
 export type CategorySlug = 'party-supplies' | 'toys-play' | 'sports-fan-gear' | 'outdoor-fun';
 
@@ -63,11 +58,6 @@ export interface Product {
   shortDescription: string;
   /** Full paragraph, used on the product detail page and in Product JSON-LD. */
   description: string;
-  rating: number;
-  reviews: number;
-  sold: number;
-  /** Total colourways offered; colorSwatches below shows a subset. */
-  availableColors: number;
   image: string;
   imageAlt: string;
   colorSwatches: ProductColor[];
@@ -80,24 +70,21 @@ export interface Product {
 
 // Brand-level numbers live here so the about page, hero, and metadata can never
 // disagree with each other again.
+// Brand-level figures that were never verified (50,000 units sold, 4.7 average
+// rating, 20+ countries shipped, a $20 free-shipping threshold, a 24-hour reply
+// time) have been removed rather than restated. Add a figure here only when it
+// can be evidenced.
 export const BRAND = {
   name: 'EYRYA',
   siteUrl: 'https://www.eyrya.com',
-  /** Sum of `sold` across the catalogue below. */
-  productsSold: 50000,
-  rating: 4.7,
-  countriesShipped: 20,
-  freeShippingThreshold: 20,
-  responseTime: '24 hours',
 } as const;
 
 export const MARKETPLACES = {
   amazon: {
     name: 'Amazon' as const,
-    // Cards that invite people to "shop on Amazon" send them to the flagship
-    // listing, not the storefront: the storefront's first product is a single
-    // colourway, so visitors saw a pink-only page. Listings that have no ASIN yet
-    // (see the LED lights and outdoor kit offers) still use AMAZON_STORE_URL.
+    // Every Amazon call to action points at the flagship listing rather than the
+    // storefront: the storefront's first product is a single colourway, so
+    // visitors who followed it saw a pink-only page.
     url: AMAZON_FLAGSHIP_URL,
     description: 'Our flagship EVA foam fingers ship here as a 12-pack, with Prime fast shipping and the A-to-Z Guarantee.',
     features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
@@ -109,10 +96,6 @@ export const MARKETPLACES = {
     features: ['6-pack listing', 'Worldwide shipping', 'Flash deals'],
   },
 } as const;
-
-// Colourways offered on the flagship foam finger. Declared once so the feature
-// list, the spec table, and the "available in N colours" copy cannot drift.
-const FOAM_FINGER_TEAM_COLORS = 12;
 
 export const CATEGORIES: Category[] = [
   {
@@ -141,24 +124,26 @@ export const CATEGORIES: Category[] = [
 // The foam finger's Amazon listing URL and ASIN live in lib/links.ts, which the
 // client-side navbar can import without pulling this catalogue into the bundle.
 
+// Only products that actually exist belong here.
+//
+// The catalogue used to carry three entries. Two of them - a "Party LED Lights
+// Set" and an "Outdoor Game Kit" - were placeholders the owner had invented to
+// fill the page: no such listings exist, and their prices, specs, ratings and
+// sales figures were all fabricated. They have been removed. The one real
+// product is the foam finger, and its figures come from the owner or from the
+// live Amazon listing.
 export const PRODUCTS: Product[] = [
   {
     slug: 'eva-foam-finger',
     name: 'EVA Foam Finger (12 Pack)',
     categorySlug: 'sports-fan-gear',
     badge: 'Best Seller',
-    // The pack size is deliberately not repeated in this copy: it differs per
-    // marketplace and is derived from `offers` wherever it is shown.
-    tagline: '18-inch high-density EVA foam fingers. Our flagship product, trusted by fans across the country.',
-    shortDescription: '18-inch foam fingers in 8mm high-density EVA foam that keeps its shape.',
+    tagline: `18-inch EVA foam hand. Reusable, lightweight, and available in ${5} colours.`,
+    shortDescription: '18-inch EVA foam hand, reusable season after season.',
     description:
-      'Show your team spirit with our premium EVA foam fingers. Perfect for groups, classrooms, and events. Each foam finger is made from 8mm high-density EVA foam that holds its shape through rain, sweat, and celebration. Whether you are cheering at an NFL game, an NBA match, or your kid\'s school event, these foam hands deliver.',
-    rating: 4.8,
-    reviews: 328,
-    sold: 32000,
-    availableColors: FOAM_FINGER_TEAM_COLORS,
+      'An 18-inch EVA foam hand for game day: light enough to hold through a whole match, and reusable season after season. The retail pack is available in five colours, and we manufacture custom colours, thickness, and logo printing for larger runs.',
     image: '/images/products/foam-finger-multi.webp',
-    imageAlt: 'EYRYA EVA Foam Finger in multiple team colors - 18 inch foam hand for sports fans',
+    imageAlt: 'EYRYA EVA foam hand in several team colours - 18 inch foam finger for sports fans',
     colorSwatches: [
       { name: 'Blue', hex: '#3B82F6', image: '/images/products/foam-finger-blue.webp' },
       { name: 'Black', hex: '#1a1a1a', image: '/images/products/foam-finger-black.webp' },
@@ -167,38 +152,43 @@ export const PRODUCTS: Product[] = [
       { name: 'Yellow', hex: '#FFE66D', image: '/images/products/foam-finger-yellow.webp' },
     ],
     features: [
-      '18 inches of pure team spirit',
-      '8mm high-density EVA foam - will not collapse',
-      'Comfortable hand opening - fits most adults',
-      'Weather-resistant - works in rain or shine',
-      'Reusable for multiple seasons',
-      `Available in ${FOAM_FINGER_TEAM_COLORS} team colors`,
+      '18-inch EVA foam hand',
+      'Lightweight enough to hold for a full game',
+      'Reusable season after season',
+      'Available in 5 colours',
+      'Custom colours, thickness and logo printing on larger runs',
     ],
     specs: {
-      dimensions: '18" x 8" x 1"',
-      weight: '3.2 oz',
-      material: 'High-density EVA foam',
-      colors: `${FOAM_FINGER_TEAM_COLORS} team colors`,
+      size: '18 in (46 cm)',
+      material: 'EVA foam',
+      colours: '5 in the retail range',
+      thickness: 'Made to order for custom runs',
     },
     faq: [
       {
-        question: 'What makes EYRYA foam fingers different from cheap ones?',
+        question: 'How many foam fingers do I get?',
         answer:
-          'Most foam fingers use 3-4mm low-density foam that collapses after a few uses. Ours uses 8mm high-density EVA foam that keeps its shape game after game. That is why this pack has a 4.8-star rating from 328 reviews.',
+          'The Amazon listing is a 12-pack and the Temu listing is a 6-pack. Both pack sizes are shown with their own price on this page.',
       },
       {
-        question: 'Will the foam finger fit my hand?',
+        question: 'Can I choose the colour?',
         answer:
-          'The hand opening is 4 inches wide and fits most adult hands comfortably. Kids can hold it by the base or use both hands.',
+          'The retail pack comes in five colours. On a custom run the colours are matched to your specification instead.',
       },
       {
-        question: 'Can I use this foam finger in the rain?',
+        question: 'Is the foam thickness fixed?',
         answer:
-          'Yes. EVA foam is naturally water-resistant. Our foam fingers work perfectly in rain, snow, or intense sun. Just wipe them down and they are good to go.',
+          'On custom production runs the EVA thickness is made to order. Retail packs ship in our standard weight.',
+      },
+      {
+        question: 'Can you print our logo on them?',
+        answer:
+          'Yes, by silk-screen printing. Logos are part of a custom run, which starts at 5,000 pieces per colour - see the wholesale page for the full terms.',
       },
       {
         question: 'How fast is shipping?',
-        answer: `Amazon Prime members get free 2-day shipping. Temu orders typically arrive in 7-10 days. Free shipping on Amazon orders over $${BRAND.freeShippingThreshold}.`,
+        answer:
+          "Shipping is handled by the marketplace you buy from, so the delivery options and any free-shipping threshold are theirs and are shown at checkout. Amazon Prime members get Amazon's 2-day service; Temu shows its own estimate on the listing.",
       },
     ],
     offers: [
@@ -215,143 +205,11 @@ export const PRODUCTS: Product[] = [
       },
       {
         name: 'Temu',
-        url: MARKETPLACES.temu.url,
+        url: TEMU_LISTING_URL,
         label: 'Buy the 6-Pack on Temu',
         packSize: 6,
         price: null,
         note: 'The Temu listing is a 6-pack and priced on Temu. Amazon ships the 12-pack.',
-      },
-    ],
-  },
-  {
-    slug: 'party-led-lights',
-    name: 'Party LED Lights Set',
-    categorySlug: 'party-supplies',
-    badge: 'Popular',
-    tagline: 'Battery-powered LED string lights that last all night. 33 feet, 100 LEDs.',
-    shortDescription: 'Battery-powered LED string lights. 33 feet, 100 LEDs, 8+ hours of run time.',
-    description:
-      'Transform any space into a party zone with our LED string lights. These battery-powered lights run for 8+ hours on a single set of batteries, making them perfect for birthday parties, tailgates, dorm rooms, and outdoor events. Unlike cheap LED lights that die after an hour, our party LED lights are built to last through the entire celebration.',
-    rating: 4.6,
-    reviews: 156,
-    sold: 12000,
-    availableColors: 1,
-    image: '/images/products/party-led-lights.jpg',
-    imageAlt: 'EYRYA Party LED Lights Set - 33ft battery powered string lights for parties and events',
-    colorSwatches: [],
-    features: [
-      '33 feet of LED lights - 100 individual bulbs',
-      '8+ hours battery life on 3 AA batteries',
-      '8 lighting modes - steady, flashing, wave, and more',
-      'Waterproof wire - safe for outdoor use',
-      'Lightweight and portable - no outlet needed',
-      'Timer function - 6 hours on, 18 hours off',
-    ],
-    specs: {
-      length: '33 feet (10 meters)',
-      leds: '100 bulbs',
-      power: '3 AA batteries (not included)',
-      modes: '8 lighting modes',
-    },
-    faq: [
-      {
-        question: 'How long do the batteries last?',
-        answer:
-          'On a fresh set of quality AA batteries, the lights run for 8+ hours in steady mode. Flash modes may extend battery life even further.',
-      },
-      {
-        question: 'Are these lights waterproof?',
-        answer:
-          'The wire is waterproof and safe for outdoor use. The battery pack is water-resistant but should be kept under cover in heavy rain.',
-      },
-      {
-        question: 'Can I connect multiple sets together?',
-        answer:
-          'Each set runs independently on its own batteries. You can use multiple sets side by side for larger coverage areas.',
-      },
-      {
-        question: 'Do these lights get hot?',
-        answer:
-          'No. LED lights run cool and are safe to touch. They are safe around kids, fabrics, and decorations.',
-      },
-    ],
-    offers: [
-      {
-        name: 'Amazon',
-        // No product ASIN for this listing yet, so it stays at the storefront
-        // instead of pointing at a different product's page.
-        url: AMAZON_STORE_URL,
-        label: 'Buy on Amazon',
-        packSize: 1,
-        // Placeholder product: the previous $24.99 / $29.99 pair was invented, so
-        // no price is shown until a real listing exists.
-        price: null,
-      },
-    ],
-  },
-  {
-    slug: 'outdoor-game-kit',
-    name: 'Outdoor Game Kit',
-    categorySlug: 'outdoor-fun',
-    badge: 'New',
-    tagline: 'Everything you need for backyard fun. 6 games in one portable kit.',
-    shortDescription: '6 classic games in one portable kit. Built for camping, beach, and backyard.',
-    description:
-      'Our outdoor game kit packs six classic games into one carry bag. Perfect for camping trips, beach days, backyard BBQs, and family gatherings. Each game is built with durable materials that can handle real outdoor use. No more cheap plastic that cracks after one season.',
-    rating: 4.7,
-    reviews: 89,
-    sold: 6000,
-    availableColors: 1,
-    image: '/images/products/outdoor-game-kit.jpg',
-    imageAlt:
-      'EYRYA Outdoor Game Kit - 6 games in one portable bag for camping, beach, and backyard fun',
-    colorSwatches: [],
-    features: [
-      '6 games included - ring toss, bean bag toss, ladder ball, and more',
-      'Durable materials - built for outdoor use',
-      'Portable carry bag - everything in one place',
-      'Setup in under 5 minutes',
-      'Suitable for ages 6 and up',
-      'Great for 2-8 players',
-    ],
-    specs: {
-      games: '6 games included',
-      players: '2-8 players',
-      age: '6+',
-      bag_size: '24" x 8" x 8" carry bag',
-    },
-    faq: [
-      {
-        question: 'What games are included?',
-        answer:
-          'The kit includes ring toss, bean bag toss, ladder ball, bocce ball, horseshoes, and a flying disc. Six classic games that everyone knows how to play.',
-      },
-      {
-        question: 'Is this kit suitable for young kids?',
-        answer:
-          'Yes. All games are suitable for ages 6 and up. The bean bag toss and ring toss are especially popular with younger kids.',
-      },
-      {
-        question: 'How portable is the kit?',
-        answer:
-          'Everything fits in a 24" x 8" x 8" carry bag with a shoulder strap. It weighs about 5 lbs total - easy to carry to the beach, park, or campsite.',
-      },
-      {
-        question: 'Can I play these games on grass and sand?',
-        answer:
-          'All six games work on grass, sand, and most flat outdoor surfaces. The stakes are designed for both soft and firm ground.',
-      },
-    ],
-    offers: [
-      {
-        name: 'Amazon',
-        // No product ASIN for this listing yet, so it stays at the storefront
-        // instead of pointing at a different product's page.
-        url: AMAZON_STORE_URL,
-        label: 'Buy on Amazon',
-        packSize: 1,
-        price: 39.99,
-        originalPrice: 49.99,
       },
     ],
   },

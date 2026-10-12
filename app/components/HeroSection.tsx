@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import { ArrowRight, Star } from 'lucide-react';
-import { BRAND, formatCount, formatPrice, getFeaturedProduct, getPrimaryOffer } from '@/lib/products';
+import { ArrowRight } from 'lucide-react';
+import { formatPrice, getFeaturedProduct, getPrimaryOffer } from '@/lib/products';
 
 // Server component: no state, no browser APIs, so nothing here needs to ship as
 // client JavaScript.
+//
+// Every claim in this section is either a product fact the owner confirmed or a
+// fact about the marketplaces they sell through. The previous copy ("Trusted by
+// 50,000+ customers", "4.8/5 (328 reviews)", "Ships from US", "30-day returns")
+// was invented placeholder text.
 export default function HeroSection() {
   const product = getFeaturedProduct();
-  // The hero headline shows the flagship listing (Amazon, 12-pack). Temu carries
-  // a 6-pack, so its price is not shown here.
   const offer = getPrimaryOffer(product);
 
   return (
@@ -25,7 +28,7 @@ export default function HeroSection() {
         <div className="max-w-2xl">
           <div className="mb-4">
             <span className="inline-block text-sm font-semibold tracking-[0.2em] text-white/80 uppercase font-sans">
-              {product.badge}
+              {product.name}
             </span>
           </div>
 
@@ -36,7 +39,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-lg sm:text-xl text-gray-200 font-sans font-medium mb-8 max-w-lg leading-relaxed">
-            The original EVA foam fingers. Trusted by {formatCount(BRAND.productsSold)}+ customers.
+            18-inch EVA foam hands. Sold as a {offer.packSize}-pack on {offer.name}.
           </p>
 
           <div className="mb-8 flex items-baseline gap-3">
@@ -65,27 +68,18 @@ export default function HeroSection() {
               href="/products/"
               className="inline-flex items-center gap-2 text-white font-semibold text-lg hover:text-gray-300 transition-colors duration-200 underline underline-offset-4"
             >
-              VIEW ALL PRODUCTS
+              VIEW THE PRODUCT
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="mt-12 pt-8 border-t border-white/20">
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-300">
-              <div className="flex items-center gap-2">
-                <div className="flex" aria-hidden="true">
-                  {[1, 2, 3, 4, 5].map((index) => (
-                    <Star key={index} className="w-4 h-4 text-[#FFE66D] fill-[#FFE66D]" />
-                  ))}
-                </div>
-                <span>
-                  {product.rating.toFixed(1)}/5 ({product.reviews} reviews)
-                </span>
-              </div>
+              <span>Sold on Amazon &amp; Temu</span>
               <span className="w-1 h-1 rounded-full bg-gray-500"></span>
-              <span>Ships from US</span>
+              <span>Amazon Prime 2-day shipping</span>
               <span className="w-1 h-1 rounded-full bg-gray-500"></span>
-              <span>30-day returns</span>
+              <span>A-to-Z Guarantee on Amazon</span>
             </div>
           </div>
         </div>

@@ -121,7 +121,7 @@ const CUSTOM_FOAM_FINGERS_GUIDE_CONTENT = `
       <p>If you have a hard deadline - a homecoming game, a conference, a product launch - order early. Rushing a custom order rarely ends well.</p>
 
       <h2>Why EVA Foam Beats Cheap Alternatives</h2>
-      <p>Whichever route you choose, insist on high-density EVA foam. Cheaper foam fingers use thin, low-density material that collapses after a single game. EVA holds its shape, survives rain, and still looks sharp at the end of the season. For a keepsake custom piece, that durability matters even more.</p>
+      <p>Whichever route you choose, specify the material rather than accepting &quot;foam&quot; as a description. EVA holds its shape far better than the thin low-density foams used in the cheapest hands, and it does not absorb water. On a custom run you are choosing the specification anyway, so it costs nothing to get it right.</p>
 
       <h2>The Bottom Line</h2>
       <p>Custom foam fingers are an investment in school spirit, team identity, or brand visibility. They are not the right choice for everyone, but for schools, teams, and events ordering at volume, they turn a fun prop into a keepsake that fans actually keep.</p>
@@ -166,12 +166,12 @@ const GAME_DAY_CHECKLIST_CONTENT = `
     `;
 
 const FOAM_FINGER_QUALITY_CONTENT = `
-      <p>Walk into any party supply store and you will find foam fingers everywhere. Most of them cost $3 to $5. They look fine on the shelf. But after one game, they are flat, bent, and basically useless. We saw this problem and decided to fix it.</p>
+      <p>Foam fingers are simple objects, and that is exactly why the cheap ones disappoint. They look fine on the shelf, then go flat and bent within a game or two. The difference is almost entirely in the foam.</p>
 
       <h2>The Foam Problem</h2>
-      <p>Here is what most manufacturers do: they use 3mm to 4mm low-density polyethylene foam. It is cheap, it is light, and it looks okay in photos. But it has one major flaw - it collapses. After you wave it around for a few innings or quarters, the foam compresses and your foam finger looks like it gave up.</p>
+      <p>Thin, low-density foam is cheap, light, and photographs well. Its one flaw is that it compresses: wave it around for a few innings and it stops holding its shape. Density, not looks, is what decides how long a foam hand survives.</p>
 
-      <p>We use 8mm high-density EVA foam. EVA (ethylene-vinyl acetate) is the same material used in premium shoe soles and yoga mats. It is denser, more resilient, and holds its shape through repeated use. The difference is immediately obvious when you hold one.</p>
+      <p>We make ours from high-density EVA foam (ethylene-vinyl acetate) - the same family of material used in shoe soles and yoga mats. It is denser and more resilient than the low-density foams, so it holds its shape through repeated use, and it does not absorb water. On a custom run you can specify the thickness you want rather than taking whatever weight is in stock.</p>
 
       <h2>What That Means for You</h2>
       <ul>
@@ -181,13 +181,10 @@ const FOAM_FINGER_QUALITY_CONTENT = `
         <li><strong>Comfortable grip</strong> - The hand opening is sized for adults but works for older kids too</li>
       </ul>
 
-      <h2>The Numbers Speak</h2>
-      <p>We have sold over 50,000 foam fingers with an average rating of 4.8 out of 5 stars. That is not a marketing claim - that is real customer feedback from Amazon and Temu. People notice the quality difference, and they tell others.</p>
-
       <h2>Is It Worth the Extra Cost?</h2>
-      <p>Our foam fingers cost more than the cheapest options on the market. But think about it this way: if you buy a $4 foam finger that lasts one game, and then buy another one next season, and another the season after - you have spent $12 and still have nothing that lasts. Our ${FLAGSHIP_PACK} of foam fingers ${FLAGSHIP_COST_PHRASE} and lasts for years. The math works out.</p>
+      <p>The trade-off is arithmetic rather than marketing: if a hand lasts one game and you replace it every season, three seasons of replacements costs more than one that lasts. Our ${FLAGSHIP_PACK} of foam fingers ${FLAGSHIP_COST_PHRASE}, and it is meant to come back out next season.</p>
 
-      <p>Plus, if you are ordering for a team, school, or event, our wholesale pricing brings the per-unit cost down significantly. Check our wholesale page for details.</p>
+      <p>And if you are ordering for a team, school, or event, we produce custom runs from 5,000 pieces per colour with your own colours and printed logo. <a href="/wholesale/">The wholesale page</a> has the terms.</p>
 
       <p>Bottom line: we make foam fingers the way we want them made. Quality materials, solid construction, and a product you will actually want to bring to the next game.</p>
     `;
@@ -207,7 +204,7 @@ const REUSABLE_PARTY_SUPPLIES_CONTENT = `
       </ul>
 
       <h2>Our Approach</h2>
-      <p>Every EYRYA product is designed with reuse in mind. Our EVA foam fingers are the perfect example - they are built to last through dozens of events. Our LED party lights run on batteries and can be packed flat for storage. Even our outdoor game kit is designed to be taken out again and again.</p>
+      <p>Every EYRYA product is designed with reuse in mind. Our EVA foam fingers are the example we know best - an 18-inch EVA foam hand that is meant to come back out season after season rather than go flat after one game.</p>
 
       <h2>Quick Tips for Reusable Party Planning</h2>
       <ul>
@@ -265,7 +262,7 @@ const BULK_ORDER_GUIDE_CONTENT = `
     `;
 
 const CAMPING_WITH_KIDS_CONTENT = `
-      <p>Camping with kids sounds wonderful until you are three hours into a rainstorm and your six-year-old is asking why the tent is leaking. We have been there. Here is what we learned from years of family camping trips.</p>
+      <p>Camping with kids sounds wonderful until you are three hours into a rainstorm and a six-year-old is asking why the tent is leaking. Here is what tends to go wrong, and how to make the trip work anyway.</p>
 
       <h2>Start Small</h2>
       <p>Your first family camping trip should not be a week in the backcountry. Start with one night at a campground that has bathrooms and running water. If that goes well, try two nights. Then consider more remote locations. Building up gradually keeps everyone happy and gives you a chance to figure out what works for your family.</p>
@@ -273,7 +270,7 @@ const CAMPING_WITH_KIDS_CONTENT = `
       <h2>What to Pack (Beyond the Basics)</h2>
       <p>You already know you need a tent, sleeping bags, and food. Here is what experienced camping parents add to the list:</p>
       <ul>
-        <li><strong>Outdoor games</strong> - Kids get bored fast. A portable game kit with ring toss, bean bags, and bocce ball keeps them entertained for hours. Our outdoor game kit packs six games into one bag.</li>
+        <li><strong>Outdoor games</strong> - Kids get bored fast. A portable game kit with ring toss, bean bags, and bocce ball keeps them entertained for hours.</li>
         <li><strong>Headlamps for each kid</strong> - Flashlights are great, but headlamps keep hands free. Kids love them and they are surprisingly useful for nighttime bathroom trips.</li>
         <li><strong>Extra clothes in sealed bags</strong> - Kids will get wet, muddy, or both. Pack a complete change of clothes in a ziplock bag for each day.</li>
         <li><strong>Snacks that do not require cooking</strong> - Granola bars, trail mix, fruit snacks. When hunger strikes at 10 PM, you want something ready to go.</li>
@@ -292,28 +289,24 @@ const CAMPING_WITH_KIDS_CONTENT = `
       <h2>The Golden Rule</h2>
       <p>Lower your expectations. Things will go wrong. The tent might leak. The food might burn. Someone will cry. That is all part of the experience. The families that enjoy camping most are the ones who can laugh when things go sideways and focus on the good moments - which there will be plenty of.</p>
 
-      <p>Our best family camping memory is not from a perfectly executed trip. It is from a weekend where it rained the entire time, we played card games in the tent for six hours, and the kids still talk about it as one of the best weekends ever. Camping with kids is not about perfection. It is about being together somewhere different.</p>
+      <p>The trips children remember are rarely the perfectly executed ones. A weekend of rain, six hours of card games in the tent, and everyone still talking about it afterwards beats a flawless itinerary. Camping with kids is not about perfection - it is about being together somewhere different.</p>
     `;
 
 const CHEAP_PARTY_DECORATIONS_CONTENT = `
-      <p>We bought 12 different brands of party banners and tested them at actual birthday parties. Only 3 made it through the full event without tearing, sagging, or falling off the wall. Here is what we found and why it matters.</p>
+      <p>Party decorations have a quiet failure mode: they look fine in the packet and fall apart during the party. Here is what usually goes wrong, and what to look for instead.</p>
 
-      <h2>The Test</h2>
-      <p>We bought party banners, streamers, and table decorations from brands ranging from $2 to $15. We used them at six different parties - three indoor and three outdoor. We rated each product on durability, appearance, and ease of setup.</p>
-
-      <h2>What Failed and Why</h2>
+      <h2>Where Cheap Decorations Fail</h2>
       <ul>
-        <li><strong>Paper banners</strong> - 9 out of 10 paper banners tore during setup or within the first hour. Indoor use was marginally better, but outdoor use was a disaster. Even a light breeze destroyed them.</li>
-        <li><strong>Thin plastic streamers</strong> - They tangled immediately and looked cheap up close. Several brands arrived partially torn in the package.</li>
-        <li><strong>Adhesive decorations</strong> - The adhesive on cheap decorations either does not stick at all or damages the wall when removed. We tested on painted drywall and both outcomes happened.</li>
+        <li><strong>Paper banners</strong> - Thin paper tears during setup, and a light breeze finishes the job outdoors.</li>
+        <li><strong>Thin plastic streamers</strong> - They tangle as you unpack them and rarely hang straight.</li>
+        <li><strong>Adhesive decorations</strong> - Cheap adhesive either will not hold or takes paint off the wall when you remove it.</li>
       </ul>
 
-      <h2>What Worked</h2>
-      <p>The three brands that performed well shared common traits:</p>
+      <h2>What to Look For Instead</h2>
       <ul>
-        <li><strong>Thicker materials</strong> - Fabric banners and heavy cardstock held up significantly better than paper or thin plastic</li>
-        <li><strong>Proper hanging mechanisms</strong> - Products with grommets, clips, or string performed better than those relying on adhesive</li>
-        <li><strong>Simple designs</strong> - Overly elaborate decorations were more likely to have weak points that failed</li>
+        <li><strong>Thicker materials</strong> - Fabric banners and heavy cardstock cope far better than paper or thin plastic.</li>
+        <li><strong>Proper hanging points</strong> - Grommets, clips, or string beat anything that relies on adhesive.</li>
+        <li><strong>Simple designs</strong> - Elaborate decorations have more weak points to fail.</li>
       </ul>
 
       <h2>The Hidden Cost of Cheap Decorations</h2>
@@ -322,7 +315,7 @@ const CHEAP_PARTY_DECORATIONS_CONTENT = `
       <p>Over the course of a year, if you attend or host four parties, buying $3 decorations each time adds up to $12. A single $15 quality decoration that you reuse four times costs $3.75 per party - and it actually looks good every time.</p>
 
       <h2>Our Recommendation</h2>
-      <p>Invest in a few key pieces that last rather than buying lots of disposable decorations. Our EVA foam fingers are a perfect example - they work for any sports party, birthday, or team event, and they last for years. Our LED party lights are another - they set the mood for any celebration and can be reused indefinitely.</p>
+      <p>Invest in a few key pieces that last rather than buying lots of disposable decorations. Our EVA foam fingers are one example - they work for a sports party, a birthday, or a team event, and they come back out the following season.</p>
 
       <p>The next time you are shopping for party supplies, ask yourself: will this survive the party? If the answer is no, spend a little more on something that will. Your party will look better, you will waste less, and you will save money over time.</p>
     `;
@@ -391,7 +384,7 @@ export const POSTS: Post[] = [
   {
     slug: 'camping-with-kids',
     title: 'Camping with Kids: A Survival Guide',
-    excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesn\'t.',
+    excerpt: 'What tends to go wrong on a family camping trip, and how to make it work anyway.',
     categorySlug: 'outdoor-activities',
     date: 'Jun 8, 2026',
     isoDate: '2026-06-08',
@@ -403,7 +396,7 @@ export const POSTS: Post[] = [
   {
     slug: 'cheap-party-decorations',
     title: 'The Problem with Cheap Party Decorations',
-    excerpt: 'We tested 12 brands of party banners. Only 3 made it through a full birthday party.',
+    excerpt: 'Why cheap party decorations fail before the party ends, what to look for instead, and the arithmetic of buying something that lasts.',
     categorySlug: 'party-ideas',
     date: 'May 19, 2026',
     isoDate: '2026-05-19',

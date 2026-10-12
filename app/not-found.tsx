@@ -4,8 +4,9 @@ import { Home, Search } from 'lucide-react';
 import { getAllProducts } from '@/lib/products';
 
 export const metadata: Metadata = {
-  title: 'Page Not Found | EYRYA',
-  description: 'The page you are looking for does not exist. Browse our foam fingers, party supplies, and outdoor products.',
+  // `absolute` keeps the layout template from appending a second brand name.
+  title: { absolute: 'Page Not Found | EYRYA' },
+  description: 'The page you are looking for does not exist. Browse our 18-inch EVA foam fingers or start a custom order enquiry.',
   robots: {
     index: false,
     follow: true,

@@ -4,8 +4,8 @@ import ContactForm from './ContactForm';
 import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Contact EYRYA® | Get in Touch for Foam Fingers & Party Supplies' },
-  description: 'Contact EYRYA for product questions about foam fingers, party supplies, wholesale inquiries, or support. We reply within 24 hours.',
+  title: { absolute: 'Contact EYRYA® | EVA Foam Finger Questions & Custom Orders' },
+  description: 'Contact EYRYA about our 18-inch EVA foam fingers, a custom production run, or an existing order. Tell us the quantity per colour, colours and printing and we will quote.',
   keywords: 'EYRYA contact, contact EYRYA, EYRYA support, foam finger inquiry, wholesale foam fingers',
   alternates: {
     canonical: 'https://www.eyrya.com/contact/',

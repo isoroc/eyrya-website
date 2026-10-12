@@ -10,7 +10,7 @@ export default function CategoriesSection() {
             Shop by Category
           </h2>
           <p className="text-gray-600">
-            We specialize in party supplies and fan gear. That&apos;s it. No random gadgets, no dropshipping junk.
+            We make EVA foam hands. Any category we don&apos;t have yet is marked Coming soon.
           </p>
         </div>
 

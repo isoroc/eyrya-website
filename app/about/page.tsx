@@ -1,41 +1,50 @@
 import { Metadata } from 'next';
-import { BRAND, formatCount } from '@/lib/products';
+import { BRAND, formatCount, MARKETPLACES } from '@/lib/products';
+import { WHOLESALE, formatMinimumOrderPerColor, formatWholesaleSize } from '@/lib/wholesale';
 
+// This page used to carry an invented history and invented statistics: "Started
+// in 2022", "50,000+ products sold", "20+ countries", a 4.7 average rating and a
+// 24-hour response time. None of it was real, so all of it is gone. What is left
+// is the manufacturing capability the owner confirmed, plus the two retail
+// listings that actually exist.
 export const metadata: Metadata = {
-  title: { absolute: 'About EYRYA® | Premium Foam Fingers & Party Supplies Brand' },
-  description: `EYRYA makes premium EVA foam fingers and party supplies that actually last. Over ${formatCount(BRAND.productsSold)} products sold across ${BRAND.countriesShipped}+ countries. No gimmicks, no dropshipping.`,
-  keywords: 'EYRYA about, EYRYA brand, foam finger company, party supplies brand, EVA foam finger manufacturer',
+  title: { absolute: 'About EYRYA® | Custom EVA Foam Finger Manufacturing' },
+  description: `EYRYA makes ${formatWholesaleSize()} EVA foam hands. Custom production from ${formatMinimumOrderPerColor()}: thickness and colours made to order, logos by silk-screen printing. Retail packs ship from Amazon and Temu.`,
+  keywords:
+    'EYRYA about, EVA foam finger manufacturer, custom foam finger supplier, foam hand manufacturer, promotional foam fingers',
   alternates: {
-    canonical: 'https://www.eyrya.com/about/',
+    canonical: `${BRAND.siteUrl}/about/`,
   },
   openGraph: {
-    title: 'About EYRYA - Premium Foam Fingers Brand',
-    description: `EYRYA makes premium EVA foam fingers and party supplies. ${formatCount(BRAND.productsSold)}+ sold across ${BRAND.countriesShipped}+ countries.`,
+    title: 'About EYRYA - Custom EVA Foam Finger Manufacturing',
+    description: `We make ${formatWholesaleSize()} EVA foam hands to order from ${formatMinimumOrderPerColor()}.`,
     type: 'website',
-    url: 'https://www.eyrya.com/about/',
+    url: `${BRAND.siteUrl}/about/`,
     siteName: 'EYRYA',
     images: [
       {
-        url: 'https://www.eyrya.com/images/og-image.png',
+        url: `${BRAND.siteUrl}/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'About EYRYA - Premium Foam Fingers Brand',
+        alt: 'About EYRYA',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About EYRYA - Premium Foam Fingers Brand',
-    description: `EYRYA makes premium EVA foam fingers and party supplies. ${formatCount(BRAND.productsSold)}+ sold.`,
-    images: ['https://www.eyrya.com/images/og-image.png'],
+    title: 'About EYRYA - Custom EVA Foam Finger Manufacturing',
+    description: `We make ${formatWholesaleSize()} EVA foam hands to order from ${formatMinimumOrderPerColor()}.`,
+    images: [`${BRAND.siteUrl}/images/og-image.png`],
   },
 };
 
+// Every figure here is a confirmed production fact rather than a marketing
+// statistic.
 const stats = [
-  { value: `${Math.round(BRAND.productsSold / 1000)}K+`, label: 'Products sold', accent: true },
-  { value: BRAND.rating.toFixed(1), label: 'Average rating', accent: true },
-  { value: `${BRAND.countriesShipped}+`, label: 'Countries shipped', accent: true },
-  { value: '24h', label: 'Avg. response time', accent: false },
+  { value: `${WHOLESALE.sizeInches} in`, label: 'Foam hand size', accent: true },
+  { value: String(5), label: 'Retail colours', accent: true },
+  { value: formatCount(WHOLESALE.minimumOrderPerColor), label: 'Pieces per colour, custom', accent: true },
+  { value: `${WHOLESALE.leadTimeWeeks} weeks`, label: 'Production lead time', accent: false },
 ];
 
 export default function AboutPage() {
@@ -47,13 +56,20 @@ export default function AboutPage() {
             About EYRYA
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed mb-6">
-            We make party supplies and fan gear that actually work. No gimmicks, no dropshipping junk, 
-            no products that fall apart after one use.
+            We make {formatWholesaleSize()} EVA foam hands. On a custom run you choose the thickness,
+            the colours, and the print, and we produce from {formatMinimumOrderPerColor()} with a lead
+            time of about {WHOLESALE.leadTimeWeeks} weeks.
           </p>
           <p className="text-gray-600 leading-relaxed">
-            Started in 2022, we have sold over {formatCount(BRAND.productsSold)} foam fingers and party
-            supplies to customers in {BRAND.countriesShipped}+ countries. Our products show up at
-            tailgates, birthday parties, school events, and family camping trips.
+            Alongside that we sell a retail 12-pack on{' '}
+            <a href={MARKETPLACES.amazon.url} target="_blank" rel="noopener noreferrer" className="text-[#DC2626] hover:underline">
+              Amazon
+            </a>{' '}
+            and a 6-pack on{' '}
+            <a href={MARKETPLACES.temu.url} target="_blank" rel="noopener noreferrer" className="text-[#DC2626] hover:underline">
+              Temu
+            </a>{' '}
+            for anyone who needs a handful rather than a container.
           </p>
         </div>
 
@@ -61,27 +77,28 @@ export default function AboutPage() {
           <div className="bg-[#fafafa] p-8">
             <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we do</h2>
             <ul className="space-y-3 text-gray-600">
-              <li>• Design products that solve real problems</li>
-              <li>• Test everything before it goes to market</li>
-              <li>• Sell directly and through trusted retailers</li>
-              <li>• Run custom production for brands, distributors, and event organisers</li>
+              {WHOLESALE.customisation.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+              <li>• {WHOLESALE.packing[0]}, with individual OPP bagging on request</li>
+              <li>• {WHOLESALE.shipping}</li>
             </ul>
           </div>
 
           <div className="bg-[#fafafa] p-8">
             <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we don&apos;t do</h2>
             <ul className="space-y-3 text-gray-600">
-              <li>• Sell products we wouldn&apos;t use ourselves</li>
-              <li>• Make vague marketing claims</li>
-              <li>• Hide behind complicated return policies</li>
-              <li>• Spam you with emails</li>
+              <li>• Publish numbers we cannot evidence</li>
+              <li>• Quote a price before we know the quantity and the printing</li>
+              <li>• Take an order we cannot produce to the specification you asked for</li>
+              <li>• Hide the minimum order behind a sales conversation</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-200 pt-16">
           <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">By the numbers</h2>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label}>
@@ -102,9 +119,10 @@ export default function AboutPage() {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Questions?</h2>
             <p className="text-gray-400 mb-6">
-              We read every email. Usually reply within 24 hours.
+              Tell us the quantity per colour, the colours, the thickness, and where it ships, and we
+              will come back with a quote.
             </p>
-            <a 
+            <a
               href="mailto:support@eyrya.com"
               className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-6 py-3 font-semibold hover:bg-red-700 transition-colors rounded-sm"
             >

@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import {
   discountPercent,
-  formatCount,
   formatPrice,
   getFeaturedProduct,
   getPrimaryOffer,
@@ -30,7 +29,6 @@ export default function FeaturedProductSection() {
               <span className="bg-[#DC2626] text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">
                 {product.badge}
               </span>
-              <span className="text-sm text-gray-500">{formatCount(product.sold)} sold</span>
             </div>
 
             <h2 className="text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
@@ -52,25 +50,21 @@ export default function FeaturedProductSection() {
             </div>
 
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Our flagship product. An 18-inch foam hand that&apos;s lightweight enough to hold all day,
-              durable enough to last season after season. Perfect for sporting events, concerts,
-              and parties.
+              {product.description}
             </p>
 
             <div className="space-y-3 mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-[#DC2626]"></div>
-                <span className="text-gray-700">Lightweight EVA foam</span>
+                <span className="text-gray-700">{product.specs.material}</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-[#DC2626]"></div>
-                <span className="text-gray-700">{product.specs.dimensions} dimensions</span>
+                <span className="text-gray-700">{product.specs.size}</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-[#DC2626]"></div>
-                <span className="text-gray-700">
-                  Available in {product.availableColors} team colors
-                </span>
+                <span className="text-gray-700">Available in {colors.length} colours</span>
               </div>
             </div>
 
@@ -92,10 +86,9 @@ export default function FeaturedProductSection() {
               </Link>
             </div>
 
-            <div className="mt-6 flex items-center gap-2 text-sm text-gray-500">
-              <span className="text-[#DC2626] font-medium">✓ In Stock</span>
-              <span>• Ships within 24 hours</span>
-            </div>
+            <p className="mt-6 text-sm text-gray-500">
+              Sold and shipped by {offer.name}, so their delivery options and buyer protection apply.
+            </p>
           </div>
 
           {/* Product Image */}

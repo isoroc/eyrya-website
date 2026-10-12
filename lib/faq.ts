@@ -3,7 +3,12 @@
 // Both the visible accordion (app/support/SupportContent.tsx) and the FAQPage
 // structured data (app/support/page.tsx) read from here, so the markup can never
 // describe fewer questions than the page actually shows.
-import { BRAND } from './products';
+//
+// These answers used to describe shipping and returns as if EYRYA fulfilled
+// orders itself ("3-5 business days", "we ship to over 20 countries", "30-day
+// return policy", "free shipping over $20"). None of that was true: orders are
+// placed on Amazon or Temu, so the marketplace's delivery and return terms
+// apply. The answers now say that, and only that.
 import { formatMinimumOrderPerColor } from './wholesale';
 
 export interface FaqItem {
@@ -15,26 +20,27 @@ export const SUPPORT_FAQ: FaqItem[] = [
   {
     question: 'How long does shipping take?',
     answer:
-      'Standard shipping within the US typically takes 3-5 business days. Express shipping is available for 1-2 business day delivery. International shipping times vary by destination but generally take 7-14 business days.',
+      'Delivery is handled by the marketplace you order from, so the speed depends on the option you pick at checkout. Amazon Prime members get Amazon\'s 2-day service; Temu shows its own estimate on the listing.',
   },
   {
     question: 'Do you ship internationally?',
-    answer: `Yes! We ship to over ${BRAND.countriesShipped} countries worldwide. International shipping rates are calculated at checkout based on your location and order weight. Please note that customs duties and taxes may apply depending on your country's regulations.`,
+    answer:
+      'We do not ship directly - orders are placed on Amazon or Temu, and each listing shows which destinations it can be delivered to. Where a listing ships, the marketplace handles the delivery and any customs paperwork.',
   },
   {
-    question: 'What is your return policy?',
+    question: 'What is the return policy?',
     answer:
-      "We offer a 30-day return policy for unused items in their original packaging. If your product arrives damaged or defective, we'll provide a full refund or replacement at no extra cost. Simply contact our support team to initiate a return.",
+      'Returns and refunds follow the policy of the marketplace you bought from, and are started from your Amazon or Temu order page. If an item arrives damaged or defective, email support@eyrya.com and we will sort it out with you directly.',
   },
   {
     question: 'How can I track my order?',
     answer:
-      "Once your order ships, you'll receive an email with a tracking number and link. You can also request tracking details using the form on this page. If you can't find your tracking information, contact us with your order number.",
+      "The marketplace sends the tracking details once your order ships, and they are also visible on your Amazon or Temu order page. If you can't find them, contact us with your order number and we will help.",
   },
   {
     question: 'Can I order in bulk for an event?',
     answer:
-      "Custom production starts at " + formatMinimumOrderPerColor() + ". That covers your own colours, EVA thickness, and a silk-screened logo - see the wholesale page for packing, lead time, and payment terms. Below that minimum, the 12-pack on Amazon and the 6-pack on Temu are the better route and ship immediately.",
+      'Custom production starts at ' + formatMinimumOrderPerColor() + '. That covers your own colours, EVA thickness, and a silk-screened logo - see the wholesale page for packing, lead time, and payment terms. Below that minimum, the 12-pack on Amazon and the 6-pack on Temu are the better route and ship immediately.',
   },
   {
     question: 'Where do I actually buy?',
@@ -44,12 +50,12 @@ export const SUPPORT_FAQ: FaqItem[] = [
   {
     question: 'My product arrived damaged, what do I do?',
     answer:
-      "We're sorry to hear that! Please take photos of the damaged item and packaging, then contact our support team at support@eyrya.com. We'll arrange for a replacement or full refund within 24 hours. No need to return the damaged item.",
+      "Please take photos of the damaged item and the packaging, then email support@eyrya.com with your order number. We will work through the replacement or refund with you, and you do not need to send the damaged item back to us.",
   },
   {
     question: 'How do I know if a product is in stock?',
     answer:
-      'Live availability is shown on the Amazon and Temu listings, which is where orders are fulfilled. If an item is unavailable when you order, the marketplace will tell you immediately. For large quantity orders, contact us first and we will confirm availability.',
+      'Live availability is shown on the Amazon and Temu listings, which is where orders are fulfilled. If an item is unavailable when you order, the marketplace will tell you immediately. For a custom production run, contact us first and we will confirm the schedule.',
   },
 ];
 

@@ -2,8 +2,6 @@
 // component and needs the Amazon URL, and importing lib/products.ts there would
 // pull the entire product catalogue (descriptions, FAQs, features) into the
 // browser bundle.
-export const AMAZON_STORE_URL = 'https://www.amazon.com/shops/eyrya';
-
 // The foam finger's Amazon listing. `th=1` is kept deliberately: it belongs to
 // Amazon's variation/twister family, and removing parameters is the one change
 // that could plausibly stop the colour selector from appearing. Everything a

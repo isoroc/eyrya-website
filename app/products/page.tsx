@@ -5,18 +5,18 @@ import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
   // `absolute` avoids the root layout template appending a second brand name.
-  title: { absolute: 'EYRYA® Products | Foam Fingers, Party Supplies & Outdoor Games' },
+  title: { absolute: 'EYRYA® Products | EVA Foam Fingers & Custom Manufacturing' },
   description:
-    `Explore EYRYA products: premium EVA foam fingers, LED party lights, and outdoor game kits. Custom manufacturing from ${formatMinimumOrderPerColor()}. Shop on Amazon & Temu.`,
+    `18-inch EVA foam hands. Buy the 12-pack on Amazon or the 6-pack on Temu, or order custom production from ${formatMinimumOrderPerColor()} with your own colours, thickness and logo.`,
   keywords:
-    'EYRYA products, foam fingers, EVA foam finger, party supplies, sports fan gear, outdoor games, bulk order',
+    'EYRYA products, EVA foam finger, foam hand, custom foam fingers, bulk foam fingers, promotional foam fingers',
   alternates: {
     canonical: `${BRAND.siteUrl}/products/`,
   },
   openGraph: {
     title: 'EYRYA Products - Foam Fingers, Party Supplies & More',
     description:
-      'Explore premium EVA foam fingers, LED party lights, and outdoor game kits. Shop on Amazon & Temu.',
+      '18-inch EVA foam hands: retail packs from Amazon and Temu, custom production from 5,000 pieces per colour.',
     type: 'website',
     url: `${BRAND.siteUrl}/products/`,
     siteName: 'EYRYA',
@@ -25,14 +25,14 @@ export const metadata: Metadata = {
         url: `${BRAND.siteUrl}/images/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'EYRYA Products - Foam Fingers, Party Supplies & Outdoor Games',
+        alt: 'EYRYA Products - EVA Foam Fingers',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'EYRYA Products - Foam Fingers, Party Supplies & More',
-    description: 'Explore premium EVA foam fingers, LED party lights, and outdoor game kits.',
+    description: '18-inch EVA foam hands: retail packs from Amazon and Temu, custom production from 5,000 pieces per colour.',
     images: [`${BRAND.siteUrl}/images/og-image.png`],
   },
 };

@@ -10,7 +10,6 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { SUPPORT_FAQ } from '@/lib/faq';
-import { BRAND } from '@/lib/products';
 
 type RequestStatus = 'idle' | 'loading' | 'sent' | 'error';
 
@@ -111,23 +110,23 @@ export default function SupportContent() {
           <ul className="space-y-4 text-gray-600">
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>Standard US shipping: 3-5 business days</span>
+              <span>Orders are fulfilled by Amazon or Temu, not by us directly</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>Express shipping: 1-2 business days available</span>
+              <span>Amazon Prime members get Amazon&apos;s 2-day delivery</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>International shipping to {BRAND.countriesShipped}+ countries</span>
+              <span>Temu shows its own delivery estimate on the listing</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>Free shipping on Amazon orders over ${BRAND.freeShippingThreshold}</span>
+              <span>Free-shipping thresholds are set by the marketplace and shown at checkout</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>Tracking provided for all orders</span>
+              <span>The marketplace emails tracking once your order ships</span>
             </li>
           </ul>
         </div>
@@ -147,19 +146,19 @@ export default function SupportContent() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-                <span>30-day return window for unused items</span>
+                <span>Returns follow the policy of the marketplace you bought from</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-                <span>Original packaging required</span>
+                <span>Start the return from your Amazon or Temu order page</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-                <span>Defective items: full refund or replacement</span>
+                <span>Damaged or defective? Email us and we will sort it out</span>
               </li>
               <li className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-                <span>Contact support@eyrya.com to initiate</span>
+                <span>support@eyrya.com</span>
               </li>
             </ul>
           </div>

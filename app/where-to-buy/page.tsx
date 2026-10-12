@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ExternalLink, ShoppingBag, Truck, Shield } from 'lucide-react';
-import { BRAND, MARKETPLACES } from '@/lib/products';
+import { MARKETPLACES } from '@/lib/products';
 import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
   title: { absolute: 'Where to Buy EYRYA® | Shop Foam Fingers on Amazon & Temu' },
   description:
-    'Buy EYRYA foam fingers and party supplies on Amazon (Prime shipping) or Temu. Official stores with A-to-Z Guarantee.',
+    'Buy EYRYA 18-inch EVA foam fingers on Amazon, with Prime shipping and the A-to-Z Guarantee, or on Temu as a 6-pack.',
   keywords:
     'buy EYRYA, EYRYA Amazon, EYRYA Temu, buy foam fingers online, foam fingers Amazon, EVA foam finger store',
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Where to Buy EYRYA - Amazon & Temu',
     description:
-      'Buy EYRYA foam fingers and party supplies on Amazon or Temu. Official stores with fast shipping.',
+      'Buy EYRYA EVA foam fingers on Amazon or Temu. Same product, your preferred marketplace.',
     type: 'website',
     url: 'https://www.eyrya.com/where-to-buy/',
     siteName: 'EYRYA',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Where to Buy EYRYA - Amazon & Temu',
-    description: 'Buy EYRYA foam fingers and party supplies on Amazon or Temu.',
+    description: 'Buy EYRYA EVA foam fingers on Amazon or Temu.',
     images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
@@ -126,8 +126,9 @@ export default function WhereToBuyPage() {
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Fast shipping</h3>
               <p className="text-gray-600 text-sm">
-                Most orders ship within 24 hours. Prime members get free 2-day shipping on Amazon, and
-                free shipping on orders over ${BRAND.freeShippingThreshold}.
+                Delivery is the marketplace&apos;s: Amazon Prime members get Amazon&apos;s 2-day
+                service, and Temu shows its own estimate on the listing. Free-shipping thresholds are
+                set by the marketplace and shown at checkout.
               </p>
             </div>
 
@@ -137,7 +138,8 @@ export default function WhereToBuyPage() {
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Protected purchases</h3>
               <p className="text-gray-600 text-sm">
-                30-day returns on unused items. Defective products get a full refund or replacement.
+                Returns and refunds follow the marketplace&apos;s policy. If something arrives
+                defective, email us and we will sort it out.
               </p>
             </div>
           </div>
