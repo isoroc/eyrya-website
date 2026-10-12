@@ -86,13 +86,13 @@ export const MARKETPLACES = {
     // visitors who followed it saw a pink-only page.
     url: AMAZON_FLAGSHIP_URL,
     description: 'Our EVA foam fingers are sold here as a 12-pack, with Amazon Prime delivery and the A-to-Z Guarantee.',
-    features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
+    features: ['12-pack listing', 'Amazon return policy', 'A-to-Z Guarantee'],
   },
   temu: {
     name: 'Temu' as const,
     url: TEMU_LISTING_URL,
     description: 'Our flagship foam fingers are listed here as a 6-pack, sized for smaller groups.',
-    features: ['6-pack listing', 'Worldwide shipping', 'Flash deals'],
+    features: ['6-pack listing', 'Fulfilled by Temu', 'Priced on Temu'],
   },
 } as const;
 
