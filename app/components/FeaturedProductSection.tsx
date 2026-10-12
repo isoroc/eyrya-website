@@ -4,13 +4,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { discountPercent, formatCount, formatPrice, getFeaturedProduct } from '@/lib/products';
+import {
+  discountPercent,
+  formatCount,
+  formatPrice,
+  getFeaturedProduct,
+  getPrimaryOffer,
+} from '@/lib/products';
 
 export default function FeaturedProductSection() {
   const product = getFeaturedProduct();
   const colors = product.colorSwatches;
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const savings = discountPercent(product);
+  // The flagship (Amazon 12-pack) listing supplies the headline price.
+  const offer = getPrimaryOffer(product);
 
   return (
     <section className="py-20 bg-[#F4F1EA]">
@@ -30,10 +38,14 @@ export default function FeaturedProductSection() {
             </h2>
 
             <div className="flex items-baseline gap-3 mb-4">
-              <span className="text-3xl font-bold text-[#1a1a1a]">{formatPrice(product.price)}</span>
-              <span className="text-lg text-gray-400 line-through">
-                {formatPrice(product.originalPrice)}
-              </span>
+              {offer.price !== null && (
+                <span className="text-3xl font-bold text-[#1a1a1a]">{formatPrice(offer.price)}</span>
+              )}
+              {offer.originalPrice ? (
+                <span className="text-lg text-gray-400 line-through">
+                  {formatPrice(offer.originalPrice)}
+                </span>
+              ) : null}
               {savings > 0 && (
                 <span className="text-sm text-[#DC2626] font-medium">Save {savings}%</span>
               )}
@@ -71,12 +83,12 @@ export default function FeaturedProductSection() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href={product.links[0].url}
+                href={offer.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 font-semibold hover:bg-[#1a1a1a] hover:text-white transition-colors rounded-sm"
               >
-                {product.links[0].label}
+                {offer.label}
               </Link>
             </div>
 

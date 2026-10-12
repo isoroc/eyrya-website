@@ -8,9 +8,13 @@ import {
   PRODUCT_SLUGS,
   discountPercent,
   formatCount,
+  formatOfferPrice,
+  formatPackSize,
   formatPrice,
+  getPrimaryOffer,
   getProduct,
   getRelatedProducts,
+  type MarketplaceOffer,
 } from '@/lib/products';
 
 interface PageProps {
@@ -78,6 +82,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   const relatedProducts = getRelatedProducts(slug);
   const savings = discountPercent(product);
+  const primaryOffer = getPrimaryOffer(product);
+
+  // "12-pack on Amazon · 6-pack on Temu" - derived so it cannot drift from the
+  // offer data above.
+  const packSummary = product.offers
+    .map((offer) => `${formatPackSize(offer.packSize)} on ${offer.name}`)
+    .join(' · ');
+
+  // Only listings with a known price go into structured data, so the markup never
+  // advertises a number that no listing shows.
+  const pricedOffers = product.offers.filter(
+    (offer): offer is MarketplaceOffer & { price: number } => offer.price !== null,
+  );
 
   return (
     <div className="pt-24 pb-20">
@@ -122,9 +139,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <span className="text-green-600 text-sm font-medium">In Stock</span>
             </div>
 
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="text-3xl font-bold text-[#1a1a1a]">{formatPrice(product.price)}</span>
-              <span className="text-lg text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
+            <div className="flex items-baseline gap-3 mb-2">
+              {primaryOffer.price !== null && (
+                <span className="text-3xl font-bold text-[#1a1a1a]">
+                  {formatPrice(primaryOffer.price)}
+                </span>
+              )}
+              {primaryOffer.originalPrice ? (
+                <span className="text-lg text-gray-400 line-through">
+                  {formatPrice(primaryOffer.originalPrice)}
+                </span>
+              ) : null}
               {savings > 0 && (
                 <span className="text-sm font-medium text-white bg-[#DC2626] px-2 py-1">
                   Save {savings}%
@@ -132,30 +157,34 @@ export default async function ProductDetailPage({ params }: PageProps) {
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 mb-4">
-              {product.links.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={
-                    link.name === 'Amazon'
-                      ? 'flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-8 py-4 font-semibold hover:bg-[#333] transition-colors rounded-sm'
-                      : 'flex items-center justify-center gap-2 border border-gray-200 text-[#1a1a1a] px-8 py-4 font-semibold hover:border-[#1a1a1a] transition-colors rounded-sm'
-                  }
+            {/* Amazon and Temu carry different pack sizes, so say which listing
+                each price belongs to instead of showing one price next to both. */}
+            <p className="text-sm text-gray-500 mb-8">{packSummary}</p>
+
+            <div className="space-y-3 mb-8">
+              {product.offers.map((offer) => (
+                <div
+                  key={offer.name}
+                  className="flex flex-wrap items-center gap-x-4 gap-y-3 border border-gray-200 bg-[#fafafa] p-4"
                 >
-                  {link.label}
-                  <ExternalLink className="w-4 h-4" />
-                </a>
+                  <span className="w-20 font-semibold text-[#1a1a1a]">{offer.name}</span>
+                  <span className="text-sm text-gray-600">{formatPackSize(offer.packSize)}</span>
+                  <span className="text-sm font-medium text-[#1a1a1a]">{formatOfferPrice(offer)}</span>
+                  <a
+                    href={offer.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-auto inline-flex items-center justify-center gap-2 bg-[#1a1a1a] text-white px-5 py-3 font-semibold hover:bg-[#333] transition-colors rounded-sm"
+                  >
+                    {offer.label}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  {offer.note ? (
+                    <p className="w-full text-xs text-gray-500">{offer.note}</p>
+                  ) : null}
+                </div>
               ))}
             </div>
-
-            {product.links.filter((link) => link.note).map((link) => (
-              <p key={`${link.name}-note`} className="text-xs text-gray-500 mb-2">
-                {link.note}
-              </p>
-            ))}
 
             <p className="text-sm text-gray-500 mb-8">
               {formatCount(product.sold)}+ sold. Free shipping on Amazon orders over ${BRAND.freeShippingThreshold}.
@@ -176,6 +205,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="bg-[#fafafa] p-6">
               <h3 className="text-sm font-bold text-[#1a1a1a] mb-4 uppercase tracking-wider">Specifications</h3>
               <dl className="grid grid-cols-2 gap-3 text-sm">
+                {/* "How many do I get" differs per marketplace and is the question
+                    buyers ask first, so it leads the table and stays derived. */}
+                <div>
+                  <dt className="text-gray-400 mb-1">Pack</dt>
+                  <dd className="font-medium text-[#1a1a1a]">{packSummary}</dd>
+                </div>
                 {Object.entries(product.specs).map(([key, value]) => (
                   <div key={key}>
                     <dt className="text-gray-400 mb-1">{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
@@ -249,18 +284,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
             name: BRAND.name,
           },
           category: product.categorySlug,
-          // One Offer per marketplace we actually list on. Every offer carries
-          // the real price, so the markup can never advertise a price no
-          // listing shows.
-          offers: product.links.map((link) => ({
+          // One Offer per listing whose price we actually know, named with its
+          // pack size so the 12-pack and the 6-pack stay distinguishable.
+          offers: pricedOffers.map((offer) => ({
             '@type': 'Offer',
-            price: product.price.toFixed(2),
+            name: `${product.name} - ${formatPackSize(offer.packSize)} on ${offer.name}`,
+            price: offer.price.toFixed(2),
             priceCurrency: 'USD',
             availability: 'https://schema.org/InStock',
-            url: link.url,
+            url: offer.url,
             seller: {
               '@type': 'Organization',
-              name: link.name,
+              name: offer.name,
             },
           })),
           aggregateRating: {

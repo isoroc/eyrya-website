@@ -6,9 +6,11 @@ import {
   BRAND,
   CATEGORIES,
   MARKETPLACES,
+  formatOfferPrice,
   formatPrice,
   getAllProducts,
   getCategory,
+  getPrimaryOffer,
   getProductsByCategory,
   productCountForCategory,
   type Category,
@@ -123,6 +125,8 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.map((product) => {
                 const categoryName = getCategory(product.categorySlug)?.name ?? '';
+                // Cards show the flagship listing's price and pack.
+                const offer = getPrimaryOffer(product);
                 return (
                   <Link
                     key={product.slug}
@@ -159,11 +163,13 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
                       <div className="flex items-center justify-between">
                         <div className="flex items-baseline gap-2">
                           <span className="text-xl font-bold text-[#1A1A1A]">
-                            {formatPrice(product.price)}
+                            {formatOfferPrice(offer)}
                           </span>
-                          <span className="text-sm text-gray-400 line-through">
-                            {formatPrice(product.originalPrice)}
-                          </span>
+                          {offer.originalPrice ? (
+                            <span className="text-sm text-gray-400 line-through">
+                              {formatPrice(offer.originalPrice)}
+                            </span>
+                          ) : null}
                         </div>
                         <span className="text-sm font-semibold text-[#DC2626] group-hover:gap-2 gap-1 transition-all inline-flex items-center">
                           View →

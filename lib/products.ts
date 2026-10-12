@@ -23,11 +23,20 @@ export interface ProductColor {
   image: string;
 }
 
-export interface MarketplaceLink {
+// Amazon and Temu carry different pack sizes, so pack size and price belong to
+// the listing rather than to the product. Offers[0] is the flagship listing: it
+// supplies the headline price and the hero badge.
+export interface MarketplaceOffer {
   name: 'Amazon' | 'Temu';
   url: string;
+  /** Call-to-action label. */
   label: string;
-  /** Use when the marketplace listing differs from this page's pack size. */
+  /** Units in this listing. */
+  packSize: number;
+  /** This listing's price, or null when the marketplace sets it. */
+  price: number | null;
+  /** Pre-discount price shown by this listing, if any. */
+  originalPrice?: number | null;
   note?: string;
 }
 
@@ -46,13 +55,9 @@ export interface Product {
   shortDescription: string;
   /** Full paragraph, used on the product detail page and in Product JSON-LD. */
   description: string;
-  price: number;
-  originalPrice: number;
   rating: number;
   reviews: number;
   sold: number;
-  /** Units per pack, as sold on the primary listing. */
-  packSize: number;
   /** Total colourways offered; colorSwatches below shows a subset. */
   availableColors: number;
   image: string;
@@ -61,7 +66,8 @@ export interface Product {
   features: string[];
   specs: Record<string, string>;
   faq: ProductFaq[];
-  links: MarketplaceLink[];
+  /** Every marketplace listing for this product, flagship first. */
+  offers: MarketplaceOffer[];
 }
 
 // Brand-level numbers live here so the about page, hero, and metadata can never
@@ -81,16 +87,14 @@ export const MARKETPLACES = {
   amazon: {
     name: 'Amazon' as const,
     url: 'https://www.amazon.com/shops/eyrya',
-    label: 'Buy on Amazon',
-    description: 'Prime fast shipping, A-to-Z Guarantee, and easy returns on every order.',
-    features: ['Free Prime shipping', 'Easy returns', 'A-to-Z Guarantee'],
+    description: 'Our flagship foam fingers ship as a 12-pack here, with Prime fast shipping and the A-to-Z Guarantee.',
+    features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
   },
   temu: {
     name: 'Temu' as const,
     url: 'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html',
-    label: 'Buy the 6-Pack on Temu',
-    description: 'Our flagship foam fingers at budget-friendly prices. Currently listed as a 6-pack.',
-    features: ['Best prices', 'Worldwide shipping', 'Flash deals'],
+    description: 'Our flagship foam fingers are listed here as a 6-pack, sized for smaller groups.',
+    features: ['6-pack listing', 'Worldwide shipping', 'Flash deals'],
   },
 } as const;
 
@@ -128,16 +132,15 @@ export const PRODUCTS: Product[] = [
     name: 'EVA Foam Finger (12 Pack)',
     categorySlug: 'sports-fan-gear',
     badge: 'Best Seller',
-    tagline: '12-pack of 18-inch foam fingers. Our flagship product, trusted by fans across the country.',
-    shortDescription: '12-pack of 18-inch foam fingers. 8mm high-density EVA foam that keeps its shape.',
+    // The pack size is deliberately not repeated in this copy: it differs per
+    // marketplace and is derived from `offers` wherever it is shown.
+    tagline: '18-inch high-density EVA foam fingers. Our flagship product, trusted by fans across the country.',
+    shortDescription: '18-inch foam fingers in 8mm high-density EVA foam that keeps its shape.',
     description:
-      'Show your team spirit with our premium EVA foam fingers. This 12-pack is perfect for groups, classrooms, and events. Each foam finger is made from 8mm high-density EVA foam that holds its shape through rain, sweat, and celebration. Whether you are cheering at an NFL game, an NBA match, or your kid\'s school event, these foam hands deliver.',
-    price: 29.99,
-    originalPrice: 39.99,
+      'Show your team spirit with our premium EVA foam fingers. Perfect for groups, classrooms, and events. Each foam finger is made from 8mm high-density EVA foam that holds its shape through rain, sweat, and celebration. Whether you are cheering at an NFL game, an NBA match, or your kid\'s school event, these foam hands deliver.',
     rating: 4.8,
     reviews: 328,
     sold: 32000,
-    packSize: 12,
     availableColors: FOAM_FINGER_TEAM_COLORS,
     image: '/images/products/foam-finger-multi.webp',
     imageAlt: 'EYRYA EVA Foam Finger in multiple team colors - 18 inch foam hand for sports fans',
@@ -183,17 +186,22 @@ export const PRODUCTS: Product[] = [
         answer: `Amazon Prime members get free 2-day shipping. Temu orders typically arrive in 7-10 days. Free shipping on Amazon orders over $${BRAND.freeShippingThreshold}.`,
       },
     ],
-    links: [
+    offers: [
       {
         name: 'Amazon',
         url: MARKETPLACES.amazon.url,
-        label: 'Buy on Amazon',
+        label: 'Buy the 12-Pack on Amazon',
+        packSize: 12,
+        price: 29.99,
+        originalPrice: 39.99,
       },
       {
         name: 'Temu',
         url: MARKETPLACES.temu.url,
         label: 'Buy the 6-Pack on Temu',
-        note: 'The Temu listing is sold as a 6-pack, not the 12-pack shown here.',
+        packSize: 6,
+        price: null,
+        note: 'The Temu listing is a 6-pack and priced on Temu. Amazon ships the 12-pack.',
       },
     ],
   },
@@ -206,12 +214,9 @@ export const PRODUCTS: Product[] = [
     shortDescription: 'Battery-powered LED string lights. 33 feet, 100 LEDs, 8+ hours of run time.',
     description:
       'Transform any space into a party zone with our LED string lights. These battery-powered lights run for 8+ hours on a single set of batteries, making them perfect for birthday parties, tailgates, dorm rooms, and outdoor events. Unlike cheap LED lights that die after an hour, our party LED lights are built to last through the entire celebration.',
-    price: 24.99,
-    originalPrice: 29.99,
     rating: 4.6,
     reviews: 156,
     sold: 12000,
-    packSize: 1,
     availableColors: 1,
     image: '/images/products/party-led-lights.jpg',
     imageAlt: 'EYRYA Party LED Lights Set - 33ft battery powered string lights for parties and events',
@@ -252,11 +257,14 @@ export const PRODUCTS: Product[] = [
           'No. LED lights run cool and are safe to touch. They are safe around kids, fabrics, and decorations.',
       },
     ],
-    links: [
+    offers: [
       {
         name: 'Amazon',
         url: MARKETPLACES.amazon.url,
         label: 'Buy on Amazon',
+        packSize: 1,
+        price: 24.99,
+        originalPrice: 29.99,
       },
     ],
   },
@@ -269,12 +277,9 @@ export const PRODUCTS: Product[] = [
     shortDescription: '6 classic games in one portable kit. Built for camping, beach, and backyard.',
     description:
       'Our outdoor game kit packs six classic games into one carry bag. Perfect for camping trips, beach days, backyard BBQs, and family gatherings. Each game is built with durable materials that can handle real outdoor use. No more cheap plastic that cracks after one season.',
-    price: 39.99,
-    originalPrice: 49.99,
     rating: 4.7,
     reviews: 89,
     sold: 6000,
-    packSize: 1,
     availableColors: 1,
     image: '/images/products/outdoor-game-kit.jpg',
     imageAlt:
@@ -316,11 +321,14 @@ export const PRODUCTS: Product[] = [
           'All six games work on grass, sand, and most flat outdoor surfaces. The stakes are designed for both soft and firm ground.',
       },
     ],
-    links: [
+    offers: [
       {
         name: 'Amazon',
         url: MARKETPLACES.amazon.url,
         label: 'Buy on Amazon',
+        packSize: 1,
+        price: 39.99,
+        originalPrice: 49.99,
       },
     ],
   },
@@ -339,9 +347,32 @@ export function formatCount(value: number): string {
   return String(Math.round(value)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+// Amazon and Temu carry different pack sizes, so the price and pack shown as the
+// headline come from the flagship (first) offer.
+export function getPrimaryOffer(product: Product): MarketplaceOffer {
+  const [offer] = product.offers;
+  if (!offer) {
+    throw new Error(`Product "${product.slug}" has no marketplace offer`);
+  }
+  return offer;
+}
+
+/** Human-readable price for a single listing. */
+export function formatOfferPrice(offer: MarketplaceOffer): string {
+  return offer.price === null ? `Priced on ${offer.name}` : formatPrice(offer.price);
+}
+
+/** e.g. "12-pack" / "1 unit" */
+export function formatPackSize(packSize: number): string {
+  return packSize === 1 ? 'single unit' : `${packSize}-pack`;
+}
+
 export function discountPercent(product: Product): number {
-  if (product.originalPrice <= product.price) return 0;
-  return Math.round((1 - product.price / product.originalPrice) * 100);
+  const offer = getPrimaryOffer(product);
+  if (offer.price === null || !offer.originalPrice || offer.originalPrice <= offer.price) {
+    return 0;
+  }
+  return Math.round((1 - offer.price / offer.originalPrice) * 100);
 }
 
 export function getAllProducts(): Product[] {

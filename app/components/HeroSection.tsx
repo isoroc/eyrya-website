@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { ArrowRight, Star } from 'lucide-react';
-import { BRAND, MARKETPLACES, formatCount, formatPrice, getFeaturedProduct } from '@/lib/products';
+import { BRAND, formatCount, formatPrice, getFeaturedProduct, getPrimaryOffer } from '@/lib/products';
 
 // Server component: no state, no browser APIs, so nothing here needs to ship as
 // client JavaScript.
 export default function HeroSection() {
   const product = getFeaturedProduct();
+  // The hero headline shows the flagship listing (Amazon, 12-pack). Temu carries
+  // a 6-pack, so its price is not shown here.
+  const offer = getPrimaryOffer(product);
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-start overflow-hidden">
@@ -37,22 +40,24 @@ export default function HeroSection() {
           </p>
 
           <div className="mb-8 flex items-baseline gap-3">
-            <span className="text-4xl sm:text-5xl font-bold text-white font-sans">
-              {formatPrice(product.price)}
-            </span>
+            {offer.price !== null && (
+              <span className="text-4xl sm:text-5xl font-bold text-white font-sans">
+                {formatPrice(offer.price)}
+              </span>
+            )}
             <span className="bg-[#DC2626] text-white text-sm font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
-              {product.packSize} Pack
+              {offer.packSize} Pack
             </span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <Link
-              href={MARKETPLACES.amazon.url}
+              href={offer.url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#DC2626] text-white px-8 py-4 text-lg font-bold uppercase tracking-wider hover:bg-red-700 transition-colors duration-200 rounded-sm"
             >
-              SHOP ON AMAZON
+              SHOP ON {offer.name.toUpperCase()}
               <ArrowRight className="w-5 h-5" />
             </Link>
 
