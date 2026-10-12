@@ -41,11 +41,19 @@ const categories = [
 
 const ideas = [
   {
+    title: 'Custom Foam Fingers: The Complete Guide for Schools, Teams & Events',
+    excerpt: 'Everything you need to know about ordering custom foam fingers, from design and pricing to minimums and lead times.',
+    category: 'Wholesale',
+    slug: 'custom-foam-fingers-guide',
+    date: 'Sep 18, 2026',
+    readTime: '9 min',
+  },
+  {
     title: 'The Ultimate Game Day Checklist',
     excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, coolers to portable chairs.',
     category: 'Sports',
     slug: 'game-day-checklist',
-    date: 'Apr 3, 2026',
+    date: 'Aug 29, 2026',
     readTime: '6 min',
   },
   {
@@ -53,7 +61,7 @@ const ideas = [
     excerpt: 'Most foam fingers fall apart after one game. Here\'s how we fixed that problem.',
     category: 'Sports',
     slug: 'foam-finger-quality',
-    date: 'Apr 3, 2026',
+    date: 'Aug 7, 2026',
     readTime: '4 min',
   },
   {
@@ -61,7 +69,7 @@ const ideas = [
     excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
     category: 'Parties',
     slug: 'reusable-party-supplies',
-    date: 'Apr 3, 2026',
+    date: 'Jul 22, 2026',
     readTime: '5 min',
   },
   {
@@ -69,7 +77,7 @@ const ideas = [
     excerpt: 'Ordering for a school or team? Here\'s how to get the best deal on 50+ units.',
     category: 'Wholesale',
     slug: 'bulk-order-guide',
-    date: 'Apr 3, 2026',
+    date: 'Jun 30, 2026',
     readTime: '7 min',
   },
   {
@@ -77,7 +85,7 @@ const ideas = [
     excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesn\'t.',
     category: 'Outdoor',
     slug: 'camping-with-kids',
-    date: 'Apr 3, 2026',
+    date: 'Jun 8, 2026',
     readTime: '8 min',
   },
   {
@@ -85,7 +93,7 @@ const ideas = [
     excerpt: 'We tested 12 brands of party banners. Only 3 made it through a full birthday party.',
     category: 'Parties',
     slug: 'cheap-party-decorations',
-    date: 'Apr 3, 2026',
+    date: 'May 19, 2026',
     readTime: '6 min',
   },
 ];

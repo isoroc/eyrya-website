@@ -32,9 +32,15 @@
   </url>
   <url>
     <loc>https://www.eyrya.com/ideas/</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.eyrya.com/ideas/custom-foam-fingers-guide/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.eyrya.com/ideas/game-day-checklist/</loc>

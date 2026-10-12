@@ -5,25 +5,25 @@ import { ArrowRight } from 'lucide-react';
 
 const ideas = [
   {
+    title: 'Custom Foam Fingers: The Complete Guide for Schools, Teams & Events',
+    slug: 'custom-foam-fingers-guide',
+    excerpt: 'Everything you need to know about ordering custom foam fingers, from design and pricing to minimums and lead times.',
+    category: 'Wholesale',
+    date: 'Sep 18, 2026',
+  },
+  {
     title: 'The Ultimate Game Day Checklist',
     slug: 'game-day-checklist',
     excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, we have got you covered.',
     category: 'Sports',
-    date: 'Apr 3, 2026',
+    date: 'Aug 29, 2026',
   },
   {
-    title: 'Party Supplies That Actually Last',
-    slug: 'reusable-party-supplies',
-    excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
-    category: 'Parties',
-    date: 'Apr 3, 2026',
-  },
-  {
-    title: 'Bulk Orders: What You Need to Know',
-    slug: 'bulk-order-guide',
-    excerpt: 'Ordering for a school or team? Here is how to get the best deal on 50+ units.',
-    category: 'Wholesale',
-    date: 'Apr 3, 2026',
+    title: 'Why Our Foam Fingers Are Different',
+    slug: 'foam-finger-quality',
+    excerpt: 'Most foam fingers fall apart after one game. Here is how we built ours to last season after season.',
+    category: 'Sports',
+    date: 'Aug 7, 2026',
   },
 ];
 
