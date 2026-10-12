@@ -3,7 +3,7 @@ import { Mail, Clock } from 'lucide-react';
 import ContactForm from './ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact EYRYA® | Get in Touch for Foam Fingers & Party Supplies',
+  title: { absolute: 'Contact EYRYA® | Get in Touch for Foam Fingers & Party Supplies' },
   description: 'Contact EYRYA for product questions about foam fingers, party supplies, wholesale inquiries, or support. We reply within 24 hours.',
   keywords: 'EYRYA contact, contact EYRYA, EYRYA support, foam finger inquiry, wholesale foam fingers',
   alternates: {

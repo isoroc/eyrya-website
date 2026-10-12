@@ -1,29 +1,25 @@
-'use client';
+import { BRAND, formatCount, getFeaturedProduct } from '@/lib/products';
 
 const scenarios = [
   {
     title: 'Sports Events',
-    description: 'The original foam finger. 18 inches of pure team spirit. Over 50,000 sold to fans across the country.',
-    color: '#DC2626',
-    stat: '4.8/5 rating',
+    description: 'The original foam finger. 18 inches of pure team spirit, built to last season after season.',
+    stat: `${getFeaturedProduct().rating.toFixed(1)}/5 rating`,
   },
   {
     title: 'Birthday Parties',
-    description: 'Party supplies that dont look like you grabbed them at a gas station. Coordinated sets that actually match.',
-    color: '#DC2626',
-    stat: 'Same-day shipping',
+    description: 'Party supplies that don\u2019t look like you grabbed them at a gas station. Coordinated sets that actually match.',
+    stat: 'Ships in 24 hours',
   },
   {
     title: 'School Events',
     description: 'Bulk orders for pep rallies, field days, and fundraisers. Discounts on 50+ units.',
-    color: '#DC2626',
-    stat: '15% off 50+',
+    stat: '15-30% off 50+',
   },
   {
     title: 'Family Camping',
     description: 'Outdoor gear that fits in your car. No assembly required. Just unpack and enjoy.',
-    color: '#DC2626',
-    stat: 'Free returns',
+    stat: '30-day returns',
   },
 ];
 
@@ -36,27 +32,26 @@ export default function UseScenariosSection() {
             What People Use Them For
           </h2>
           <p className="text-gray-600">
-            Real products for real situations. Here's what our customers actually do with EYRYA gear.
+            Real products for real situations. Here&apos;s what our {formatCount(BRAND.productsSold)}+ customers
+            actually do with EYRYA gear.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {scenarios.map((scenario) => (
-            <div 
+            <div
               key={scenario.title}
               className="bg-white border border-gray-200 p-6 lg:p-8"
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-4 gap-3">
                 <h3 className="text-xl font-bold text-[#1a1a1a]">
                   {scenario.title}
                 </h3>
-                <span 
-                  className="text-xs font-bold px-2 py-1 bg-[#DC2626] text-white"
-                >
+                <span className="text-xs font-bold px-2 py-1 bg-[#DC2626] text-white whitespace-nowrap">
                   {scenario.stat}
                 </span>
               </div>
-              
+
               <p className="text-gray-600">
                 {scenario.description}
               </p>

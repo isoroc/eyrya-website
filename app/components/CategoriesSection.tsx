@@ -1,41 +1,5 @@
-'use client';
-
 import Link from 'next/link';
-
-const categories = [
-  {
-    name: 'Party Supplies',
-    description: 'Party essentials that actually work. Birthday banners, tableware, and decor that won\'t fall apart mid-celebration.',
-    color: '#DC2626',
-    bgColor: 'bg-white',
-    productCount: '12 products',
-    href: '/products?category=party-supplies',
-  },
-  {
-    name: 'Kids & Toys',
-    description: 'Toys kids actually play with. No gimmicks, no 5-minute wonders. Just solid fun that lasts.',
-    color: '#DC2626',
-    bgColor: 'bg-white',
-    productCount: '8 products',
-    href: '/products?category=toys-play',
-  },
-  {
-    name: 'Sports & Fan Gear',
-    description: 'Game day essentials. Foam fingers, banners, and noise makers that make you the loudest fan in the stadium.',
-    color: '#DC2626',
-    bgColor: 'bg-white',
-    productCount: '15 products',
-    href: '/products?category=sports-fan-gear',
-  },
-  {
-    name: 'Outdoor & Camping',
-    description: 'Camping gear that survives real trips. Tested on actual family vacations, not just photo shoots.',
-    color: '#DC2626',
-    bgColor: 'bg-white',
-    productCount: '6 products',
-    href: '/products?category=outdoor-fun',
-  },
-];
+import { CATEGORIES, productCountForCategory } from '@/lib/products';
 
 export default function CategoriesSection() {
   return (
@@ -51,29 +15,49 @@ export default function CategoriesSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {categories.map((category) => (
-            <Link key={category.name} href={category.href}>
-              <div className={`group ${category.bgColor} border border-gray-200 p-6 hover:border-[${category.color}] transition-colors h-full flex flex-col`}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-[#DC2626]">
-                    {category.name}
-                  </h3>
-                  <span className="text-xs font-medium text-gray-500">
-                    {category.productCount}
-                  </span>
+          {CATEGORIES.map((category) => {
+            const count = productCountForCategory(category.slug);
+
+            // No products yet: render a static tile instead of a link that
+            // lands on an empty listing.
+            if (count === 0) {
+              return (
+                <div key={category.slug} className="bg-white/60 border border-dashed border-gray-300 p-6 h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-gray-500">{category.name}</h3>
+                    <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
+                      Coming soon
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 flex-grow">{category.description}</p>
                 </div>
-                
-                <p className="text-sm text-gray-600 mb-6 flex-grow">
-                  {category.description}
-                </p>
-                
-                <div className="flex items-center text-sm font-semibold text-[#1a1a1a] group-hover:gap-3 gap-2 transition-all">
-                  Browse
-                  <span className="text-lg">→</span>
+              );
+            }
+
+            return (
+              <Link key={category.slug} href={`/products/category/${category.slug}/`}>
+                <div className="group bg-white border border-gray-200 p-6 hover:border-[#DC2626] transition-colors h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-[#DC2626]">
+                      {category.name}
+                    </h3>
+                    <span className="text-xs font-medium text-gray-500">
+                      {count} {count === 1 ? 'product' : 'products'}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-gray-600 mb-6 flex-grow">
+                    {category.description}
+                  </p>
+
+                  <div className="flex items-center text-sm font-semibold text-[#1a1a1a] group-hover:gap-3 gap-2 transition-all">
+                    Browse
+                    <span className="text-lg">→</span>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

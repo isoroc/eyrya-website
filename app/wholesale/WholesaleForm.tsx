@@ -49,6 +49,11 @@ export default function WholesaleForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Honeypot: hidden from humans and autofill, filled by naive bots. */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="wholesale-bot-field">Leave this field empty</label>
+            <input id="wholesale-bot-field" type="text" name="bot_field" tabIndex={-1} autoComplete="off" />
+          </div>
           {status === 'error' && (
             <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-sm">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />

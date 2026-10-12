@@ -1,15 +1,16 @@
 import { Metadata } from 'next';
+import { BRAND, formatCount } from '@/lib/products';
 
 export const metadata: Metadata = {
-  title: 'About EYRYA® | Premium Foam Fingers & Party Supplies Brand',
-  description: 'EYRYA makes premium EVA foam fingers and party supplies that actually last. Over 50,000 products sold across 20+ countries. No gimmicks, no dropshipping.',
+  title: { absolute: 'About EYRYA® | Premium Foam Fingers & Party Supplies Brand' },
+  description: `EYRYA makes premium EVA foam fingers and party supplies that actually last. Over ${formatCount(BRAND.productsSold)} products sold across ${BRAND.countriesShipped}+ countries. No gimmicks, no dropshipping.`,
   keywords: 'EYRYA about, EYRYA brand, foam finger company, party supplies brand, EVA foam finger manufacturer',
   alternates: {
     canonical: 'https://www.eyrya.com/about/',
   },
   openGraph: {
     title: 'About EYRYA - Premium Foam Fingers Brand',
-    description: 'EYRYA makes premium EVA foam fingers and party supplies. 50,000+ sold across 20+ countries.',
+    description: `EYRYA makes premium EVA foam fingers and party supplies. ${formatCount(BRAND.productsSold)}+ sold across ${BRAND.countriesShipped}+ countries.`,
     type: 'website',
     url: 'https://www.eyrya.com/about/',
     siteName: 'EYRYA',
@@ -25,10 +26,17 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About EYRYA - Premium Foam Fingers Brand',
-    description: 'EYRYA makes premium EVA foam fingers and party supplies. 50,000+ sold.',
+    description: `EYRYA makes premium EVA foam fingers and party supplies. ${formatCount(BRAND.productsSold)}+ sold.`,
     images: ['https://www.eyrya.com/images/og-image.png'],
   },
 };
+
+const stats = [
+  { value: `${Math.round(BRAND.productsSold / 1000)}K+`, label: 'Products sold', accent: true },
+  { value: BRAND.rating.toFixed(1), label: 'Average rating', accent: true },
+  { value: `${BRAND.countriesShipped}+`, label: 'Countries shipped', accent: true },
+  { value: '24h', label: 'Avg. response time', accent: false },
+];
 
 export default function AboutPage() {
   return (
@@ -43,9 +51,9 @@ export default function AboutPage() {
             no products that fall apart after one use.
           </p>
           <p className="text-gray-600 leading-relaxed">
-            Started in 2022, we have sold over 50,000 foam fingers and party supplies to customers 
-            across the US, UK, and Australia. Our products show up at tailgates, birthday parties, 
-            school events, and family camping trips.
+            Started in 2022, we have sold over {formatCount(BRAND.productsSold)} foam fingers and party
+            supplies to customers in {BRAND.countriesShipped}+ countries. Our products show up at
+            tailgates, birthday parties, school events, and family camping trips.
           </p>
         </div>
 
@@ -61,9 +69,9 @@ export default function AboutPage() {
           </div>
 
           <div className="bg-[#fafafa] p-8">
-            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we dont do</h2>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">What we don&apos;t do</h2>
             <ul className="space-y-3 text-gray-600">
-              <li>• Sell products we wouldnt use ourselves</li>
+              <li>• Sell products we wouldn&apos;t use ourselves</li>
               <li>• Make vague marketing claims</li>
               <li>• Hide behind complicated return policies</li>
               <li>• Spam you with emails</li>
@@ -75,25 +83,18 @@ export default function AboutPage() {
           <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">By the numbers</h2>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">50K+</div>
-              <div className="text-sm text-gray-600">Products sold</div>
-            </div>
-            
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">4.7</div>
-              <div className="text-sm text-gray-600">Average rating</div>
-            </div>
-            
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#DC2626] mb-1">20+</div>
-              <div className="text-sm text-gray-600">Countries shipped</div>
-            </div>
-            
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-1">24h</div>
-              <div className="text-sm text-gray-600">Avg. response time</div>
-            </div>
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <div
+                  className={`text-3xl md:text-4xl font-bold mb-1 ${
+                    stat.accent ? 'text-[#DC2626]' : 'text-[#1a1a1a]'
+                  }`}
+                >
+                  {stat.value}
+                </div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
 

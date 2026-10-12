@@ -6,10 +6,12 @@ import UseScenariosSection from './components/UseScenariosSection';
 import WhereToBuySection from './components/WhereToBuySection';
 import IdeasPreviewSection from './components/IdeasPreviewSection';
 import JsonLd from './components/JsonLd';
+import { BRAND, formatCount, getAllProducts, getFeaturedProduct } from '@/lib/products';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® | Premium Foam Fingers, Party Supplies & Outdoor Products',
-  description: 'Shop premium EVA foam fingers, LED party lights, and outdoor game kits. 50,000+ sold with 4.8-star rating. Free shipping on Amazon & Temu.',
+  // `absolute` keeps the root layout template from appending a second brand name.
+  title: { absolute: 'EYRYA® | Premium Foam Fingers, Party Supplies & Outdoor Products' },
+  description: `Shop premium EVA foam fingers, LED party lights, and outdoor game kits. ${formatCount(BRAND.productsSold)}+ sold with a ${getFeaturedProduct().rating.toFixed(1)}-star rating. Free shipping on Amazon & Temu.`,
   keywords: 'EYRYA, foam fingers, EVA foam finger, party supplies, sports fan gear, bulk foam fingers, outdoor games',
   alternates: {
     canonical: 'https://www.eyrya.com/',
@@ -44,16 +46,17 @@ export default function Home() {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "EYRYA - Foam Fingers, Party Supplies & Outdoor Products",
-        "description": "EYRYA offers premium EVA foam fingers, party supplies, and outdoor products. Trusted by 50,000+ customers.",
+        "description": "EYRYA offers premium EVA foam fingers, party supplies, and outdoor products.",
         "url": "https://www.eyrya.com/",
         "mainEntity": {
           "@type": "ItemList",
           "name": "EYRYA Products",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "EVA Foam Finger (12 Pack)", "url": "https://www.eyrya.com/products/eva-foam-finger/" },
-            { "@type": "ListItem", "position": 2, "name": "Party LED Lights Set", "url": "https://www.eyrya.com/products/party-led-lights/" },
-            { "@type": "ListItem", "position": 3, "name": "Outdoor Game Kit", "url": "https://www.eyrya.com/products/outdoor-game-kit/" },
-          ],
+          "itemListElement": getAllProducts().map((product, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": product.name,
+            "url": `${BRAND.siteUrl}/products/${product.slug}/`,
+          })),
         },
       }} />
       <HeroSection />

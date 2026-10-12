@@ -1,16 +1,21 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { ExternalLink, ShoppingBag, Truck, Shield } from 'lucide-react';
+import { BRAND, MARKETPLACES } from '@/lib/products';
 
 export const metadata: Metadata = {
-  title: 'Where to Buy EYRYA® | Shop Foam Fingers on Amazon & Temu',
-  description: 'Buy EYRYA foam fingers and party supplies on Amazon (Prime shipping) or Temu (best prices). Official stores with A-to-Z Guarantee.',
-  keywords: 'buy EYRYA, EYRYA Amazon, EYRYA Temu, buy foam fingers online, foam fingers Amazon, EVA foam finger store',
+  title: { absolute: 'Where to Buy EYRYA® | Shop Foam Fingers on Amazon & Temu' },
+  description:
+    'Buy EYRYA foam fingers and party supplies on Amazon (Prime shipping) or Temu. Official stores with A-to-Z Guarantee.',
+  keywords:
+    'buy EYRYA, EYRYA Amazon, EYRYA Temu, buy foam fingers online, foam fingers Amazon, EVA foam finger store',
   alternates: {
     canonical: 'https://www.eyrya.com/where-to-buy/',
   },
   openGraph: {
     title: 'Where to Buy EYRYA - Amazon & Temu',
-    description: 'Buy EYRYA foam fingers and party supplies on Amazon or Temu. Official stores with fast shipping.',
+    description:
+      'Buy EYRYA foam fingers and party supplies on Amazon or Temu. Official stores with fast shipping.',
     type: 'website',
     url: 'https://www.eyrya.com/where-to-buy/',
     siteName: 'EYRYA',
@@ -31,28 +36,12 @@ export const metadata: Metadata = {
   },
 };
 
-const AmazonLogo = () => (
-  <img src="/images/Amazon_logo.svg" alt="Amazon" className="h-8 w-auto" />
-);
+const platformLogos: Record<string, { src: string; alt: string; height: string }> = {
+  Amazon: { src: '/images/Amazon_logo.svg', alt: 'Amazon', height: 'h-8' },
+  Temu: { src: '/images/Temu_logo.svg', alt: 'Temu', height: 'h-6' },
+};
 
-const TemuLogo = () => (
-  <img src="/images/Temu_logo.svg" alt="Temu" className="h-6 w-auto" />
-);
-
-const platforms = [
-  {
-    name: 'Amazon',
-    description: 'Official Amazon Store. Prime fast shipping. 4.6/5 stars.',
-    url: 'https://www.amazon.com/shops/eyrya',
-    features: ['Free Prime shipping', 'Easy returns', 'A-to-Z Guarantee'],
-  },
-  {
-    name: 'Temu',
-    description: 'Official Temu Store. Budget-friendly. Exclusive discounts.',
-    url: 'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html',
-    features: ['Best prices', 'Worldwide shipping', 'Flash deals'],
-  },
-];
+const platforms = [MARKETPLACES.amazon, MARKETPLACES.temu];
 
 export default function WhereToBuyPage() {
   return (
@@ -68,29 +57,31 @@ export default function WhereToBuyPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-16">
-          {platforms.map((platform) => (
-            <a
-              key={platform.name}
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block border border-gray-200 p-8 hover:border-[#1a1a1a] transition-colors"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center">
-                  {platform.name === 'Amazon' ? <AmazonLogo /> : <TemuLogo />}
+          {platforms.map((platform) => {
+            const logo = platformLogos[platform.name];
+            return (
+              <a
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border border-gray-200 p-8 hover:border-[#1a1a1a] transition-colors"
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`${logo.height} [&>img]:brightness-0 [&>img]:invert`}>
+                    <img src={logo.src} alt={logo.alt} className="h-full w-auto" />
+                  </div>
+
+                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-[#1a1a1a] transition-colors" />
                 </div>
-                
-                <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-[#1a1a1a] transition-colors" />
-              </div>
 
-              <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
-                {platform.name}
-              </h2>
+                <h2 className="text-xl font-bold text-[#1a1a1a] mb-2">
+                  {platform.name}
+                </h2>
 
-              <p className="text-gray-600 mb-6">
-                {platform.description}
-              </p>
+                <p className="text-gray-600 mb-6">
+                  {platform.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2">
                   {platform.features.map((feature) => (
@@ -103,17 +94,18 @@ export default function WhereToBuyPage() {
                   ))}
                 </div>
 
-              <div className="mt-6 flex items-center gap-2 text-[#1a1a1a] font-semibold">
-                Shop Now
-                <ExternalLink className="w-4 h-4" />
-              </div>
-            </a>
-          ))}
+                <div className="mt-6 flex items-center gap-2 text-[#1a1a1a] font-semibold">
+                  Shop Now
+                  <ExternalLink className="w-4 h-4" />
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         <div className="border-t border-gray-200 pt-16">
           <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">Why buy from these platforms?</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center mb-4">
@@ -128,7 +120,10 @@ export default function WhereToBuyPage() {
                 <Truck className="w-5 h-5 text-[#DC2626]" />
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Fast shipping</h3>
-              <p className="text-gray-600 text-sm">Most orders ship within 24 hours. Prime members get free 2-day shipping.</p>
+              <p className="text-gray-600 text-sm">
+                Most orders ship within 24 hours. Prime members get free 2-day shipping on Amazon, and
+                free shipping on orders over ${BRAND.freeShippingThreshold}.
+              </p>
             </div>
 
             <div>
@@ -136,7 +131,9 @@ export default function WhereToBuyPage() {
                 <Shield className="w-5 h-5 text-[#DC2626]" />
               </div>
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Protected purchases</h3>
-              <p className="text-gray-600 text-sm">Full refund guarantee on both platforms. No questions asked returns.</p>
+              <p className="text-gray-600 text-sm">
+                30-day returns on unused items. Defective products get a full refund or replacement.
+              </p>
             </div>
           </div>
         </div>
@@ -147,12 +144,12 @@ export default function WhereToBuyPage() {
             <p className="text-gray-400 mb-6">
               Need 50+ units? Get wholesale pricing direct from us.
             </p>
-            <a 
-              href="/wholesale"
+            <Link
+              href="/wholesale/"
               className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
             >
               View wholesale options
-            </a>
+            </Link>
           </div>
         </div>
       </div>

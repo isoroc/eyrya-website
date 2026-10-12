@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Privacy Policy | How We Protect Your Data',
+  title: { absolute: 'EYRYA® Privacy Policy | How We Protect Your Data' },
   description: 'EYRYA privacy policy. Learn how we collect, use, and protect your personal information.',
   keywords: 'EYRYA privacy policy, data protection, personal information',
   alternates: {
@@ -46,10 +46,10 @@ export default function PrivacyPage() {
               Information We Collect
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              We collect information you provide directly, such as when you contact us, place an order through our partners (Amazon, Temu), or subscribe to our updates. This may include your name, email address, shipping address, and payment information.
+              We collect the information you submit through the forms on this website, such as your name, email address, company name, and the content of your message. If you contact us about a wholesale order we may also record the quantities and business type you tell us about.
             </p>
             <p className="text-gray-600 leading-relaxed">
-              We also collect certain information automatically when you visit our website, including your IP address, browser type, device information, and pages visited.
+              Purchases are completed on Amazon or Temu, not on this website. We never receive or store your payment card details. The marketplace you buy from handles your order, shipping address, and payment under its own privacy policy.
             </p>
           </section>
 
@@ -60,19 +60,15 @@ export default function PrivacyPage() {
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
-                Process and fulfill your orders
+                Respond to your inquiries and support requests
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
-                Communicate with you about products, orders, and promotions
+                Communicate with you about a wholesale quote or order
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
                 Improve our website and product offerings
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
-                Respond to your inquiries and support requests
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
@@ -95,7 +91,7 @@ export default function PrivacyPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
-                Marketplace partners (Amazon, Temu) to fulfill your orders
+                Marketplace partners (Amazon, Temu), when you contact us about an order placed there
               </li>
               <li className="flex items-start gap-2">
                 <span className="w-1.5 h-1.5 bg-[#DC2626] mt-2 flex-shrink-0"></span>
@@ -109,7 +105,7 @@ export default function PrivacyPage() {
               Cookies and Tracking
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              We use cookies and similar technologies to analyze site traffic, personalize content, and improve your experience. You can control cookies through your browser settings.
+              This website does not set advertising or analytics cookies today. Our hosting provider may process standard server logs, such as your IP address and the URL you requested, in order to serve the site and protect it from abuse. If we add analytics or cookies in the future we will update this policy and, where the law requires it, ask for your consent first.
             </p>
           </section>
 

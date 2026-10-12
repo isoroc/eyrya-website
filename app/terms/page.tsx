@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Terms of Service | Website & Product Terms',
+  title: { absolute: 'EYRYA® Terms of Service | Website & Product Terms' },
   description: 'EYRYA terms of service. Read our terms before using the website or purchasing products.',
   keywords: 'EYRYA terms of service, website terms, product terms',
   alternates: {

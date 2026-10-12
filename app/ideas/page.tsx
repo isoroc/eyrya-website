@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
+import IdeasView from './IdeasView';
 
 export const metadata: Metadata = {
-  title: 'EYRYA® Ideas | Foam Finger Tips, Party Planning & Game Day Guides',
+  title: { absolute: 'Foam Finger Tips, Party Planning & Game Day Guides | EYRYA' },
   description: 'Expert tips on foam finger quality, game day checklists, party planning, bulk ordering, and outdoor activities. Real advice from EYRYA.',
   keywords: 'foam finger tips, party planning guide, game day checklist, bulk foam finger order, outdoor activities, EYRYA ideas',
   alternates: {
@@ -31,130 +31,6 @@ export const metadata: Metadata = {
   },
 };
 
-const categories = [
-  { name: 'All', slug: 'all' },
-  { name: 'Parties', slug: 'party-ideas' },
-  { name: 'Sports', slug: 'sports-events' },
-  { name: 'Outdoor', slug: 'outdoor-activities' },
-  { name: 'Wholesale', slug: 'wholesale' },
-];
-
-const ideas = [
-  {
-    title: 'Custom Foam Fingers: The Complete Guide for Schools, Teams & Events',
-    excerpt: 'Everything you need to know about ordering custom foam fingers, from design and pricing to minimums and lead times.',
-    category: 'Wholesale',
-    slug: 'custom-foam-fingers-guide',
-    date: 'Sep 18, 2026',
-    readTime: '9 min',
-  },
-  {
-    title: 'The Ultimate Game Day Checklist',
-    excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, coolers to portable chairs.',
-    category: 'Sports',
-    slug: 'game-day-checklist',
-    date: 'Aug 29, 2026',
-    readTime: '6 min',
-  },
-  {
-    title: 'Why Our Foam Fingers Are Different',
-    excerpt: 'Most foam fingers fall apart after one game. Here\'s how we fixed that problem.',
-    category: 'Sports',
-    slug: 'foam-finger-quality',
-    date: 'Aug 7, 2026',
-    readTime: '4 min',
-  },
-  {
-    title: 'Party Supplies That Actually Last',
-    excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
-    category: 'Parties',
-    slug: 'reusable-party-supplies',
-    date: 'Jul 22, 2026',
-    readTime: '5 min',
-  },
-  {
-    title: 'Bulk Orders: What You Need to Know',
-    excerpt: 'Ordering for a school or team? Here\'s how to get the best deal on 50+ units.',
-    category: 'Wholesale',
-    slug: 'bulk-order-guide',
-    date: 'Jun 30, 2026',
-    readTime: '7 min',
-  },
-  {
-    title: 'Camping with Kids: A Survival Guide',
-    excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesn\'t.',
-    category: 'Outdoor',
-    slug: 'camping-with-kids',
-    date: 'Jun 8, 2026',
-    readTime: '8 min',
-  },
-  {
-    title: 'The Problem with Cheap Party Decorations',
-    excerpt: 'We tested 12 brands of party banners. Only 3 made it through a full birthday party.',
-    category: 'Parties',
-    slug: 'cheap-party-decorations',
-    date: 'May 19, 2026',
-    readTime: '6 min',
-  },
-];
-
 export default function IdeasPage() {
-  return (
-    <div className="pt-24 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-3">
-            From the Blog
-          </h1>
-          <p className="text-gray-600">
-            Tips, tricks, and real talk about party planning and sports events.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((category) => (
-            <Link
-              key={category.slug}
-              href={`/ideas?category=${category.slug}`}
-              className="px-4 py-2 text-sm font-medium border border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white transition-colors rounded-sm"
-            >
-              {category.name}
-            </Link>
-          ))}
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ideas.map((idea) => (
-            <Link
-              key={idea.slug}
-              href={`/ideas/${idea.slug}`}
-              className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors flex flex-col rounded-sm"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
-                  {idea.category}
-                </span>
-                <span className="text-xs text-gray-400">{idea.date}</span>
-              </div>
-
-              <h2 className="text-xl font-bold text-[#1a1a1a] mb-3 group-hover:text-[#DC2626] transition-colors">
-                {idea.title}
-              </h2>
-              
-              <p className="text-gray-600 mb-6 flex-grow">
-                {idea.excerpt}
-              </p>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-400">{idea.readTime} read</span>
-                <span className="text-sm font-semibold text-[#1a1a1a] group-hover:gap-2 gap-1 transition-all inline-flex items-center">
-                  Read →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+  return <IdeasView />;
 }

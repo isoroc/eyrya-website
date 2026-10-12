@@ -1,32 +1,9 @@
-'use client';
-
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { getFeaturedPosts, getPostCategory } from '@/lib/posts';
 
-const ideas = [
-  {
-    title: 'Custom Foam Fingers: The Complete Guide for Schools, Teams & Events',
-    slug: 'custom-foam-fingers-guide',
-    excerpt: 'Everything you need to know about ordering custom foam fingers, from design and pricing to minimums and lead times.',
-    category: 'Wholesale',
-    date: 'Sep 18, 2026',
-  },
-  {
-    title: 'The Ultimate Game Day Checklist',
-    slug: 'game-day-checklist',
-    excerpt: 'Everything you need for the perfect tailgate. From foam fingers to face paint, we have got you covered.',
-    category: 'Sports',
-    date: 'Aug 29, 2026',
-  },
-  {
-    title: 'Why Our Foam Fingers Are Different',
-    slug: 'foam-finger-quality',
-    excerpt: 'Most foam fingers fall apart after one game. Here is how we built ours to last season after season.',
-    category: 'Sports',
-    date: 'Aug 7, 2026',
-  },
-];
-
+// Server component: the featured posts come from lib/posts.ts, the same module
+// the ideas listing and the article pages render from.
 export default function IdeasPreviewSection() {
   return (
     <section className="py-16 lg:py-24 bg-[#F4F1EA]">
@@ -42,7 +19,7 @@ export default function IdeasPreviewSection() {
           </div>
 
           <Link
-            href="/ideas"
+            href="/ideas/"
             className="inline-flex items-center gap-2 text-[#1a1a1a] font-semibold hover:gap-3 transition-all mt-4 md:mt-0"
           >
             Read all posts
@@ -51,24 +28,24 @@ export default function IdeasPreviewSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {ideas.map((idea) => (
-            <Link key={idea.title} href={`/ideas/${idea.slug}`}>
+          {getFeaturedPosts().map((post) => (
+            <Link key={post.slug} href={`/ideas/${post.slug}/`}>
               <div className="group border border-gray-200 p-6 hover:border-[#DC2626] transition-colors h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#DC2626]">
-                    {idea.category}
+                    {getPostCategory(post.categorySlug)?.name ?? ''}
                   </span>
-                  <span className="text-xs text-gray-400">{idea.date}</span>
+                  <span className="text-xs text-gray-400">{post.date}</span>
                 </div>
 
                 <h3 className="text-lg font-bold text-[#1a1a1a] mb-3 group-hover:text-[#DC2626] transition-colors">
-                  {idea.title}
+                  {post.title}
                 </h3>
-                
+
                 <p className="text-gray-600 text-sm mb-4 flex-grow">
-                  {idea.excerpt}
+                  {post.excerpt}
                 </p>
-                
+
                 <span className="text-sm font-semibold text-[#1a1a1a] group-hover:gap-3 gap-2 transition-all inline-flex items-center">
                   Read more
                   <span>→</span>

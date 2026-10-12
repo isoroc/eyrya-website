@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import { getPopulatedCategories } from '@/lib/products';
 
 const footerLinks = {
-  products: [
-    { name: 'Party Supplies', href: '/products?category=party-supplies' },
-    { name: 'Sports Fan Gear', href: '/products?category=sports-fan-gear' },
-    { name: 'Outdoor \u0026 Camping', href: '/products?category=outdoor-fun' },
-  ],
+  // Derived from the catalogue so a category link can never point at an empty
+  // listing or a slug that does not exist.
+  products: getPopulatedCategories().map((category) => ({
+    name: category.name,
+    href: `/products/category/${category.slug}/`,
+  })),
   company: [
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },

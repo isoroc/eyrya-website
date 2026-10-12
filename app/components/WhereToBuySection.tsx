@@ -1,32 +1,13 @@
-'use client';
-
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
+import { MARKETPLACES } from '@/lib/products';
 
-const AmazonLogo = () => (
-  <div className="h-8 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/images/Amazon_logo.svg" alt="Amazon" className="h-full w-auto" />
-  </div>
-);
+const platformLogos: Record<string, { src: string; alt: string; height: string }> = {
+  Amazon: { src: '/images/Amazon_logo.svg', alt: 'Amazon', height: 'h-8' },
+  Temu: { src: '/images/Temu_logo.svg', alt: 'Temu', height: 'h-6' },
+};
 
-const TemuLogo = () => (
-  <div className="h-6 w-auto [&>img]:brightness-0 [&>img]:invert">
-    <img src="/images/Temu_logo.svg" alt="Temu" className="h-full w-auto" />
-  </div>
-);
-
-const platforms = [
-  {
-    name: 'Amazon',
-    description: 'Official Amazon Store. Prime fast shipping. 4.6/5 stars.',
-    url: 'https://www.amazon.com/shops/eyrya',
-  },
-  {
-    name: 'Temu',
-    description: 'Official Temu Store. Budget-friendly. Exclusive discounts.',
-    url: 'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html',
-  },
-];
+const platforms = [MARKETPLACES.amazon, MARKETPLACES.temu];
 
 export default function WhereToBuySection() {
   return (
@@ -42,28 +23,31 @@ export default function WhereToBuySection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 max-w-3xl">
-          {platforms.map((platform) => (
-            <Link
-              key={platform.name}
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group block"
-            >
-              <div className="bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-colors">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-start gap-3">
-                    {platform.name === 'Amazon' ? <AmazonLogo /> : <div className="mb-2"><TemuLogo /></div>}
+          {platforms.map((platform) => {
+            const logo = platformLogos[platform.name];
+            return (
+              <Link
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <div className="bg-white/5 border border-white/10 p-6 hover:bg-white/10 transition-colors h-full">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`${logo.height} [&>img]:brightness-0 [&>img]:invert`}>
+                      <img src={logo.src} alt={logo.alt} className="h-full w-auto" />
+                    </div>
+                    <ExternalLink className="w-4 h-4 text-gray-500" />
                   </div>
-                  <ExternalLink className="w-4 h-4 text-gray-500" />
+
+                  <p className="text-gray-400 text-sm">
+                    {platform.description}
+                  </p>
                 </div>
-                
-                <p className="text-gray-400 text-sm">
-                  {platform.description}
-                </p>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl">

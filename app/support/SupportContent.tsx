@@ -1,57 +1,26 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  MessageCircleQuestion, 
-  Truck, 
-  RotateCcw, 
-  Search, 
-  Check, 
-  ChevronDown 
+import {
+  MessageCircleQuestion,
+  Truck,
+  RotateCcw,
+  Search,
+  Check,
+  ChevronDown,
 } from 'lucide-react';
+import { SUPPORT_FAQ } from '@/lib/faq';
+import { BRAND } from '@/lib/products';
 
-const faqItems = [
-  {
-    question: "How long does shipping take?",
-    answer: "Standard shipping within the US typically takes 3-5 business days. Express shipping is available for 1-2 business day delivery. International shipping times vary by destination but generally take 7-14 business days."
-  },
-  {
-    question: "Do you ship internationally?",
-    answer: "Yes! We ship to over 20 countries worldwide. International shipping rates are calculated at checkout based on your location and order weight. Please note that customs duties and taxes may apply depending on your country's regulations."
-  },
-  {
-    question: "What is your return policy?",
-    answer: "We offer a 30-day return policy for unused items in their original packaging. If your product arrives damaged or defective, we'll provide a full refund or replacement at no extra cost. Simply contact our support team to initiate a return."
-  },
-  {
-    question: "How can I track my order?",
-    answer: "Once your order ships, you'll receive an email with a tracking number and link. You can also track your order using our Track Order tool on this page. If you can't find your tracking information, contact us with your order number."
-  },
-  {
-    question: "Can I order in bulk for an event?",
-    answer: "Absolutely! We offer special pricing for bulk orders of 50+ units. Whether you're planning a corporate event, school function, or sports team gathering, contact us at wholesale@eyrya.com for custom quotes and volume discounts."
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, and Google Pay. All transactions are securely processed with industry-standard encryption."
-  },
-  {
-    question: "My product arrived damaged, what do I do?",
-    answer: "We're sorry to hear that! Please take photos of the damaged item and packaging, then contact our support team at support@eyrya.com. We'll arrange for a replacement or full refund within 24 hours. No need to return the damaged item."
-  },
-  {
-    question: "How do I know if a product is in stock?",
-    answer: "All products displayed on our website are currently in stock. If an item becomes unavailable during your order process, you'll be notified immediately. For large quantity orders, we recommend contacting us first to confirm availability."
-  }
-];
+type RequestStatus = 'idle' | 'loading' | 'sent' | 'error';
 
 export default function SupportContent() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [orderNumber, setOrderNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [trackStatus, setTrackStatus] = useState<'idle' | 'loading' | 'found' | 'not_found'>('idle');
-  const [trackError, setTrackError] = useState('');
   const [message, setMessage] = useState('');
+  const [requestStatus, setRequestStatus] = useState<RequestStatus>('idle');
+  const [requestError, setRequestError] = useState('');
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -59,8 +28,8 @@ export default function SupportContent() {
 
   const handleTrackOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    setTrackStatus('loading');
-    setTrackError('');
+    setRequestStatus('loading');
+    setRequestError('');
 
     try {
       const formData = new FormData();
@@ -73,15 +42,20 @@ export default function SupportContent() {
         body: formData,
       });
 
-      if (res.ok) {
-        setTrackStatus('found');
-      } else {
-        setTrackStatus('not_found');
-        setTrackError('We couldn\'t find an order with those details. Please check your order number and email, or contact support@eyrya.com.');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Request failed');
       }
-    } catch {
-      setTrackStatus('not_found');
-      setTrackError('Something went wrong. Please email support@eyrya.com directly.');
+
+      // This form emails our support team; it does not query a live order
+      // database, so we say exactly that rather than claiming the order was found.
+      setRequestStatus('sent');
+    } catch (error) {
+      console.error('Support request failed:', error);
+      setRequestStatus('error');
+      setRequestError(
+        "We couldn't submit that request. Please check your details or email support@eyrya.com directly.",
+      );
     }
   };
 
@@ -89,25 +63,28 @@ export default function SupportContent() {
     <>
       <div id="faq" className="mb-16 scroll-mt-20">
         <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
-              <MessageCircleQuestion className="w-5 h-5 text-[#DC2626]" />
-            </div>
-          <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">Frequently Asked Questions</h2>
+          <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
+            <MessageCircleQuestion className="w-5 h-5 text-[#DC2626]" />
+          </div>
+          <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">
+            Frequently Asked Questions
+          </h2>
         </div>
-        
+
         <div className="space-y-4">
-          {faqItems.map((item, index) => (
-            <div 
-              key={index}
-              className="border border-gray-200 bg-[#fafafa]"
-            >
+          {SUPPORT_FAQ.map((item, index) => (
+            <div key={item.question} className="border border-gray-200 bg-[#fafafa]">
               <button
+                type="button"
                 onClick={() => toggleFaq(index)}
+                aria-expanded={openFaqIndex === index}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
               >
-                <span className="font-['Teko'] uppercase font-semibold text-[#1a1a1a] pr-4">{item.question}</span>
-                <ChevronDown 
-                  className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+                <span className="font-['Teko'] uppercase font-semibold text-[#1a1a1a] pr-4">
+                  {item.question}
+                </span>
+                <ChevronDown
+                  className={`w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0 ${
                     openFaqIndex === index ? 'rotate-180' : ''
                   }`}
                 />
@@ -130,7 +107,7 @@ export default function SupportContent() {
             </div>
             <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">Shipping Information</h2>
           </div>
-          
+
           <ul className="space-y-4 text-gray-600">
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
@@ -142,11 +119,11 @@ export default function SupportContent() {
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>International shipping to 20+ countries</span>
+              <span>International shipping to {BRAND.countriesShipped}+ countries</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
-              <span>Free shipping on orders over $50</span>
+              <span>Free shipping on Amazon orders over ${BRAND.freeShippingThreshold}</span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="w-5 h-5 text-[#DC2626] flex-shrink-0 mt-0.5" />
@@ -162,7 +139,7 @@ export default function SupportContent() {
             </div>
             <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">Returns Policy</h2>
           </div>
-          
+
           <div className="space-y-4 text-gray-600">
             <p>
               We want you to be completely satisfied with your purchase. If you&apos;re not happy, we&apos;re here to help.
@@ -195,36 +172,46 @@ export default function SupportContent() {
             <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
               <Search className="w-5 h-5 text-[#DC2626]" />
             </div>
-            <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">Track Your Order</h2>
+            <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a]">Request Order Tracking</h2>
           </div>
-          
+
           <p className="text-gray-600 mb-8">
-            Enter your order number and email address to check the status of your shipment.
+            Send us your order number and email address and our team will reply with the tracking
+            details for your shipment, usually within 24 hours.
           </p>
 
-          {trackStatus === 'found' ? (
+          {requestStatus === 'sent' ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Order Found!</h3>
-              <p className="text-gray-600 mb-6">Your order is on its way. Check your email for tracking details.</p>
+              <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Request received</h3>
+              <p className="text-gray-600 mb-6">
+                We&apos;ll email tracking details for order {orderNumber} to {email} within 24 hours.
+              </p>
               <button
+                type="button"
                 onClick={() => {
-                  setTrackStatus('idle');
+                  setRequestStatus('idle');
                   setOrderNumber('');
                   setEmail('');
+                  setMessage('');
                 }}
                 className="text-[#DC2626] font-medium hover:underline"
               >
-                Track another order
+                Send another request
               </button>
             </div>
           ) : (
             <form onSubmit={handleTrackOrder} className="space-y-6">
-              {trackStatus === 'not_found' && trackError && (
+              {/* Honeypot: hidden from humans and autofill, filled by naive bots. */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="support-bot-field">Leave this field empty</label>
+                <input id="support-bot-field" type="text" name="bot_field" tabIndex={-1} autoComplete="off" />
+              </div>
+              {requestStatus === 'error' && requestError && (
                 <div className="p-4 bg-yellow-50 border border-yellow-200 text-yellow-800">
-                  {trackError}
+                  {requestError}
                 </div>
               )}
 
@@ -239,7 +226,7 @@ export default function SupportContent() {
                   onChange={(e) => setOrderNumber(e.target.value)}
                   required
                   className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  placeholder="e.g., EYR-12345"
+                  placeholder="e.g., 123-4567890-1234567"
                 />
               </div>
 
@@ -274,18 +261,18 @@ export default function SupportContent() {
 
               <button
                 type="submit"
-                disabled={trackStatus === 'loading'}
+                disabled={requestStatus === 'loading'}
                 className="w-full flex items-center justify-center gap-2 bg-[#DC2626] text-white px-8 py-4 font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed rounded-sm"
               >
-                {trackStatus === 'loading' ? (
+                {requestStatus === 'loading' ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-sm animate-spin" />
-                    Tracking...
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Sending...
                   </>
                 ) : (
                   <>
                     <Search className="w-5 h-5" />
-                    Track Order
+                    Request tracking info
                   </>
                 )}
               </button>

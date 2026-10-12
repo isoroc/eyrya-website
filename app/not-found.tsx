@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { Home, Search } from 'lucide-react';
+import { getAllProducts } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: 'Page Not Found | EYRYA',
@@ -47,15 +48,15 @@ export default function NotFound() {
         <div className="mt-16 border-t border-gray-200 pt-12">
           <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">Popular Pages</h2>
           <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
-            <Link href="/products/eva-foam-finger" className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors">
-              <h3 className="font-semibold text-[#1a1a1a]">EVA Foam Finger (12 Pack)</h3>
-            </Link>
-            <Link href="/products/party-led-lights" className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors">
-              <h3 className="font-semibold text-[#1a1a1a]">Party LED Lights</h3>
-            </Link>
-            <Link href="/products/outdoor-game-kit" className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors">
-              <h3 className="font-semibold text-[#1a1a1a]">Outdoor Game Kit</h3>
-            </Link>
+            {getAllProducts().map((product) => (
+              <Link
+                key={product.slug}
+                href={`/products/${product.slug}/`}
+                className="p-4 bg-white border border-gray-200 hover:border-[#DC2626] transition-colors"
+              >
+                <h3 className="font-semibold text-[#1a1a1a]">{product.name}</h3>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

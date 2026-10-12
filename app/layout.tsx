@@ -11,27 +11,32 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import JsonLd from "./components/JsonLd";
+import { BRAND, formatCount, getFeaturedProduct } from "@/lib/products";
+
+const siteUrl = BRAND.siteUrl;
+const ogImage = `${siteUrl}/images/og-image.png`;
+const featured = getFeaturedProduct();
 
 export const metadata: Metadata = {
   title: {
     default: "EYRYA® | Foam Fingers, Party Supplies & Outdoor Products",
     template: "%s | EYRYA",
   },
-  description: "EYRYA creates premium EVA foam fingers, party supplies, and outdoor products. 50,000+ sold. Shop on Amazon & Temu with fast shipping.",
+  description: `EYRYA creates premium EVA foam fingers, party supplies, and outdoor products. ${formatCount(BRAND.productsSold)}+ sold. Shop on Amazon & Temu with fast shipping.`,
   keywords: ["foam fingers", "EVA foam finger", "party supplies", "sports fan gear", "outdoor games", "bulk foam fingers", "EYRYA"],
   alternates: {
-    canonical: "https://www.eyrya.com/",
+    canonical: `${siteUrl}/`,
   },
   openGraph: {
     title: "EYRYA - Premium Foam Fingers & Party Supplies",
-    description: "Shop premium EVA foam fingers, LED party lights, and outdoor game kits. 50,000+ sold with 4.8-star rating.",
+    description: `Shop premium EVA foam fingers, LED party lights, and outdoor game kits. ${formatCount(BRAND.productsSold)}+ sold with a ${featured.rating.toFixed(1)}-star rating.`,
     type: "website",
-    url: "https://www.eyrya.com/",
+    url: `${siteUrl}/`,
     siteName: "EYRYA",
     locale: "en_US",
     images: [
       {
-        url: "https://www.eyrya.com/images/og-image.png",
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: "EYRYA - Premium Foam Fingers & Party Supplies",
@@ -41,8 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "EYRYA - Premium Foam Fingers & Party Supplies",
-    description: "Shop premium EVA foam fingers, LED party lights, and outdoor game kits. 50,000+ sold.",
-    images: ["https://www.eyrya.com/images/og-image.png"],
+    description: `Shop premium EVA foam fingers, LED party lights, and outdoor game kits. ${formatCount(BRAND.productsSold)}+ sold.`,
+    images: [ogImage],
   },
 };
 
@@ -60,9 +65,9 @@ export default function RootLayout({
         <JsonLd data={{
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "EYRYA",
-          "url": "https://www.eyrya.com/",
-          "logo": "https://www.eyrya.com/images/logo.svg",
+          "name": BRAND.name,
+          "url": `${siteUrl}/`,
+          "logo": `${siteUrl}/images/logo.svg`,
           "description": "EYRYA creates premium EVA foam fingers, party supplies, and outdoor products.",
           "contactPoint": {
             "@type": "ContactPoint",
@@ -73,8 +78,8 @@ export default function RootLayout({
         <JsonLd data={{
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "EYRYA",
-          "url": "https://www.eyrya.com/",
+          "name": BRAND.name,
+          "url": `${siteUrl}/`,
         }} />
       </body>
     </html>

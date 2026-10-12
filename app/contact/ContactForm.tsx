@@ -13,11 +13,6 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const inquiry = formData.get('inquiry') as string;
-    const message = formData.get('message') as string;
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -31,7 +26,8 @@ export default function ContactForm() {
 
       setStatus('success');
       form.reset();
-    } catch (err) {
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
       setStatus('error');
     }
   };
@@ -44,7 +40,7 @@ export default function ContactForm() {
             <Check className="w-8 h-8 text-green-600" />
           </div>
           <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Message sent!</h3>
-          <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
+          <p className="text-gray-600 mb-6">We&apos;ll get back to you within 24 hours.</p>
           <button
             onClick={() => setStatus('idle')}
             className="text-[#DC2626] font-medium hover:underline"
@@ -54,6 +50,11 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Honeypot: hidden from humans and autofill, filled by naive bots. */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="contact-bot-field">Leave this field empty</label>
+            <input id="contact-bot-field" type="text" name="bot_field" tabIndex={-1} autoComplete="off" />
+          </div>
           {status === 'error' && (
             <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 p-3 rounded-sm">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />

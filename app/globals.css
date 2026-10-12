@@ -1,14 +1,11 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #F4F1EA;
   --foreground: #1A1A1A;
   --accent: #DC2626;
-  --coral: #FF6B6B;
-  --teal: #4ECDC4;
-  --cream: #FFE66D;
-  --slate: #2C3E50;
-  --stone: #95A5A6;
+  --muted: #E8E4DB;
 }
 
 @theme inline {
@@ -19,35 +16,13 @@
   --font-teko: 'Teko', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* The brand has a single, fixed light palette (#F4F1EA on #1A1A1A).
+   Do not add a prefers-color-scheme block here: most components hardcode
+   light-mode colors, so a dark override makes headings unreadable. */
 
 body {
   background: var(--background);
   color: var(--foreground);
-}
-
-/* Custom utilities */
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-  }
-
-  .bg-gradient-brand {
-    background: linear-gradient(135deg, #FF6B9D 0%, #FF8C42 50%, #FFD93D 100%);
-  }
-
-  .btn-primary {
-    @apply bg-[#DC2626] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-[#B91C1C] transition-colors rounded-sm;
-  }
-
-  .btn-secondary {
-    @apply bg-[#1A1A1A] text-white px-8 py-4 font-bold uppercase tracking-wide hover:bg-black transition-colors rounded-sm;
-  }
 }
 
 /* Smooth scrolling */
@@ -55,20 +30,12 @@ html {
   scroll-behavior: smooth;
 }
 
-nextjs-preflight-error {
-  display: none !important;
-}
-
-__nextjs_error_overlay {
-  display: none !important;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #E8E4DB;
+  background: var(--muted);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -78,10 +45,4 @@ __nextjs_error_overlay {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #B91C1C;
-}
-
-#nextjs-overlay,
-.nextjs-error-overlay,
-[data-nextjs-error-overlay] {
-  display: none !important;
 }
