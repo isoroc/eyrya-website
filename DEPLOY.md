@@ -6,9 +6,9 @@
 
 | 层 | 技术 | 部署位置 | 说明 |
 |----|------|----------|------|
-| 前台网站 | Next.js（`output: 'export'`） | Cloudflare Pages | 纯静态，22 个预渲染页面 |
+| 前台网站 | Next.js（`output: 'export'`） | Cloudflare Pages | 纯静态，25 个预渲染页面 |
 | 表单处理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/contact.js`、`functions/api/wholesale.js`、`functions/api/support.js` → Resend 邮件 |
-| 后台管理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/admin/*` → D1/R2 |
+| 后台管理 | Cloudflare Pages Functions | Cloudflare Pages | `functions/api/admin/*` → D1/R2，由 `_middleware.js` 鉴权 |
 | 后台界面 | 静态 HTML | Cloudflare Pages | `public/admin.html`（纯静态，无需 Workers 部署） |
 
 > 注意：`output: 'export'` 禁用了 Next.js API Routes，所有服务端逻辑走 `functions/`（Cloudflare Pages Functions）。
@@ -42,12 +42,16 @@ Cloudflare Pages 项目设置 → Environment variables：
 
 | 变量名 | 说明 | 必需 |
 |--------|------|------|
-| `RESEND_API_KEY` | Resend API 密钥，三个表单发邮件用 | 是 |
-| `CONTACT_EMAIL` | 联系表单收件邮箱 | 是 |
-| `WHOLESALE_EMAIL` | 批发询价表单收件邮箱 | 是 |
-| `SUPPORT_EMAIL` | 支持表单收件邮箱 | 是 |
+| `ADMIN_TOKEN` | 后台令牌，`/api/admin/*` 全部依赖它；未设置时整个后台 API 返回 503 | 是 |
+| `IMAGES_CUSTOM_DOMAIN` | 对外提供 R2 图片的域名，缺失时上传接口返回 503 | 是 |
+| `RESEND_API_KEY` | Resend API 密钥，三个公开表单发邮件用 | 是 |
+| `CONTACT_EMAIL` | 联系表单收件邮箱（默认 support@eyrya.com） | 否 |
+| `WHOLESALE_EMAIL` | 批发询价表单收件邮箱（默认 wholesale@eyrya.com） | 否 |
+| `SUPPORT_EMAIL` | 支持表单收件邮箱（默认 support@eyrya.com） | 否 |
 
-> 三个 API 函数：`functions/api/contact.js`、`functions/api/wholesale.js`、`functions/api/support.js` 都依赖 `RESEND_API_KEY`。
+> `DB`（D1）与 `IMAGES_BUCKET`（R2）是 **Binding**，在 Settings → Functions runtime → Bindings 中配置，不是环境变量。完整清单见 `.env.example`。
+
+> 三个公开表单端点：`functions/api/contact.js`、`functions/api/wholesale.js`、`functions/api/support.js` 都依赖 `RESEND_API_KEY`。
 
 ## 4. 架构详图
 
@@ -55,7 +59,7 @@ Cloudflare Pages 项目设置 → Environment variables：
 Browser
   │
   ├── https://www.eyrya.com/         → Next.js 静态页面（Cloudflare Pages）
-  │                                    outputs: dist/（22 个预渲染 HTML）
+  │                                    outputs: dist/（25 个预渲染 HTML）
   │
   ├── https://www.eyrya.com/contact/  → 静态页面（Next.js）
   │                                    表单 POST → /api/contact
@@ -74,15 +78,23 @@ wrangler.toml 配置 D1/R2 绑定，供 Pages Functions 使用。
 
 ## 5. SEO 文件
 
-构建产物已包含：
+`sitemap.xml` 与 `robots.txt` 都由代码生成，不要在 `public/` 下手工维护：
 
-- `public/sitemap.xml` — 19 个页面
-- `public/robots.txt` — 指向 sitemap
+- `app/sitemap.ts` — 从 `lib/products.ts` / `lib/posts.ts` 派生全部 URL，页面增删后自动同步
+- `app/robots.ts` — 允许全站抓取，并 Disallow `/admin.html`
+
+构建后可在 `dist/sitemap.xml`、`dist/robots.txt` 检查产物。
 
 ## 常见问题
 
 **Q: 表单提交失败？**
-A: 检查 Cloudflare Pages 环境变量中是否配置了 `RESEND_API_KEY`、`CONTACT_EMAIL`、`WHOLESALE_EMAIL`、`SUPPORT_EMAIL`。
+A: 检查 Cloudflare Pages 环境变量中是否配置了 `RESEND_API_KEY`（以及可选的三个收件邮箱）。端点返回 502 表示 Resend 拒绝或不可达，返回 503 表示服务端未配置密钥。
+
+**Q: 后台登录提示 "That token was rejected"？**
+A: 说明 `ADMIN_TOKEN` 与输入的 token 不一致。提示 "no ADMIN_TOKEN configured on the server" 则说明环境变量没配。
+
+**Q: 后台图片上传返回 503？**
+A: 缺少 `IMAGES_CUSTOM_DOMAIN`，或 `IMAGES_BUCKET` 绑定未配置。
 
 **Q: 样式丢失？**
 A: 确认 `next.config.ts` 中 `distDir: 'dist'` 存在。

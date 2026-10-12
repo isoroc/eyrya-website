@@ -1,59 +1,93 @@
 // Admin API - 图片上传 (R2)
+// Auth is enforced by functions/api/admin/_middleware.js before this handler runs.
+import { jsonResponse } from './_auth.js';
+
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024; // 5 MB
+
+// Only the object keys this endpoint creates may be deleted: a flat list of
+// safe filename characters directly under products/.
+const KEY_PATTERN = /^products\/[A-Za-z0-9._-]+$/;
+
+function ascii(bytes, offset, length) {
+  return String.fromCharCode(...bytes.slice(offset, offset + length));
+}
+
+// The declared Content-Type is attacker-controlled, so identify the format from
+// the file's own magic bytes instead. SVG is deliberately unsupported: an SVG
+// served from the images domain can execute script in the visitor's browser.
+const SIGNATURES = [
+  { ext: 'jpg', mime: 'image/jpeg', match: (b) => b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff },
+  { ext: 'png', mime: 'image/png', match: (b) => b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47 },
+  { ext: 'gif', mime: 'image/gif', match: (b) => ascii(b, 0, 4) === 'GIF8' },
+  { ext: 'webp', mime: 'image/webp', match: (b) => ascii(b, 0, 4) === 'RIFF' && ascii(b, 8, 4) === 'WEBP' },
+  { ext: 'avif', mime: 'image/avif', match: (b) => ascii(b, 4, 4) === 'ftyp' && ['avif', 'avis'].includes(ascii(b, 8, 4)) },
+];
+
+function detectImage(bytes) {
+  return SIGNATURES.find((signature) => signature.match(bytes)) || null;
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
+
+  if (!env.IMAGES_BUCKET) {
+    console.error('IMAGES_BUCKET is not bound.');
+    return jsonResponse({ error: 'Image storage is not configured' }, 503);
+  }
+
+  if (!env.IMAGES_CUSTOM_DOMAIN) {
+    console.error('IMAGES_CUSTOM_DOMAIN is not configured; uploads cannot return a usable URL.');
+    return jsonResponse({ error: 'Image storage is not configured' }, 503);
+  }
+
+  let formData;
   try {
-    const formData = await request.formData();
-    const file = formData.get('file');
-    
-    if (!file || !(file instanceof File)) {
-      return new Response(JSON.stringify({ error: 'No file uploaded' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    formData = await request.formData();
+  } catch (error) {
+    console.error('Upload: could not parse multipart body.', error);
+    return jsonResponse({ error: 'Expected a multipart/form-data upload' }, 400);
+  }
+
+  const file = formData.get('file');
+  if (!file || typeof file === 'string') {
+    return jsonResponse({ error: 'No file uploaded' }, 400);
+  }
+
+  if (file.size > MAX_UPLOAD_BYTES) {
+    return jsonResponse({ error: `File is too large (limit ${MAX_UPLOAD_BYTES / 1024 / 1024} MB)` }, 413);
+  }
+
+  if (file.size === 0) {
+    return jsonResponse({ error: 'File is empty' }, 400);
+  }
+
+  try {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const detected = detectImage(bytes);
+    if (!detected) {
+      return jsonResponse({ error: 'Unsupported image format. Use JPEG, PNG, GIF, WebP, or AVIF.' }, 415);
     }
-    
-    // 验证文件类型
-    if (!file.type.startsWith('image/')) {
-      return new Response(JSON.stringify({ error: 'Only image files allowed' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-    
-    // 生成唯一文件名
+
     const timestamp = Date.now();
-    const random = Math.random().toString(36).substring(7);
-    const extension = file.name.split('.').pop();
-    const key = `products/${timestamp}-${random}.${extension}`;
-    
-    // 上传到 R2
-    await env.IMAGES_BUCKET.put(key, file.stream(), {
+    const random = Math.random().toString(36).slice(2, 10);
+    const key = `products/${timestamp}-${random}.${detected.ext}`;
+
+    await env.IMAGES_BUCKET.put(key, bytes, {
       httpMetadata: {
-        contentType: file.type,
+        // The sniffed MIME type, never the client-supplied one.
+        contentType: detected.mime,
+        cacheControl: 'public, max-age=31536000, immutable',
       },
     });
-    
-    // 生成图片 URL
-    // 如果有自定义域名: https://images.eyrya.com/key
-    // 否则使用 R2 默认 URL
-    const imageUrl = env.IMAGES_CUSTOM_DOMAIN 
-      ? `https://${env.IMAGES_CUSTOM_DOMAIN}/${key}`
-      : `https://${env.IMAGES_BUCKET}.r2.cloudflarestorage.com/${key}`;
-    
-    return new Response(JSON.stringify({
+
+    return jsonResponse({
       success: true,
-      url: imageUrl,
-      key: key
-    }), {
-      headers: { 'Content-Type': 'application/json' }
+      url: `https://${env.IMAGES_CUSTOM_DOMAIN}/${key}`,
+      key,
     });
   } catch (error) {
     console.error('Upload error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return jsonResponse({ error: 'Upload failed' }, 500);
   }
 }
 
@@ -61,51 +95,37 @@ export async function onRequestDelete(context) {
   const { request, env } = context;
   const url = new URL(request.url);
   const key = url.searchParams.get('key');
-  
-  if (!key) {
-    return new Response(JSON.stringify({ error: 'Key is required' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' }
-    });
+
+  if (!env.IMAGES_BUCKET) {
+    console.error('IMAGES_BUCKET is not bound.');
+    return jsonResponse({ error: 'Image storage is not configured' }, 503);
   }
-  
+
+  if (!key) {
+    return jsonResponse({ error: 'Key is required' }, 400);
+  }
+
+  // Without this check the endpoint is an arbitrary-object delete against the
+  // whole bucket.
+  if (!KEY_PATTERN.test(key)) {
+    return jsonResponse({ error: 'Invalid key' }, 400);
+  }
+
   try {
+    const existing = await env.IMAGES_BUCKET.head(key);
+    if (!existing) {
+      return jsonResponse({ error: 'Image not found' }, 404);
+    }
+
     await env.IMAGES_BUCKET.delete(key);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Image deleted successfully'
-    }), {
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return jsonResponse({ success: true, message: 'Image deleted successfully' });
   } catch (error) {
     console.error('Delete error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return jsonResponse({ error: 'Delete failed' }, 500);
   }
 }
 
-export async function onRequest(context) {
-  const { request } = context;
-  
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
-  
-  switch (request.method) {
-    case 'POST':
-      return onRequestPost(context);
-    case 'DELETE':
-      return onRequestDelete(context);
-    default:
-      return new Response('Method not allowed', { status: 405 });
-  }
+export async function onRequest() {
+  // OPTIONS and auth are handled by _middleware.js.
+  return jsonResponse({ error: 'Method not allowed' }, 405, { Allow: 'POST, DELETE, OPTIONS' });
 }

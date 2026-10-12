@@ -33,6 +33,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but keep the placeholder-only template in version control: it documents the
+# variables the Pages Functions actually read. Never put real values in it.
+!.env.example
 
 # vercel
 .vercel

@@ -1,123 +1,97 @@
+// Cloudflare Pages Function - Wholesale Inquiry Handler
+// Sends through the Resend API.
+import {
+  EMAIL_PATTERN,
+  escapeHtml,
+  escapeHtmlMultiline,
+  isHoneypotTripped,
+  jsonResponse,
+  preflightResponse,
+  readFormFields,
+  readMultipart,
+  resolveCorsHeaders,
+  sanitizeSubject,
+  sendResendEmail,
+} from '../_shared.js';
+
+const FIELD_LIMITS = {
+  name: 120,
+  company: 160,
+  email: 254,
+  quantity: 40,
+  businessType: 60,
+  message: 5000,
+};
+
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
-  try {
-    const formData = await request.formData();
-    const data = {
-      name: formData.get('name'),
-      company: formData.get('company'),
-      email: formData.get('email'),
-      quantity: formData.get('quantity'),
-      businessType: formData.get('businessType'),
-      message: formData.get('message'),
-    };
+  const corsHeaders = resolveCorsHeaders(request);
 
-    if (!data.name || !data.company || !data.email || !data.quantity) {
-      return new Response(
-        JSON.stringify({ error: 'Please fill in all required fields' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return new Response(
-        JSON.stringify({ error: 'Please enter a valid email address' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    if (!env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not set');
-      return new Response(
-        JSON.stringify({ error: 'Server configuration error' }),
-        { 
-          status: 500, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'EYRYA Website <wholesale@eyrya.com>',
-        to: env.WHOLESALE_EMAIL || 'wholesale@eyrya.com',
-        subject: `Wholesale Inquiry: ${data.quantity} units from ${data.company}`,
-        reply_to: data.email,
-        html: `
-          <h2>New Wholesale Inquiry</h2>
-          <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
-          <p><strong>Company:</strong> ${escapeHtml(data.company)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-          <p><strong>Quantity:</strong> ${escapeHtml(data.quantity)}</p>
-          <p><strong>Business Type:</strong> ${escapeHtml(data.businessType || 'N/A')}</p>
-          <p><strong>Message:</strong></p>
-          <p>${escapeHtml(data.message || '').replace(/\n/g, '<br>')}</p>
-        `,
-      }),
-    });
-
-    if (!res.ok) {
-      const error = await res.text();
-      console.error('Resend error:', error);
-      throw new Error('Failed to send email');
-    }
-
-    return new Response(
-      JSON.stringify({ success: true, message: 'Request sent! We will reply within 24 hours.' }),
-      { 
-        status: 200, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
-
-  } catch (error) {
-    console.error('Wholesale form error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send request. Please email wholesale@eyrya.com directly.' }),
-      { 
-        status: 500, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
+  const formData = await readMultipart(request);
+  if (!formData) {
+    return jsonResponse({ error: 'Expected a multipart/form-data submission' }, 400, corsHeaders);
   }
+
+  if (isHoneypotTripped(formData)) {
+    console.warn('Wholesale form: honeypot field was filled; dropping submission.');
+    return jsonResponse({ success: true, message: 'Request sent! We will reply within 24 hours.' }, 200, corsHeaders);
+  }
+
+  const { values, errors } = readFormFields(formData, FIELD_LIMITS);
+  if (errors.length > 0) {
+    return jsonResponse({ error: 'Validation failed', details: errors }, 400, corsHeaders);
+  }
+
+  if (!values.name || !values.company || !values.email || !values.quantity) {
+    return jsonResponse({ error: 'Please fill in all required fields' }, 400, corsHeaders);
+  }
+
+  if (!EMAIL_PATTERN.test(values.email)) {
+    return jsonResponse({ error: 'Please enter a valid email address' }, 400, corsHeaders);
+  }
+
+  const result = await sendResendEmail(env, {
+    from: 'EYRYA Website <wholesale@eyrya.com>',
+    to: env.WHOLESALE_EMAIL || 'wholesale@eyrya.com',
+    subject: sanitizeSubject(`Wholesale Inquiry: ${values.quantity} units from ${values.company}`),
+    reply_to: values.email,
+    html: `
+      <h2>New Wholesale Inquiry</h2>
+      <p><strong>Name:</strong> ${escapeHtml(values.name)}</p>
+      <p><strong>Company:</strong> ${escapeHtml(values.company)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(values.email)}</p>
+      <p><strong>Quantity:</strong> ${escapeHtml(values.quantity)}</p>
+      <p><strong>Business Type:</strong> ${escapeHtml(values.businessType || 'N/A')}</p>
+      <p><strong>Message:</strong></p>
+      <p>${escapeHtmlMultiline(values.message || '')}</p>
+    `,
+  }, 'Wholesale form');
+
+  if (!result.ok) {
+    const message = result.status === 503
+      ? 'Server configuration error'
+      : 'Failed to send request. Please email wholesale@eyrya.com directly.';
+    return jsonResponse({ error: message }, result.status, corsHeaders);
+  }
+
+  return jsonResponse(
+    { success: true, message: 'Request sent! We will reply within 24 hours.' },
+    200,
+    corsHeaders,
+  );
 }
 
 export async function onRequest(context) {
-  if (context.request.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
-  
-  if (context.request.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
-  }
-  
-  return onRequestPost(context);
-}
+  const { request } = context;
+  const corsHeaders = resolveCorsHeaders(request);
 
-function escapeHtml(text) {
-  if (!text) return '';
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  if (request.method === 'OPTIONS') {
+    return preflightResponse(corsHeaders);
+  }
+
+  if (request.method !== 'POST') {
+    return jsonResponse({ error: 'Method not allowed' }, 405, { ...corsHeaders, Allow: 'POST, OPTIONS' });
+  }
+
+  return onRequestPost(context);
 }

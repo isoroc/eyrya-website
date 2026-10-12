@@ -1,120 +1,87 @@
-// Cloudflare Pages Function - Support / Order Tracking Form Handler
-// Uses Resend API to send emails
+// Cloudflare Pages Function - Support / Order Tracking Request Handler
+// Sends through the Resend API.
+import {
+  EMAIL_PATTERN,
+  escapeHtml,
+  escapeHtmlMultiline,
+  isHoneypotTripped,
+  jsonResponse,
+  preflightResponse,
+  readFormFields,
+  readMultipart,
+  resolveCorsHeaders,
+  sanitizeSubject,
+  sendResendEmail,
+} from '../_shared.js';
+
+const FIELD_LIMITS = {
+  orderNumber: 60,
+  email: 254,
+  message: 5000,
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+  const corsHeaders = resolveCorsHeaders(request);
 
-  try {
-    const formData = await request.formData();
-    const data = {
-      orderNumber: formData.get('orderNumber'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-    };
-
-    if (!data.orderNumber || !data.email) {
-      return new Response(
-        JSON.stringify({ error: 'Please fill in all required fields' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return new Response(
-        JSON.stringify({ error: 'Please enter a valid email address' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    if (!env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not set');
-      return new Response(
-        JSON.stringify({ error: 'Server configuration error' }),
-        {
-          status: 500,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'EYRYA Website <support@eyrya.com>',
-        to: env.SUPPORT_EMAIL || 'support@eyrya.com',
-        subject: `Order Tracking Request: ${data.orderNumber}`,
-        reply_to: data.email,
-        html: `
-          <h2>Support Request</h2>
-          <p><strong>Order Number:</strong> ${escapeHtml(data.orderNumber)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-          <p><strong>Message:</strong></p>
-          <p>${escapeHtml(data.message || '').replace(/\n/g, '<br>')}</p>
-        `,
-      }),
-    });
-
-    if (!res.ok) {
-      const error = await res.text();
-      console.error('Resend error:', error);
-      throw new Error('Failed to send email');
-    }
-
-    return new Response(
-      JSON.stringify({ success: true }),
-      {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-
-  } catch (error) {
-    console.error('Support form error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to submit request. Please email support@eyrya.com directly.' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+  const formData = await readMultipart(request);
+  if (!formData) {
+    return jsonResponse({ error: 'Expected a multipart/form-data submission' }, 400, corsHeaders);
   }
+
+  if (isHoneypotTripped(formData)) {
+    console.warn('Support form: honeypot field was filled; dropping submission.');
+    return jsonResponse({ success: true }, 200, corsHeaders);
+  }
+
+  const { values, errors } = readFormFields(formData, FIELD_LIMITS);
+  if (errors.length > 0) {
+    return jsonResponse({ error: 'Validation failed', details: errors }, 400, corsHeaders);
+  }
+
+  if (!values.orderNumber || !values.email) {
+    return jsonResponse({ error: 'Please fill in all required fields' }, 400, corsHeaders);
+  }
+
+  if (!EMAIL_PATTERN.test(values.email)) {
+    return jsonResponse({ error: 'Please enter a valid email address' }, 400, corsHeaders);
+  }
+
+  const result = await sendResendEmail(env, {
+    from: 'EYRYA Website <support@eyrya.com>',
+    to: env.SUPPORT_EMAIL || 'support@eyrya.com',
+    subject: sanitizeSubject(`Order Tracking Request: ${values.orderNumber}`),
+    reply_to: values.email,
+    html: `
+      <h2>Support Request</h2>
+      <p><strong>Order Number:</strong> ${escapeHtml(values.orderNumber)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(values.email)}</p>
+      <p><strong>Message:</strong></p>
+      <p>${escapeHtmlMultiline(values.message || '')}</p>
+    `,
+  }, 'Support form');
+
+  if (!result.ok) {
+    const message = result.status === 503
+      ? 'Server configuration error'
+      : 'Failed to submit request. Please email support@eyrya.com directly.';
+    return jsonResponse({ error: message }, result.status, corsHeaders);
+  }
+
+  return jsonResponse({ success: true }, 200, corsHeaders);
 }
 
 export async function onRequest(context) {
-  if (context.request.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
+  const { request } = context;
+  const corsHeaders = resolveCorsHeaders(request);
+
+  if (request.method === 'OPTIONS') {
+    return preflightResponse(corsHeaders);
   }
 
-  if (context.request.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+  if (request.method !== 'POST') {
+    return jsonResponse({ error: 'Method not allowed' }, 405, { ...corsHeaders, Allow: 'POST, OPTIONS' });
   }
 
   return onRequestPost(context);
-}
-
-function escapeHtml(text) {
-  if (!text) return '';
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
 }

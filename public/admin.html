@@ -312,8 +312,23 @@
   <div id="app"></div>
 
   <script>
-    let token = localStorage.getItem('admin_token');
-    const ADMIN_PASSWORD = 'eyrya2024'; // Change this!
+    const TOKEN_STORAGE_KEY = 'eyrya_admin_token';
+    // The only valid credential is the server-side ADMIN_TOKEN secret, checked by
+    // functions/api/admin/_middleware.js on every request. The browser never
+    // decides on its own whether a token is valid.
+    let token = sessionStorage.getItem(TOKEN_STORAGE_KEY);
+    let pendingNotice = '';
+
+    async function apiFetch(url, options = {}) {
+      const headers = new Headers(options.headers || {});
+      if (token) headers.set('Authorization', `Bearer ${token}`);
+      const res = await fetch(url, { ...options, headers });
+      if (res.status === 401) {
+        logout('Your session expired. Please sign in again.');
+        throw new Error('Unauthorized');
+      }
+      return res;
+    }
 
     let currentTab = 'products';
     let uploadedImages = [];
@@ -372,23 +387,51 @@
         app.innerHTML = `
           <div class="login-form">
             <h1>EYRYA Admin</h1>
+            <p style="color:#666;font-size:14px;margin-bottom:16px;text-align:center;">
+              Sign in with the Admin API token.
+            </p>
+            ${pendingNotice ? `<div style="background:#ffe5e5;color:#b42318;border:1px solid #fda29b;padding:10px 12px;border-radius:4px;margin-bottom:15px;font-size:14px;">${escapeHtml(pendingNotice)}</div>` : ''}
             <form id="loginForm">
-              <input type="password" id="password" placeholder="Password" required>
-              <button type="submit">Login</button>
+              <input type="password" id="password" placeholder="Admin API token" autocomplete="current-password" required>
+              <button type="submit">Sign in</button>
             </form>
           </div>
         `;
 
-        document.getElementById('loginForm').onsubmit = (e) => {
+        document.getElementById('loginForm').onsubmit = async (e) => {
           e.preventDefault();
-          const password = document.getElementById('password').value;
-          if (password === ADMIN_PASSWORD) {
-            token = 'logged_in';
-            localStorage.setItem('admin_token', token);
+          const candidate = document.getElementById('password').value.trim();
+          if (!candidate) return;
+
+          // The server is the only authority on whether a token is valid, so
+          // verify it before persisting anything.
+          try {
+            const res = await fetch('/api/admin/products', {
+              headers: { 'Authorization': `Bearer ${candidate}` },
+            });
+            if (res.status === 401) {
+              pendingNotice = 'That token was rejected.';
+              render();
+              return;
+            }
+            if (res.status === 503) {
+              pendingNotice = 'The Admin API has no ADMIN_TOKEN configured on the server.';
+              render();
+              return;
+            }
+            if (!res.ok) {
+              pendingNotice = `Sign-in failed (HTTP ${res.status}).`;
+              render();
+              return;
+            }
+            token = candidate;
+            sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
+            pendingNotice = '';
             render();
-          } else {
-            showMessage('Wrong password', true);
-            alert('Wrong password');
+          } catch (error) {
+            console.error('Sign-in failed:', error);
+            pendingNotice = 'Could not reach the server.';
+            render();
           }
         };
         return;
@@ -398,7 +441,7 @@
         <div class="container">
           <div class="header">
             <h1>EYRYA Admin</h1>
-            <button onclick="logout()">Logout</button>
+            <button data-action="logout">Logout</button>
           </div>
           <div id="feedback" style="display:none;padding:12px 16px;margin-bottom:20px;border-radius:8px;"></div>
           <div class="tabs">
@@ -415,9 +458,10 @@
       renderCurrentTab();
     }
 
-    function logout() {
+    function logout(notice = '') {
       token = null;
-      localStorage.removeItem('admin_token');
+      pendingNotice = notice;
+      sessionStorage.removeItem(TOKEN_STORAGE_KEY);
       render();
     }
 
@@ -720,7 +764,7 @@
 
     async function loadProducts() {
       try {
-        const res = await fetch('/api/admin/products');
+        const res = await apiFetch('/api/admin/products');
         const products = await res.json();
         const tbody = document.getElementById('productsTable');
         if (!tbody) return;
@@ -742,8 +786,8 @@
               <td>${product.sold ? Number(product.sold).toLocaleString() : '0'}</td>
               <td><span class="status ${escapeHtml(product.status)}">${escapeHtml(product.status)}</span></td>
               <td class="actions">
-                <button class="btn-edit" onclick="editProduct('${escapeHtml(product.slug)}')">Edit</button>
-                <button class="btn-delete" onclick="deleteProduct('${escapeHtml(product.slug)}')">Delete</button>
+                <button class="btn-edit" data-action="edit-product" data-slug="${escapeHtml(product.slug)}">Edit</button>
+                <button class="btn-delete" data-action="delete-product" data-slug="${escapeHtml(product.slug)}">Delete</button>
               </td>
             </tr>
           `;
@@ -756,7 +800,7 @@
 
     async function loadCategories() {
       try {
-        const res = await fetch('/api/admin/categories');
+        const res = await apiFetch('/api/admin/categories');
         const categories = await res.json();
         loadedCategories = Array.isArray(categories) ? categories : [];
 
@@ -774,8 +818,8 @@
                 <td><span class="status ${escapeHtml(category.status || 'active')}">${escapeHtml(category.status || 'active')}</span></td>
                 <td>${Number(category.product_count || 0)}</td>
                 <td class="actions">
-                  <button class="btn-edit" onclick="editCategory('${escapeHtml(category.slug)}')">Edit</button>
-                  <button class="btn-delete" onclick="deleteCategory('${escapeHtml(category.slug)}')">Delete</button>
+                  <button class="btn-edit" data-action="edit-category" data-slug="${escapeHtml(category.slug)}">Edit</button>
+                  <button class="btn-delete" data-action="delete-category" data-slug="${escapeHtml(category.slug)}">Delete</button>
                 </td>
               </tr>
             `).join('');
@@ -873,7 +917,7 @@
 
     async function editProduct(slug) {
       try {
-        const res = await fetch(`/api/admin/products?slug=${encodeURIComponent(slug)}`);
+        const res = await apiFetch(`/api/admin/products?slug=${encodeURIComponent(slug)}`);
         const product = await res.json();
         if (!res.ok) throw new Error(product.error || 'Failed to load product');
 
@@ -932,7 +976,7 @@
       if (!confirm('Delete this product?')) return;
 
       try {
-        const res = await fetch(`/api/admin/products?slug=${encodeURIComponent(slug)}`, {
+        const res = await apiFetch(`/api/admin/products?slug=${encodeURIComponent(slug)}`, {
           method: 'DELETE'
         });
         const result = await res.json();
@@ -970,7 +1014,7 @@
       if (!confirm('Delete this category?')) return;
 
       try {
-        const res = await fetch(`/api/admin/categories?slug=${encodeURIComponent(slug)}`, {
+        const res = await apiFetch(`/api/admin/categories?slug=${encodeURIComponent(slug)}`, {
           method: 'DELETE'
         });
         const result = await res.json();
@@ -1028,7 +1072,7 @@
         const isEdit = Boolean(document.getElementById('productId').value);
 
         try {
-          const res = await fetch(`/api/admin/products${isEdit ? `?slug=${encodeURIComponent(data.slug)}` : ''}`, {
+          const res = await apiFetch(`/api/admin/products${isEdit ? `?slug=${encodeURIComponent(data.slug)}` : ''}`, {
             method: isEdit ? 'PUT' : 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -1056,7 +1100,7 @@
         const isEdit = Boolean(document.getElementById('categoryId').value);
 
         try {
-          const res = await fetch(`/api/admin/categories${isEdit ? `?slug=${encodeURIComponent(data.slug)}` : ''}`, {
+          const res = await apiFetch(`/api/admin/categories${isEdit ? `?slug=${encodeURIComponent(data.slug)}` : ''}`, {
             method: isEdit ? 'PUT' : 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -1088,7 +1132,7 @@
         const formData = new FormData();
         formData.append('file', file);
         try {
-          const res = await fetch('/api/admin/upload', {
+          const res = await apiFetch('/api/admin/upload', {
             method: 'POST',
             body: formData
           });
@@ -1109,6 +1153,32 @@
     document.addEventListener('click', (event) => {
       if (event.target.classList.contains('modal')) {
         event.target.classList.remove('active');
+        return;
+      }
+
+      // Row actions carry their slug in a data attribute instead of an inline
+      // onclick handler, so a slug can never be parsed as JavaScript.
+      const trigger = event.target.closest('[data-action]');
+      if (!trigger) return;
+      const slug = trigger.getAttribute('data-slug') || '';
+      switch (trigger.getAttribute('data-action')) {
+        case 'edit-product':
+          editProduct(slug);
+          break;
+        case 'delete-product':
+          deleteProduct(slug);
+          break;
+        case 'edit-category':
+          editCategory(slug);
+          break;
+        case 'delete-category':
+          deleteCategory(slug);
+          break;
+        case 'logout':
+          logout();
+          break;
+        default:
+          break;
       }
     });
 

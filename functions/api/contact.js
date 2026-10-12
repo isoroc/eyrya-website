@@ -1,127 +1,96 @@
 // Cloudflare Pages Function - Contact Form Handler
-// Uses Resend API to send emails
+// Sends through the Resend API.
+import {
+  EMAIL_PATTERN,
+  escapeHtml,
+  escapeHtmlMultiline,
+  isHoneypotTripped,
+  jsonResponse,
+  preflightResponse,
+  readFormFields,
+  readMultipart,
+  resolveCorsHeaders,
+  sanitizeSubject,
+  sendResendEmail,
+} from '../_shared.js';
+
+const FIELD_LIMITS = {
+  name: 120,
+  email: 254,
+  inquiry: 80,
+  message: 5000,
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
-  try {
-    const formData = await request.formData();
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      inquiry: formData.get('inquiry'),
-      message: formData.get('message'),
-    };
+  const corsHeaders = resolveCorsHeaders(request);
 
-    // 验证必填字段
-    if (!data.name || !data.email || !data.message) {
-      return new Response(
-        JSON.stringify({ error: 'Please fill in all required fields' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    // 邮箱格式验证
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return new Response(
-        JSON.stringify({ error: 'Please enter a valid email address' }),
-        { 
-          status: 400, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    // 检查环境变量
-    if (!env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not set');
-      return new Response(
-        JSON.stringify({ error: 'Server configuration error' }),
-        { 
-          status: 500, 
-          headers: { 'Content-Type': 'application/json' } 
-        }
-      );
-    }
-
-    // 使用 Resend 发送邮件
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'EYRYA Website <contact@eyrya.com>',
-        to: env.CONTACT_EMAIL || 'support@eyrya.com',
-        subject: `Contact Form: ${data.inquiry || 'General Inquiry'} from ${data.name}`,
-        reply_to: data.email,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
-          <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-          <p><strong>Type:</strong> ${escapeHtml(data.inquiry || 'N/A')}</p>
-          <p><strong>Message:</strong></p>
-          <p>${escapeHtml(data.message).replace(/\n/g, '<br>')}</p>
-        `,
-      }),
-    });
-
-    if (!res.ok) {
-      const error = await res.text();
-      console.error('Resend error:', error);
-      throw new Error('Failed to send email');
-    }
-
-    return new Response(
-      JSON.stringify({ success: true, message: 'Message sent successfully! We will reply soon.' }),
-      { 
-        status: 200, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
-
-  } catch (error) {
-    console.error('Contact form error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to send message. Please try again or email support@eyrya.com directly.' }),
-      { 
-        status: 500, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
+  const formData = await readMultipart(request);
+  if (!formData) {
+    return jsonResponse({ error: 'Expected a multipart/form-data submission' }, 400, corsHeaders);
   }
+
+  // Silently accept honeypot hits so bots do not learn they were filtered.
+  if (isHoneypotTripped(formData)) {
+    console.warn('Contact form: honeypot field was filled; dropping submission.');
+    return jsonResponse({ success: true, message: 'Message sent successfully! We will reply soon.' }, 200, corsHeaders);
+  }
+
+  const { values, errors } = readFormFields(formData, FIELD_LIMITS);
+  if (errors.length > 0) {
+    return jsonResponse({ error: 'Validation failed', details: errors }, 400, corsHeaders);
+  }
+
+  if (!values.name || !values.email || !values.message) {
+    return jsonResponse({ error: 'Please fill in all required fields' }, 400, corsHeaders);
+  }
+
+  if (!EMAIL_PATTERN.test(values.email)) {
+    return jsonResponse({ error: 'Please enter a valid email address' }, 400, corsHeaders);
+  }
+
+  const result = await sendResendEmail(env, {
+    from: 'EYRYA Website <contact@eyrya.com>',
+    to: env.CONTACT_EMAIL || 'support@eyrya.com',
+    // sanitizeSubject strips CR/LF and caps the length so the subject cannot be
+    // used to inject extra mail headers.
+    subject: sanitizeSubject(`Contact Form: ${values.inquiry || 'General Inquiry'} from ${values.name}`),
+    reply_to: values.email,
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${escapeHtml(values.name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(values.email)}</p>
+      <p><strong>Type:</strong> ${escapeHtml(values.inquiry || 'N/A')}</p>
+      <p><strong>Message:</strong></p>
+      <p>${escapeHtmlMultiline(values.message)}</p>
+    `,
+  }, 'Contact form');
+
+  if (!result.ok) {
+    const message = result.status === 503
+      ? 'Server configuration error'
+      : 'Failed to send message. Please try again or email support@eyrya.com directly.';
+    return jsonResponse({ error: message }, result.status, corsHeaders);
+  }
+
+  return jsonResponse(
+    { success: true, message: 'Message sent successfully! We will reply soon.' },
+    200,
+    corsHeaders,
+  );
 }
 
 export async function onRequest(context) {
-  if (context.request.method === 'OPTIONS') {
-    return new Response(null, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    });
-  }
-  
-  if (context.request.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
-  }
-  
-  return onRequestPost(context);
-}
+  const { request } = context;
+  const corsHeaders = resolveCorsHeaders(request);
 
-// 简单的 HTML 转义函数，防止 XSS
-function escapeHtml(text) {
-  if (!text) return '';
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  if (request.method === 'OPTIONS') {
+    return preflightResponse(corsHeaders);
+  }
+
+  if (request.method !== 'POST') {
+    return jsonResponse({ error: 'Method not allowed' }, 405, { ...corsHeaders, Allow: 'POST, OPTIONS' });
+  }
+
+  return onRequestPost(context);
 }
