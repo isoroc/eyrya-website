@@ -124,7 +124,7 @@ export default function WhereToBuyPage() {
               <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center mb-4">
                 <Truck className="w-5 h-5 text-[#DC2626]" />
               </div>
-              <h3 className="font-semibold text-[#1a1a1a] mb-2">Fast shipping</h3>
+              <h3 className="font-semibold text-[#1a1a1a] mb-2">Marketplace delivery</h3>
               <p className="text-gray-600 text-sm">
                 Delivery is the marketplace&apos;s: Amazon Prime members get Amazon&apos;s 2-day
                 service, and Temu shows its own estimate on the listing. Free-shipping thresholds are
