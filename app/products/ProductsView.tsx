@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import JsonLd from '@/app/components/JsonLd';
+import { AMAZON_FLAGSHIP_URL } from '@/lib/links';
 import {
   BRAND,
   CATEGORIES,
@@ -193,7 +194,7 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={MARKETPLACES.amazon.url}
+                href={AMAZON_FLAGSHIP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#DC2626] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"

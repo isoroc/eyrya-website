@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, ShoppingBag } from 'lucide-react';
+import { AMAZON_FLAGSHIP_URL } from '@/lib/links';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -48,7 +49,7 @@ export default function Navbar() {
               Wholesale
             </Link>
             <Link
-              href="https://www.amazon.com/shops/eyrya"
+              href={AMAZON_FLAGSHIP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#DC2626] text-white px-5 py-2.5 font-medium uppercase hover:bg-[#B91C1C] transition-colors rounded-sm"
@@ -92,7 +93,7 @@ export default function Navbar() {
               Wholesale
             </Link>
             <Link
-              href="https://www.amazon.com/shops/eyrya"
+              href={AMAZON_FLAGSHIP_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}

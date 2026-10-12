@@ -6,6 +6,12 @@
 // the featured section, the product list, the product detail pages, and the
 // about page - and they had drifted apart. Add or change a product here and
 // every page picks it up.
+import {
+  AMAZON_FLAGSHIP_ASIN,
+  AMAZON_FLAGSHIP_URL,
+  AMAZON_STORE_URL,
+  TEMU_LISTING_URL,
+} from './links';
 
 export type CategorySlug = 'party-supplies' | 'toys-play' | 'sports-fan-gear' | 'outdoor-fun';
 
@@ -88,13 +94,13 @@ export const BRAND = {
 export const MARKETPLACES = {
   amazon: {
     name: 'Amazon' as const,
-    url: 'https://www.amazon.com/shops/eyrya',
+    url: AMAZON_STORE_URL,
     description: 'Our flagship foam fingers ship as a 12-pack here, with Prime fast shipping and the A-to-Z Guarantee.',
     features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
   },
   temu: {
     name: 'Temu' as const,
-    url: 'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html',
+    url: TEMU_LISTING_URL,
     description: 'Our flagship foam fingers are listed here as a 6-pack, sized for smaller groups.',
     features: ['6-pack listing', 'Worldwide shipping', 'Flash deals'],
   },
@@ -128,15 +134,8 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-// The foam finger's Amazon listing. `th=1` is kept deliberately: it belongs to
-// Amazon's variation/twister family, and dropping parameters is the one change
-// that could plausibly stop the colour selector from appearing. Everything the
-// search result carried (ref, dib, dib_tag, m, marketplaceID, nsdOptOutParam,
-// qid, s, sr) is dropped - those only encode how you arrived, never which page
-// you land on. The `/EYRYA-.../dp/<ASIN>` slug is optional decoration, so the
-// canonical `/dp/<ASIN>` form is used instead; it survives a title edit.
-const AMAZON_FOAM_FINGER_ASIN = 'B0GXC35N85';
-const AMAZON_FOAM_FINGER_URL = `https://www.amazon.com/dp/${AMAZON_FOAM_FINGER_ASIN}?th=1`;
+// The foam finger's Amazon listing URL and ASIN live in lib/links.ts, which the
+// client-side navbar can import without pulling this catalogue into the bundle.
 
 export const PRODUCTS: Product[] = [
   {
@@ -201,10 +200,10 @@ export const PRODUCTS: Product[] = [
     offers: [
       {
         name: 'Amazon',
-        url: AMAZON_FOAM_FINGER_URL,
+        url: AMAZON_FLAGSHIP_URL,
         label: 'Buy the 12-Pack on Amazon',
         packSize: 12,
-        sku: AMAZON_FOAM_FINGER_ASIN,
+        sku: AMAZON_FLAGSHIP_ASIN,
         // 39.99 is the current Amazon price. There is no struck-through "was"
         // price: the previous $29.99/$39.99 pair presented the real price as a
         // discount, which it never was.
