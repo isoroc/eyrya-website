@@ -5,6 +5,20 @@
 // they had drifted apart: different excerpts for the same post, hardcoded read
 // times that were up to 4x the real length, and no shared category slugs. Add or
 // change a post here and every page picks it up.
+import { formatPackSize, formatPrice, getFeaturedProduct, getPrimaryOffer } from './products';
+
+// Article copy that quotes a price reads it from the catalogue, so an article can
+// never advertise a price the product page no longer shows. This is how an
+// article ended up claiming "$29.99 (just $2.50 each)" while the real listing
+// price was $39.99.
+const FLAGSHIP_OFFER = getPrimaryOffer(getFeaturedProduct());
+const FLAGSHIP_PACK = formatPackSize(FLAGSHIP_OFFER.packSize);
+const FLAGSHIP_COST_PHRASE =
+  FLAGSHIP_OFFER.price === null
+    ? 'is priced on the marketplace listing'
+    : `costs ${formatPrice(FLAGSHIP_OFFER.price)} (just ${formatPrice(
+        FLAGSHIP_OFFER.price / FLAGSHIP_OFFER.packSize,
+      )} each)`;
 
 export type PostCategorySlug = 'party-ideas' | 'sports-events' | 'outdoor-activities' | 'wholesale';
 
@@ -170,7 +184,7 @@ const FOAM_FINGER_QUALITY_CONTENT = `
       <p>We have sold over 50,000 foam fingers with an average rating of 4.8 out of 5 stars. That is not a marketing claim - that is real customer feedback from Amazon and Temu. People notice the quality difference, and they tell others.</p>
 
       <h2>Is It Worth the Extra Cost?</h2>
-      <p>Our foam fingers cost more than the cheapest options on the market. But think about it this way: if you buy a $4 foam finger that lasts one game, and then buy another one next season, and another the season after - you have spent $12 and still have nothing that lasts. Our 12-pack of foam fingers costs $29.99 (just $2.50 each) and lasts for years. The math works out.</p>
+      <p>Our foam fingers cost more than the cheapest options on the market. But think about it this way: if you buy a $4 foam finger that lasts one game, and then buy another one next season, and another the season after - you have spent $12 and still have nothing that lasts. Our ${FLAGSHIP_PACK} of foam fingers ${FLAGSHIP_COST_PHRASE} and lasts for years. The math works out.</p>
 
       <p>Plus, if you are ordering for a team, school, or event, our wholesale pricing brings the per-unit cost down significantly. Check our wholesale page for details.</p>
 

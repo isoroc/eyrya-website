@@ -192,8 +192,10 @@ export const PRODUCTS: Product[] = [
         url: MARKETPLACES.amazon.url,
         label: 'Buy the 12-Pack on Amazon',
         packSize: 12,
-        price: 29.99,
-        originalPrice: 39.99,
+        // 39.99 is the current Amazon price. There is no struck-through "was"
+        // price: the previous $29.99/$39.99 pair presented the real price as a
+        // discount, which it never was.
+        price: 39.99,
       },
       {
         name: 'Temu',
@@ -263,8 +265,9 @@ export const PRODUCTS: Product[] = [
         url: MARKETPLACES.amazon.url,
         label: 'Buy on Amazon',
         packSize: 1,
-        price: 24.99,
-        originalPrice: 29.99,
+        // Placeholder product: the previous $24.99 / $29.99 pair was invented, so
+        // no price is shown until a real listing exists.
+        price: null,
       },
     ],
   },
