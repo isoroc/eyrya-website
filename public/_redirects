@@ -1,0 +1,11 @@
+# Both eyrya.com and www.eyrya.com serve the full site today (both answer 200).
+# Every page's canonical points at www, so Google should consolidate them, but
+# serving the same content on two hostnames splits any inbound links and doubles
+# the crawl surface. Send the apex to the canonical host.
+#
+# If this rule does not take effect on Cloudflare Pages (host-based redirects in
+# _redirects are not reliably supported), use a dashboard Redirect Rule instead:
+#   Workers & Pages -> your project -> Custom domains, or
+#   the zone's Rules -> Redirect Rules:
+#     when hostname equals eyrya.com  ->  redirect to https://www.eyrya.com/$1, 301
+https://eyrya.com/*  https://www.eyrya.com/:splat  301
