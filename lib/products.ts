@@ -94,8 +94,12 @@ export const BRAND = {
 export const MARKETPLACES = {
   amazon: {
     name: 'Amazon' as const,
-    url: AMAZON_STORE_URL,
-    description: 'Our flagship foam fingers ship as a 12-pack here, with Prime fast shipping and the A-to-Z Guarantee.',
+    // Cards that invite people to "shop on Amazon" send them to the flagship
+    // listing, not the storefront: the storefront's first product is a single
+    // colourway, so visitors saw a pink-only page. Listings that have no ASIN yet
+    // (see the LED lights and outdoor kit offers) still use AMAZON_STORE_URL.
+    url: AMAZON_FLAGSHIP_URL,
+    description: 'Our flagship EVA foam fingers ship here as a 12-pack, with Prime fast shipping and the A-to-Z Guarantee.',
     features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
   },
   temu: {
@@ -274,7 +278,9 @@ export const PRODUCTS: Product[] = [
     offers: [
       {
         name: 'Amazon',
-        url: MARKETPLACES.amazon.url,
+        // No product ASIN for this listing yet, so it stays at the storefront
+        // instead of pointing at a different product's page.
+        url: AMAZON_STORE_URL,
         label: 'Buy on Amazon',
         packSize: 1,
         // Placeholder product: the previous $24.99 / $29.99 pair was invented, so
@@ -339,7 +345,9 @@ export const PRODUCTS: Product[] = [
     offers: [
       {
         name: 'Amazon',
-        url: MARKETPLACES.amazon.url,
+        // No product ASIN for this listing yet, so it stays at the storefront
+        // instead of pointing at a different product's page.
+        url: AMAZON_STORE_URL,
         label: 'Buy on Amazon',
         packSize: 1,
         price: 39.99,
