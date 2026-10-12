@@ -68,7 +68,11 @@ export default function WhereToBuyPage() {
                 className="group block border border-gray-200 p-8 hover:border-[#1a1a1a] transition-colors"
               >
                 <div className="flex items-start justify-between mb-6">
-                  <div className={`${logo.height} [&>img]:brightness-0 [&>img]:invert`}>
+                  {/* No colour filter here: this page sits on the light #F4F1EA
+                      background, so the logos keep their real brand colours. The
+                      white-out filter belongs to the dark home-page section
+                      (app/components/WhereToBuySection.tsx). */}
+                  <div className={logo.height}>
                     <img src={logo.src} alt={logo.alt} className="h-full w-auto" />
                   </div>
 
