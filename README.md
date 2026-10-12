@@ -94,10 +94,13 @@ eyrya-website/
 
 ```bash
 npm install
-npm run dev      # 开发模式
-npm run build    # 构建静态站点（输出到 dist/）
-npm run lint     # lint 检查
+npm run dev              # 开发模式
+npm run build            # 构建静态站点（输出到 dist/）
+npm run lint             # lint 检查
+npm run check:functions  # 校验 functions/ 的 import 路径（CF 部署前必跑）
 ```
+
+> `npm run build` **不会构建 `functions/`**。该目录由 Cloudflare 在构建后单独打包，所以那里写错一个相对路径，本地 `build`/`lint`/`tsc` 全过，部署却会失败。改动 `functions/` 后请先跑 `npm run check:functions`。
 
 ## 部署
 

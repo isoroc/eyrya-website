@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:functions": "node scripts/check-functions-imports.mjs"
   },
   "dependencies": {
     "@fontsource/outfit": "^5.2.8",

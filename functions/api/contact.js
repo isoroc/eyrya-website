@@ -12,7 +12,7 @@ import {
   resolveCorsHeaders,
   sanitizeSubject,
   sendResendEmail,
-} from '../_shared.js';
+} from './_shared.js';
 
 const FIELD_LIMITS = {
   name: 120,

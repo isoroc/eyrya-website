@@ -14,13 +14,30 @@ Brand marketing website for EYRYA (foam fingers, party supplies, outdoor product
 ## Build Commands
 
 ```bash
-npm run dev      # Development server (http://localhost:3000)
-npm run build    # Build static site → dist/
-npm run start    # Preview static build locally
-npm run lint     # ESLint (eslint-config-next/core-web-vitals + typescript)
+npm run dev              # Development server (http://localhost:3000)
+npm run build            # Build static site → dist/
+npm run start            # Preview static build locally
+npm run lint             # ESLint (eslint-config-next/core-web-vitals + typescript)
+npm run check:functions  # Verify every relative import in functions/ resolves
 ```
 
 **Important**: `output: 'export'` disables Next.js API routes. All server-side logic lives in `functions/` (Cloudflare Pages Functions). Do NOT create `pages/api/` or `app/api/` routes.
+
+**`npm run build` does not build `functions/`.** Next.js never touches that directory,
+so a broken relative import there passes `build`, `lint`, `tsc` and every local test,
+then fails the deploy minutes later when Cloudflare bundles the Functions:
+
+```
+✘ ERROR Could not resolve "../_shared.js"    api/contact.js:15:7
+Failed: generating Pages Functions failed.
+```
+
+Before pushing any change under `functions/`, run `npm run check:functions`. For exact
+parity with Cloudflare's step, also run:
+
+```bash
+npx wrangler@3 pages functions build --outdir=.wrangler/functions-build
+```
 
 ## Architecture
 
@@ -166,3 +183,4 @@ Uses `eslint-config-next/core-web-vitals` + `eslint-config-next/typescript`. Ign
 5. **Tempted to add an admin UI, CMS, or database?** — Only if the build actually consumes it. A previous `/api/admin/*` + D1 + R2 setup wrote products to a database that no page ever read (the storefront renders `lib/`), so it was pure attack surface. Prefer editing `lib/` directly, or wire a CMS into the build step so its output lands in `lib/`.
 6. **Blog or legal pages render as one wall of text** — `@tailwindcss/typography` is missing from `package.json` or `@plugin "@tailwindcss/typography";` is missing from `globals.css`. Every `prose` class is a no-op without it.
 7. **A page's H1 or product grid is missing from `dist/*.html`** — a client component in the tree is calling `useSearchParams`; move the state into a route segment.
+8. **Cloudflare deploy fails with "Could not resolve …" / "generating Pages Functions failed"** — a relative import under `functions/` points at the wrong path, the wrong case, or a file that was never committed. `npm run build` cannot catch this; run `npm run check:functions`. A file at `functions/api/_shared.js` is `./_shared.js` from `functions/api/contact.js`, not `../_shared.js`.

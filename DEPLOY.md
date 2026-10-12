@@ -14,10 +14,13 @@
 ## 1. 构建
 
 ```bash
+npm run check:functions   # 改了 functions/ 就必须跑：校验 import 路径
 npm run build
 ```
 
 输出目录 `dist/`。
+
+> `npm run build` 只构建 Next.js，**不构建 `functions/`**。该目录由 Cloudflare 在构建后单独打包（`Found Functions directory at /functions. Uploading.`），所以那里写错相对路径时本地全绿、部署却失败并报 `Could not resolve "..."` / `generating Pages Functions failed`。想完全对齐 CF 的这一步：`npx wrangler@3 pages functions build --outdir=.wrangler/functions-build`。
 
 ## 2. 部署到 Cloudflare Pages
 
