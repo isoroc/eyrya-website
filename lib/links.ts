@@ -12,7 +12,32 @@
 export const AMAZON_FLAGSHIP_ASIN = 'B0GXC35N85';
 export const AMAZON_FLAGSHIP_URL = `https://www.amazon.com/dp/${AMAZON_FLAGSHIP_ASIN}?th=1`;
 
-// TODO(owner): replace with the correct Temu link. The current one is known to be
-// wrong, and is left in place only until a replacement is supplied.
-export const TEMU_LISTING_URL =
-  'https://www.temu.com/ca/set-of-6-oversized-foam-fingers-measuring-18-inches-46-cm----events-parties-concerts-and-celebrations-offered-in--colors-g-605652411892197.html';
+// The foam finger's Temu listing, keyed on the goods id rather than the slug.
+//
+// Temu retitles listings, and the slug changes with the title while the id does
+// not. The owner's two links for this same product show it:
+//
+//   stored previously: .../set-of-6-oversized-foam-fingers-measuring-18-inches-...
+//   found later:       .../gift-for-her-him-6pcs-enormous-1-foam-fingers-18in-...
+//   both ending        -g-605652411892197.html
+//
+// so the /goods.html?goods_id= form is used: short, locale-neutral, and it
+// survives the next rename.
+//
+// The owner's original link also carried a `/ca/` locale prefix (the Canadian
+// storefront) plus about fifteen tracking parameters, including
+// `search_key=<their search term>`, `refer_page_name=search_result`,
+// `_x_sessn_id`, and `spec_gallery_id`. All of that is dropped: it describes how
+// one person arrived, not which product to show, and a US-facing site must not
+// pin visitors to the Canadian store.
+//
+// NOTE: this could not be verified from here. Temu answers every automated
+// client - including requests spoofing Googlebot and Bingbot - with a CAPTCHA,
+// so the rendered product page is unreachable by script. If this form does not
+// open the product, fall back to the slug path (locale and parameters still
+// stripped), which is the exact shape that loaded in the owner's browser:
+//
+//   https://www.temu.com/gift-for-her-him-6pcs-enormous-1-foam-fingers-18in-46cm-sports-cheer-props-for-game-day-parties-concerts-and-celebrations--in-multiple-colors-for-school-halloween-christmas-g-605652411892197.html
+export const TEMU_GOODS_ID = '605652411892197';
+export const TEMU_LISTING_URL = `https://www.temu.com/goods.html?goods_id=${TEMU_GOODS_ID}`;
+
