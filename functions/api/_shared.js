@@ -20,14 +20,8 @@ export function resolveCorsHeaders(request) {
   return headers;
 }
 
-export function applyCorsHeaders(headers, corsHeaders) {
-  for (const [key, value] of Object.entries(corsHeaders)) {
-    headers.set(key, value);
-  }
-  return headers;
-}
-
-export function jsonResponse(body, status = 200, extraHeaders = {}) {  return new Response(JSON.stringify(body), {
+export function jsonResponse(body, status = 200, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
     status,
     headers: {
       'Content-Type': 'application/json',
@@ -47,20 +41,6 @@ export function preflightResponse(corsHeaders) {
       'Access-Control-Max-Age': '600',
     },
   });
-}
-
-// Constant-time comparison of two secrets. The byte loop never short-circuits
-// on the first difference.
-export function timingSafeEqual(a, b) {
-  const encoder = new TextEncoder();
-  const left = encoder.encode(a);
-  const right = encoder.encode(b);
-  let diff = left.length ^ right.length;
-  const max = Math.max(left.length, right.length);
-  for (let i = 0; i < max; i += 1) {
-    diff |= (left[i] ?? 0) ^ (right[i] ?? 0);
-  }
-  return diff === 0;
 }
 
 // typeof-safe HTML escaping: FormData.get() returns a File for file parts.

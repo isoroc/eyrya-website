@@ -1,13 +1,9 @@
+# Cloudflare Pages Functions configuration.
+#
+# Only the three public form endpoints exist (functions/api/contact.js,
+# wholesale.js, support.js). They talk to the Resend HTTP API and need no
+# bindings, so there is deliberately no [[d1_databases]] or [[r2_buckets]] block
+# here. The storefront is fully static and reads from lib/, not from a database.
+
 name = "eyrya-website"
 compatibility_date = "2024-03-01"
-
-# D1 数据库绑定
-[[d1_databases]]
-binding = "DB"
-database_name = "eyrya-db"
-database_id = "c20eb39e-0cd3-4c3b-ba8d-f8115622b311"
-
-# R2 存储桶绑定
-[[r2_buckets]]
-binding = "IMAGES_BUCKET"
-bucket_name = "eyrya-images"

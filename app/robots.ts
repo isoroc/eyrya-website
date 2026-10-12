@@ -12,9 +12,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // The admin UI is a static page; keep it out of search indexes even
-        // though it also carries a noindex meta tag.
-        disallow: ['/admin.html'],
       },
     ],
     sitemap: `${BRAND.siteUrl}/sitemap.xml`,
