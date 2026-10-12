@@ -37,6 +37,8 @@ export interface MarketplaceOffer {
   price: number | null;
   /** Pre-discount price shown by this listing, if any. */
   originalPrice?: number | null;
+  /** The marketplace's own identifier for this listing, e.g. an Amazon ASIN. */
+  sku?: string;
   note?: string;
 }
 
@@ -126,6 +128,16 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
+// The foam finger's Amazon listing. `th=1` is kept deliberately: it belongs to
+// Amazon's variation/twister family, and dropping parameters is the one change
+// that could plausibly stop the colour selector from appearing. Everything the
+// search result carried (ref, dib, dib_tag, m, marketplaceID, nsdOptOutParam,
+// qid, s, sr) is dropped - those only encode how you arrived, never which page
+// you land on. The `/EYRYA-.../dp/<ASIN>` slug is optional decoration, so the
+// canonical `/dp/<ASIN>` form is used instead; it survives a title edit.
+const AMAZON_FOAM_FINGER_ASIN = 'B0GXC35N85';
+const AMAZON_FOAM_FINGER_URL = `https://www.amazon.com/dp/${AMAZON_FOAM_FINGER_ASIN}?th=1`;
+
 export const PRODUCTS: Product[] = [
   {
     slug: 'eva-foam-finger',
@@ -189,9 +201,10 @@ export const PRODUCTS: Product[] = [
     offers: [
       {
         name: 'Amazon',
-        url: MARKETPLACES.amazon.url,
+        url: AMAZON_FOAM_FINGER_URL,
         label: 'Buy the 12-Pack on Amazon',
         packSize: 12,
+        sku: AMAZON_FOAM_FINGER_ASIN,
         // 39.99 is the current Amazon price. There is no struck-through "was"
         // price: the previous $29.99/$39.99 pair presented the real price as a
         // discount, which it never was.

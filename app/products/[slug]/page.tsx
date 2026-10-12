@@ -289,6 +289,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
           offers: pricedOffers.map((offer) => ({
             '@type': 'Offer',
             name: `${product.name} - ${formatPackSize(offer.packSize)} on ${offer.name}`,
+            // The marketplace's own id (an Amazon ASIN) when we know it, so the
+            // markup carries a real listing identifier rather than only our slug.
+            ...(offer.sku ? { sku: offer.sku } : {}),
             price: offer.price.toFixed(2),
             priceCurrency: 'USD',
             availability: 'https://schema.org/InStock',
