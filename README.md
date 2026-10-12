@@ -22,9 +22,7 @@ eyrya-website/
 │   ├── wholesale/              # 批发询价页（表单 → Resend）
 │   ├── support/                # 帮助中心页
 │   ├── privacy/                # 隐私政策页
-│   ├── terms/                  # 服务条款页
-│   ├── lib/                    # 工具函数（含 Sanity 查询函数，未启用）
-│   └── sanity/                 # Sanity CMS Schema（未启用）
+│   └── terms/                  # 服务条款页
 │
 ├── functions/                  # Cloudflare Pages Functions（边缘函数）
 │   └── api/
@@ -116,11 +114,7 @@ npm run lint     # lint 检查
 
 产品、分类、博客文章均为硬编码静态数据（`/app/products/page.tsx` 等文件内）。
 
-`app/lib/sanity.ts` 包含完整的 Sanity.io 查询函数，但尚未启用。
-
-**未来扩展（Sanity CMS）**
-
-`app/sanity/schemas.ts` 已定义完整 Schema：Product、Category、Idea、Platform、SiteSettings。如需动态内容，取消 `sanity.ts` 的注释并在页面中调用查询函数。
+如需动态内容，可接入 CMS（如 Sanity.io）后替换页面中的数据源。
 
 ## 后台管理
 
