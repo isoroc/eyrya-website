@@ -1,11 +1,20 @@
-# Both eyrya.com and www.eyrya.com serve the full site today (both answer 200).
-# Every page's canonical points at www, so Google should consolidate them, but
-# serving the same content on two hostnames splits any inbound links and doubles
-# the crawl surface. Send the apex to the canonical host.
+# VERIFIED INEFFECTIVE on Cloudflare Pages - kept as documentation only.
 #
-# If this rule does not take effect on Cloudflare Pages (host-based redirects in
-# _redirects are not reliably supported), use a dashboard Redirect Rule instead:
-#   Workers & Pages -> your project -> Custom domains, or
-#   the zone's Rules -> Redirect Rules:
-#     when hostname equals eyrya.com  ->  redirect to https://www.eyrya.com/$1, 301
+# Both eyrya.com and www.eyrya.com serve the full site (both return 200). Every
+# page's canonical points at www, so Google should consolidate them, but serving
+# identical content on two hostnames splits inbound links and doubles the crawl
+# surface. It is a hygiene issue, not the reason the site does not rank.
+#
+# This host-level rule was deployed and tested: eyrya.com still answered 200, so
+# Cloudflare Pages does not apply `_redirects` rules that match on hostname. The
+# redirect has to be created in the dashboard instead:
+#
+#   Cloudflare dashboard -> your domain (eyrya.com) -> Rules -> Redirect Rules
+#   -> Create rule
+#     When incoming requests match:  Hostname equals  eyrya.com
+#     Then:  Static redirect  ->  https://www.eyrya.com  (301)
+#     Preserve query string: on
+#
+# (or attach eyrya.com as a "Redirect" custom domain in the Pages project, which
+#  Cloudflare turns into the same rule).
 https://eyrya.com/*  https://www.eyrya.com/:splat  301
