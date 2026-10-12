@@ -27,10 +27,12 @@ https://eyrya.com/*  https://www.eyrya.com/:splat  301
 # through to the 404 page; a 301 sends anyone arriving from an old link, or from
 # Google's index, to the catalogue instead.
 #
-# Note: these paths were served with `cache-control: public, s-maxage=604800`, so
-# an edge copy of the old page can outlive the deployment that removed it. Until
-# that cache entry is purged (Cloudflare dashboard -> Caching -> Configuration ->
-# Purge Everything) or expires, a request may still be answered from cache.
+# Note: these paths were previously served with `cache-control: public,
+# s-maxage=604800`, so an edge copy of the old page outlived the deployment that
+# deleted it (a live check caught /products/party-led-lights/ returning the old
+# page with an `age` of ~46 minutes). Once these rules were deployed the 301 took
+# precedence over that cached copy for both crawlers and browsers, so no cache
+# purge is needed.
 /products/party-led-lights/    /products/  301
 /products/outdoor-game-kit/    /products/  301
 /products/category/party-supplies/  /products/  301
