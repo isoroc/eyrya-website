@@ -37,6 +37,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloudflare wrangler
+/.wrangler
+.wrangler/
+
+# logs
+nohup.out
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
