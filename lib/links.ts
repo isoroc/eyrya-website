@@ -22,22 +22,20 @@ export const AMAZON_FLAGSHIP_URL = `https://www.amazon.com/dp/${AMAZON_FLAGSHIP_
 //   both ending        -g-605652411892197.html
 //
 // so the /goods.html?goods_id= form is used: short, locale-neutral, and it
-// survives the next rename.
+// survives the next rename. The owner confirmed this form opens the product.
 //
 // The owner's original link also carried a `/ca/` locale prefix (the Canadian
 // storefront) plus about fifteen tracking parameters, including
 // `search_key=<their search term>`, `refer_page_name=search_result`,
 // `_x_sessn_id`, and `spec_gallery_id`. All of that is dropped: it describes how
-// one person arrived, not which product to show, and a US-facing site must not
-// pin visitors to the Canadian store.
+// one person arrived, not which product to show. The locale matters because every
+// Amazon call to action points at amazon.com, so pinning Temu to the Canadian
+// storefront would send US visitors to the wrong one.
 //
-// NOTE: this could not be verified from here. Temu answers every automated
-// client - including requests spoofing Googlebot and Bingbot - with a CAPTCHA,
-// so the rendered product page is unreachable by script. If this form does not
-// open the product, fall back to the slug path (locale and parameters still
-// stripped), which is the exact shape that loaded in the owner's browser:
-//
-//   https://www.temu.com/gift-for-her-him-6pcs-enormous-1-foam-fingers-18in-46cm-sports-cheer-props-for-game-day-parties-concerts-and-celebrations--in-multiple-colors-for-school-halloween-christmas-g-605652411892197.html
+// Temu's own Share button produces a link the owner reports as incorrect, so do
+// not substitute one. The page cannot be checked by script either: Temu answers
+// every automated client, including requests spoofing Googlebot and Bingbot, with
+// a CAPTCHA. This URL is verified by hand only.
 export const TEMU_GOODS_ID = '605652411892197';
 export const TEMU_LISTING_URL = `https://www.temu.com/goods.html?goods_id=${TEMU_GOODS_ID}`;
 
