@@ -18,3 +18,21 @@
 # (or attach eyrya.com as a "Redirect" custom domain in the Pages project, which
 #  Cloudflare turns into the same rule).
 https://eyrya.com/*  https://www.eyrya.com/:splat  301
+
+# Path-level rules DO work on Pages (unlike the host rule above).
+#
+# These five URLs belonged to content that has been deleted: two products that
+# never existed (a Party LED Lights Set and an Outdoor Game Kit) and the three
+# category pages that only those products populated. Without a rule they fall
+# through to the 404 page; a 301 sends anyone arriving from an old link, or from
+# Google's index, to the catalogue instead.
+#
+# Note: these paths were served with `cache-control: public, s-maxage=604800`, so
+# an edge copy of the old page can outlive the deployment that removed it. Until
+# that cache entry is purged (Cloudflare dashboard -> Caching -> Configuration ->
+# Purge Everything) or expires, a request may still be answered from cache.
+/products/party-led-lights/    /products/  301
+/products/outdoor-game-kit/    /products/  301
+/products/category/party-supplies/  /products/  301
+/products/category/toys-play/       /products/  301
+/products/category/outdoor-fun/     /products/  301
