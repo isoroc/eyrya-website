@@ -7,6 +7,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.eyrya.com/privacy/',
   },
+  openGraph: {
+    title: 'EYRYA Privacy Policy',
+    description: 'Learn how EYRYA collects, uses, and protects your personal information.',
+    type: 'website',
+    url: 'https://www.eyrya.com/privacy/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'EYRYA Privacy Policy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EYRYA Privacy Policy',
+    description: 'Learn how EYRYA collects, uses, and protects your personal information.',
+    images: ['https://www.eyrya.com/images/og-image.png'],
+  },
 };
 
 export default function PrivacyPage() {

@@ -5,7 +5,7 @@ import Link from 'next/link';
 const categories = [
   {
     name: 'Party Supplies',
-    description: 'Party essentials that actually work. Birthday banners, tableware, and decor that wont fall apart mid-celebration.',
+    description: 'Party essentials that actually work. Birthday banners, tableware, and decor that won\'t fall apart mid-celebration.',
     color: '#DC2626',
     bgColor: 'bg-white',
     productCount: '12 products',
@@ -46,7 +46,7 @@ export default function CategoriesSection() {
             Shop by Category
           </h2>
           <p className="text-gray-600">
-            We specialize in party supplies and fan gear. That's it. No random gadgets, no dropshipping junk.
+            We specialize in party supplies and fan gear. That&apos;s it. No random gadgets, no dropshipping junk.
           </p>
         </div>
 

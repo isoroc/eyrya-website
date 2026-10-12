@@ -6,8 +6,6 @@ import {
   Truck, 
   RotateCcw, 
   Search, 
-  Mail, 
-  Clock, 
   Check, 
   ChevronDown 
 } from 'lucide-react';
@@ -89,7 +87,7 @@ export default function SupportContent() {
 
   return (
     <>
-      <div className="mb-16">
+      <div id="faq" className="mb-16 scroll-mt-20">
         <div className="flex items-center gap-3 mb-8">
             <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
               <MessageCircleQuestion className="w-5 h-5 text-[#DC2626]" />
@@ -125,7 +123,7 @@ export default function SupportContent() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mb-16">
-        <div className="bg-[#fafafa] border border-gray-200 p-8">
+        <div id="shipping" className="bg-[#fafafa] border border-gray-200 p-8 scroll-mt-20">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
               <Truck className="w-5 h-5 text-[#DC2626]" />
@@ -157,7 +155,7 @@ export default function SupportContent() {
           </ul>
         </div>
 
-        <div className="bg-[#fafafa] border border-gray-200 p-8">
+        <div id="returns" className="bg-[#fafafa] border border-gray-200 p-8 scroll-mt-20">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">
               <RotateCcw className="w-5 h-5 text-[#DC2626]" />
@@ -191,7 +189,7 @@ export default function SupportContent() {
         </div>
       </div>
 
-      <div className="bg-[#fafafa] border border-gray-200 p-8 md:p-12">
+      <div id="track" className="bg-[#fafafa] border border-gray-200 p-8 md:p-12 scroll-mt-20">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-[#DC2626]/10 flex items-center justify-center">

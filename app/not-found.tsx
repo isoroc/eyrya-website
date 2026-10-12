@@ -5,8 +5,9 @@ import { Home, Search } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Page Not Found | EYRYA',
   description: 'The page you are looking for does not exist. Browse our foam fingers, party supplies, and outdoor products.',
-  alternates: {
-    canonical: 'https://www.eyrya.com/404',
+  robots: {
+    index: false,
+    follow: true,
   },
 };
 

@@ -7,8 +7,10 @@ import { Menu, X, ShoppingBag } from 'lucide-react';
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
+  { name: 'Ideas', href: '/ideas' },
   { name: 'Where to Buy', href: '/where-to-buy' },
   { name: 'About', href: '/about' },
+  { name: 'Support', href: '/support' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -25,7 +27,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

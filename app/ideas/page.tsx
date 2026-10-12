@@ -50,7 +50,7 @@ const ideas = [
   },
   {
     title: 'Why Our Foam Fingers Are Different',
-    excerpt: 'Most foam fingers fall apart after one game. Heres how we fixed that problem.',
+    excerpt: 'Most foam fingers fall apart after one game. Here\'s how we fixed that problem.',
     category: 'Sports',
     slug: 'foam-finger-quality',
     date: 'Apr 3, 2026',
@@ -66,7 +66,7 @@ const ideas = [
   },
   {
     title: 'Bulk Orders: What You Need to Know',
-    excerpt: 'Ordering for a school or team? Heres how to get the best deal on 50+ units.',
+    excerpt: 'Ordering for a school or team? Here\'s how to get the best deal on 50+ units.',
     category: 'Wholesale',
     slug: 'bulk-order-guide',
     date: 'Apr 3, 2026',
@@ -74,7 +74,7 @@ const ideas = [
   },
   {
     title: 'Camping with Kids: A Survival Guide',
-    excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesnt.',
+    excerpt: 'Real tips from parents who have actually taken their kids camping. What works, what doesn\'t.',
     category: 'Outdoor',
     slug: 'camping-with-kids',
     date: 'Apr 3, 2026',

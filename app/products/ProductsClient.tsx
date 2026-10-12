@@ -72,6 +72,11 @@ export default function ProductsClient() {
   const searchParams = useSearchParams();
   const activeCategory = searchParams.get('category');
 
+  const visibleCategories = useMemo(
+    () => categories.filter((c) => allProducts.some((p) => p.categorySlug === c.slug)),
+    []
+  );
+
   const filteredProducts = useMemo(() => {
     if (!activeCategory) return allProducts;
     return allProducts.filter((p) => p.categorySlug === activeCategory);
@@ -101,8 +106,8 @@ export default function ProductsClient() {
             Categories
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {categories.map((category) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {visibleCategories.map((category) => (
               <Link
                 key={category.slug}
                 href={

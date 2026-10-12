@@ -7,6 +7,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.eyrya.com/terms/',
   },
+  openGraph: {
+    title: 'EYRYA Terms of Service',
+    description: 'Read EYRYA terms of service before using the website or purchasing products.',
+    type: 'website',
+    url: 'https://www.eyrya.com/terms/',
+    siteName: 'EYRYA',
+    images: [
+      {
+        url: 'https://www.eyrya.com/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'EYRYA Terms of Service',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EYRYA Terms of Service',
+    description: 'Read EYRYA terms of service before using the website or purchasing products.',
+    images: ['https://www.eyrya.com/images/og-image.png'],
+  },
 };
 
 export default function TermsPage() {

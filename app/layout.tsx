@@ -29,11 +29,20 @@ export const metadata: Metadata = {
     url: "https://www.eyrya.com/",
     siteName: "EYRYA",
     locale: "en_US",
+    images: [
+      {
+        url: "https://www.eyrya.com/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "EYRYA - Premium Foam Fingers & Party Supplies",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "EYRYA - Premium Foam Fingers & Party Supplies",
     description: "Shop premium EVA foam fingers, LED party lights, and outdoor game kits. 50,000+ sold.",
+    images: ["https://www.eyrya.com/images/og-image.png"],
   },
 };
 
@@ -55,7 +64,6 @@ export default function RootLayout({
           "url": "https://www.eyrya.com/",
           "logo": "https://www.eyrya.com/images/logo.svg",
           "description": "EYRYA creates premium EVA foam fingers, party supplies, and outdoor products.",
-          "sameAs": [],
           "contactPoint": {
             "@type": "ContactPoint",
             "email": "support@eyrya.com",
@@ -67,11 +75,6 @@ export default function RootLayout({
           "@type": "WebSite",
           "name": "EYRYA",
           "url": "https://www.eyrya.com/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.eyrya.com/products/?q={search_term_string}",
-            "query-input": "required name=search_term_string",
-          },
         }} />
       </body>
     </html>

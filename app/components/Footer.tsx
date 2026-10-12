@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import { Instagram, Facebook, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 const footerLinks = {
   products: [
     { name: 'Party Supplies', href: '/products?category=party-supplies' },
-    { name: 'Kids \u0026 Toys', href: '/products?category=toys-play' },
     { name: 'Sports Fan Gear', href: '/products?category=sports-fan-gear' },
     { name: 'Outdoor \u0026 Camping', href: '/products?category=outdoor-fun' },
   ],
@@ -23,11 +22,6 @@ const footerLinks = {
   ],
 };
 
-const socialLinks = [
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'Facebook', icon: Facebook, href: '#' },
-];
-
 export default function Footer() {
   return (
     <footer className="bg-[#1a1a1a] text-white border-t border-white/10">
@@ -40,18 +34,6 @@ export default function Footer() {
             <p className="mt-4 text-gray-400 text-sm">
               Real products for real fun. Party supplies and fan gear that actually work.
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  aria-label={social.name}
-                >
-                  <social.icon className="w-5 h-4" />
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
