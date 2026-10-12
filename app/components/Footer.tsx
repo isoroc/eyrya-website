@@ -34,7 +34,7 @@ export default function Footer() {
               <img src="/images/logo.svg" alt="EYRYA" className="h-4 w-auto brightness-0 invert" />
             </Link>
             <p className="mt-4 text-gray-400 text-sm">
-              Real products for real fun. Party supplies and fan gear that actually work.
+              18-inch EVA foam hands for game day, sold on Amazon and Temu.
             </p>
           </div>
 

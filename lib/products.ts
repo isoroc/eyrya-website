@@ -15,7 +15,6 @@ export interface Category {
   name: string;
   description: string;
   /** Shown as a non-clickable tile: there is no product to link to yet. */
-  comingSoon?: boolean;
 }
 
 export interface ProductColor {
@@ -86,7 +85,7 @@ export const MARKETPLACES = {
     // storefront: the storefront's first product is a single colourway, so
     // visitors who followed it saw a pink-only page.
     url: AMAZON_FLAGSHIP_URL,
-    description: 'Our flagship EVA foam fingers ship here as a 12-pack, with Prime fast shipping and the A-to-Z Guarantee.',
+    description: 'Our EVA foam fingers are sold here as a 12-pack, with Amazon Prime delivery and the A-to-Z Guarantee.',
     features: ['12-pack listing', 'Easy returns', 'A-to-Z Guarantee'],
   },
   temu: {
@@ -101,23 +100,22 @@ export const CATEGORIES: Category[] = [
   {
     slug: 'party-supplies',
     name: 'Party Supplies',
-    description: 'Party props and celebration accessories that hold up all night.',
+    description: 'No products in this category yet.',
   },
   {
     slug: 'toys-play',
     name: 'Kids & Toys',
-    description: 'Toys kids actually play with. Our first toy line is in production.',
-    comingSoon: true,
+    description: 'No products in this category yet.',
   },
   {
     slug: 'sports-fan-gear',
     name: 'Sports & Fan Gear',
-    description: 'Cheering accessories for real fans. Foam fingers and more.',
+    description: '18-inch EVA foam hands for game day.',
   },
   {
     slug: 'outdoor-fun',
     name: 'Outdoor & Camping',
-    description: 'Gear for actual outdoor adventures, tested on real trips.',
+    description: 'No products in this category yet.',
   },
 ];
 

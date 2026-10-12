@@ -53,7 +53,7 @@ export default function WhereToBuyPage() {
             Where to Buy
           </h1>
           <p className="text-gray-600">
-            Find EYRYA on trusted marketplaces. Same products, your preferred platform.
+            Find EYRYA on trusted marketplaces. The same product, on your preferred platform.
           </p>
         </div>
 

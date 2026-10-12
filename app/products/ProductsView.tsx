@@ -184,7 +184,7 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
               Ready to buy?
             </h2>
             <p className="text-white/80 mb-8">
-              Find EYRYA on Amazon and Temu. Same products, fast shipping.
+              Find EYRYA on Amazon and Temu. The same product, on your preferred marketplace.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a

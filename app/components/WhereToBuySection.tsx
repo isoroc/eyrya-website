@@ -19,7 +19,7 @@ export default function WhereToBuySection() {
             Where to Buy
           </h2>
           <p className="text-gray-400">
-            Find us on major marketplaces. Same products, your preferred platform.
+            Find us on major marketplaces. The same product, on your preferred platform.
           </p>
         </div>
 
