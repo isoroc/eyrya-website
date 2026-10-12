@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Mail, Clock } from 'lucide-react';
 import ContactForm from './ContactForm';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
   title: { absolute: 'Contact EYRYA® | Get in Touch for Foam Fingers & Party Supplies' },
@@ -75,7 +76,7 @@ export default function ContactPage() {
             <div className="mt-12 p-6 bg-[#fafafa] border border-gray-200">
               <h3 className="font-semibold text-[#1a1a1a] mb-2">Wholesale inquiries</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Looking to order 50+ units? Email us for bulk pricing.
+                Need a custom production run? The minimum is {formatMinimumOrderPerColor()}. Email us for a quote.
               </p>
               <a 
                 href="mailto:wholesale@eyrya.com" 

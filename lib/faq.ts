@@ -4,6 +4,7 @@
 // structured data (app/support/page.tsx) read from here, so the markup can never
 // describe fewer questions than the page actually shows.
 import { BRAND } from './products';
+import { formatMinimumOrderPerColor } from './wholesale';
 
 export interface FaqItem {
   question: string;
@@ -33,7 +34,7 @@ export const SUPPORT_FAQ: FaqItem[] = [
   {
     question: 'Can I order in bulk for an event?',
     answer:
-      "Absolutely! We offer special pricing for bulk orders of 50+ units. Whether you're planning a corporate event, school function, or sports team gathering, contact us at wholesale@eyrya.com for custom quotes and volume discounts.",
+      "Custom production starts at " + formatMinimumOrderPerColor() + ". That covers your own colours, EVA thickness, and a silk-screened logo - see the wholesale page for packing, lead time, and payment terms. Below that minimum, the 12-pack on Amazon and the 6-pack on Temu are the better route and ship immediately.",
   },
   {
     question: 'Where do I actually buy?',

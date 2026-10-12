@@ -5,7 +5,8 @@
 // they had drifted apart: different excerpts for the same post, hardcoded read
 // times that were up to 4x the real length, and no shared category slugs. Add or
 // change a post here and every page picks it up.
-import { formatPackSize, formatPrice, getFeaturedProduct, getPrimaryOffer } from './products';
+import { formatCount, formatPackSize, formatPrice, getFeaturedProduct, getPrimaryOffer } from './products';
+import { WHOLESALE, formatMinimumOrderPerColor } from './wholesale';
 
 // Article copy that quotes a price reads it from the catalogue, so an article can
 // never advertise a price the product page no longer shows. This is how an
@@ -81,7 +82,7 @@ const CUSTOM_FOAM_FINGERS_GUIDE_CONTENT = `
       <ul>
         <li><strong>You need a specific color.</strong> If your school colors are maroon and gold, a blue foam finger is not going to cut it.</li>
         <li><strong>You want your logo or mascot on it.</strong> A plain foam hand is fun, but one with your team logo becomes a keepsake.</li>
-        <li><strong>You are ordering for a large group.</strong> Sports teams, pep rallies, parades, and corporate events often need 100 units or more.</li>
+        <li><strong>You are ordering for a large group.</strong> Pep rallies, graduations, and stadium events scale into thousands of pieces - which is the point where custom production starts.</li>
         <li><strong>You want a consistent look.</strong> A matching set of foam fingers looks far more polished on camera than a mix of random colors.</li>
       </ul>
       <p>If you only need a handful of foam fingers in standard colors, buying a <a href="/products/eva-foam-finger/">12-pack of stock foam fingers</a> is faster and cheaper. Custom ordering only pays off at scale.</p>
@@ -92,7 +93,7 @@ const CUSTOM_FOAM_FINGERS_GUIDE_CONTENT = `
         <li><strong>Stock foam fingers</strong> - Available immediately, lower cost per unit, 12 colors to choose from, no design work required. Best for individuals and small groups.</li>
         <li><strong>Custom foam fingers</strong> - Higher upfront cost, longer lead time, but you control the color and print. Best for schools, teams, and brands with a clear identity.</li>
       </ul>
-      <p>As a rule of thumb, if you need fewer than 100 units, stock is the better value. Above 100, custom starts to make sense.</p>
+      <p>As a rule of thumb: custom production starts at ${formatMinimumOrderPerColor()}. Below that, stock is the better value - the 12-pack on Amazon and the 6-pack on Temu ship immediately.</p>
 
       <h2>How the Custom Ordering Process Works</h2>
       <p>A typical custom foam finger order moves through five stages:</p>
@@ -220,46 +221,47 @@ const REUSABLE_PARTY_SUPPLIES_CONTENT = `
     `;
 
 const BULK_ORDER_GUIDE_CONTENT = `
-      <p>Ordering party supplies or foam fingers in bulk is different from buying a single unit. Whether you are a school spirit coordinator, a sports league manager, or an event planner, here is everything you need to know about ordering EYRYA products in quantity.</p>
+      <p>Ordering foam fingers in quantity is a different process from buying a 12-pack. This guide covers the numbers that actually matter: the minimum order, what you can change, how long it takes, how the goods are packed, and how payment and shipping are handled.</p>
 
       <h2>Minimum Order Quantity</h2>
-      <p>Our wholesale minimum is 50 units per product. This applies to any single SKU - so 50 foam fingers in one color, or 50 LED light sets, or any combination that adds up to 50 of the same item. We set this minimum because it allows us to offer meaningful discounts while keeping our operations efficient.</p>
+      <p>The minimum for a custom production run is ${formatMinimumOrderPerColor()}. The minimum applies per colour, so a two-colour run starts at ${formatCount(WHOLESALE.minimumOrderPerColor * 2)} pieces and a five-colour run at ${formatCount(WHOLESALE.minimumOrderPerColor * 5)}. This is not a sales tactic: print setup is per colour, which is exactly why the minimum exists.</p>
 
-      <h2>Discount Tiers</h2>
+      <h2>If You Need Fewer</h2>
+      <p>For anything below the minimum, our retail packs are the better route and they ship immediately: a 12-pack on Amazon and a 6-pack on Temu, in several standard colours. At small volumes that is genuinely cheaper than custom production, not merely faster.</p>
+
+      <h2>What You Can Customise</h2>
       <ul>
-        <li><strong>50-99 units</strong> - 15% off retail price</li>
-        <li><strong>100-249 units</strong> - 20% off retail price</li>
-        <li><strong>250+ units</strong> - 30% off retail price</li>
+        <li><strong>Thickness</strong> - the EVA foam thickness is made to order rather than fixed to a stock spec</li>
+        <li><strong>Colours</strong> - matched to your specification, so team or brand colours are possible</li>
+        <li><strong>Logo</strong> - applied by silk-screen printing</li>
       </ul>
-      <p>These discounts apply to all EYRYA products. The more you order, the more you save per unit.</p>
+      <p>Send vector artwork (AI, EPS, PDF, or a high-resolution PNG) with your enquiry so we can confirm what reproduces cleanly on foam.</p>
 
-      <h2>Who Orders in Bulk</h2>
-      <p>Our wholesale customers fall into a few main categories:</p>
+      <h2>Packing</h2>
       <ul>
-        <li><strong>Schools and universities</strong> - Spirit weeks, homecoming events, pep rallies, and graduation ceremonies</li>
-        <li><strong>Sports teams and leagues</strong> - Fan appreciation events, opening day giveaways, playoff celebrations</li>
-        <li><strong>Event planners</strong> - Corporate events, birthday parties, fundraisers, and community festivals</li>
-        <li><strong>Retail stores</strong> - Small shops that want to stock EYRYA products locally</li>
+        <li>${formatCount(WHOLESALE.piecesPerCarton)} pieces per export carton</li>
+        <li>Individual OPP bag per piece on request, if you need to hand them out singly or resell them</li>
       </ul>
 
-      <h2>How to Place a Bulk Order</h2>
-      <p>It is simple. Email us at wholesale@eyrya.com with the following information:</p>
+      <h2>Lead Time</h2>
+      <p>Production takes about ${WHOLESALE.leadTimeWeeks} weeks once the deposit has cleared. That is production time only - it excludes shipping, so work the transit time in as well when you are counting back from an event date.</p>
+
+      <h2>Payment</h2>
+      <p>${WHOLESALE.depositPercent}% deposit before production, balance before shipment. Pricing is quoted per project, because it depends on the quantity, the printing, and the packing - tell us those three things and you get a real number instead of a range.</p>
+
+      <h2>Shipping</h2>
+      <p>${WHOLESALE.shipping}, so you can consolidate the shipment with your other suppliers rather than arranging separate transport for this order.</p>
+
+      <h2>Who a Run This Size Suits</h2>
       <ul>
-        <li>Which product(s) you want</li>
-        <li>Quantity per product</li>
-        <li>Color preferences (for foam fingers)</li>
-        <li>Your shipping address</li>
-        <li>When you need the order by</li>
+        <li><strong>Importers and distributors</strong> - stock for resale</li>
+        <li><strong>Promotional product companies</strong> - client campaigns and giveaways</li>
+        <li><strong>Brands and agencies</strong> - stadium and event activations</li>
+        <li><strong>School districts and large sports organisations</strong> - graduation ceremonies and pep rallies at scale</li>
       </ul>
-      <p>We will respond within 24 hours with a quote and estimated delivery date. Payment is handled via invoice, and we accept bank transfers and major credit cards.</p>
 
-      <h2>Shipping and Lead Time</h2>
-      <p>Standard wholesale orders ship within 3-5 business days. Rush orders are available for an additional fee. We ship worldwide, and shipping costs are calculated based on weight and destination. For orders over $500, we offer free domestic shipping.</p>
-
-      <h2>Custom Orders</h2>
-      <p>Need custom colors, logos, or packaging on foam fingers? We can do that for orders of 500+ units. Custom orders have a longer lead time of 4-6 weeks. Contact us to discuss your requirements.</p>
-
-      <p>We make bulk ordering as straightforward as possible. No complicated forms, no hidden fees, and no minimum commitments beyond the initial order. Just quality products at fair prices.</p>
+      <h2>How to Start</h2>
+      <p>Send us your artwork, the colours, the thickness, the quantity per colour, and the destination. We will come back with a quote and a production schedule. <a href="/wholesale/">Start a custom order enquiry</a>.</p>
     `;
 
 const CAMPING_WITH_KIDS_CONTENT = `
@@ -328,7 +330,7 @@ const CHEAP_PARTY_DECORATIONS_CONTENT = `
 export const POSTS: Post[] = [
   {
     slug: 'custom-foam-fingers-guide',
-    title: 'Custom Foam Fingers: The Complete Guide for Schools, Teams & Events',
+    title: 'Custom Foam Fingers Guide for Schools, Teams & Events',
     excerpt: 'Everything you need to know about ordering custom foam fingers, from design and pricing to minimums and lead times.',
     categorySlug: 'wholesale',
     date: 'Sep 18, 2026',
@@ -376,8 +378,8 @@ export const POSTS: Post[] = [
   },
   {
     slug: 'bulk-order-guide',
-    title: 'Bulk Orders: What You Need to Know',
-    excerpt: 'Ordering for a school or team? Here\'s how to get the best deal on 50+ units.',
+    title: 'Bulk Foam Finger Orders: Minimums & Lead Time',
+    excerpt: 'How custom foam finger orders actually work: the per-colour minimum, what you can change, packing, lead time, payment, and shipping.',
     categorySlug: 'wholesale',
     date: 'Jun 30, 2026',
     isoDate: '2026-06-30',

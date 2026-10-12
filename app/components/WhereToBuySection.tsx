@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { MARKETPLACES } from '@/lib/products';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 const platformLogos: Record<string, { src: string; alt: string; height: string }> = {
   Amazon: { src: '/images/Amazon_logo.svg', alt: 'Amazon', height: 'h-8' },
@@ -52,7 +53,7 @@ export default function WhereToBuySection() {
 
         <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl">
           <p className="text-gray-500 text-sm">
-            Wholesale inquiries? Email us at wholesale@eyrya.com for bulk pricing on 100+ units.
+            Custom manufacturing? Email wholesale@eyrya.com - the minimum is {formatMinimumOrderPerColor()}.
           </p>
         </div>
       </div>

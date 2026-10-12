@@ -138,6 +138,10 @@ Business facts live in `lib/`, not in page components:
 | `lib/products.ts` | Products, categories, `BRAND` numbers, marketplace URLs |
 | `lib/posts.ts` | Blog posts (metadata + body HTML) |
 | `lib/faq.ts` | Support FAQ, shared by the visible accordion and the FAQPage JSON-LD |
+| `lib/links.ts` | External destinations, kept separate so the client navbar does not pull the catalogue into the bundle |
+| `lib/wholesale.ts` | Custom-manufacturing terms (minimum order, packing, lead time, payment, shipping) and the wholesale FAQ |
+
+Never restate a commercial term by hand. The site once advertised "50 units per SKU" (and "100 units" in two articles) with invented 15/20/30% discount tiers while the real custom minimum is 5,000 pieces per colour, and one article told readers that custom work starts above 100 units. Use `formatMinimumOrderPerColor()` and friends.
 
 Pages and components must import from these modules. Never re-type a price, rating, review count, units-sold figure, pack size, or marketplace URL into a component — that is exactly how the hero ended up claiming 1,247 sold while the detail page claimed 50,000.
 

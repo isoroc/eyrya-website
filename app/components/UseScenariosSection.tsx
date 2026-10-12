@@ -1,4 +1,5 @@
 import { BRAND, formatCount, getFeaturedProduct } from '@/lib/products';
+import { WHOLESALE } from '@/lib/wholesale';
 
 const scenarios = [
   {
@@ -13,8 +14,8 @@ const scenarios = [
   },
   {
     title: 'School Events',
-    description: 'Bulk orders for pep rallies, field days, and fundraisers. Discounts on 50+ units.',
-    stat: '15-30% off 50+',
+    description: 'Custom production runs for pep rallies, graduations, and brand giveaways.',
+    stat: `Custom from ${formatCount(WHOLESALE.minimumOrderPerColor)}`,
   },
   {
     title: 'Family Camping',

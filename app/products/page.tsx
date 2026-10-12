@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import ProductsView from './ProductsView';
 import { BRAND } from '@/lib/products';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
   // `absolute` avoids the root layout template appending a second brand name.
   title: { absolute: 'EYRYA® Products | Foam Fingers, Party Supplies & Outdoor Games' },
   description:
-    'Explore EYRYA products: premium EVA foam fingers, LED party lights, and outdoor game kits. Wholesale pricing on 50+ units. Shop on Amazon & Temu.',
+    `Explore EYRYA products: premium EVA foam fingers, LED party lights, and outdoor game kits. Custom manufacturing from ${formatMinimumOrderPerColor()}. Shop on Amazon & Temu.`,
   keywords:
     'EYRYA products, foam fingers, EVA foam finger, party supplies, sports fan gear, outdoor games, bulk order',
   alternates: {

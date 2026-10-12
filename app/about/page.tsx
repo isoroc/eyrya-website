@@ -64,7 +64,7 @@ export default function AboutPage() {
               <li>• Design products that solve real problems</li>
               <li>• Test everything before it goes to market</li>
               <li>• Sell directly and through trusted retailers</li>
-              <li>• Offer bulk pricing for schools and teams</li>
+              <li>• Run custom production for brands, distributors, and event organisers</li>
             </ul>
           </div>
 

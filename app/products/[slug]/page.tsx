@@ -16,6 +16,7 @@ import {
   getRelatedProducts,
   type MarketplaceOffer,
 } from '@/lib/products';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -260,7 +261,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Need more than one?</h2>
             <p className="text-gray-400 mb-6">
-              Ordering for a team or event? Get wholesale pricing on 50+ units.
+              Need a custom production run? The minimum is {formatMinimumOrderPerColor()}.
             </p>
             <Link
               href="/wholesale/"

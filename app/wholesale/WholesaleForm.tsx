@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Send, Check, AlertCircle } from 'lucide-react';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export default function WholesaleForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -107,7 +108,7 @@ export default function WholesaleForm() {
 
             <div>
               <label htmlFor="quantity" className="block text-sm font-medium text-[#1a1a1a] mb-2">
-                Quantity needed *
+                Quantity per colour *
               </label>
               <select
                 id="quantity"
@@ -116,10 +117,15 @@ export default function WholesaleForm() {
                 className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
               >
                 <option value="">Select...</option>
-                <option value="50-100">50-100 units</option>
-                <option value="100-500">100-500 units</option>
-                <option value="500+">500+ units</option>
+                <option value="5000-10000">5,000 - 10,000 pieces</option>
+                <option value="10000-50000">10,000 - 50,000 pieces</option>
+                <option value="50000+">50,000+ pieces</option>
+                <option value="below-minimum">Fewer than 5,000 (retail packs)</option>
+                <option value="not-sure">Not sure yet</option>
               </select>
+              <p className="mt-2 text-xs text-gray-500">
+                Custom production starts at {formatMinimumOrderPerColor()}.
+              </p>
             </div>
           </div>
 
@@ -134,11 +140,12 @@ export default function WholesaleForm() {
               className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
             >
               <option value="">Select...</option>
+              <option value="distributor">Importer / Distributor</option>
+              <option value="promotional">Promotional products company</option>
+              <option value="brand">Brand / Marketing agency</option>
+              <option value="school">School district / University</option>
+              <option value="sports">Sports organisation</option>
               <option value="retailer">Retailer / Store</option>
-              <option value="school">School / University</option>
-              <option value="sports">Sports Team / League</option>
-              <option value="event">Event Planning</option>
-              <option value="corporate">Corporate</option>
               <option value="other">Other</option>
             </select>
           </div>

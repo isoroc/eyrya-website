@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ExternalLink, ShoppingBag, Truck, Shield } from 'lucide-react';
 import { BRAND, MARKETPLACES } from '@/lib/products';
+import { formatMinimumOrderPerColor } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
   title: { absolute: 'Where to Buy EYRYA® | Shop Foam Fingers on Amazon & Temu' },
@@ -146,7 +147,7 @@ export default function WhereToBuyPage() {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Bulk orders?</h2>
             <p className="text-gray-400 mb-6">
-              Need 50+ units? Get wholesale pricing direct from us.
+              Need a custom production run? The minimum is {formatMinimumOrderPerColor()}.
             </p>
             <Link
               href="/wholesale/"

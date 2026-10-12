@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const titleKeyword = post.title.toLowerCase().replace(/[,:]/g, '');
 
   return {
-    title: { absolute: `EYRYA® ${post.title} | Ideas & Inspiration` },
+    title: { absolute: `${post.title} | EYRYA` },
     description,
     keywords: `EYRYA, ${titleKeyword}, ${category?.name.toLowerCase() ?? 'ideas'}, party tips, sports event guide, foam fingers`,
     alternates: {
