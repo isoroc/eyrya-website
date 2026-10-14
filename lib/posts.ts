@@ -10,8 +10,9 @@ import { WHOLESALE, formatMinimumOrderPerColor } from './wholesale';
 
 // Article copy that quotes a price reads it from the catalogue, so an article can
 // never advertise a price the product page no longer shows. This is how an
-// article ended up claiming "$29.99 (just $2.50 each)" while the real listing
-// price was $39.99.
+// article once claimed "$29.99 (just $2.50 each)" - an invented price - while the
+// real listing price was different. Change the price in lib/products.ts and every
+// article quoting it follows.
 const FLAGSHIP_OFFER = getPrimaryOffer(getFeaturedProduct());
 const FLAGSHIP_PACK = formatPackSize(FLAGSHIP_OFFER.packSize);
 const FLAGSHIP_COST_PHRASE =

@@ -196,10 +196,14 @@ export const PRODUCTS: Product[] = [
         label: 'Buy the 12-Pack on Amazon',
         packSize: 12,
         sku: AMAZON_FLAGSHIP_ASIN,
-        // 39.99 is the current Amazon price. There is no struck-through "was"
-        // price: the previous $29.99/$39.99 pair presented the real price as a
-        // discount, which it never was.
-        price: 39.99,
+        // The current Amazon price, supplied by the owner (34.99 as of the most
+        // recent update; it was 39.99 before that). There is deliberately no
+        // originalPrice: a struck-through "was" price is a former-price claim,
+        // and the site's first attempt at one invented the pair ($29.99 against a
+        // "was" $39.99) to make the real price look discounted. Add originalPrice
+        // only when the owner confirms the old price was genuinely offered long
+        // enough to be a bona fide former price.
+        price: 34.99,
       },
       {
         name: 'Temu',
