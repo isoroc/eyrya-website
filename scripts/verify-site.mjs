@@ -13,6 +13,7 @@
 // the title/SEO invariants.
 import fs from 'node:fs';
 import path from 'node:path';
+import { FORBIDDEN } from './content-rules.mjs';
 
 const dist = path.join(process.cwd(), 'dist');
 
@@ -60,19 +61,9 @@ const pngSize = (file) => {
 
 // -----------------------------------------------------------------------------
 console.log('no fabricated content anywhere in the build');
-// Matching is case-insensitive: a capitalised "Fast shipping" card heading once
-// survived a case-sensitive sweep.
-const FORBIDDEN = {
-  'invented ratings': ['328 reviews', '156 reviews', '89 reviews', '4.8/5', '4.6/5', '4.8-star', '4.6-star', 'average rating of'],
-  'invented sales figures': ['50,000 foam fingers', '32,000', '12,000+', '6,000+', '1,247', '50K+', 'over 50,000 products'],
-  'fake review markup': ['aggregateRating', 'AggregateRating', 'reviewCount', 'ratingValue'],
-  'invented service promises': ['Ships from US', 'Ships within 24 hours', '30-day return', '3-5 business days', 'orders over $20', 'free 2-day shipping', '20+ countries', '1-2 business day', 'fast shipping'],
-  'products that do not exist': ['LED party lights', 'Party LED Lights', 'outdoor game kit', 'Outdoor Game Kit', '33 feet of LED', '100 individual bulbs', '6 games in one'],
-  'fabricated first-hand claims': ['We bought 12 different brands', 'we tested', 'We tested', 'We have been there', 'we rated each product', '9 out of 10 paper banners', 'tested on real trips'],
-  'wrong minimum order': ['50+ units', '50 units per', '100+ units', 'Minimum order: 50', '15-30%', '15% off retail', '30% off retail'],
-  'unfounded product claims': ['toy line is in production', 'Party supplies and fan gear', 'Foam fingers and more', '8mm high-density', 'Foam Fingers, Party Supplies & More'],
-};
-
+// The phrase lists live in content-rules.mjs, shared with the live audit, so the
+// two cannot enforce different rules. Matching is case-insensitive: a
+// capitalised "Fast shipping" heading once survived a case-sensitive sweep.
 for (const [label, phrases] of Object.entries(FORBIDDEN)) {
   const hits = [];
   for (const phrase of phrases) {

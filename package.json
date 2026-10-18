@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:functions": "node scripts/check-functions-imports.mjs",
-    "verify": "node scripts/verify-site.mjs"
+    "verify": "node scripts/verify-site.mjs",
+    "verify:live": "node scripts/live-audit.mjs"
   },
   "dependencies": {
     "@fontsource/outfit": "^5.2.8",

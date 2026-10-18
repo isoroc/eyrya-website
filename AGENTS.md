@@ -20,12 +20,17 @@ npm run start            # Preview static build locally
 npm run lint             # ESLint (eslint-config-next/core-web-vitals + typescript)
 npm run check:functions  # Verify every relative import in functions/ resolves
 npm run verify           # Assert the built dist/ is honest and intact (57 checks)
+npm run verify:live      # Assert the *deployed* site is too (35 checks, needs network)
 ```
 
 Run `npm run verify` after every `npm run build`. It fails if fabricated figures
 return, if a removed product reappears, if a marketplace link drifts, if the
 structured data disagrees with the rendered page, or if the icon/manifest plumbing
-breaks. It lives in the repo rather than /tmp for exactly that reason.
+breaks. `npm run verify:live` repeats the content rules against `https://www.eyrya.com`
+and additionally checks the redirects, the 404, and the icon/manifest URLs. The
+phrase lists they share live in `scripts/content-rules.mjs`, because two harnesses
+with separate lists drift apart - and both were previously temp files in /tmp that
+got cleaned up, leaving the guarantees only in a chat log.
 
 **Important**: `output: 'export'` disables Next.js API routes. All server-side logic lives in `functions/` (Cloudflare Pages Functions). Do NOT create `pages/api/` or `app/api/` routes.
 
