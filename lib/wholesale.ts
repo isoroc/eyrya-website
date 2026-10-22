@@ -79,6 +79,36 @@ export interface WholesaleFaqItem {
   answer: string;
 }
 
+/**
+ * How a quantity maps to what we can actually supply.
+ *
+ * "Foam finger bulk" is searched by two different buyers: someone after a few
+ * hundred for a pep rally, and someone sourcing a production run. Only the second
+ * is a fit here, and saying so on the page is better than a form submission that
+ * cannot be fulfilled.
+ */
+export const BULK_ROUTES = [
+  {
+    quantity: 'A few dozen',
+    route: 'Retail packs',
+    detail:
+      'The 12-pack on Amazon and the 6-pack on Temu, in the standard colours. Those ship immediately.',
+  },
+  {
+    quantity: formatMinimumOrderPerColor(),
+    route: 'Custom production',
+    detail:
+      'Your colours, your EVA thickness, and your logo by silk-screen printing, packed 200 to a carton.',
+  },
+  {
+    quantity: 'More than one colour',
+    route: 'The minimum is per colour',
+    detail: `${formatCount(WHOLESALE.minimumOrderPerColor * 2)} pieces covers two colours and ${formatCount(
+      WHOLESALE.minimumOrderPerColor * 3,
+    )} covers three, because the print setup is per colour.`,
+  },
+] as const;
+
 // Shared by the visible FAQ and the FAQPage structured data, so the markup can
 // never describe different terms from the page.
 export const WHOLESALE_FAQ: WholesaleFaqItem[] = [
@@ -87,6 +117,10 @@ export const WHOLESALE_FAQ: WholesaleFaqItem[] = [
     answer: `${formatMinimumOrderPerColor()}. The minimum applies per colour, so a run of two colours starts at ${formatCount(
       WHOLESALE.minimumOrderPerColor * 2,
     )} pieces.`,
+  },
+  {
+    question: 'How much does a bulk order of foam fingers cost?',
+    answer: `${WHOLESALE.pricing} rather than off a rate card, because the unit price depends on the quantity, how much printing you need, and how it is packed. Send those three with your artwork and you get a real number instead of a range.`,
   },
   {
     question: 'Can I order fewer than that?',
@@ -120,5 +154,10 @@ export const WHOLESALE_FAQ: WholesaleFaqItem[] = [
   {
     question: 'How do you ship?',
     answer: `${WHOLESALE.shipping}, so you can consolidate the shipment with your other suppliers.`,
+  },
+  {
+    question: 'Is this the right route for a school or a single team?',
+    answer:
+      'Only at scale. A district buying for a whole season is the kind of run this suits; one class or one squad usually is not, because custom production starts at the minimum above and the retail packs cost less per hand at that size.',
   },
 ];

@@ -126,7 +126,7 @@ const CUSTOM_FOAM_FINGERS_GUIDE_CONTENT = `
 
       <h2>The Bottom Line</h2>
       <p>Custom foam fingers are an investment in school spirit, team identity, or brand visibility. They are not the right choice for everyone, but for schools, teams, and events ordering at volume, they turn a fun prop into a keepsake that fans actually keep.</p>
-      <p>Ready to order? Start with our <a href="/wholesale/">wholesale options</a> or browse our <a href="/products/eva-foam-finger/">EVA foam finger 12-pack</a> for smaller groups. If you have questions about a custom run, our team is happy to help.</p>
+      <p>Ready to order? Start with our <a href="/wholesale/">foam finger bulk options</a> or browse our <a href="/products/eva-foam-finger/">EVA foam finger 12-pack</a> for smaller groups. If you have questions about a custom run, our team is happy to help.</p>
     `;
 
 const GAME_DAY_CHECKLIST_CONTENT = `
@@ -259,7 +259,7 @@ const BULK_ORDER_GUIDE_CONTENT = `
       </ul>
 
       <h2>How to Start</h2>
-      <p>Send us your artwork, the colours, the thickness, the quantity per colour, and the destination. We will come back with a quote and a production schedule. <a href="/wholesale/">Start a custom order enquiry</a>.</p>
+      <p>Send us your artwork, the colours, the thickness, the quantity per colour, and the destination. We will come back with a quote and a production schedule. <a href="/wholesale/">Start a foam finger bulk enquiry</a>.</p>
     `;
 
 const CAMPING_WITH_KIDS_CONTENT = `

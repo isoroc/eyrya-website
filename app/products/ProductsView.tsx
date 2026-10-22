@@ -51,7 +51,9 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
           </h1>
           <p className="text-gray-600">
             {activeCategory ? `${activeCategory.description} ` : ''}
-            We make 18-inch EVA foam hands. Buy the retail pack from the marketplace listing, or talk to us about a custom run.
+            We make 18-inch EVA foam hands. Buy the retail pack from the marketplace listing, or read
+            about <Link href="/wholesale/" className="text-[#DC2626] hover:underline">foam finger bulk
+            orders</Link> if you need a custom run.
           </p>
         </div>
 

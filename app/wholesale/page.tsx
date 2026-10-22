@@ -5,6 +5,7 @@ import JsonLd from '@/app/components/JsonLd';
 import WholesaleForm from './WholesaleForm';
 import { BRAND, MARKETPLACES, formatCount } from '@/lib/products';
 import {
+  BULK_ROUTES,
   WHOLESALE,
   WHOLESALE_FAQ,
   formatMinimumOrder,
@@ -13,16 +14,16 @@ import {
 } from '@/lib/wholesale';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Custom Foam Fingers | Bulk Manufacturing & Logo Printing | EYRYA' },
-  description: `Custom 18-inch EVA foam fingers manufactured to your specification: your thickness, your colours, your logo by silk-screen printing. ${formatMinimumOrderPerColor()}, ${WHOLESALE.leadTimeWeeks}-week lead time.`,
+  title: { absolute: 'Foam Finger Bulk Orders | Custom Manufacturing | EYRYA' },
+  description: `Foam finger bulk orders: ${formatWholesaleSize()} EVA hands in your colours and thickness, with your logo silk-screened on. ${formatMinimumOrderPerColor()}, ${WHOLESALE.leadTimeWeeks}-week lead time.`,
   keywords:
-    'custom foam fingers, custom foam finger manufacturer, foam fingers with logo, bulk foam fingers, silk screen foam fingers, promotional foam fingers supplier, EVA foam finger wholesale, custom foam hand bulk',
+    'foam finger bulk, bulk foam fingers, foam finger bulk order, bulk foam hands, foam fingers wholesale, custom foam fingers, foam fingers with logo, silk screen foam fingers',
   alternates: {
     canonical: `${BRAND.siteUrl}/wholesale/`,
   },
   openGraph: {
-    title: 'Custom Foam Fingers - Bulk Manufacturing & Logo Printing',
-    description: `18-inch EVA foam fingers made to your specification. ${formatMinimumOrderPerColor()}, ${WHOLESALE.leadTimeWeeks}-week lead time.`,
+    title: 'Foam Finger Bulk Orders - Custom Manufacturing',
+    description: `Foam finger bulk orders in your colours and thickness, with your logo silk-screened on. ${formatMinimumOrderPerColor()}.`,
     type: 'website',
     url: `${BRAND.siteUrl}/wholesale/`,
     siteName: 'EYRYA',
@@ -37,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Custom Foam Fingers - Bulk Manufacturing & Logo Printing',
-    description: `18-inch EVA foam fingers made to your specification. ${formatMinimumOrderPerColor()}.`,
+    title: 'Foam Finger Bulk Orders - Custom Manufacturing',
+    description: `Foam finger bulk orders in your colours and thickness, with your logo silk-screened on. ${formatMinimumOrderPerColor()}.`,
     images: [`${BRAND.siteUrl}/images/og-image.png`],
   },
 };
@@ -91,13 +92,13 @@ export default function WholesalePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
           <h1 className="text-3xl md:text-4xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
-            Custom Foam Fingers, Made to Your Specification
+            Foam Finger Bulk Orders, Made to Your Specification
           </h1>
           <p className="text-lg text-gray-600 leading-relaxed mb-4">
-            We manufacture {formatWholesaleSize()} EVA foam fingers to order: your thickness, your
-            colours, your logo by silk-screen printing. The minimum order is{' '}
-            <strong className="text-[#1a1a1a]">{formatMinimumOrderPerColor()}</strong>, with a lead time
-            of about {WHOLESALE.leadTimeWeeks} weeks.
+            Foam finger bulk, made to order: {formatWholesaleSize()} EVA hands with your thickness,
+            your colours, and your logo applied by silk-screen printing. The minimum is{' '}
+            <strong className="text-[#1a1a1a]">{formatMinimumOrderPerColor()}</strong>, production takes
+            about {WHOLESALE.leadTimeWeeks} weeks, and pricing is quoted per project.
           </p>
           <p className="text-gray-600">
             If you need a handful rather than a container, buy the retail packs from{' '}
@@ -114,6 +115,27 @@ export default function WholesalePage() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
+            <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-4">
+              Bulk quantities: what you get at each level
+            </h2>
+            <p className="text-gray-600 text-sm mb-6">
+              Foam finger bulk means different things at different volumes. Here is the split before you
+              fill in the form, so you know which route fits.
+            </p>
+            <div className="space-y-3 mb-10">
+              {BULK_ROUTES.map((route) => (
+                <div key={route.route} className="bg-[#fafafa] p-5">
+                  <div className="flex items-baseline justify-between gap-3 mb-1">
+                    <h3 className="font-semibold text-[#1a1a1a]">{route.route}</h3>
+                    <span className="text-sm font-bold text-[#DC2626] whitespace-nowrap">
+                      {route.quantity}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm">{route.detail}</p>
+                </div>
+              ))}
+            </div>
+
             <h2 className="text-xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-6">
               What we customise
             </h2>
@@ -191,7 +213,7 @@ export default function WholesalePage() {
 
         <div className="mt-16 border-t border-gray-200 pt-16">
           <h2 className="text-2xl font-['Teko'] uppercase font-bold text-[#1a1a1a] mb-8">
-            Custom order FAQ
+            Foam finger bulk FAQ
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {WHOLESALE_FAQ.map((item) => (

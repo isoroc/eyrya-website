@@ -251,13 +251,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-['Teko'] uppercase font-bold text-white mb-4">Need more than one?</h2>
             <p className="text-gray-400 mb-6">
-              Need a custom production run? The minimum is {formatMinimumOrderPerColor()}.
+              Need <Link href="/wholesale/" className="text-white underline underline-offset-4 hover:text-[#DC2626]">foam finger bulk</Link>?
+              A custom production run starts at {formatMinimumOrderPerColor()}.
             </p>
             <Link
               href="/wholesale/"
               className="inline-flex items-center gap-2 bg-white text-[#1a1a1a] px-6 py-3 font-semibold hover:bg-gray-100 transition-colors rounded-sm"
             >
-              View wholesale options
+              See the bulk terms
             </Link>
           </div>
         </div>

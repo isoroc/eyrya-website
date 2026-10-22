@@ -53,7 +53,11 @@ export default function WhereToBuySection() {
 
         <div className="mt-8 pt-8 border-t border-white/10 max-w-3xl">
           <p className="text-gray-500 text-sm">
-            Custom manufacturing? Email wholesale@eyrya.com - the minimum is {formatMinimumOrderPerColor()}.
+            <Link href="/wholesale/" className="text-gray-300 underline underline-offset-4 hover:text-white">
+              Foam finger bulk
+            </Link>{' '}
+            and custom manufacturing start at {formatMinimumOrderPerColor()}. Or email
+            wholesale@eyrya.com.
           </p>
         </div>
       </div>

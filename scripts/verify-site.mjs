@@ -140,9 +140,28 @@ check(
 // -----------------------------------------------------------------------------
 console.log('structured data matches what the page shows');
 check('wholesale Service schema', wholesale.includes('"@type":"Service"'));
+
+// Compare the markup against the page rather than hard-coding a count that has to
+// be edited every time a question is added.
+const wholesaleVisible = wholesale.replace(/<script[\s\S]*?<\/script>/g, ' ');
+const faqQuestions = [...wholesale.matchAll(/"@type":"Question","name":"([^"]+)"/g)].map((m) => m[1]);
+check('FAQPage lists at least 8 questions', faqQuestions.length >= 8, `${faqQuestions.length}`);
+const faqNotVisible = faqQuestions.filter((q) => !wholesaleVisible.includes(q.replace(/&amp;/g, '&')));
+check('every FAQPage question is visible on the page', faqNotVisible.length === 0, faqNotVisible.slice(0, 2).join(' | '));
+
+// The owner asked the wholesale page to rank for "foam finger bulk"; these guard
+// the two placements that matter most so a later copy edit cannot quietly drop it.
+const wholesaleTitle = (wholesale.match(/<title>([^<]*)</) || [, ''])[1];
+check('wholesale title targets "foam finger bulk"', /foam finger bulk/i.test(wholesaleTitle), wholesaleTitle);
 check(
-  'wholesale FAQPage covers every visible question',
-  (wholesale.match(/"@type":"Question"/g) || []).length === 8,
+  'wholesale H1 targets "foam finger bulk"',
+  /<h1[^>]*>\s*foam finger bulk/i.test(wholesale),
+  (wholesale.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [, ''])[1].slice(0, 80),
+);
+check(
+  'the phrase also appears in body copy, not only the heading',
+  (wholesaleVisible.match(/foam finger bulk/gi) || []).length >= 2,
+  `${(wholesaleVisible.match(/foam finger bulk/gi) || []).length} occurrences`,
 );
 
 // -----------------------------------------------------------------------------
