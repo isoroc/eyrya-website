@@ -247,6 +247,17 @@ check(
   !/manifest\.webmanifest|favicon\.ico|apple-icon\.png/.test(read('sitemap.xml')),
 );
 
+// Build-time lastmod on every URL is a lie (all values identical) and teaches
+// Google to ignore the signal. Real article dates differ from each other.
+const sitemapXml = read('sitemap.xml');
+const lastmods = [...sitemapXml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].length;
+check(
+  'sitemap does not stamp every URL with the build time',
+  lastmods.length > 0 && new Set(lastmods).size > 1 && lastmods.length < sitemapUrls,
+  `${lastmods.length} lastmod of ${sitemapUrls} urls, ${new Set(lastmods).size} distinct`,
+);
+
 // The three 404 outputs are one noindexed page, so they legitimately share a
 // title; only indexable pages are compared.
 const indexable = pages.filter((p) => !p.body.includes('noindex'));
