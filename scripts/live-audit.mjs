@@ -24,13 +24,25 @@ const check = (name, ok, detail = '') => {
 };
 
 const cacheBust = () => `?cb=${Date.now()}${Math.floor(Math.random() * 1e6)}`;
+const sleep = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
 
-async function get(url, { redirect = 'follow' } = {}) {
-  const response = await fetch(url, {
-    headers: { 'User-Agent': USER_AGENT, 'Accept-Language': 'en-US,en;q=0.9' },
-    redirect,
-  });
-  return response;
+// Retry on transport errors. A single ECONNRESET on a 23-page crawl used to abort
+// the whole audit as an unhandled rejection, which reads like a site failure and
+// is worse than no check at all.
+async function get(url, { redirect = 'follow', attempts = 3 } = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await fetch(url, {
+        headers: { 'User-Agent': USER_AGENT, 'Accept-Language': 'en-US,en;q=0.9' },
+        redirect,
+      });
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) await sleep(400 * attempt);
+    }
+  }
+  throw lastError;
 }
 
 async function getBytes(url) {
@@ -63,7 +75,13 @@ check('sitemap is reachable and lists pages', sitemapResponse.status === 200 && 
 
 const texts = new Map();
 for (const url of urls) {
-  const response = await get(`${url}${cacheBust()}`);
+  let response;
+  try {
+    response = await get(`${url}${cacheBust()}`);
+  } catch (error) {
+    check(`${url.replace(BASE, '')} returns 200`, false, `network: ${error.message}`);
+    continue;
+  }
   if (response.status !== 200) {
     check(`${url.replace(BASE, '')} returns 200`, false, `got ${response.status}`);
     continue;
