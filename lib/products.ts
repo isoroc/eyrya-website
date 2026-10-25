@@ -282,11 +282,6 @@ export function getCategory(slug: string): Category | undefined {
   return CATEGORIES.find((category) => category.slug === slug);
 }
 
-/** Categories that actually have at least one product. */
-export function getPopulatedCategories(): Category[] {
-  return CATEGORIES.filter((category) => getProductsByCategory(category.slug).length > 0);
-}
-
 export function productCountForCategory(slug: CategorySlug): number {
   return getProductsByCategory(slug).length;
 }

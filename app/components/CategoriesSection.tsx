@@ -35,7 +35,7 @@ export default function CategoriesSection() {
             }
 
             return (
-              <Link key={category.slug} href={`/products/category/${category.slug}/`}>
+              <Link key={category.slug} href="/products/">
                 <div className="group bg-white border border-gray-200 p-6 hover:border-[#DC2626] transition-colors h-full flex flex-col">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-bold text-[#DC2626]">

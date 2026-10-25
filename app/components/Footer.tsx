@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
-import { getPopulatedCategories } from '@/lib/products';
+import { PRODUCTS } from '@/lib/products';
 
 const footerLinks = {
-  // Derived from the catalogue so a category link can never point at an empty
-  // listing or a slug that does not exist.
-  products: getPopulatedCategories().map((category) => ({
-    name: category.name,
-    href: `/products/category/${category.slug}/`,
-  })),
+  // Derived from the catalogue, so a footer link can never point at a slug that
+  // does not exist. The category pages were deleted; these point at real pages.
+  products: [
+    { name: 'All Products', href: '/products' },
+    ...PRODUCTS.map((product) => ({ name: product.name, href: `/products/${product.slug}/` })),
+  ],
   company: [
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },

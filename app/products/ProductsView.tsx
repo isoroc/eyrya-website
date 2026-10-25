@@ -1,41 +1,35 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import JsonLd from '@/app/components/JsonLd';
 import { AMAZON_FLAGSHIP_URL } from '@/lib/links';
 import {
   BRAND,
-  CATEGORIES,
   MARKETPLACES,
   formatOfferPrice,
   formatPrice,
   getAllProducts,
   getCategory,
   getPrimaryOffer,
-  getProductsByCategory,
-  productCountForCategory,
-  type Category,
 } from '@/lib/products';
 
-interface ProductsViewProps {
-  /** When set, the grid is filtered to this category. */
-  activeCategory?: Category;
-}
-
-// Server component: the product grid is rendered into the static HTML rather
-// than hydrated on the client. Filtering is expressed as a real route
-// (/products/category/<slug>/) so every view is crawlable.
-export default function ProductsView({ activeCategory }: ProductsViewProps) {
-  const allProducts = getAllProducts();
-  const products = activeCategory ? getProductsByCategory(activeCategory.slug) : allProducts;
-  const heading = activeCategory ? activeCategory.name : 'All Products';
+// Server component: the product grid is rendered into the static HTML rather than
+// hydrated on the client.
+//
+// This used to accept an `activeCategory` prop and render category-filtered
+// variants at /products/category/<slug>/. Those pages held a single product each
+// and were among the URLs Search Console left at "Discovered - currently not
+// indexed", so they were deleted rather than kept as five thin crawl targets.
+export default function ProductsView() {
+  const products = getAllProducts();
+  const heading = 'All Products';
 
   return (
     <div className="pt-24 pb-20 bg-[#F4F1EA]">
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: activeCategory ? `${activeCategory.name} from EYRYA` : 'EYRYA Products',
+        name: 'EYRYA Products',
         numberOfItems: products.length,
         itemListElement: products.map((product, index) => ({
           '@type': 'ListItem',
@@ -50,7 +44,6 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
             {heading}
           </h1>
           <p className="text-gray-600">
-            {activeCategory ? `${activeCategory.description} ` : ''}
             We make 18-inch EVA foam hands. Buy the retail pack from the marketplace listing, or read
             about <Link href="/wholesale/" className="text-[#DC2626] hover:underline">foam finger bulk
             orders</Link> if you need a custom run.
@@ -59,62 +52,7 @@ export default function ProductsView({ activeCategory }: ProductsViewProps) {
 
         <section className="mb-16">
           <h2 className="font-['Teko'] text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-6 uppercase tracking-wide">
-            Categories
-          </h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {CATEGORIES.map((category) => {
-              const count = productCountForCategory(category.slug);
-              const isActive = activeCategory?.slug === category.slug;
-
-              // A category with no products is shown as a plain tile: linking to
-              // an empty listing is a dead end for users and for crawlers.
-              if (count === 0) {
-                return (
-                  <div
-                    key={category.slug}
-                    className="bg-white/60 border border-dashed border-gray-300 p-6"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-bold text-gray-500">{category.name}</h3>
-                      <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
-                        Coming soon
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-500">{category.description}</p>
-                  </div>
-                );
-              }
-
-              return (
-                <Link
-                  key={category.slug}
-                  href={isActive ? '/products/' : `/products/category/${category.slug}/`}
-                  className={`group bg-white border p-6 transition-colors ${
-                    isActive
-                      ? 'border-[#DC2626] bg-[#DC2626]/5'
-                      : 'border-gray-200 hover:border-[#DC2626]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-[#1A1A1A]">
-                      {category.name}
-                    </h3>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-[#DC2626] transition-colors" />
-                  </div>
-                  <p className="text-sm text-gray-500 mb-2">{category.description}</p>
-                  <span className="text-xs font-medium uppercase tracking-wider text-gray-400">
-                    {count} {count === 1 ? 'product' : 'products'}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="font-['Teko'] text-2xl md:text-3xl font-bold text-[#1A1A1A] mb-6 uppercase tracking-wide">
-            {activeCategory ? activeCategory.name : 'Featured'}
+            Featured
           </h2>
 
           {products.length === 0 ? (

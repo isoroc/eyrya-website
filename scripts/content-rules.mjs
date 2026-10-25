@@ -87,13 +87,19 @@ export const CONFIRMED_FACTS = [
   'freight forwarder',
 ];
 
-/** URLs whose content was deleted and which must now redirect, not 404. */
+/** Deleted URLs that must redirect, each with the page it should land on. */
 export const REDIRECTED_PATHS = [
-  '/products/party-led-lights/',
-  '/products/outdoor-game-kit/',
-  '/products/category/party-supplies/',
-  '/products/category/toys-play/',
-  '/products/category/outdoor-fun/',
+  { path: '/products/party-led-lights/', to: '/products' },
+  { path: '/products/outdoor-game-kit/', to: '/products' },
+  { path: '/products/category/party-supplies/', to: '/products' },
+  { path: '/products/category/toys-play/', to: '/products' },
+  { path: '/products/category/outdoor-fun/', to: '/products' },
+  // category routes deleted 2026-10-25
+  { path: '/products/category/sports-fan-gear/', to: '/products' },
+  { path: '/ideas/category/party-ideas/', to: '/ideas' },
+  { path: '/ideas/category/sports-events/', to: '/ideas' },
+  { path: '/ideas/category/outdoor-activities/', to: '/ideas' },
+  { path: '/ideas/category/wholesale/', to: '/ideas' },
 ];
 
 export const USER_AGENT =

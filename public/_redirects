@@ -35,3 +35,14 @@
 /products/category/party-supplies/  /products/  301
 /products/category/toys-play/       /products/  301
 /products/category/outdoor-fun/     /products/  301
+
+# The category listing routes were deleted on 2026-10-25. Each held a single
+# product (or a filtered view of the same seven articles) and they were among the
+# URLs Search Console left at "Discovered - currently not indexed". With crawl
+# running at roughly one page every nine days, five thin duplicates were costing
+# more than they returned.
+/products/category/sports-fan-gear/  /products/  301
+/ideas/category/party-ideas/         /ideas/     301
+/ideas/category/sports-events/       /ideas/     301
+/ideas/category/outdoor-activities/  /ideas/     301
+/ideas/category/wholesale/           /ideas/     301

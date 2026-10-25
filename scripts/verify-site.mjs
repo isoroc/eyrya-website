@@ -81,8 +81,17 @@ console.log('only the real product is published');
 check('the foam finger page exists', exists('products/eva-foam-finger/index.html'));
 check('no LED light page', !exists('products/party-led-lights/index.html'));
 check('no outdoor kit page', !exists('products/outdoor-game-kit/index.html'));
-const categoryDirs = fs.readdirSync(path.join(dist, 'products/category')).join(',');
-check('only one product category page', categoryDirs === 'sports-fan-gear', categoryDirs);
+// The category listing routes were deleted; nothing should render them.
+check(
+  'the product and post category routes are gone',
+  !exists('products/category') && !exists('ideas/category'),
+);
+const deadCategoryLinks = pages.filter((page) => /href="\/(products|ideas)\/category\//.test(page.body));
+check(
+  'no page links to a deleted category route',
+  deadCategoryLinks.length === 0,
+  deadCategoryLinks.map((p) => p.rel).slice(0, 3).join(', '),
+);
 check(
   'the products index lists only the real product',
   read('products/index.html').includes('EVA Foam Finger (12 Pack)') &&
@@ -248,6 +257,12 @@ check(
   'sitemap lists the remaining pages only',
   read('sitemap.xml').includes('/products/eva-foam-finger/') && !read('sitemap.xml').includes('party-led-lights'),
 );
+check(
+  'sitemap is down to 18 URLs after dropping the five thin ones',
+  [...read('sitemap.xml').matchAll(/<loc>/g)].length === 18,
+  `${[...read('sitemap.xml').matchAll(/<loc>/g)].length}`,
+);
+check('no category route survives in the sitemap', !/\/category\//.test(read('sitemap.xml')));
 check(
   'sitemap has no icon or manifest entries',
   !/manifest\.webmanifest|favicon\.ico|apple-icon\.png/.test(read('sitemap.xml')),

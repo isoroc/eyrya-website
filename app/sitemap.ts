@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { BRAND, PRODUCTS, getPopulatedCategories } from '@/lib/products';
-import { POSTS, getPopulatedPostCategories } from '@/lib/posts';
+import { BRAND, PRODUCTS } from '@/lib/products';
+import { POSTS } from '@/lib/posts';
 
 // Generated at build time from the same modules the pages render from, so a new
 // product, category, or post is in the sitemap as soon as it exists in lib/.
@@ -41,18 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const productCategoryPages: MetadataRoute.Sitemap = getPopulatedCategories().map((category) => ({
-    url: `${SITE}/products/category/${category.slug}/`,
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }));
-
-  const postCategoryPages: MetadataRoute.Sitemap = getPopulatedPostCategories().map((category) => ({
-    url: `${SITE}/ideas/category/${category.slug}/`,
-    changeFrequency: 'weekly',
-    priority: 0.6,
-  }));
-
   const postPages: MetadataRoute.Sitemap = POSTS.map((post) => ({
     url: `${SITE}/ideas/${post.slug}/`,
     // Each article carries its own real publication date.
@@ -64,8 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...productPages,
-    ...productCategoryPages,
-    ...postCategoryPages,
     ...postPages,
   ];
 }

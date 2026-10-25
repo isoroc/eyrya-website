@@ -108,7 +108,7 @@ for (const fact of CONFIRMED_FACTS) {
 // -----------------------------------------------------------------------------
 // `redirect: 'manual'` keeps fetch from following the 301, which is the thing
 // being asserted. Node's default would report the 200 it landed on instead.
-for (const path of REDIRECTED_PATHS) {
+for (const { path, to } of REDIRECTED_PATHS) {
   const response = await get(`${BASE}${path}${cacheBust()}`, { redirect: 'manual' });
   const location = response.headers.get('location') || '';
   // Pages preserves the query string on the redirect (desirable: tracking params
@@ -120,8 +120,8 @@ for (const path of REDIRECTED_PATHS) {
     target = '';
   }
   check(
-    `deleted ${path} redirects to /products/`,
-    [301, 308].includes(response.status) && target === '/products',
+    `deleted ${path} redirects to ${to}/`,
+    [301, 308].includes(response.status) && target === to,
     `${response.status} ${location}`,
   );
 }

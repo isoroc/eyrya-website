@@ -1,24 +1,16 @@
 import Link from 'next/link';
-import {
-  POST_CATEGORIES,
-  getAllPosts,
-  getPostCategory,
-  getPostsByCategory,
-  type PostCategory,
-} from '@/lib/posts';
-
-interface IdeasViewProps {
-  /** When set, the grid is filtered to this category. */
-  activeCategory?: PostCategory;
-}
+import { getAllPosts, getPostCategory } from '@/lib/posts';
 
 // Server component: the post grid is rendered into the static HTML rather than
-// hydrated on the client. Filtering is expressed as a real route
-// (/ideas/category/<slug>/) so every view is crawlable.
-export default function IdeasView({ activeCategory }: IdeasViewProps) {
-  const allPosts = getAllPosts();
-  const posts = activeCategory ? getPostsByCategory(activeCategory.slug) : allPosts;
-  const heading = activeCategory ? activeCategory.name : 'From the Blog';
+// hydrated on the client.
+//
+// The per-category filter chips used to link to /ideas/category/<slug>/, which
+// rendered the same seven articles under a different heading. Four thin
+// duplicates were not worth the crawl budget, so those routes are gone and this
+// lists everything.
+export default function IdeasView() {
+  const posts = getAllPosts();
+  const heading = 'From the Blog';
 
   return (
     <div className="pt-24 pb-20">
@@ -30,49 +22,6 @@ export default function IdeasView({ activeCategory }: IdeasViewProps) {
           <p className="text-gray-600">
             Tips, tricks, and real talk about party planning and sports events.
           </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-10">
-          <Link
-            href="/ideas/"
-            className={`px-4 py-2 text-sm font-medium border transition-colors rounded-sm ${
-              activeCategory
-                ? 'border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white'
-                : 'border-[#DC2626] bg-[#DC2626] text-white'
-            }`}
-          >
-            All
-          </Link>
-          {POST_CATEGORIES.map((category) => {
-            const isActive = activeCategory?.slug === category.slug;
-
-            // A category with no posts is shown as a plain chip: linking to an
-            // empty listing is a dead end for users and for crawlers.
-            if (getPostsByCategory(category.slug).length === 0) {
-              return (
-                <span
-                  key={category.slug}
-                  className="px-4 py-2 text-sm font-medium border border-dashed border-gray-300 text-gray-400 rounded-sm"
-                >
-                  {category.name} - Coming soon
-                </span>
-              );
-            }
-
-            return (
-              <Link
-                key={category.slug}
-                href={isActive ? '/ideas/' : `/ideas/category/${category.slug}/`}
-                className={`px-4 py-2 text-sm font-medium border transition-colors rounded-sm ${
-                  isActive
-                    ? 'border-[#DC2626] bg-[#DC2626] text-white'
-                    : 'border-gray-200 hover:border-[#DC2626] hover:bg-[#DC2626] hover:text-white'
-                }`}
-              >
-                {category.name}
-              </Link>
-            );
-          })}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -424,11 +424,6 @@ export function getPostCategory(slug: string): PostCategory | undefined {
   return POST_CATEGORIES.find((category) => category.slug === slug);
 }
 
-/** Categories that actually have at least one post. */
-export function getPopulatedPostCategories(): PostCategory[] {
-  return POST_CATEGORIES.filter((category) => getPostsByCategory(category.slug).length > 0);
-}
-
 export function getRelatedPosts(slug: string, limit = 2): Post[] {
   return POSTS.filter((post) => post.slug !== slug).slice(0, limit);
 }
