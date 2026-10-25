@@ -1,26 +1,23 @@
-# VERIFIED INEFFECTIVE on Cloudflare Pages - kept as documentation only.
+# Path-level redirects. These DO work on Cloudflare Pages.
 #
-# Both eyrya.com and www.eyrya.com serve the full site (both return 200). Every
-# page's canonical points at www, so Google should consolidate them, but serving
-# identical content on two hostnames splits inbound links and doubles the crawl
-# surface. It is a hygiene issue, not the reason the site does not rank.
+# Host-level rules do not: a `https://eyrya.com/*` line in this file was deployed
+# and tested, and the apex still answered 200. Cloudflare Pages does not apply
+# `_redirects` rules that match on hostname, so the apex -> www redirect lives in
+# the zone's dashboard config instead.
 #
-# This host-level rule was deployed and tested: eyrya.com still answered 200, so
-# Cloudflare Pages does not apply `_redirects` rules that match on hostname. The
-# redirect has to be created in the dashboard instead:
-#
-#   Cloudflare dashboard -> your domain (eyrya.com) -> Rules -> Redirect Rules
-#   -> Create rule
-#     When incoming requests match:  Hostname equals  eyrya.com
-#     Then:  Static redirect  ->  https://www.eyrya.com  (301)
+# DONE 2026-10-25, in the Cloudflare dashboard:
+#   eyrya.com -> Rules -> Redirect Rules -> Create rule
+#     Name:            apex to www
+#     Match:           wildcard pattern   https://eyrya.com/*
+#     Then:            https://www.eyrya.com/${1}   (301)
 #     Preserve query string: on
 #
-# (or attach eyrya.com as a "Redirect" custom domain in the Pages project, which
-#  Cloudflare turns into the same rule).
-https://eyrya.com/*  https://www.eyrya.com/:splat  301
+# Verified afterwards: apex paths 301 to the same path on www with the query
+# string intact, and www answers 200 with no redirect (so there is no loop).
+# Before this, Google had indexed https://eyrya.com/about/ as one of the site's
+# five indexed URLs and reported two others as "alternate page with proper
+# canonical tag" - both symptoms of serving the same site on two hostnames.
 
-# Path-level rules DO work on Pages (unlike the host rule above).
-#
 # These five URLs belonged to content that has been deleted: two products that
 # never existed (a Party LED Lights Set and an Outdoor Game Kit) and the three
 # category pages that only those products populated. Without a rule they fall
