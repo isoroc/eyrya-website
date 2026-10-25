@@ -119,8 +119,9 @@ export default function WholesalePage() {
               Bulk quantities: what you get at each level
             </h2>
             <p className="text-gray-600 text-sm mb-6">
-              Foam finger bulk means different things at different volumes. Here is the split before you
-              fill in the form, so you know which route fits.
+              Bulk foam fingers mean different things at different volumes: a few dozen is a retail
+              order, a container is a wholesale one. Here is the split before you fill in the form, so
+              you know which route fits.
             </p>
             <div className="space-y-3 mb-10">
               {BULK_ROUTES.map((route) => (

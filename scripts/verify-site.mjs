@@ -163,6 +163,12 @@ check(
   (wholesaleVisible.match(/foam finger bulk/gi) || []).length >= 2,
   `${(wholesaleVisible.match(/foam finger bulk/gi) || []).length} occurrences`,
 );
+// Google matches word order loosely, but the natural plural ("bulk foam fingers")
+// is a real query in its own right and was missing from the body entirely.
+check(
+  'the natural variant "bulk foam fingers" is covered',
+  /bulk foam fingers/i.test(wholesaleVisible),
+);
 
 // -----------------------------------------------------------------------------
 console.log('icons and manifest');
