@@ -44,6 +44,8 @@ export interface Post {
   /** Article body HTML, rendered with dangerouslySetInnerHTML. */
   content: string;
   image: string;
+  /** Alt text for the lead image; defaults to the title when omitted. */
+  imageAlt?: string;
   /** Product slugs shown under "Related Products"; product names live in lib/products. */
   relatedProductSlugs?: string[];
 }
@@ -70,152 +72,118 @@ export function estimateReadTime(html: string): string {
 // Article bodies, kept as literal HTML so the detail page renders them exactly
 // as they were written.
 const CUSTOM_FOAM_FINGERS_GUIDE_CONTENT = `
-      <p>If you have ever tried to outfit an entire student section, a marching band, or a company spirit day, you already know the problem. Retail foam fingers come in small packs and rarely in the color or design you actually need. Custom foam fingers solve that problem - but only if you understand how the ordering process really works.</p>
+      <p>Custom foam fingers are a manufacturing order, not a larger retail order. That distinction decides almost everything that follows: the minimum, the lead time, the price, and what you have to send before anyone can quote you properly.</p>
 
-      <p>This guide walks you through everything: when custom makes sense, how much it costs, how long it takes, and how to design a foam finger that people actually keep instead of tossing in the trash.</p>
-
-      <h2>What Are Custom Foam Fingers?</h2>
-      <p>Custom foam fingers are foam hands manufactured to your specifications - your colors, your logo, your text, even your own artwork. Unlike the stock foam fingers you find at a party store, a custom run is produced specifically for your school, team, brand, or event.</p>
-      <p>Most custom foam fingers are made from the same high-density EVA foam used in premium stock options. The difference is that the color, print, and cutout are chosen by you rather than picked off a shelf.</p>
-
-      <h2>When Custom Foam Fingers Are Worth It</h2>
-      <p>Custom ordering is not for everyone. It makes sense when at least one of these is true:</p>
+      <h2>What you can actually change</h2>
       <ul>
-        <li><strong>You need a specific color.</strong> If your school colors are maroon and gold, a blue foam finger is not going to cut it.</li>
-        <li><strong>You want your logo or mascot on it.</strong> A plain foam hand is fun, but one with your team logo becomes a keepsake.</li>
-        <li><strong>You are ordering for a large group.</strong> Pep rallies, graduations, and stadium events scale into thousands of pieces - which is the point where custom production starts.</li>
-        <li><strong>You want a consistent look.</strong> A matching set of foam fingers looks far more polished on camera than a mix of random colors.</li>
+        <li><strong>Thickness</strong> - the EVA foam weight is made to order, so you are not picking from a fixed menu.</li>
+        <li><strong>Colours</strong> - matched to your specification, whether that is one team colour or a full range.</li>
+        <li><strong>Logo</strong> - applied by silk-screen printing. Send vector artwork and we will confirm what reproduces cleanly on foam.</li>
       </ul>
-      <p>If you only need a handful of foam fingers in standard colors, buying a <a href="/products/eva-foam-finger/">12-pack of stock foam fingers</a> is faster and cheaper. Custom ordering only pays off at scale.</p>
+      <p>The size is fixed at 18 in (46 cm), the same hand the retail 12-pack uses.</p>
 
-      <h2>Custom vs. Stock Foam Fingers</h2>
-      <p>Here is the honest comparison most suppliers will not give you:</p>
-      <ul>
-        <li><strong>Stock foam fingers</strong> - Available immediately, lower cost per unit, 12 colors to choose from, no design work required. Best for individuals and small groups.</li>
-        <li><strong>Custom foam fingers</strong> - Higher upfront cost, longer lead time, but you control the color and print. Best for schools, teams, and brands with a clear identity.</li>
-      </ul>
-      <p>As a rule of thumb: custom production starts at ${formatMinimumOrderPerColor()}. Below that, stock is the better value - the 12-pack on Amazon and the 6-pack on Temu ship immediately.</p>
+      <h2>The minimum is per colour, not per order</h2>
+      <p>Custom production starts at 5,000 pieces per colour. Two colours means 10,000 pieces, three means 15,000. The reason is the print setup: every colour is its own screen, so the per-colour minimum is what makes that setup worth running.</p>
+      <p>Below that, the retail packs are the better route: a 12-pack on Amazon and a 6-pack on Temu, in five standard colours. They ship immediately, and at that volume they cost less per hand.</p>
 
-      <h2>How the Custom Ordering Process Works</h2>
-      <p>A typical custom foam finger order moves through five stages:</p>
+      <h2>What to send with your enquiry</h2>
+      <p>An enquiry we can quote without a round of questions needs five things:</p>
       <ul>
-        <li><strong>1. Share your specs.</strong> Tell your supplier the color, quantity, and what you want printed.</li>
-        <li><strong>2. Get a quote.</strong> You receive pricing based on quantity and complexity, plus an estimated delivery date.</li>
-        <li><strong>3. Approve a proof.</strong> A digital mockup shows exactly how the foam finger will look before production begins.</li>
-        <li><strong>4. Production.</strong> Once the proof is approved, your order goes into manufacturing.</li>
-        <li><strong>5. Delivery.</strong> Finished units are packed and shipped to your address.</li>
-      </ul>
-      <p>Always ask for a physical or digital proof before production. Changes are cheap before printing and impossible after.</p>
-
-      <h2>Design Tips That Make Your Foam Finger Stand Out</h2>
-      <p>After working with hundreds of schools and teams, these are the design choices that consistently work:</p>
-      <ul>
-        <li><strong>Keep it readable from a distance.</strong> A foam finger is seen from across a stadium, not up close. Big, bold lettering beats intricate detail.</li>
-        <li><strong>Use high contrast.</strong> Light text on a dark foam finger (or the reverse) reads best. Low-contrast logos disappear in photos.</li>
-        <li><strong>Limit yourself to one or two colors.</strong> More colors mean more complexity and higher cost.</li>
-        <li><strong>Make the hand shape part of the design.</strong> The raised index finger is the whole point - do not bury it under graphics.</li>
-        <li><strong>Think about the photo.</strong> Your foam finger will end up in thousands of fan photos. Design for that moment.</li>
+        <li><strong>Artwork</strong> - AI, EPS, PDF, or a high-resolution PNG. A logo pulled off a website at 200px will not screen-print.</li>
+        <li><strong>Quantity per colour</strong>, counted separately rather than as one total.</li>
+        <li><strong>Colour reference</strong> - Pantone numbers if you have them, not just "our team red".</li>
+        <li><strong>Packing preference</strong> - 200 pieces per export carton is standard; say so if you also need an individual OPP bag per piece for handing out or reselling.</li>
+        <li><strong>Destination</strong> - we can ship to your freight forwarder so you can consolidate with your other suppliers.</li>
       </ul>
 
-      <h2>Custom Foam Finger Costs and Lead Times</h2>
-      <p>Custom foam fingers typically start at a higher unit price than stock and drop as quantity rises. Expect a lead time of four to six weeks for a custom run, compared to same-week shipping for stock orders.</p>
-      <p>If you have a hard deadline - a homecoming game, a conference, a product launch - order early. Rushing a custom order rarely ends well.</p>
+      <h2>What happens next</h2>
+      <ol>
+        <li>We quote. Pricing is per project rather than off a rate card, because the unit price depends on the quantity, how much printing is involved, and the packing.</li>
+        <li>We agree the specification - colours, logo placement, packing - before anything is produced.</li>
+        <li>You pay 50% to start production; the balance is due before shipment.</li>
+        <li>Production takes about 2 weeks once the deposit clears.</li>
+        <li>We ship to your forwarder, or as agreed.</li>
+      </ol>
 
-      <h2>Why EVA Foam Beats Cheap Alternatives</h2>
-      <p>Whichever route you choose, specify the material rather than accepting &quot;foam&quot; as a description. EVA holds its shape far better than the thin low-density foams used in the cheapest hands, and it does not absorb water. On a custom run you are choosing the specification anyway, so it costs nothing to get it right.</p>
+      <h2>Four things that delay a run</h2>
+      <ul>
+        <li><strong>Low-resolution artwork.</strong> The most common cause, and it usually surfaces after the screens are made.</li>
+        <li><strong>Colours named rather than specified.</strong> "Navy" is three different colours to three different people.</li>
+        <li><strong>Packing decided late.</strong> Individual OPP bagging is a separate step, not something to add the day before shipment.</li>
+        <li><strong>Working back from an event date without counting transit.</strong> The 2 weeks is production only.</li>
+      </ul>
 
-      <h2>The Bottom Line</h2>
-      <p>Custom foam fingers are an investment in school spirit, team identity, or brand visibility. They are not the right choice for everyone, but for schools, teams, and events ordering at volume, they turn a fun prop into a keepsake that fans actually keep.</p>
-      <p>Ready to order? Start with our <a href="/wholesale/">foam finger bulk options</a> or browse our <a href="/products/eva-foam-finger/">EVA foam finger 12-pack</a> for smaller groups. If you have questions about a custom run, our team is happy to help.</p>
+      <h2>When stock beats custom</h2>
+      <p>Custom makes sense when identity matters: a school, a team, a brand running a campaign. If you simply need foam hands in a team colour, the <a href="/products/eva-foam-finger/">retail 12-pack</a> in five colours gets you there with a fraction of the commitment. The <a href="/wholesale/">foam finger bulk page</a> carries the full terms, and <a href="/ideas/bulk-order-guide/">this guide to bulk orders</a> covers the mechanics of placing one.</p>
     `;
 
 const GAME_DAY_CHECKLIST_CONTENT = `
-      <p>Game day is coming up and you want to be the one who has everything covered. Whether it is a tailgate before the big NFL game, a college football watch party, or your kid's first trip to the stadium, being prepared makes all the difference.</p>
+      <p>A good game day is mostly preparation. Here is what to sort out the week before, the night before, and at the ground - including the one piece of kit that makes a section look organised on camera instead of scattered.</p>
 
-      <h2>Essentials You Cannot Forget</h2>
-      <p>Every great game day starts with the basics. Here is what you absolutely need:</p>
+      <h2>The week before</h2>
       <ul>
-        <li><strong>Foam fingers</strong> - The number one game day accessory. Our EVA foam fingers are 18 inches tall and made from high-density foam that will not collapse after one game. Get one in your team colors.</li>
-        <li><strong>Team face paint</strong> - Nothing says fan spirit like painted cheeks. Pick up a few tubes of team-color face paint before you go.</li>
-        <li><strong>Portable cooler</strong> - Keep drinks cold for hours. A good cooler is worth the investment for any serious tailgater.</li>
-        <li><strong>Folding chairs</strong> - Standing for four hours is not fun. Bring comfortable seating for everyone in your group.</li>
+        <li><strong>Check the bag policy.</strong> Most grounds restrict what you can carry in, and the rules differ from venue to venue. A phone call now beats an argument at the gate.</li>
+        <li><strong>Decide who carries what.</strong> One person with the cooler, one with the chairs, one with the flag. Shared lists in a group chat beat good intentions.</li>
+        <li><strong>Check the forecast</strong> and plan for the version of the day you actually expect, not the one you want.</li>
+        <li><strong>Charge everything.</strong> Phones, speakers, whatever camera you are bringing.</li>
       </ul>
 
-      <h2>Tailgate Setup Tips</h2>
-      <p>Setting up a great tailgate is about more than just throwing things in the trunk. Here is how to do it right:</p>
+      <h2>The night before</h2>
       <ul>
-        <li>Arrive at least 3 hours before kickoff for the best parking spots</li>
-        <li>Set up your canopy first - shade is everything on a sunny game day</li>
-        <li>Keep food and drinks in separate coolers so you are not opening the food cooler all day</li>
-        <li>Bring a Bluetooth speaker for pre-game music</li>
-        <li>Pack hand sanitizer and wet wipes - stadium parking lots are not known for being clean</li>
+        <li>Pack the car while it is still light, or stage everything by the door.</li>
+        <li>Freeze the drinks. They double as ice and they are still cold at halftime.</li>
+        <li>Lay out what you are wearing, including the layers you will be glad of after sunset.</li>
+        <li>Put the tickets, parking pass, and any physical passes in one place that is not your pocket.</li>
       </ul>
 
-      <h2>What to Bring for the Kids</h2>
-      <p>If you are bringing kids to the game, you need extra supplies. Foam fingers are perfect because they are lightweight, fun, and give kids something to do during timeouts. Also pack:</p>
+      <h2>The section kit</h2>
+      <p>This is where the foam fingers earn their place. A section wearing the same colour reads as one crowd on camera; a mix of whatever people had at home reads as noise. The <a href="/products/eva-foam-finger/">18-inch EVA foam hand</a> comes as a 12-pack on Amazon and a 6-pack on Temu in five standard colours, so a group of twenty can be matched on purpose rather than assembled by accident.</p>
+      <p>Two practical notes. Keep them out of direct sun in a hot car - foam that bakes all afternoon is not the same foam by kickoff. And decide in advance who is taking them home, because a set of twelve is easy to lose one at a time.</p>
+
+      <h2>At the ground</h2>
       <ul>
-        <li>Ear protection for loud stadiums</li>
-        <li>Snacks that will keep them happy through a 3-hour game</li>
-        <li>A small blanket for sitting on bleachers</li>
-        <li>Sunscreen - even on cloudy days</li>
+        <li>Arrive earlier than you think you need to. Parking is the variable you cannot control.</li>
+        <li>Set up at the back of your section, not the front, so you are not blocking anyone's view.</li>
+        <li>Keep the cooler out of the sun and off the ground if the ground is wet.</li>
+        <li>Take the photo before the game, not after. Everyone still looks like they meant to be there.</li>
       </ul>
 
-      <h2>Post-Game Plan</h2>
-      <p>Whether your team wins or loses, have a plan for after the game. Traffic is going to be terrible for at least an hour. If you can, stick around for 30 minutes after the final whistle to let the worst of the crowd clear out. This is also a great time to take photos with your foam fingers while the stadium is still buzzing.</p>
-
-      <p>The bottom line: a good game day is a prepared game day. Check this list, pack the night before, and you will be the envy of every fan in the parking lot.</p>
+      <h2>After the game</h2>
+      <p>The difference between kit that lasts several seasons and kit you replace every year is about ten minutes at the end. Wipe anything that got rained on, let it dry fully before it goes back in a bag, and store the foam hands flat rather than crushed under a cooler in the boot.</p>
+      <p>If you are kitting out a whole section or a school, that is a different order of magnitude - see the <a href="/wholesale/">foam finger bulk terms</a> before you buy twelve-packs one at a time.</p>
     `;
 
 const FOAM_FINGER_QUALITY_CONTENT = `
-      <p>Foam fingers are simple objects, and that is exactly why the cheap ones disappoint. They look fine on the shelf, then go flat and bent within a game or two. The difference is almost entirely in the foam.</p>
+      <p>Foam fingers fail in predictable ways. Knowing what those ways are tells you what to ask before you buy - whether you are buying twelve or twelve thousand.</p>
 
-      <h2>The Foam Problem</h2>
-      <p>Thin, low-density foam is cheap, light, and photographs well. Its one flaw is that it compresses: wave it around for a few innings and it stops holding its shape. Density, not looks, is what decides how long a foam hand survives.</p>
-
-      <p>We make ours from high-density EVA foam (ethylene-vinyl acetate) - the same family of material used in shoe soles and yoga mats. It is denser and more resilient than the low-density foams, so it holds its shape through repeated use, and it does not absorb water. On a custom run you can specify the thickness you want rather than taking whatever weight is in stock.</p>
-
-      <h2>What That Means for You</h2>
+      <h2>How they fail</h2>
       <ul>
-        <li><strong>Longer lifespan</strong> - Our foam fingers last multiple seasons, not just one game</li>
-        <li><strong>Better appearance</strong> - They stay tall and proud from kickoff to the final whistle</li>
-        <li><strong>Weather resistance</strong> - EVA foam does not absorb water, so rain will not ruin it</li>
-        <li><strong>Comfortable grip</strong> - The hand opening is sized for adults but works for older kids too</li>
+        <li><strong>Compression.</strong> Low-density foam is mostly air. Wave it for a few innings and it stops springing back, which is why cheap hands look tired by the second half.</li>
+        <li><strong>Ink flaking.</strong> Printing that has not cured properly peels first at the edge of the logo, where the print meets unprinted foam.</li>
+        <li><strong>Tearing at the hand opening.</strong> That opening takes the strain every single time it is pulled on, so it is where a weak cut shows up first.</li>
+        <li><strong>Water.</strong> Foam that absorbs water stays heavy, and it smells of whatever bag it was stored in.</li>
       </ul>
 
-      <h2>Is It Worth the Extra Cost?</h2>
-      <p>The trade-off is arithmetic rather than marketing: if a hand lasts one game and you replace it every season, three seasons of replacements costs more than one that lasts. Our ${FLAGSHIP_PACK} of foam fingers ${FLAGSHIP_COST_PHRASE}, and it is meant to come back out next season.</p>
+      <h2>What actually decides how long it lasts</h2>
+      <p><strong>Density, not just thickness.</strong> Two hands can be the same thickness and behave completely differently, because one is mostly air and the other is not. Thickness is easy to advertise; density is what you feel when you squeeze it.</p>
+      <p><strong>How the print was applied.</strong> Silk-screen printing pushes ink into the surface rather than laying a film on top of it, which is why it survives handling better than a printed sticker or a heat transfer.</p>
+      <p><strong>How it is stored between seasons.</strong> Flat, dry, and out of a hot car. Most of the damage that gets blamed on the product happens in storage.</p>
 
-      <p>And if you are ordering for a team, school, or event, we produce custom runs from 5,000 pieces per colour with your own colours and printed logo. <a href="/wholesale/">The wholesale page</a> has the terms.</p>
+      <h2>What we make, specifically</h2>
+      <p>Our hands are 18 in (46 cm) and made from EVA foam. On a custom production run the thickness is made to order rather than fixed, so a buyer who needs a different weight can specify it instead of taking whatever is in stock. Colours are matched to your specification on custom runs, and the retail range is five colours. Bulk orders pack 200 pieces to an export carton, with an individual OPP bag per piece available on request.</p>
+      <p>Because the specification is yours on a custom run, the useful question is not "how thick is it" but "what do you need it to survive" - a single event, a season, or repeated handing out at a trade show.</p>
 
-      <p>Bottom line: we make foam fingers the way we want them made. Quality materials, solid construction, and a product you will actually want to bring to the next game.</p>
-    `;
-
-const REUSABLE_PARTY_SUPPLIES_CONTENT = `
-      <p>There is a growing problem with party supplies: they are designed to be thrown away. Paper banners tear, plastic cups crack, and cheap decorations look sad after one use. We think that is wasteful and expensive over time.</p>
-
-      <h2>The Real Cost of Disposable Party Supplies</h2>
-      <p>Let us do the math. If you throw one party a month and spend $20 on disposable decorations each time, that is $240 a year. Over three years, you have spent $720 on things that end up in a landfill. Meanwhile, investing in quality reusable supplies costs more upfront but saves money in the long run.</p>
-
-      <h2>What to Look for in Reusable Party Supplies</h2>
+      <h2>How to judge before you commit</h2>
       <ul>
-        <li><strong>Durable materials</strong> - EVA foam, thick fabric, and sturdy plastics that can be packed away and reused</li>
-        <li><strong>Timeless designs</strong> - Avoid overly specific themes that only work for one occasion</li>
-        <li><strong>Easy storage</strong> - If it is a pain to store, you will not reuse it</li>
-        <li><strong>Easy to clean</strong> - Wipe-clean surfaces make reuse practical</li>
+        <li><strong>Hold it by the finger and let it hang.</strong> Dense foam holds the shape; light foam droops immediately.</li>
+        <li><strong>Twist it gently and let go.</strong> If it stays creased, it will stay creased on the shelf.</li>
+        <li><strong>Look at the edge of the print.</strong> A crisp edge suggests proper curing; a soft or feathered edge suggests it was laid on rather than pushed in.</li>
+        <li><strong>Ask what the foam weight is.</strong> A supplier who cannot answer that question is not specifying the product.</li>
       </ul>
 
-      <h2>Our Approach</h2>
-      <p>Every EYRYA product is designed with reuse in mind. Our EVA foam fingers are the example we know best - an 18-inch EVA foam hand that is meant to come back out season after season rather than go flat after one game.</p>
+      <p>The retail ${FLAGSHIP_PACK} ${FLAGSHIP_COST_PHRASE} on Amazon, and a custom run is quoted per project instead, because the unit price there depends on the quantity, the printing, and the packing.</p>
 
-      <h2>Quick Tips for Reusable Party Planning</h2>
-      <ul>
-        <li>Buy neutral colors that work for any theme - our foam fingers come in 12 colors that match any team or party palette</li>
-        <li>Invest in LED lighting instead of disposable glow sticks - they last longer and are brighter</li>
-        <li>Choose fabric banners over paper ones - they fold flat and last for years</li>
-        <li>Store everything in labeled bins so you know what you have before buying more</li>
-      </ul>
-
-      <p>The shift from disposable to reusable party supplies is not just better for the environment - it is better for your wallet and your party experience. Quality supplies make your events feel more put together, and you will spend less time shopping and more time enjoying the celebration.</p>
+      <p>If you are choosing between stock and a custom run, the <a href="/wholesale/">foam finger bulk terms</a> cover what changes at each volume, and <a href="/products/eva-foam-finger/">the retail 12-pack</a> is the fastest way to see what the standard hand is like.</p>
     `;
 
 const BULK_ORDER_GUIDE_CONTENT = `
@@ -262,65 +230,6 @@ const BULK_ORDER_GUIDE_CONTENT = `
       <p>Send us your artwork, the colours, the thickness, the quantity per colour, and the destination. We will come back with a quote and a production schedule. <a href="/wholesale/">Start a foam finger bulk enquiry</a>.</p>
     `;
 
-const CAMPING_WITH_KIDS_CONTENT = `
-      <p>Camping with kids sounds wonderful until you are three hours into a rainstorm and a six-year-old is asking why the tent is leaking. Here is what tends to go wrong, and how to make the trip work anyway.</p>
-
-      <h2>Start Small</h2>
-      <p>Your first family camping trip should not be a week in the backcountry. Start with one night at a campground that has bathrooms and running water. If that goes well, try two nights. Then consider more remote locations. Building up gradually keeps everyone happy and gives you a chance to figure out what works for your family.</p>
-
-      <h2>What to Pack (Beyond the Basics)</h2>
-      <p>You already know you need a tent, sleeping bags, and food. Here is what experienced camping parents add to the list:</p>
-      <ul>
-        <li><strong>Outdoor games</strong> - Kids get bored fast. A portable game kit with ring toss, bean bags, and bocce ball keeps them entertained for hours.</li>
-        <li><strong>Headlamps for each kid</strong> - Flashlights are great, but headlamps keep hands free. Kids love them and they are surprisingly useful for nighttime bathroom trips.</li>
-        <li><strong>Extra clothes in sealed bags</strong> - Kids will get wet, muddy, or both. Pack a complete change of clothes in a ziplock bag for each day.</li>
-        <li><strong>Snacks that do not require cooking</strong> - Granola bars, trail mix, fruit snacks. When hunger strikes at 10 PM, you want something ready to go.</li>
-        <li><strong>A first aid kit</strong> - Band-aids, antiseptic wipes, and children's pain reliever. You will use at least one of these.</li>
-      </ul>
-
-      <h2>Keeping Kids Engaged</h2>
-      <p>The best family camping trips are the ones where kids feel like they are part of the adventure, not just along for the ride. Here is how:</p>
-      <ul>
-        <li>Let them help set up the tent - even small tasks like holding the poles or hammering stakes (with supervision) make kids feel important</li>
-        <li>Plan a scavenger hunt - write a list of things to find (a pinecone, a smooth rock, a feather) and let them explore</li>
-        <li>Bring a nature guidebook - identifying plants, birds, and insects turns a walk into an adventure</li>
-        <li>Plan campfire activities - shadow puppets, storytelling, and stargazing are free and endlessly entertaining</li>
-      </ul>
-
-      <h2>The Golden Rule</h2>
-      <p>Lower your expectations. Things will go wrong. The tent might leak. The food might burn. Someone will cry. That is all part of the experience. The families that enjoy camping most are the ones who can laugh when things go sideways and focus on the good moments - which there will be plenty of.</p>
-
-      <p>The trips children remember are rarely the perfectly executed ones. A weekend of rain, six hours of card games in the tent, and everyone still talking about it afterwards beats a flawless itinerary. Camping with kids is not about perfection - it is about being together somewhere different.</p>
-    `;
-
-const CHEAP_PARTY_DECORATIONS_CONTENT = `
-      <p>Party decorations have a quiet failure mode: they look fine in the packet and fall apart during the party. Here is what usually goes wrong, and what to look for instead.</p>
-
-      <h2>Where Cheap Decorations Fail</h2>
-      <ul>
-        <li><strong>Paper banners</strong> - Thin paper tears during setup, and a light breeze finishes the job outdoors.</li>
-        <li><strong>Thin plastic streamers</strong> - They tangle as you unpack them and rarely hang straight.</li>
-        <li><strong>Adhesive decorations</strong> - Cheap adhesive either will not hold or takes paint off the wall when you remove it.</li>
-      </ul>
-
-      <h2>What to Look For Instead</h2>
-      <ul>
-        <li><strong>Thicker materials</strong> - Fabric banners and heavy cardstock cope far better than paper or thin plastic.</li>
-        <li><strong>Proper hanging points</strong> - Grommets, clips, or string beat anything that relies on adhesive.</li>
-        <li><strong>Simple designs</strong> - Elaborate decorations have more weak points to fail.</li>
-      </ul>
-
-      <h2>The Hidden Cost of Cheap Decorations</h2>
-      <p>Here is the thing about cheap party decorations: they are not actually cheap. If you buy a $3 banner that tears before the party starts, you either have a ruined decoration or you need to buy a replacement. Either way, you have spent more than if you had bought a quality banner from the start.</p>
-
-      <p>Over the course of a year, if you attend or host four parties, buying $3 decorations each time adds up to $12. A single $15 quality decoration that you reuse four times costs $3.75 per party - and it actually looks good every time.</p>
-
-      <h2>Our Recommendation</h2>
-      <p>Invest in a few key pieces that last rather than buying lots of disposable decorations. Our EVA foam fingers are one example - they work for a sports party, a birthday, or a team event, and they come back out the following season.</p>
-
-      <p>The next time you are shopping for party supplies, ask yourself: will this survive the party? If the answer is no, spend a little more on something that will. Your party will look better, you will waste less, and you will save money over time.</p>
-    `;
-
 export const POSTS: Post[] = [
   {
     slug: 'custom-foam-fingers-guide',
@@ -332,7 +241,7 @@ export const POSTS: Post[] = [
     readTime: estimateReadTime(CUSTOM_FOAM_FINGERS_GUIDE_CONTENT),
     content: CUSTOM_FOAM_FINGERS_GUIDE_CONTENT,
     image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['eva-foam-finger', 'party-led-lights', 'outdoor-game-kit'],
+    relatedProductSlugs: ['eva-foam-finger'],
   },
   {
     slug: 'game-day-checklist',
@@ -344,7 +253,7 @@ export const POSTS: Post[] = [
     readTime: estimateReadTime(GAME_DAY_CHECKLIST_CONTENT),
     content: GAME_DAY_CHECKLIST_CONTENT,
     image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['eva-foam-finger', 'party-led-lights'],
+    relatedProductSlugs: ['eva-foam-finger'],
   },
   {
     slug: 'foam-finger-quality',
@@ -359,18 +268,6 @@ export const POSTS: Post[] = [
     relatedProductSlugs: ['eva-foam-finger'],
   },
   {
-    slug: 'reusable-party-supplies',
-    title: 'Party Supplies That Actually Last',
-    excerpt: 'Why buy disposable decorations when you can get quality party supplies that work for multiple events?',
-    categorySlug: 'party-ideas',
-    date: 'Jul 22, 2026',
-    isoDate: '2026-07-22',
-    readTime: estimateReadTime(REUSABLE_PARTY_SUPPLIES_CONTENT),
-    content: REUSABLE_PARTY_SUPPLIES_CONTENT,
-    image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['eva-foam-finger', 'party-led-lights'],
-  },
-  {
     slug: 'bulk-order-guide',
     title: 'Bulk Foam Finger Orders: Minimums & Lead Time',
     excerpt: 'How custom foam finger orders actually work: the per-colour minimum, what you can change, packing, lead time, payment, and shipping.',
@@ -380,31 +277,7 @@ export const POSTS: Post[] = [
     readTime: estimateReadTime(BULK_ORDER_GUIDE_CONTENT),
     content: BULK_ORDER_GUIDE_CONTENT,
     image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['eva-foam-finger', 'party-led-lights', 'outdoor-game-kit'],
-  },
-  {
-    slug: 'camping-with-kids',
-    title: 'Camping with Kids: A Survival Guide',
-    excerpt: 'What tends to go wrong on a family camping trip, and how to make it work anyway.',
-    categorySlug: 'outdoor-activities',
-    date: 'Jun 8, 2026',
-    isoDate: '2026-06-08',
-    readTime: estimateReadTime(CAMPING_WITH_KIDS_CONTENT),
-    content: CAMPING_WITH_KIDS_CONTENT,
-    image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['outdoor-game-kit', 'party-led-lights'],
-  },
-  {
-    slug: 'cheap-party-decorations',
-    title: 'The Problem with Cheap Party Decorations',
-    excerpt: 'Why cheap party decorations fail before the party ends, what to look for instead, and the arithmetic of buying something that lasts.',
-    categorySlug: 'party-ideas',
-    date: 'May 19, 2026',
-    isoDate: '2026-05-19',
-    readTime: estimateReadTime(CHEAP_PARTY_DECORATIONS_CONTENT),
-    content: CHEAP_PARTY_DECORATIONS_CONTENT,
-    image: POST_FALLBACK_IMAGE,
-    relatedProductSlugs: ['eva-foam-finger', 'party-led-lights'],
+    relatedProductSlugs: ['eva-foam-finger'],
   },
 ];
 

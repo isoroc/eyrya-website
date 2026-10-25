@@ -258,8 +258,8 @@ check(
   read('sitemap.xml').includes('/products/eva-foam-finger/') && !read('sitemap.xml').includes('party-led-lights'),
 );
 check(
-  'sitemap is down to 18 URLs after dropping the five thin ones',
-  [...read('sitemap.xml').matchAll(/<loc>/g)].length === 18,
+  'sitemap is down to 15 URLs after dropping the thin ones',
+  [...read('sitemap.xml').matchAll(/<loc>/g)].length === 15,
   `${[...read('sitemap.xml').matchAll(/<loc>/g)].length}`,
 );
 check('no category route survives in the sitemap', !/\/category\//.test(read('sitemap.xml')));

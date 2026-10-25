@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, User } from 'lucide-react';
 import JsonLd from '@/app/components/JsonLd';
 import { getProduct, type Product } from '@/lib/products';
-import { POST_SLUGS, getPost, getPostCategory, getRelatedPosts } from '@/lib/posts';
+import { POST_FALLBACK_IMAGE, POST_SLUGS, getPost, getPostCategory, getRelatedPosts } from '@/lib/posts';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -117,6 +117,18 @@ export default async function IdeaDetailPage({ params }: PageProps) {
             <span>{post.date}</span>
           </div>
         </div>
+
+        {/* A lead image renders as soon as the post carries its own. Until the
+            owner supplies photographs every post falls back to the shared OG
+            image, which is right for social previews but not something to show
+            a reader twice. */}
+        {post.image !== POST_FALLBACK_IMAGE && (
+          <img
+            src={post.image}
+            alt={post.imageAlt ?? post.title}
+            className="w-full h-auto mb-8 border border-gray-200"
+          />
+        )}
 
         <article
           className="prose prose-lg max-w-none prose-headings:font-['Teko'] prose-headings:uppercase prose-headings:tracking-wide prose-h2:text-2xl prose-h2:font-bold prose-h2:text-[#1a1a1a] prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-600 prose-p:leading-relaxed prose-p:mb-4 prose-a:text-[#DC2626] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-600 prose-strong:text-[#1a1a1a] prose-ul:my-4"

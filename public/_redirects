@@ -46,3 +46,11 @@
 /ideas/category/sports-events/       /ideas/     301
 /ideas/category/outdoor-activities/  /ideas/     301
 /ideas/category/wholesale/           /ideas/     301
+
+# Three articles about camping and party decorations were deleted on 2026-10-25.
+# They had almost no connection to the one product this site sells (one of them
+# mentioned foam fingers zero times), and they were competing for the same crawl
+# budget as the pages that matter.
+/ideas/camping-with-kids/         /ideas/  301
+/ideas/cheap-party-decorations/   /ideas/  301
+/ideas/reusable-party-supplies/   /ideas/  301

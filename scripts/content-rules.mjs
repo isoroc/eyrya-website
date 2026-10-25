@@ -100,6 +100,10 @@ export const REDIRECTED_PATHS = [
   { path: '/ideas/category/sports-events/', to: '/ideas' },
   { path: '/ideas/category/outdoor-activities/', to: '/ideas' },
   { path: '/ideas/category/wholesale/', to: '/ideas' },
+  // off-topic articles deleted 2026-10-25
+  { path: '/ideas/camping-with-kids/', to: '/ideas' },
+  { path: '/ideas/cheap-party-decorations/', to: '/ideas' },
+  { path: '/ideas/reusable-party-supplies/', to: '/ideas' },
 ];
 
 export const USER_AGENT =
