@@ -50,3 +50,6 @@ nohup.out
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Original product photographs, kept out of the deployed public/ directory.
+assets/product-source/

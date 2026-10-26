@@ -143,11 +143,11 @@ export const PRODUCTS: Product[] = [
     image: '/images/products/foam-finger-multi.webp',
     imageAlt: 'EYRYA EVA foam hand in several team colours - 18 inch foam finger for sports fans',
     colorSwatches: [
-      { name: 'Blue', hex: '#3B82F6', image: '/images/products/foam-finger-blue.webp' },
-      { name: 'Black', hex: '#1a1a1a', image: '/images/products/foam-finger-black.webp' },
-      { name: 'Pink', hex: '#FF6B6B', image: '/images/products/foam-finger-pink.webp' },
-      { name: 'Green', hex: '#22C55E', image: '/images/products/foam-finger-green.webp' },
-      { name: 'Yellow', hex: '#FFE66D', image: '/images/products/foam-finger-yellow.webp' },
+      { name: 'Blue', hex: '#0FB7E5', image: '/images/products/foam-finger-blue.webp' },
+      { name: 'Black', hex: '#3A3A38', image: '/images/products/foam-finger-black.webp' },
+      { name: 'Pink', hex: '#EA7CB6', image: '/images/products/foam-finger-pink.webp' },
+      { name: 'Green', hex: '#92D749', image: '/images/products/foam-finger-green.webp' },
+      { name: 'Yellow', hex: '#E4CC00', image: '/images/products/foam-finger-yellow.webp' },
     ],
     features: [
       '18-inch EVA foam hand',
