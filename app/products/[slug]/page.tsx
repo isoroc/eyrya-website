@@ -40,7 +40,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `Shop the ${product.name} by EYRYA. ${product.tagline}`;
 
   return {
-    title: { absolute: `EYRYA® ${product.name} | Premium Quality & Best Price` },
+    // No "Premium Quality & Best Price": both are unverifiable, and "Best Price"
+    // is not true against the cheap mini packs this competes with. The size is the
+    // honest differentiator and the phrase buyers actually search.
+    title: { absolute: `EYRYA® ${product.name} | 18-Inch, 5 Colours` },
     description,
     keywords: `EYRYA ${product.name}, ${product.name.toLowerCase()} buy online, premium ${product.name.toLowerCase()}`,
     alternates: {
