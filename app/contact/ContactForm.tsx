@@ -70,7 +70,7 @@ export default function ContactForm() {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
               placeholder="Your name"
             />
           </div>
@@ -84,7 +84,7 @@ export default function ContactForm() {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
               placeholder="you@example.com"
             />
           </div>
@@ -96,7 +96,7 @@ export default function ContactForm() {
             <select
               id="inquiry"
               name="inquiry"
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors bg-white"
             >
               <option value="">Select one...</option>
               <option value="Product question">Product question</option>
@@ -114,7 +114,7 @@ export default function ContactForm() {
               name="message"
               required
               rows={5}
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors resize-none"
               placeholder="How can we help?"
             />
           </div>

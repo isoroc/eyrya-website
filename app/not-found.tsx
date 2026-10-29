@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="pt-24 pb-20 bg-[#F4F1EA] min-h-screen">
+    <div className="pt-24 pb-20 bg-[#F4F1EA] min-h-dvh">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-8">
           <span className="text-8xl md:text-9xl font-['Teko'] uppercase font-bold text-[#DC2626]">404</span>

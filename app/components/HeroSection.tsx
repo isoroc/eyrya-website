@@ -14,7 +14,7 @@ export default function HeroSection() {
   const offer = getPrimaryOffer(product);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-start overflow-hidden">
+    <section className="relative w-full min-h-dvh flex items-center justify-start overflow-hidden">
       <div className="absolute inset-0">
         <img
           src="/images/hero.webp"

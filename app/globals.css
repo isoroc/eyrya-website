@@ -46,3 +46,16 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #B91C1C;
 }
+
+/* Keyboard focus indicator.
+ *
+ * The form fields used to carry `focus:outline-none`, which suppressed the only
+ * visible focus cue for keyboard users. A utility class beats a bare
+ * `:focus-visible` rule on specificity, so the suppression was removed from the
+ * three forms and the indicator lives here for the whole site instead.
+ *
+ * Mouse users still get the input border colour change; keyboard users get this. */
+:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}

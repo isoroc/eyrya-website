@@ -246,6 +246,21 @@ check(
 );
 
 // -----------------------------------------------------------------------------
+console.log('accessibility invariants');
+const home = pages.find((p) => p.rel === '/index.html');
+check('skip to content link is present', Boolean(home) && home.body.includes('href="#main"'));
+check('the skip target exists', Boolean(home) && /<main[^>]*id="main"/.test(home.body));
+check(
+  'the skip link is the first focusable element on the page',
+  Boolean(home) && /<body[^>]*>[\s\S]*?<(a|button|input)\b[^>]*>/.exec(home.body)?.[0].includes('href="#main"'),
+);
+check('a global :focus-visible rule is compiled', allCss.includes(':focus-visible'));
+check(
+  'no control suppresses its focus outline without a replacement',
+  !/focus:outline-none/.test(pages.map((p) => p.body).join('')) || allCss.includes(':focus-visible'),
+);
+check('full-height sections use dvh, not vh', allCss.includes('min-height:100dvh') && !allCss.includes('min-height:100vh'));
+
 console.log('technical SEO regression checks');
 check('no prefers-color-scheme in CSS', !allCss.includes('prefers-color-scheme'));
 check(

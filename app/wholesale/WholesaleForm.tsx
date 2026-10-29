@@ -71,7 +71,7 @@ export default function WholesaleForm() {
                 id="name"
                 name="name"
                 required
-                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
                 placeholder="Your name"
               />
             </div>
@@ -85,7 +85,7 @@ export default function WholesaleForm() {
                 id="company"
                 name="company"
                 required
-                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
                 placeholder="Company name"
               />
             </div>
@@ -101,7 +101,7 @@ export default function WholesaleForm() {
                 id="email"
                 name="email"
                 required
-                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
                 placeholder="you@company.com"
               />
             </div>
@@ -114,7 +114,7 @@ export default function WholesaleForm() {
                 id="quantity"
                 name="quantity"
                 required
-                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors bg-white"
               >
                 <option value="">Select...</option>
                 <option value="5000-10000">5,000 - 10,000 pieces</option>
@@ -137,7 +137,7 @@ export default function WholesaleForm() {
               id="businessType"
               name="businessType"
               required
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors bg-white"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors bg-white"
             >
               <option value="">Select...</option>
               <option value="distributor">Importer / Distributor</option>
@@ -158,7 +158,7 @@ export default function WholesaleForm() {
               id="message"
               name="message"
               rows={4}
-              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+              className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors resize-none"
               placeholder="Tell us what you are looking for..."
             />
           </div>

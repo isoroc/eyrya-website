@@ -224,7 +224,7 @@ export default function SupportContent() {
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
                   placeholder="e.g., 123-4567890-1234567"
                 />
               </div>
@@ -239,7 +239,7 @@ export default function SupportContent() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors"
                   placeholder="you@example.com"
                 />
               </div>
@@ -253,7 +253,7 @@ export default function SupportContent() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-[#1a1a1a] transition-colors resize-none"
                   placeholder="Describe your issue or question..."
                 />
               </div>

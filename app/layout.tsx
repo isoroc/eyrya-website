@@ -59,8 +59,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="font-sans antialiased">
+        {/* Keyboard users land here first. Hidden until focused, so it never
+            appears for mouse users but skips the whole nav for everyone else. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-[#1a1a1a] focus:text-white focus:px-4 focus:py-2 focus:rounded-sm"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <JsonLd data={{
           "@context": "https://schema.org",
